@@ -96,12 +96,6 @@ define( 'WP_REDIS_PORT', getenv_docker('WORDPRESS_REDIS_PORT', 6379) );
 define( 'WP_REDIS_PASSWORD', getenv_docker('WORDPRESS_REDIS_PASSWORD', null) );
 define( 'WP_REDIS_DATABASE', getenv_docker('WORDPRESS_REDIS_DATABASE', 0) );
 
-// JWT
-define('JWT_AUTH_SECRET_KEY', 'your-top-secret-key');
-define('JWT_AUTH_CORS_ENABLE', true);
-define('JWT_AUTH_CORS_ORIGIN', 'https://vcs-demo.rafaeldeveloper.co');
-define('JWT_AUTH_CORS_ORIGIN_REGEX', 'https://vcs-demo.rafaeldeveloper.co');
-
 
 /**
  * WordPress database table prefix.
