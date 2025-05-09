@@ -66,6 +66,7 @@ class WC_Helper_Subscriptions_API {
 		);
 		register_rest_route(
 			'wc/v3',
+<<<<<<< HEAD
 			'/marketplace/subscriptions/activate-plugin',
 			array(
 				'methods'             => 'POST',
@@ -81,6 +82,8 @@ class WC_Helper_Subscriptions_API {
 		);
 		register_rest_route(
 			'wc/v3',
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'/marketplace/subscriptions/disconnect',
 			array(
 				'methods'             => 'POST',
@@ -158,6 +161,7 @@ class WC_Helper_Subscriptions_API {
 	 * as JSON.
 	 */
 	public static function refresh() {
+<<<<<<< HEAD
 		try {
 			WC_Helper::refresh_helper_subscriptions();
 			WC_Helper::get_subscriptions();
@@ -173,6 +177,12 @@ class WC_Helper_Subscriptions_API {
 		}
 
 		WC_Helper::fetch_helper_connection_info();
+=======
+		WC_Helper::refresh_helper_subscriptions();
+		WC_Helper::get_subscriptions();
+		WC_Helper::get_product_usage_notice_rules();
+		self::get_subscriptions();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -209,6 +219,7 @@ class WC_Helper_Subscriptions_API {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Activate a plugin for a WooCommerce.com subscription.
 	 *
 	 * @param WP_REST_Request $request Request object.
@@ -242,6 +253,8 @@ class WC_Helper_Subscriptions_API {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Disconnect a WooCommerce.com subscription.
 	 *
 	 * @param WP_REST_Request $request Request object.

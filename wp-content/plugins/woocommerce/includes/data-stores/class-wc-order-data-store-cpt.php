@@ -658,6 +658,7 @@ class WC_Order_Data_Store_CPT extends Abstract_WC_Order_Data_Store_CPT implement
 			);
 		}
 
+<<<<<<< HEAD
 		/**
 		 * Filter the order ids to be returned.
 		 *
@@ -670,6 +671,9 @@ class WC_Order_Data_Store_CPT extends Abstract_WC_Order_Data_Store_CPT implement
 		$order_ids = apply_filters( 'woocommerce_shop_order_search_results', $order_ids, $term, $search_fields );
 
 		return array_map( 'absint', $order_ids );
+=======
+		return apply_filters( 'woocommerce_shop_order_search_results', $order_ids, $term, $search_fields );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -874,6 +878,10 @@ class WC_Order_Data_Store_CPT extends Abstract_WC_Order_Data_Store_CPT implement
 		if ( $save ) {
 			$order->save_meta_data();
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

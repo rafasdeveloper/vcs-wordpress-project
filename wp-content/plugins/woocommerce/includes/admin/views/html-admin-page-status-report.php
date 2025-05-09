@@ -252,11 +252,14 @@ if ( file_exists( $plugin_path ) ) {
 			<td><?php echo esc_html( $environment['server_info'] ); ?></td>
 		</tr>
 		<tr>
+<<<<<<< HEAD
 			<td data-export-label="Server Architecture"><?php esc_html_e( 'Server architecture', 'woocommerce' ); ?>:</td>
 			<td class="help"><?php echo wc_help_tip( esc_html__( 'Information about the operating system your server is running.', 'woocommerce' ) ); /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></td>
 			<td><?php echo ! empty( $environment['server_architecture'] ) ? esc_html( $environment['server_architecture'] ) : esc_html__( 'Unable to determine server architecture.  Please ask your hosting provider for this information.', 'woocommerce' ); ?></td>
 		</tr>
 		<tr>
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			<td data-export-label="PHP Version"><?php esc_html_e( 'PHP version', 'woocommerce' ); ?>:</td>
 			<td class="help"><?php echo wc_help_tip( esc_html__( 'The version of PHP installed on your hosting server.', 'woocommerce' ) ); /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></td>
 			<td>
@@ -787,12 +790,15 @@ if ( 0 < $mu_plugins_count ) :
 			<td><?php echo $settings['HPOS_sync_enabled'] ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">&ndash;</mark>'; ?></td>
 		</tr>
 
+<<<<<<< HEAD
 		<tr>
 			<td data-export-label="Enabled Features"><?php esc_html_e( 'Enabled features:', 'woocommerce' ); ?></td>
 			<td class="help"><?php echo wc_help_tip( esc_html__( 'Features that are currently enabled.', 'woocommerce' ) ); ?></td>
 			<td><?php echo esc_html( implode( ', ', $settings['enabled_features'] ) ); ?></td>
 		</tr>
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	</tbody>
 </table>
 <table class="wc_status_table widefat" cellspacing="0">
@@ -1083,7 +1089,11 @@ if ( 0 < $mu_plugins_count ) :
 					<mark class="error">
 						<span class="dashicons dashicons-warning"></span>
 					</mark>
+<<<<<<< HEAD
 					<a href="https://developer.woocommerce.com/docs/theming/theme-development/fixing-outdated-woocommerce-templates/" target="_blank">
+=======
+					<a href="https://woocommerce.com/document/fix-outdated-templates-woocommerce/" target="_blank">
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						<?php esc_html_e( 'Learn how to update', 'woocommerce' ); ?>
 					</a> |
 					<mark class="info">

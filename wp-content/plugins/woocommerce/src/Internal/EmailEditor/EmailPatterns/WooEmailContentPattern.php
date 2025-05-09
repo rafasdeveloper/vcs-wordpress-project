@@ -2,7 +2,11 @@
 
 namespace Automattic\WooCommerce\Internal\EmailEditor\EmailPatterns;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\EmailEditor\Engine\Patterns\Abstract_Pattern;
+=======
+use MailPoet\EmailEditor\Engine\Patterns\Abstract_Pattern;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Pattern class for WooCommerce email content.
@@ -60,10 +64,13 @@ class WooEmailContentPattern extends Abstract_Pattern {
 <p>Here comes content composed of supported core blocks and Woo transactional email block(s).</p>
 <!-- /wp:paragraph -->
 
+<<<<<<< HEAD
 <!-- wp:woo/email-content {"lock":{"move":false,"remove":true}} -->
 <div class="wp-block-woo-email-content">##WOO_CONTENT##</div>
 <!-- /wp:woo/email-content -->
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 <!-- wp:buttons {"layout":{"justifyContent":"center"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"style":{"color":{"background":"#873eff"}}} -->
 <div class="wp-block-button"><a class="wp-block-button__link has-background wp-element-button" style="background-color:#873eff">Shop now</a></div>

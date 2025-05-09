@@ -121,6 +121,7 @@ class FilesystemUtil {
 
 		return is_null( $initialized ) ? false : $initialized;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Validate that a file path is a valid upload path.
@@ -169,4 +170,6 @@ class FilesystemUtil {
 
 		return 0 === stripos( wp_normalize_path( $file_path ), trailingslashit( wp_normalize_path( $directory ) ) );
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

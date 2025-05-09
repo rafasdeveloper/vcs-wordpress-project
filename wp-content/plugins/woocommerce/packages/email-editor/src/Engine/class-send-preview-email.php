@@ -1,15 +1,27 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 declare( strict_types = 1 );
 
+<<<<<<< HEAD
 namespace Automattic\WooCommerce\EmailEditor\Engine;
 
 use Automattic\WooCommerce\EmailEditor\Engine\Renderer\Renderer;
+=======
+namespace MailPoet\EmailEditor\Engine;
+
+use MailPoet\EmailEditor\Engine\Renderer\Renderer;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class Send_Preview_Email
@@ -17,7 +29,11 @@ use Automattic\WooCommerce\EmailEditor\Engine\Renderer\Renderer;
  * This class is responsible for handling the functionality to send preview emails.
  * It is part of the email editor integrations utilities.
  *
+<<<<<<< HEAD
  * @package Automattic\WooCommerce\EmailEditor\Integrations\Utils
+=======
+ * @package MailPoet\EmailEditor\Integrations\Utils
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class Send_Preview_Email {
 
@@ -93,8 +109,11 @@ class Send_Preview_Email {
 			$language
 		);
 
+<<<<<<< HEAD
 		$rendered_data = apply_filters( 'woocommerce_email_editor_send_preview_email_rendered_data', $rendered_data );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->set_personalize_content( $rendered_data['html'] );
 	}
 
@@ -108,6 +127,7 @@ class Send_Preview_Email {
 		$current_user = wp_get_current_user();
 		$subscriber   = ! empty( $current_user->ID ) ? $current_user : null;
 
+<<<<<<< HEAD
 		$personalizer_context = array(
 			'recipient_email' => $subscriber ? $subscriber->user_email : null,
 			'is_user_preview' => true,
@@ -115,6 +135,14 @@ class Send_Preview_Email {
 		$personalizer_context = apply_filters( 'woocommerce_email_editor_send_preview_email_personalizer_context', $personalizer_context );
 
 		$this->personalizer->set_context( $personalizer_context );
+=======
+		$this->personalizer->set_context(
+			array(
+				'recipient_email' => $subscriber ? $subscriber->user_email : null,
+				'is_user_preview' => true,
+			)
+		);
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->personalizer->personalize_content( $content );
 	}
 

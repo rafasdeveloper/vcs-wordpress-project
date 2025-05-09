@@ -38,8 +38,17 @@ class WC_Theme_Tracking {
 	 * Send a Tracks event when a theme is activated so that we can track active block themes.
 	 */
 	public function track_activated_theme() {
+<<<<<<< HEAD
 		$is_block_theme = wp_is_block_theme();
 		$theme_object   = wp_get_theme();
+=======
+		$is_block_theme = false;
+		$theme_object = wp_get_theme();
+
+		if ( function_exists( 'wc_current_theme_is_fse_theme' ) ) {
+			$is_block_theme = wc_current_theme_is_fse_theme();
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$properties = array(
 			'block_theme'   => $is_block_theme,

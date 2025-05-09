@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 <?php return array('dependencies' => array('wc-tracks', 'wp-dom-ready'), 'version' => '91cbaee934e5251b104b');
+=======
+<?php return array('dependencies' => array('wc-tracks', 'wp-dom-ready'), 'version' => '9247df904ffc5000c7ff');
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

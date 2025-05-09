@@ -63,7 +63,10 @@ final class BlockTypesController {
 		add_action( 'woocommerce_login_form_end', array( $this, 'redirect_to_field' ) );
 		add_filter( 'widget_types_to_hide_from_legacy_widget_block', array( $this, 'hide_legacy_widgets_with_block_equivalent' ) );
 		add_action( 'woocommerce_delete_product_transients', array( $this, 'delete_product_transients' ) );
+<<<<<<< HEAD
 		add_filter( 'register_block_type_args', array( $this, 'enqueue_block_style_for_classic_themes' ), 10, 2 );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -285,7 +288,13 @@ final class BlockTypesController {
 	 */
 	public function add_data_attributes( $content, $block ) {
 
+<<<<<<< HEAD
 		if ( ! is_string( $content ) || ! $this->block_should_have_data_attributes( $block['blockName'] ) ) {
+=======
+		$content = trim( $content );
+
+		if ( ! $this->block_should_have_data_attributes( $block['blockName'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $content;
 		}
 
@@ -295,9 +304,16 @@ final class BlockTypesController {
 		$processor = new \WP_HTML_Tag_Processor( $content );
 
 		if (
+<<<<<<< HEAD
 			false === $processor->next_tag() || $processor->is_tag_closer()
 		) {
 
+=======
+			false === $processor->next_token() ||
+			'DIV' !== $processor->get_token_name() ||
+			$processor->is_tag_closer()
+		) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $content;
 		}
 
@@ -372,7 +388,13 @@ final class BlockTypesController {
 	 */
 	protected function get_widget_area_block_types() {
 		return array(
+<<<<<<< HEAD
 			'AllReviews',
+=======
+			'ActiveFilters',
+			'AllReviews',
+			'AttributeFilter',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'Breadcrumbs',
 			'CartLink',
 			'CatalogSorting',
@@ -380,6 +402,7 @@ final class BlockTypesController {
 			'CustomerAccount',
 			'FeaturedCategory',
 			'FeaturedProduct',
+<<<<<<< HEAD
 			'MiniCart',
 			'ProductCategories',
 			'ProductResultsCount',
@@ -407,6 +430,18 @@ final class BlockTypesController {
 			'StockFilter',
 			// End: legacy filter blocks.
 
+=======
+			'FilterWrapper',
+			'MiniCart',
+			'PriceFilter',
+			'ProductCategories',
+			'ProductResultsCount',
+			'ProductSearch',
+			'RatingFilter',
+			'ReviewsByCategory',
+			'ReviewsByProduct',
+			'StockFilter',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Below product grids are hidden from inserter however they could have been used in widgets.
 			// Keep them for backward compatibility.
 			'HandpickedProducts',
@@ -417,7 +452,10 @@ final class BlockTypesController {
 			'ProductsByAttribute',
 			'ProductCategory',
 			'ProductTag',
+<<<<<<< HEAD
 			// End: legacy product grids blocks.
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 	}
 
@@ -455,6 +493,7 @@ final class BlockTypesController {
 			'ProductCategory',
 			'ProductCollection\Controller',
 			'ProductCollection\NoResults',
+<<<<<<< HEAD
 			'ProductFilters',
 			'ProductFilterStatus',
 			'ProductFilterPrice',
@@ -469,6 +508,12 @@ final class BlockTypesController {
 			'ProductGallery',
 			'ProductGalleryLargeImage',
 			'ProductGalleryLargeImageNextPrevious',
+=======
+			'ProductGallery',
+			'ProductGalleryLargeImage',
+			'ProductGalleryLargeImageNextPrevious',
+			'ProductGalleryPager',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'ProductGalleryThumbnails',
 			'ProductImage',
 			'ProductImageGallery',
@@ -483,6 +528,10 @@ final class BlockTypesController {
 			'ProductRatingCounter',
 			'ProductRatingStars',
 			'ProductResultsCount',
+<<<<<<< HEAD
+=======
+			'ProductReviews',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'ProductSaleBadge',
 			'ProductSearch',
 			'ProductSKU',
@@ -496,6 +545,10 @@ final class BlockTypesController {
 			'ReviewsByCategory',
 			'ReviewsByProduct',
 			'RelatedProducts',
+<<<<<<< HEAD
+=======
+			'ProductDetails',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'SingleProduct',
 			'StockFilter',
 			'PageContentWrapper',
@@ -513,6 +566,7 @@ final class BlockTypesController {
 			'OrderConfirmation\AdditionalFieldsWrapper',
 			'OrderConfirmation\AdditionalFields',
 			'OrderConfirmation\CreateAccount',
+<<<<<<< HEAD
 			'ProductDetails',
 			'ProductDescription',
 			'ProductSpecifications',
@@ -534,6 +588,8 @@ final class BlockTypesController {
 			'Reviews\ProductReviewsPaginationPrevious',
 			'Reviews\ProductReviewsPaginationNumbers',
 			'Reviews\ProductReviewTemplate',
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		$block_types = array_merge(
@@ -543,6 +599,7 @@ final class BlockTypesController {
 			MiniCartContents::get_mini_cart_block_types()
 		);
 
+<<<<<<< HEAD
 		if ( wp_is_block_theme() ) {
 			$block_types[] = 'AddToCartWithOptions\AddToCartWithOptions';
 			$block_types[] = 'AddToCartWithOptions\QuantitySelector';
@@ -554,6 +611,35 @@ final class BlockTypesController {
 			$block_types[] = 'AddToCartWithOptions\GroupedProductItem';
 			$block_types[] = 'AddToCartWithOptions\GroupedProductItemSelector';
 			$block_types[] = 'AddToCartWithOptions\GroupedProductItemLabel';
+=======
+		// Update plugins/woocommerce-blocks/docs/internal-developers/blocks/feature-flags-and-experimental-interfaces.md
+		// when modifying this list.
+		if ( Features::is_enabled( 'experimental-blocks' ) ) {
+			$block_types[] = 'ProductFilters';
+			$block_types[] = 'ProductFilterStatus';
+			$block_types[] = 'ProductFilterPrice';
+			$block_types[] = 'ProductFilterPriceSlider';
+			$block_types[] = 'ProductFilterAttribute';
+			$block_types[] = 'ProductFilterRating';
+			$block_types[] = 'ProductFilterActive';
+			$block_types[] = 'ProductFilterRemovableChips';
+			$block_types[] = 'ProductFilterClearButton';
+			$block_types[] = 'ProductFilterCheckboxList';
+			$block_types[] = 'ProductFilterChips';
+			if ( Features::is_enabled( 'blockified-add-to-cart' ) && wc_current_theme_is_fse_theme() ) {
+				$block_types[] = 'AddToCartWithOptions';
+				$block_types[] = 'AddToCartWithOptionsQuantitySelector';
+				$block_types[] = 'AddToCartWithOptionsVariationSelector';
+				$block_types[] = 'AddToCartWithOptionsGroupedProductSelector';
+				$block_types[] = 'AddToCartWithOptionsGroupedProductSelectorItemTemplate';
+			}
+			// Generic blocks that will be pushed upstream.
+			$block_types[] = 'Accordion\AccordionGroup';
+			$block_types[] = 'Accordion\AccordionItem';
+			$block_types[] = 'Accordion\AccordionPanel';
+			$block_types[] = 'Accordion\AccordionHeader';
+			$block_types[] = 'BlockifiedProductDetails';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		/**
@@ -578,7 +664,10 @@ final class BlockTypesController {
 					'ClassicTemplate',
 					'ProductResultsCount',
 					'ProductDetails',
+<<<<<<< HEAD
 					'ProductReviews',
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'OrderConfirmation\Status',
 					'OrderConfirmation\Summary',
 					'OrderConfirmation\Totals',
@@ -605,6 +694,7 @@ final class BlockTypesController {
 		 */
 		return apply_filters( 'woocommerce_get_block_types', $block_types );
 	}
+<<<<<<< HEAD
 
 	/**
 	 * By default, when the classic theme is used, block style is always
@@ -650,4 +740,6 @@ final class BlockTypesController {
 
 		return $args;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -22,6 +22,7 @@ class WC_CLI {
 	public function __construct() {
 		$this->includes();
 		$this->hooks();
+<<<<<<< HEAD
 
 		/**
 		 * Adds the blueprint CLI initialization to the 'init' hook to prevent premature translation loading.
@@ -33,6 +34,8 @@ class WC_CLI {
 		 * @see https://github.com/woocommerce/woocommerce/issues/56305
 		 */
 		add_action( 'init', array( $this, 'add_blueprint_cli_hook' ) );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -46,6 +49,10 @@ class WC_CLI {
 		require_once __DIR__ . '/cli/class-wc-cli-tracker-command.php';
 		require_once __DIR__ . '/cli/class-wc-cli-com-command.php';
 		require_once __DIR__ . '/cli/class-wc-cli-com-extension-command.php';
+<<<<<<< HEAD
+=======
+		$this->maybe_include_blueprint_cli();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -62,15 +69,28 @@ class WC_CLI {
 		WP_CLI::add_hook( 'after_wp_load', array( $cli_runner, 'register_commands' ) );
 		$cli_runner = wc_get_container()->get( ProductAttributesLookupCLIRunner::class );
 		WP_CLI::add_hook( 'after_wp_load', fn() => \WP_CLI::add_command( 'wc palt', $cli_runner ) );
+<<<<<<< HEAD
+=======
+
+		if ( FeaturesUtil::feature_is_enabled( 'blueprint' ) && class_exists( \Automattic\WooCommerce\Blueprint\Cli::class ) ) {
+			WP_CLI::add_hook( 'after_wp_load', 'Automattic\WooCommerce\Blueprint\Cli::register_commands' );
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Include Blueprint CLI if it's available.
 	 */
+<<<<<<< HEAD
 	public function add_blueprint_cli_hook() {
 		if ( FeaturesUtil::feature_is_enabled( 'blueprint' ) && class_exists( \Automattic\WooCommerce\Blueprint\Cli::class ) ) {
 			require_once dirname( WC_PLUGIN_FILE ) . '/packages/blueprint/src/Cli.php';
 			WP_CLI::add_hook( 'after_wp_load', 'Automattic\WooCommerce\Blueprint\Cli::register_commands' );
+=======
+	private function maybe_include_blueprint_cli() {
+		if ( FeaturesUtil::feature_is_enabled( 'blueprint' ) ) {
+			require_once dirname( WC_PLUGIN_FILE ) . '/vendor/woocommerce/blueprint/src/Cli.php';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 }

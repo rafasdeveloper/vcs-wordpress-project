@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * @license React
  * react-jsx-runtime.production.min.js

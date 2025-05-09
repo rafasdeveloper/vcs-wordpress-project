@@ -88,7 +88,10 @@ abstract class FeaturedItem extends AbstractDynamicBlock {
 			return '';
 		}
 
+<<<<<<< HEAD
 		$aria_label = $attributes['ariaLabel'] ?? '';
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$attributes = wp_parse_args( $attributes, $this->defaults );
 
 		$attributes['height'] = $attributes['height'] ?? wc_get_theme_support( 'featured_block::default_height', 500 );
@@ -108,6 +111,7 @@ abstract class FeaturedItem extends AbstractDynamicBlock {
 			$output .= $this->render_bg_image( $attributes, $image_url );
 		}
 
+<<<<<<< HEAD
 		if ( isset( $aria_label ) && ! empty( $aria_label ) ) {
 			$p = new \WP_HTML_Tag_Processor( $content );
 
@@ -117,6 +121,8 @@ abstract class FeaturedItem extends AbstractDynamicBlock {
 			}
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$output .= $this->render_attributes( $item, $attributes );
 		$output .= sprintf( '<div class="wc-block-%s__link">%s</div>', $this->block_name, $content );
 		$output .= '</div>';

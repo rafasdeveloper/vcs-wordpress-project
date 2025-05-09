@@ -3,11 +3,17 @@
  * FeaturesController class file
  */
 
+<<<<<<< HEAD
 declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\Features;
 
 use Automattic\WooCommerce\Internal\Admin\EmailPreview\EmailPreview;
+=======
+namespace Automattic\WooCommerce\Internal\Features;
+
+use Automattic\WooCommerce\Internal\Admin\Settings\PaymentsController;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Tracks;
 use WC_Site_Tracking;
 use Automattic\Jetpack\Constants;
@@ -244,7 +250,11 @@ class FeaturesController {
 		$tracking_enabled                 = WC_Site_Tracking::is_tracking_enabled();
 
 		$legacy_features = array(
+<<<<<<< HEAD
 			'analytics'              => array(
+=======
+			'analytics'                          => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'Analytics', 'woocommerce' ),
 				'description'        => __( 'Enable WooCommerce Analytics', 'woocommerce' ),
 				'option_key'         => Analytics::TOGGLE_OPTION_NAME,
@@ -253,7 +263,11 @@ class FeaturesController {
 				'disable_ui'         => false,
 				'is_legacy'          => true,
 			),
+<<<<<<< HEAD
 			'product_block_editor'   => array(
+=======
+			'product_block_editor'               => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'            => __( 'New product editor', 'woocommerce' ),
 				'description'     => __( 'Try the new product editor (Beta)', 'woocommerce' ),
 				'is_experimental' => true,
@@ -274,25 +288,41 @@ class FeaturesController {
 					return $string;
 				},
 			),
+<<<<<<< HEAD
 			'cart_checkout_blocks'   => array(
+=======
+			'cart_checkout_blocks'               => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'            => __( 'Cart & Checkout Blocks', 'woocommerce' ),
 				'description'     => __( 'Optimize for faster checkout', 'woocommerce' ),
 				'is_experimental' => false,
 				'disable_ui'      => true,
 			),
+<<<<<<< HEAD
 			'rate_limit_checkout'    => array(
+=======
+			'rate_limit_checkout'                => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'Rate limit Checkout', 'woocommerce' ),
 				'description'        => sprintf(
 					// translators: %s is the URL to the rate limiting documentation.
 					__( 'Enables rate limiting for Checkout place order and Store API /checkout endpoint. To further control this, refer to <a href="%s" target="_blank">rate limiting documentation</a>.', 'woocommerce' ),
+<<<<<<< HEAD
 					'https://developer.woocommerce.com/docs/apis/store-api/rate-limiting/'
+=======
+					'https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/src/StoreApi/docs/rate-limiting.md'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				),
 				'is_experimental'    => false,
 				'disable_ui'         => false,
 				'enabled_by_default' => false,
 				'is_legacy'          => true,
 			),
+<<<<<<< HEAD
 			'marketplace'            => array(
+=======
+			'marketplace'                        => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'Marketplace', 'woocommerce' ),
 				'description'        => __(
 					'New, faster way to find extensions and themes for your WooCommerce store',
@@ -305,7 +335,11 @@ class FeaturesController {
 			),
 			// Marked as a legacy feature to avoid compatibility checks, which aren't really relevant to this feature.
 			// https://github.com/woocommerce/woocommerce/pull/39701#discussion_r1376976959.
+<<<<<<< HEAD
 			'order_attribution'      => array(
+=======
+			'order_attribution'                  => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'Order Attribution', 'woocommerce' ),
 				'description'        => __(
 					'Enable this feature to track and credit channels and campaigns that contribute to orders on your site',
@@ -316,7 +350,11 @@ class FeaturesController {
 				'is_legacy'          => true,
 				'is_experimental'    => false,
 			),
+<<<<<<< HEAD
 			'site_visibility_badge'  => array(
+=======
+			'site_visibility_badge'              => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'Site visibility badge', 'woocommerce' ),
 				'description'        => __(
 					'Enable the site visibility badge in the WordPress admin bar',
@@ -328,7 +366,11 @@ class FeaturesController {
 				'is_experimental'    => false,
 				'disabled'           => false,
 			),
+<<<<<<< HEAD
 			'hpos_fts_indexes'       => array(
+=======
+			'hpos_fts_indexes'                   => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'HPOS Full text search indexes', 'woocommerce' ),
 				'description'        => __(
 					'Create and use full text search indexes for orders. This feature only works with high-performance order storage.',
@@ -339,7 +381,11 @@ class FeaturesController {
 				'is_legacy'          => true,
 				'option_key'         => CustomOrdersTableController::HPOS_FTS_INDEX_OPTION,
 			),
+<<<<<<< HEAD
 			'hpos_datastore_caching' => array(
+=======
+			'hpos_datastore_caching'             => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'HPOS Data Caching', 'woocommerce' ),
 				'description'        => __(
 					'Enable order data caching in the datastore. This feature only works with high-performance order storage.',
@@ -348,10 +394,31 @@ class FeaturesController {
 				'is_experimental'    => true,
 				'enabled_by_default' => false,
 				'is_legacy'          => true,
+<<<<<<< HEAD
 				'disable_ui'         => false,
 				'option_key'         => CustomOrdersTableController::HPOS_DATASTORE_CACHING_ENABLED_OPTION,
 			),
 			'remote_logging'         => array(
+=======
+				'disable_ui'         => ! $alpha_feature_testing_is_enabled,
+				'setting'            => array(
+					'disabled' => ! ( $alpha_feature_testing_is_enabled && wp_using_ext_object_cache() ),
+					'desc_tip' => function () {
+						$string = '';
+						if ( ! wp_using_ext_object_cache() ) {
+							$string = __(
+								'⚠ This feature is currently only suggested with the use of external object caching.',
+								'woocommerce'
+							);
+						}
+
+						return $string;
+					},
+				),
+				'option_key'         => CustomOrdersTableController::HPOS_DATASTORE_CACHING_ENABLED_OPTION,
+			),
+			'remote_logging'                     => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'Remote Logging', 'woocommerce' ),
 				'description'        => sprintf(
 					/* translators: %1$s: opening link tag, %2$s: closing link tag */
@@ -384,7 +451,11 @@ class FeaturesController {
 					},
 				),
 			),
+<<<<<<< HEAD
 			'email_improvements'     => array(
+=======
+			'email_improvements'                 => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'            => __( 'Email improvements', 'woocommerce' ),
 				'description'     => __(
 					'Enable modern email design for transactional emails',
@@ -403,13 +474,41 @@ class FeaturesController {
 				'is_legacy'       => true,
 				'is_experimental' => false,
 			),
+<<<<<<< HEAD
 			'blueprint'              => array(
+=======
+			'blueprint'                          => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'name'               => __( 'Blueprint (beta)', 'woocommerce' ),
 				'description'        => __(
 					'Enable blueprint to import and export settings in bulk',
 					'woocommerce'
 				),
+<<<<<<< HEAD
 				'enabled_by_default' => true,
+=======
+				'enabled_by_default' => false,
+				'disable_ui'         => true,
+
+				/*
+				* This is not truly a legacy feature (it is not a feature that pre-dates the FeaturesController),
+				* but we wish to handle compatibility checking in a similar fashion to legacy features. The
+				* rational for setting legacy to true is therefore similar to that of the 'order_attribution'
+				* feature.
+				*
+				* @see https://github.com/woocommerce/woocommerce/pull/39701#discussion_r1376976959
+				*/
+				'is_legacy'          => true,
+				'is_experimental'    => false,
+			),
+			'reactify-classic-payments-settings' => array(
+				'name'               => __( 'Payments Settings (beta)', 'woocommerce' ),
+				'description'        => __(
+					'Enable the new payments settings experience',
+					'woocommerce'
+				),
+				'enabled_by_default' => false,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'disable_ui'         => false,
 
 				/*
@@ -423,6 +522,7 @@ class FeaturesController {
 				'is_legacy'          => true,
 				'is_experimental'    => false,
 			),
+<<<<<<< HEAD
 			'block_email_editor'     => array(
 				'name'               => __( 'Block Email Editor (alpha)', 'woocommerce' ),
 				'description'        => __(
@@ -460,6 +560,16 @@ class FeaturesController {
 				*/
 				'is_legacy'          => true,
 				'is_experimental'    => true,
+=======
+			'block_email_editor'                 => array(
+				'name'               => __( 'Block Email Editor (alpha)', 'woocommerce' ),
+				'description'        => __(
+					'Enable the block-based email editor for transactional emails',
+					'woocommerce'
+				),
+				'enabled_by_default' => false,
+				'disable_ui'         => true,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 		);
 
@@ -614,10 +724,13 @@ class FeaturesController {
 			return false;
 		}
 
+<<<<<<< HEAD
 		if ( $this->is_preview_email_improvements_enabled( $feature_id ) ) {
 			return true;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$default_value = $this->feature_is_enabled_by_default( $feature_id ) ? 'yes' : 'no';
 		$value         = 'yes' === get_option( $this->feature_enable_option_name( $feature_id ), $default_value );
 		return $value;
@@ -1209,9 +1322,13 @@ class FeaturesController {
 		}
 
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput
+<<<<<<< HEAD
 		if ( ! function_exists( 'get_current_screen' ) ||
 			( get_current_screen() && 'plugins' !== get_current_screen()->id ) ||
 			'incompatible_with_feature' !== ArrayUtil::get_value_or_default( $_GET, 'plugin_status' ) ) {
+=======
+		if ( ! function_exists( 'get_current_screen' ) || get_current_screen() && 'plugins' !== get_current_screen()->id || 'incompatible_with_feature' !== ArrayUtil::get_value_or_default( $_GET, 'plugin_status' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $plugin_list;
 		}
 
@@ -1660,7 +1777,10 @@ class FeaturesController {
 	 */
 	public function display_email_improvements_feedback_notice( $feature_id, $is_enabled ): void {
 		if ( 'email_improvements' === $feature_id && ! $is_enabled ) {
+<<<<<<< HEAD
 			set_transient( 'wc_settings_email_improvements_reverted', 'yes', 15 );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			add_action(
 				'admin_notices',
 				function () {
@@ -1669,6 +1789,7 @@ class FeaturesController {
 			);
 		}
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Check if the email improvements feature is enabled in preview mode in Settings > Emails.
@@ -1693,4 +1814,6 @@ class FeaturesController {
 		}
 		return false;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

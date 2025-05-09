@@ -19,6 +19,7 @@ class Init {
 	 * Constructor
 	 */
 	public function __construct() {
+<<<<<<< HEAD
 		add_action( 'admin_menu', array( $this, 'woocommerce_add_new_products_dashboard' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -30,6 +31,21 @@ class Init {
 					return "$classes";
 				}
 			);
+=======
+		if ( $this->has_data_views_support() ) {
+			add_action( 'admin_menu', array( $this, 'woocommerce_add_new_products_dashboard' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
+			if ( $this->is_product_data_view_page() ) {
+				add_filter(
+					'admin_body_class',
+					static function ( $classes ) {
+						return "$classes";
+					}
+				);
+			}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -43,6 +59,37 @@ class Init {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Checks for data views support.
+	 */
+	private function has_data_views_support() {
+		if ( Utils::wp_version_compare( '6.6', '>=' ) ) {
+			return true;
+		}
+
+		if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
+			$gutenberg_version = '';
+
+			if ( defined( 'GUTENBERG_VERSION' ) ) {
+				$gutenberg_version = GUTENBERG_VERSION;
+			}
+
+			if ( ! $gutenberg_version ) {
+				$gutenberg_data    = get_file_data(
+					WP_PLUGIN_DIR . '/gutenberg/gutenberg.php',
+					array( 'Version' => 'Version' )
+				);
+				$gutenberg_version = $gutenberg_data['Version'];
+			}
+			return version_compare( $gutenberg_version, '19.0', '>=' );
+		}
+
+		return false;
+	}
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Enqueue styles needed for the rich text editor.
 	 */
 	public function enqueue_styles() {

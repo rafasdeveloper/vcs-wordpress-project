@@ -46,7 +46,11 @@ class WC_Template_Loader {
 			add_filter( 'comments_template', array( __CLASS__, 'comments_template_loader' ) );
 
 			// Loads gallery scripts on Product page for FSE themes.
+<<<<<<< HEAD
 			if ( wp_is_block_theme() ) {
+=======
+			if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				self::add_support_for_product_page_gallery();
 			}
 		} else {
@@ -109,7 +113,11 @@ class WC_Template_Loader {
 	 * @param object $taxonomy Object taxonomy to check.
 	 * @return boolean
 	 */
+<<<<<<< HEAD
 	private static function taxonomy_has_block_template( $taxonomy ): bool {
+=======
+	private static function taxonomy_has_block_template( $taxonomy ) : bool {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( taxonomy_is_product_attribute( $taxonomy->taxonomy ) ) {
 			$template_name = 'taxonomy-product_attribute';
 		} else {
@@ -134,8 +142,13 @@ class WC_Template_Loader {
 			return false;
 		}
 
+<<<<<<< HEAD
 		$has_template      = false;
 		$template_filename = $template_name . '.html';
+=======
+		$has_template            = false;
+		$template_filename       = $template_name . '.html';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Since Gutenberg 12.1.0, the conventions for block templates directories have changed,
 		// we should check both these possible directories for backwards-compatibility.
 		$possible_templates_dirs = array( 'templates', 'block-templates' );
@@ -192,6 +205,7 @@ class WC_Template_Loader {
 
 			if ( self::taxonomy_has_block_template( $object ) ) {
 				$default_file = '';
+<<<<<<< HEAD
 			} elseif ( taxonomy_is_product_attribute( $object->taxonomy ) ) {
 					$default_file = 'taxonomy-product-attribute.php';
 			} elseif ( is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
@@ -200,6 +214,18 @@ class WC_Template_Loader {
 				$default_file = 'archive-product.php';
 			} else {
 				$default_file = '';
+=======
+			} else {
+				if ( taxonomy_is_product_attribute( $object->taxonomy ) ) {
+					$default_file = 'taxonomy-product-attribute.php';
+				} elseif ( is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
+					$default_file = 'taxonomy-' . $object->taxonomy . '.php';
+				} elseif ( ! self::has_block_template( 'archive-product' ) ) {
+					$default_file = 'archive-product.php';
+				} else {
+					$default_file = '';
+				}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		} elseif (
 			( is_post_type_archive( 'product' ) || is_page( wc_get_page_id( 'shop' ) ) ) &&
@@ -527,12 +553,21 @@ class WC_Template_Loader {
 	 * For non-WC themes, this will setup the main shop page to be shortcode based to improve default appearance.
 	 *
 	 * @since 3.3.0
+<<<<<<< HEAD
 	 * @param string   $title Existing title.
 	 * @param int|null $id ID of the post being filtered.
 	 * @return string
 	 */
 	public static function unsupported_theme_title_filter( $title, $id = null ) {
 		if ( is_null( $id ) || self::$theme_support || ! $id !== self::$shop_page_id ) {
+=======
+	 * @param string $title Existing title.
+	 * @param int    $id ID of the post being filtered.
+	 * @return string
+	 */
+	public static function unsupported_theme_title_filter( $title, $id ) {
+		if ( self::$theme_support || ! $id !== self::$shop_page_id ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $title;
 		}
 

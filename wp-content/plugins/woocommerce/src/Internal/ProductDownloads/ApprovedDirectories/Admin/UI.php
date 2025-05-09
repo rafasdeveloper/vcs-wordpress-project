@@ -357,13 +357,21 @@ class UI {
 				<?php if ( $existing ) : ?>
 					<a href="<?php echo esc_url( $this->table->get_action_url( 'edit', 0 ) ); ?>" class="page-title-action"><?php esc_html_e( 'Add New', 'woocommerce' ); ?></a>
 				<?php endif; ?>
+<<<<<<< HEAD
 				<a href="<?php echo esc_url( $this->table->get_base_url() ); ?>" class="page-title-action"><?php esc_html_e( 'Cancel', 'woocommerce' ); ?></a>
+=======
+				<a href="<?php echo esc_url( $this->table->get_base_url() ); ?> " class="page-title-action"><?php esc_html_e( 'Cancel', 'woocommerce' ); ?></a>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			</h2>
 			<table class='form-table'>
 				<tbody>
 					<tr valign='top'>
 						<th scope='row' class='titledesc'>
+<<<<<<< HEAD
 							<label for='approved_directory_url'><?php echo esc_html_x( 'Directory URL', 'Approved product download directories', 'woocommerce' ); ?></label>
+=======
+							<label for='approved_directory_url'> <?php echo esc_html_x( 'Directory URL', 'Approved product download directories', 'woocommerce' ); ?> </label>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						</th>
 						<td class='forminp'>
 							<input name='approved_directory_url' id='approved_directory_url' type='text' class='input-text regular-input' value='<?php echo esc_attr( empty( $submitted ) ? $existing_url : $submitted ); ?>'>
@@ -371,10 +379,17 @@ class UI {
 					</tr>
 					<tr valign='top'>
 						<th scope='row' class='titledesc'>
+<<<<<<< HEAD
 							<label for='approved_directory_enabled'><?php echo esc_html_x( 'Enabled', 'Approved product download directories', 'woocommerce' ); ?></label>
 						</th>
 						<td class='forminp'>
 							<input name='approved_directory_enabled' id='approved_directory_enabled' type='checkbox' value='1' <?php checked( true, $enabled ); ?>>
+=======
+							<label for='approved_directory_enabled'> <?php echo esc_html_x( 'Enabled', 'Approved product download directories', 'woocommerce' ); ?> </label>
+						</th>
+						<td class='forminp'>
+							<input name='approved_directory_enabled' id='approved_directory_enabled' type='checkbox' value='1' <?php checked( true, $enabled ); ?>'>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						</td>
 					</tr>
 				</tbody>

@@ -110,7 +110,11 @@ function wc_set_notices( $notices ) {
 		return;
 	}
 
+<<<<<<< HEAD
 	WC()->session->set( 'wc_notices', empty( $notices ) ? null : $notices );
+=======
+	WC()->session->set( 'wc_notices', $notices );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /**
@@ -237,17 +241,25 @@ function wc_get_notices( $notice_type = '' ) {
 		return;
 	}
 
+<<<<<<< HEAD
 	$notices = array();
 	if ( ! WC()->session ) {
 		return $notices;
 	}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	$all_notices = WC()->session->get( 'wc_notices', array() );
 
 	if ( empty( $notice_type ) ) {
 		$notices = $all_notices;
 	} elseif ( isset( $all_notices[ $notice_type ] ) ) {
 		$notices = $all_notices[ $notice_type ];
+<<<<<<< HEAD
+=======
+	} else {
+		$notices = array();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	return $notices;

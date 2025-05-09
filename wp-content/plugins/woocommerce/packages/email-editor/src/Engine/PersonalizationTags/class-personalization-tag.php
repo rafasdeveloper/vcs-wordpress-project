@@ -1,13 +1,23 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 declare(strict_types = 1);
 
+<<<<<<< HEAD
 namespace Automattic\WooCommerce\EmailEditor\Engine\PersonalizationTags;
+=======
+namespace MailPoet\EmailEditor\Engine\PersonalizationTags;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * The class represents a personalization tag that contains  all necessary information

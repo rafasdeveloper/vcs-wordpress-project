@@ -54,13 +54,20 @@ class Features {
 	 * Constructor.
 	 */
 	public function __construct() {
+<<<<<<< HEAD
 
 		$this->register_internal_class_aliases();
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! self::should_load_features() ) {
 			return;
 		}
 
+<<<<<<< HEAD
+=======
+		$this->register_internal_class_aliases();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Load feature before WooCommerce update hooks.
 		add_action( 'init', array( __CLASS__, 'load_features' ), 4 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'maybe_load_beta_features_modal' ) );
@@ -114,17 +121,32 @@ class Features {
 	 * @return string|null
 	 */
 	public static function get_feature_class( $feature ) {
+<<<<<<< HEAD
 		$feature       = str_replace( '-', '', ucwords( strtolower( $feature ), '-' ) );
 		$feature_class = 'Automattic\\WooCommerce\\Admin\\Features\\' . $feature;
 
 		$should_autoload_class = self::should_load_features();
 
 		if ( class_exists( $feature_class, $should_autoload_class ) ) {
+=======
+		if ( ! self::should_load_features() ) {
+			return null;
+		}
+
+		$feature       = str_replace( '-', '', ucwords( strtolower( $feature ), '-' ) );
+		$feature_class = 'Automattic\\WooCommerce\\Admin\\Features\\' . $feature;
+
+		if ( class_exists( $feature_class ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $feature_class;
 		}
 
 		// Handle features contained in subdirectory.
+<<<<<<< HEAD
 		if ( class_exists( $feature_class . '\\Init', $should_autoload_class ) ) {
+=======
+		if ( class_exists( $feature_class . '\\Init' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $feature_class . '\\Init';
 		}
 

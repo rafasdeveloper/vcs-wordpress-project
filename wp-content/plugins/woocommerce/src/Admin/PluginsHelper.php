@@ -767,7 +767,11 @@ class PluginsHelper {
 	 * @param int    $total total subscription count.
 	 * @param array  $messages message.
 	 * @param string $type type of notice, whether it is for expiring or expired subscription.
+<<<<<<< HEAD
 	 * @return array notice data to return. Contains type, parsed_message and product_id (can be a single value or an array).
+=======
+	 * @return array notice data to return. Contains type, parsed_message and product_id.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public static function get_subscriptions_notice_data( array $all_subs, array $subs_to_show, int $total, array $messages, string $type ) {
 		$utm_campaign = 'expired' === $type ?
@@ -802,7 +806,11 @@ class PluginsHelper {
 			return array(
 				'type'           => 'different_subscriptions',
 				'parsed_message' => $parsed_message,
+<<<<<<< HEAD
 				'product_id'     => $product_ids,
+=======
+				'product_ids'    => $product_ids,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 
@@ -1001,7 +1009,11 @@ class PluginsHelper {
 
 		$button_link = add_query_arg(
 			array(
+<<<<<<< HEAD
 				'add-to-cart'  => $notice_data['product_id'],
+=======
+				'add-to-cart'  => $notice_data['product_ids'],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'utm_source'   => 'pu',
 				'utm_campaign' => $allowed_link ? 'pu_settings_screen_renew' : 'pu_in_apps_screen_renew',
 			),
@@ -1079,7 +1091,11 @@ class PluginsHelper {
 
 		$button_link = add_query_arg(
 			array(
+<<<<<<< HEAD
 				'add-to-cart'  => $notice_data['product_id'],
+=======
+				'add-to-cart'  => $notice_data['product_ids'],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'utm_source'   => 'pu',
 				'utm_campaign' => 'pu_in_apps_screen_purchase',
 			),

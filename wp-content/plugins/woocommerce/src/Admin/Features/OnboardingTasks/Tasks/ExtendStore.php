@@ -23,7 +23,11 @@ class ExtendStore extends Task {
 	 * @return string
 	 */
 	public function get_title() {
+<<<<<<< HEAD
 		return __( 'Enhance your store with extensions', 'woocommerce' );
+=======
+		return __( 'Power up your store with business-critical features', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -41,7 +45,14 @@ class ExtendStore extends Task {
 	 * @return string
 	 */
 	public function get_additional_info() {
+<<<<<<< HEAD
 		return '';
+=======
+		return __(
+			'Visit the Official WooCommerce Marketplace to access hundreds of vetted products and services',
+			'woocommerce'
+		);
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

@@ -444,7 +444,11 @@ class Modules {
 					if ( $deactivated ) {
 						$state->state( 'deactivated_plugins', implode( ',', $deactivated ) );
 						wp_safe_redirect( add_query_arg( 'jetpack_restate', 1 ) );
+<<<<<<< HEAD
 						exit( 0 );
+=======
+						exit;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					}
 				}
 			}
@@ -468,7 +472,11 @@ class Modules {
 			ob_start();
 			$module_path = $this->get_path( $module );
 			if ( file_exists( $module_path ) ) {
+<<<<<<< HEAD
 				require_once $this->get_path( $module ); // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.NotAbsolutePath
+=======
+				require $this->get_path( $module ); // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.NotAbsolutePath
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			$active[] = $module;
@@ -485,7 +493,11 @@ class Modules {
 			wp_safe_redirect( ( new Paths() )->admin_url( 'page=jetpack' ) );
 		}
 		if ( $exit ) {
+<<<<<<< HEAD
 			exit( 0 );
+=======
+			exit;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return true;
 	}

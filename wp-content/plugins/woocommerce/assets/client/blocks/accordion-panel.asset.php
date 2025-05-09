@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 <?php return array('dependencies' => array('react-jsx-runtime', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-polyfill'), 'version' => '7b6c895143f956ef43be');
+=======
+<?php return array('dependencies' => array('react', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-polyfill'), 'version' => '3919090378f4a7bd39a5');
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

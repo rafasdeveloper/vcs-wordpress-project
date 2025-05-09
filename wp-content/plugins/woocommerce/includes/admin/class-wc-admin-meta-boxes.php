@@ -168,6 +168,10 @@ class WC_Admin_Meta_Boxes {
 				'advanced' => '',
 			)
 		);
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -282,7 +286,11 @@ class WC_Admin_Meta_Boxes {
 	 * @return string[] Templates array excluding block-based templates.
 	 */
 	public function remove_block_templates( $templates ) {
+<<<<<<< HEAD
 		if ( count( $templates ) === 0 || ! wp_is_block_theme() ) {
+=======
+		if ( count( $templates ) === 0 || ! wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $templates;
 		}
 

@@ -3,7 +3,10 @@
  * A class of utilities for dealing with arrays.
  */
 
+<<<<<<< HEAD
 declare( strict_types = 1 );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Utilities;
 
 /**
@@ -347,6 +350,7 @@ class ArrayUtil {
 
 		return $result;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Check if all items in an array pass a callback.
@@ -367,4 +371,6 @@ class ArrayUtil {
 		}
 		return true;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

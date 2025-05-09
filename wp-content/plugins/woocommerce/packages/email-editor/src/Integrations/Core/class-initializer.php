@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -10,6 +11,18 @@ namespace Automattic\WooCommerce\EmailEditor\Integrations\Core;
 
 use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Blocks_Registry;
 use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Layout\Flex_Layout_Renderer;
+=======
+ * This file is part of the MailPoet plugin.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare( strict_types = 1 );
+namespace MailPoet\EmailEditor\Integrations\Core;
+
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Blocks_Registry;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Layout\Flex_Layout_Renderer;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Initializes the core blocks renderers.
@@ -19,8 +32,13 @@ class Initializer {
 	 * Initializes the core blocks renderers.
 	 */
 	public function initialize(): void {
+<<<<<<< HEAD
 		add_action( 'woocommerce_email_blocks_renderer_initialized', array( $this, 'register_core_blocks_renderers' ), 10, 1 );
 		add_filter( 'woocommerce_email_editor_theme_json', array( $this, 'adjust_theme_json' ), 10, 1 );
+=======
+		add_action( 'mailpoet_blocks_renderer_initialized', array( $this, 'register_core_blocks_renderers' ), 10, 1 );
+		add_filter( 'mailpoet_email_editor_theme_json', array( $this, 'adjust_theme_json' ), 10, 1 );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_filter( 'safe_style_css', array( $this, 'allow_styles' ) );
 	}
 
@@ -40,9 +58,12 @@ class Initializer {
 		$blocks_registry->add_block_renderer( 'core/buttons', new Renderer\Blocks\Buttons( new Flex_Layout_Renderer() ) );
 		$blocks_registry->add_block_renderer( 'core/button', new Renderer\Blocks\Button() );
 		$blocks_registry->add_block_renderer( 'core/group', new Renderer\Blocks\Group() );
+<<<<<<< HEAD
 		$blocks_registry->add_block_renderer( 'core/quote', new Renderer\Blocks\Quote() );
 		$blocks_registry->add_block_renderer( 'core/social-link', new Renderer\Blocks\Social_Link() );
 		$blocks_registry->add_block_renderer( 'core/social-links', new Renderer\Blocks\Social_Links() );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Render used for all other blocks.
 		$blocks_registry->add_fallback_renderer( new Renderer\Blocks\Fallback() );
 	}

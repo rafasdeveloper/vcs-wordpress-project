@@ -9,7 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+<<<<<<< HEAD
 if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
+=======
+if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) :
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Customer New Account.
@@ -65,9 +69,17 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 			$this->id             = 'customer_new_account';
 			$this->customer_email = true;
 			$this->title          = __( 'New account', 'woocommerce' );
+<<<<<<< HEAD
 			$this->description    = __( 'Send an email to customers notifying them that they have created an account', 'woocommerce' );
 			$this->template_html  = 'emails/customer-new-account.php';
 			$this->template_plain = 'emails/plain/customer-new-account.php';
+=======
+			$this->description    = __( 'Customer "new account" emails are sent to the customer when a customer signs up via checkout or account pages.', 'woocommerce' );
+			$this->template_html  = 'emails/customer-new-account.php';
+			$this->template_plain = 'emails/plain/customer-new-account.php';
+
+			// Call parent constructor.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			parent::__construct();
 		}
 
@@ -102,6 +114,7 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 			$this->setup_locale();
 
 			if ( $user_id ) {
+<<<<<<< HEAD
 				$this->object             = new WP_User( $user_id );
 				$this->set_password_url   = $this->generate_set_password_url();
 				$this->user_login         = stripslashes( $this->object->user_login );
@@ -109,6 +122,16 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 				$this->recipient          = $this->user_email;
 				$this->user_pass          = $user_pass;
 				$this->password_generated = $password_generated;
+=======
+				$this->object = new WP_User( $user_id );
+
+				$this->user_pass          = $user_pass;
+				$this->user_login         = stripslashes( $this->object->user_login );
+				$this->user_email         = stripslashes( $this->object->user_email );
+				$this->recipient          = $this->user_email;
+				$this->password_generated = $password_generated;
+				$this->set_password_url   = $this->generate_set_password_url();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			if ( $this->is_enabled() && $this->get_recipient() ) {
@@ -130,6 +153,7 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 					'email_heading'      => $this->get_heading(),
 					'additional_content' => $this->get_additional_content(),
 					'user_login'         => $this->user_login,
+<<<<<<< HEAD
 					'blogname'           => $this->get_blogname(),
 					'set_password_url'   => $this->set_password_url,
 					'sent_to_admin'      => false,
@@ -137,6 +161,15 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 					'email'              => $this,
 					'password_generated' => $this->password_generated,
 					'user_pass'          => $this->user_pass, // Password is no longer used in the template, but we're keeping it here for backwards compatibility with custom templates.
+=======
+					'user_pass'          => $this->user_pass,
+					'blogname'           => $this->get_blogname(),
+					'password_generated' => $this->password_generated,
+					'sent_to_admin'      => false,
+					'plain_text'         => false,
+					'email'              => $this,
+					'set_password_url'   => $this->set_password_url,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				)
 			);
 		}
@@ -153,6 +186,7 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 					'email_heading'      => $this->get_heading(),
 					'additional_content' => $this->get_additional_content(),
 					'user_login'         => $this->user_login,
+<<<<<<< HEAD
 					'blogname'           => $this->get_blogname(),
 					'set_password_url'   => $this->set_password_url,
 					'sent_to_admin'      => false,
@@ -180,6 +214,15 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 					'email'              => $this,
 					'password_generated' => $this->password_generated,
 					'user_pass'          => $this->user_pass, // Password is no longer used in the template, but we're keeping it here for backwards compatibility with custom templates.
+=======
+					'user_pass'          => $this->user_pass,
+					'blogname'           => $this->get_blogname(),
+					'password_generated' => $this->password_generated,
+					'sent_to_admin'      => false,
+					'plain_text'         => true,
+					'email'              => $this,
+					'set_password_url'   => $this->set_password_url,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				)
 			);
 		}
@@ -196,13 +239,20 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 
 		/**
 		 * Generate set password URL link for a new user.
+<<<<<<< HEAD
 		 *
+=======
+		 * 
+		 * See also Automattic\WooCommerce\Blocks\Domain\Services\Email\CustomerNewAccount and wp_new_user_notification.
+		 * 
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * @since 6.0.0
 		 * @return string
 		 */
 		protected function generate_set_password_url() {
 			// Generate a magic link so user can set initial password.
 			$key = get_password_reset_key( $this->object );
+<<<<<<< HEAD
 
 			if ( is_wp_error( $key ) ) {
 				// Something went wrong while getting the key for new password URL, send customer to the generic password reset.
@@ -213,5 +263,18 @@ if ( ! class_exists( 'WC_Email_Customer_New_Account', false ) ) {
 		}
 	}
 }
+=======
+			if ( ! is_wp_error( $key ) ) {
+				$action                 = 'newaccount';
+				return wc_get_account_endpoint_url( 'lost-password' ) . "?action=$action&key=$key&login=" . rawurlencode( $this->object->user_login );
+			} else {
+				// Something went wrong while getting the key for new password URL, send customer to the generic password reset.
+				return wc_get_account_endpoint_url( 'lost-password' );
+			}
+		} 
+	}
+
+endif;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 return new WC_Email_Customer_New_Account();

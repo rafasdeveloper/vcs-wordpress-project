@@ -9,9 +9,13 @@
  */
 
 use Automattic\Jetpack\Constants;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
 use Automattic\WooCommerce\Enums\OrderStatus;
 use Automattic\WooCommerce\Enums\PaymentGatewayFeature;
+=======
+use Automattic\WooCommerce\Enums\OrderStatus;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\Internal\Utilities\HtmlSanitizer;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -34,11 +38,16 @@ function wc_template_redirect() {
 
 	// When on the checkout with an empty cart, redirect to cart page.
 	if ( is_page( wc_get_page_id( 'checkout' ) ) && wc_get_page_id( 'checkout' ) !== wc_get_page_id( 'cart' ) && WC()->cart->is_empty() && empty( $wp->query_vars['order-pay'] ) && ! isset( $wp->query_vars['order-received'] ) && ! is_customize_preview() && apply_filters( 'woocommerce_checkout_redirect_empty_cart', true ) ) {
+<<<<<<< HEAD
 		// Only redirect if we're not already on the cart page to prevent infinite loops.
 		if ( ! is_cart() ) {
 			wp_safe_redirect( wc_get_cart_url() );
 			exit;
 		}
+=======
+		wp_safe_redirect( wc_get_cart_url() );
+		exit;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	// Logout endpoint under My Account page. Logging out requires a valid nonce.
@@ -361,7 +370,11 @@ function wc_body_class( $classes ) {
 		}
 	}
 
+<<<<<<< HEAD
 	if ( wp_is_block_theme() ) {
+=======
+	if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$classes[] = 'woocommerce-uses-block-theme';
 
@@ -1094,6 +1107,7 @@ if ( ! function_exists( 'woocommerce_demo_store' ) ) {
 
 		$notice_id = md5( $notice );
 
+<<<<<<< HEAD
 		/**
 		 * Filter demo store notice.
 		 *
@@ -1101,6 +1115,10 @@ if ( ! function_exists( 'woocommerce_demo_store' ) ) {
 		 * @param string $store_notice Notice element.
 		 */
 		echo apply_filters( 'woocommerce_demo_store', '<p role="complementary" aria-label="' . esc_attr__( 'Store notice', 'woocommerce' ) . '" class="woocommerce-store-notice demo_store" data-notice-id="' . esc_attr( $notice_id ) . '" style="display:none;">' . wp_kses_post( $notice ) . ' <a role="button" href="#" class="woocommerce-store-notice__dismiss-link">' . esc_html__( 'Dismiss', 'woocommerce' ) . '</a></p>', $notice ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+=======
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'woocommerce_demo_store', '<p class="woocommerce-store-notice demo_store" data-notice-id="' . esc_attr( $notice_id ) . '" style="display:none;">' . wp_kses_post( $notice ) . ' <a href="#" class="woocommerce-store-notice__dismiss-link">' . esc_html__( 'Dismiss', 'woocommerce' ) . '</a></p>', $notice );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }
 
@@ -1752,10 +1770,17 @@ function wc_get_gallery_image_html( $attachment_id, $main_image = false, $image_
 		array(
 			'title'                   => _wp_specialchars( get_post_field( 'post_title', $attachment_id ), ENT_QUOTES, 'UTF-8', true ),
 			'data-caption'            => _wp_specialchars( get_post_field( 'post_excerpt', $attachment_id ), ENT_QUOTES, 'UTF-8', true ),
+<<<<<<< HEAD
 			'data-src'                => isset( $full_src[0] ) ? esc_url( $full_src[0] ) : '',
 			'data-large_image'        => isset( $full_src[0] ) ? esc_url( $full_src[0] ) : '',
 			'data-large_image_width'  => isset( $full_src[1] ) ? esc_attr( $full_src[1] ) : '',
 			'data-large_image_height' => isset( $full_src[2] ) ? esc_attr( $full_src[2] ) : '',
+=======
+			'data-src'                => esc_url( $full_src[0] ),
+			'data-large_image'        => esc_url( $full_src[0] ),
+			'data-large_image_width'  => esc_attr( $full_src[1] ),
+			'data-large_image_height' => esc_attr( $full_src[2] ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'class'                   => esc_attr( $main_image ? 'wp-post-image' : '' ),
 			'alt'                     => esc_attr( $alt_text ),
 		),
@@ -1775,7 +1800,11 @@ function wc_get_gallery_image_html( $attachment_id, $main_image = false, $image_
 		$image_params
 	);
 
+<<<<<<< HEAD
 	return '<div data-thumb="' . esc_url( isset( $thumbnail_src[0] ) ? $thumbnail_src[0] : '' ) . '" data-thumb-alt="' . esc_attr( $alt_text ) . '" data-thumb-srcset="' . esc_attr( isset( $thumbnail_srcset ) ? $thumbnail_srcset : '' ) . '"  data-thumb-sizes="' . esc_attr( isset( $thumbnail_sizes ) ? $thumbnail_sizes : '' ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( isset( $full_src[0] ) ? $full_src[0] : '' ) . '">' . $image . '</a></div>';
+=======
+	return '<div data-thumb="' . esc_url( $thumbnail_src[0] ) . '" data-thumb-alt="' . esc_attr( $alt_text ) . '" data-thumb-srcset="' . esc_attr( $thumbnail_srcset ) . '"  data-thumb-sizes="' . esc_attr( $thumbnail_sizes ) . '" class="woocommerce-product-gallery__image"><a href="' . esc_url( $full_src[0] ) . '">' . $image . '</a></div>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 if ( ! function_exists( 'woocommerce_get_alt_from_product_title_and_position' ) ) {
@@ -2109,10 +2138,13 @@ if ( ! function_exists( 'woocommerce_default_product_tabs' ) ) {
 			);
 		}
 
+<<<<<<< HEAD
 		if ( ! ( $product instanceof WC_Product ) ) {
 			return $tabs;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Additional information tab - shows attributes.
 
 		/**
@@ -2122,7 +2154,11 @@ if ( ! function_exists( 'woocommerce_default_product_tabs' ) ) {
 		 *
 		 * @since 2.0.14
 		 */
+<<<<<<< HEAD
 		if ( $product->has_attributes() || apply_filters( 'wc_product_enable_dimensions_display', $product->has_weight() || $product->has_dimensions() ) ) {
+=======
+		if ( ( $product instanceof WC_Product ) && ( $product->has_attributes() || apply_filters( 'wc_product_enable_dimensions_display', $product->has_weight() || $product->has_dimensions() ) ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$tabs['additional_information'] = array(
 				'title'    => __( 'Additional information', 'woocommerce' ),
 				'priority' => 20,
@@ -2470,9 +2506,12 @@ if ( ! function_exists( 'woocommerce_widget_shopping_cart_button_view_cart' ) ) 
 	 */
 	function woocommerce_widget_shopping_cart_button_view_cart() {
 		$wp_button_class = wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '';
+<<<<<<< HEAD
 		if ( ! CartCheckoutUtils::has_cart_page() ) {
 			echo '';
 		}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		echo '<a href="' . esc_url( wc_get_cart_url() ) . '" class="button wc-forward' . esc_attr( $wp_button_class ) . '">' . esc_html__( 'View cart', 'woocommerce' ) . '</a>';
 	}
 }
@@ -2771,6 +2810,63 @@ if ( ! function_exists( 'woocommerce_maybe_show_product_subcategories' ) ) {
 	}
 }
 
+<<<<<<< HEAD
+=======
+if ( ! function_exists( 'woocommerce_product_subcategories' ) ) {
+	/**
+	 * This is a legacy function which used to check if we needed to display subcats and then output them. It was called by templates.
+	 *
+	 * From 3.3 onwards this is all handled via hooks and the woocommerce_maybe_show_product_subcategories function.
+	 *
+	 * Since some templates have not updated compatibility, to avoid showing incorrect categories this function has been deprecated and will
+	 * return nothing. Replace usage with woocommerce_output_product_categories to render the category list manually.
+	 *
+	 * This is a legacy function which also checks if things should display.
+	 * Themes no longer need to call these functions. It's all done via hooks.
+	 *
+	 * @deprecated 3.3.1 @todo Add a notice in a future version.
+	 * @param array $args Arguments.
+	 * @return null|boolean
+	 */
+	function woocommerce_product_subcategories( $args = array() ) {
+		$defaults = array(
+			'before'        => '',
+			'after'         => '',
+			'force_display' => false,
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		if ( $args['force_display'] ) {
+			// We can still render if display is forced.
+			woocommerce_output_product_categories(
+				array(
+					'before'    => $args['before'],
+					'after'     => $args['after'],
+					'parent_id' => is_product_category() ? get_queried_object_id() : 0,
+				)
+			);
+			return true;
+		} else {
+			// Output nothing. woocommerce_maybe_show_product_subcategories will handle the output of cats.
+			$display_type = woocommerce_get_loop_display_mode();
+
+			if ( 'subcategories' === $display_type ) {
+				// This removes pagination and products from display for themes not using wc_get_loop_prop in their product loops. @todo Remove in future major version.
+				global $wp_query;
+
+				if ( $wp_query->is_main_query() ) {
+					$wp_query->post_count    = 0;
+					$wp_query->max_num_pages = 0;
+				}
+			}
+
+			return 'subcategories' === $display_type || 'both' === $display_type;
+		}
+	}
+}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 if ( ! function_exists( 'woocommerce_output_product_categories' ) ) {
 	/**
 	 * Display product sub categories as thumbnails.
@@ -3114,7 +3210,11 @@ if ( ! function_exists( 'woocommerce_form_field' ) ) {
 						$field .= '<option value="' . esc_attr( $ckey ) . '" ' . selected( $value, $ckey, false ) . '>' . esc_html( $cvalue ) . '</option>';
 					}
 
+<<<<<<< HEAD
 					$field .= '</select>';
+=======
+					$field .= $required_indicator . '</select>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 					$field .= '<noscript><button type="submit" name="woocommerce_checkout_update_totals" value="' . esc_attr__( 'Update country / region', 'woocommerce' ) . '">' . esc_html__( 'Update country / region', 'woocommerce' ) . '</button></noscript>';
 
@@ -3672,7 +3772,11 @@ if ( ! function_exists( 'wc_display_item_meta' ) ) {
 			)
 		);
 
+<<<<<<< HEAD
 		foreach ( $item->get_formatted_meta_data() as $meta_id => $meta ) {
+=======
+		foreach ( $item->get_all_formatted_meta_data() as $meta_id => $meta ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$value     = $args['autop'] ? wp_kses_post( $meta->display_value ) : wp_kses_post( make_clickable( trim( $meta->display_value ) ) );
 			$strings[] = $args['label_before'] . wp_kses_post( $meta->display_key ) . $args['label_after'] . $value;
 		}
@@ -4156,6 +4260,41 @@ function woocommerce_output_all_notices() {
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * Products RSS Feed.
+ *
+ * @deprecated 2.6
+ */
+function wc_products_rss_feed() {
+	wc_deprecated_function( 'wc_products_rss_feed', '2.6' );
+}
+
+if ( ! function_exists( 'woocommerce_reset_loop' ) ) {
+
+	/**
+	 * Reset the loop's index and columns when we're done outputting a product loop.
+	 *
+	 * @deprecated 3.3
+	 */
+	function woocommerce_reset_loop() {
+		wc_reset_loop();
+	}
+}
+
+if ( ! function_exists( 'woocommerce_product_reviews_tab' ) ) {
+	/**
+	 * Output the reviews tab content.
+	 *
+	 * @deprecated 2.4.0 Unused.
+	 */
+	function woocommerce_product_reviews_tab() {
+		wc_deprecated_function( 'woocommerce_product_reviews_tab', '2.4' );
+	}
+}
+
+/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Display pay buttons HTML.
  *
  * @since 3.9.0
@@ -4165,7 +4304,11 @@ function wc_get_pay_buttons() {
 	$available_gateways = WC()->payment_gateways()->get_available_payment_gateways();
 
 	foreach ( $available_gateways as $gateway ) {
+<<<<<<< HEAD
 		if ( $gateway->supports( PaymentGatewayFeature::PAY_BUTTON ) ) {
+=======
+		if ( $gateway->supports( 'pay_button' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$supported_gateways[] = $gateway->get_pay_button_id();
 		}
 	}
@@ -4215,7 +4358,11 @@ add_filter( 'post_type_archive_title', 'wc_update_product_archive_title', 10, 2 
  */
 function wc_set_hooked_blocks_version() {
 	// Only set the version if the current theme is a block theme.
+<<<<<<< HEAD
 	if ( ! wp_is_block_theme() && ! current_theme_supports( 'block-template-parts' ) ) {
+=======
+	if ( ! wc_current_theme_is_fse_theme() && ! current_theme_supports( 'block-template-parts' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return;
 	}
 
@@ -4258,7 +4405,11 @@ function wc_update_store_notice_visible_on_theme_switch( $old_name, $old_theme )
 	$enable_store_notice_in_classic_theme_option = 'woocommerce_enable_store_notice_in_classic_theme';
 	$is_store_notice_active_option               = 'woocommerce_demo_store';
 
+<<<<<<< HEAD
 	if ( ! $old_theme->is_block_theme() && wp_is_block_theme() ) {
+=======
+	if ( ! $old_theme->is_block_theme() && wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/*
 		 * When switching from a classic theme to a block theme, check if the store notice is active,
 		 * if it is, disable it but set an option to re-enable it when switching back to a classic theme.
@@ -4267,7 +4418,11 @@ function wc_update_store_notice_visible_on_theme_switch( $old_name, $old_theme )
 			update_option( $is_store_notice_active_option, wc_bool_to_string( false ) );
 			add_option( $enable_store_notice_in_classic_theme_option, wc_bool_to_string( true ) );
 		}
+<<<<<<< HEAD
 	} elseif ( $old_theme->is_block_theme() && ! wp_is_block_theme() ) {
+=======
+	} elseif ( $old_theme->is_block_theme() && ! wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/*
 		 * When switching from a block theme to a clasic theme, check if we have set the option to
 		 * re-enable the store notice. If so, re-enable it.
@@ -4296,7 +4451,11 @@ function wc_set_hooked_blocks_version_on_theme_switch( $old_name, $old_theme ) {
 	$option_value = get_option( $option_name, false );
 
 	// Sites with the option value set to "no" have already been migrated, and block hooks have been disabled. Checking explicitly for false to avoid setting the option again.
+<<<<<<< HEAD
 	if ( ! $old_theme->is_block_theme() && ( wp_is_block_theme() || current_theme_supports( 'block-template-parts' ) ) && false === $option_value ) {
+=======
+	if ( ! $old_theme->is_block_theme() && ( wc_current_theme_is_fse_theme() || current_theme_supports( 'block-template-parts' ) ) && false === $option_value ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_option( $option_name, WC()->version );
 	}
 }

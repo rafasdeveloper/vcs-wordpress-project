@@ -3,17 +3,25 @@ declare( strict_types = 1 );
 
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 use Automattic\WooCommerce\Blocks\BlockTypes\AddToCartWithOptions\Utils;
 use Automattic\WooCommerce\Blocks\Utils\BlocksSharedState;
+=======
+use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
+use Automattic\WooCommerce\Blocks\Interactivity\Store;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * ProductButton class.
  */
 class ProductButton extends AbstractBlock {
+<<<<<<< HEAD
 	use EnableBlockJsonAssetsTrait;
 	use BlocksSharedState;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Block name.
@@ -30,6 +38,20 @@ class ProductButton extends AbstractBlock {
 	 */
 	private static $cart = null;
 
+<<<<<<< HEAD
+=======
+
+	/**
+	 * Disable frontend script for this block type, it's a script module.
+	 *
+	 * @param string $key Data to get, or default to everything.
+	 * @return array|string|null
+	 */
+	protected function get_block_type_script( $key = null ) {
+		return null;
+	}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Register the context.
 	 */
@@ -46,7 +68,11 @@ class ProductButton extends AbstractBlock {
 	 */
 	protected function enqueue_assets( array $attributes, $content, $block ) {
 		parent::enqueue_assets( $attributes, $content, $block );
+<<<<<<< HEAD
 		if ( wp_is_block_theme() ) {
+=======
+		if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			add_action(
 				'wp_enqueue_scripts',
 				array( $this, 'dequeue_add_to_cart_scripts' )
@@ -88,6 +114,7 @@ class ProductButton extends AbstractBlock {
 			return '';
 		}
 
+<<<<<<< HEAD
 		$is_descendant_of_add_to_cart_form = isset( $block->context['woocommerce/isDescendantOfAddToCartWithOptions'] ) ? $block->context['woocommerce/isDescendantOfAddToCartWithOptions'] : false;
 
 		if ( $is_descendant_of_add_to_cart_form && Utils::is_not_purchasable_simple_product( $product ) ) {
@@ -97,33 +124,63 @@ class ProductButton extends AbstractBlock {
 		}
 
 		$this->register_cart_interactivity( 'I acknowledge that using private APIs means my theme or plugin will inevitably break in the next version of WooCommerce' );
+=======
+		wp_enqueue_script_module( 'woocommerce/product-button' );
+
+		$this->initialize_cart_state();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		wp_interactivity_state(
 			'woocommerce/product-button',
 			array(
+<<<<<<< HEAD
 				'addToCartText'    => function () use ( $product ) {
 					$context = wp_interactivity_get_context();
 					$quantity = $context['tempQuantity'];
 					$add_to_cart_text = $context['addToCartText'];
 
+=======
+				'addToCartText' => function () {
+					$context = wp_interactivity_get_context();
+					$quantity = $context['tempQuantity'];
+					$addToCartText = $context['addToCartText'];
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					return $quantity > 0 ? sprintf(
 						/* translators: %s: product number. */
 						__( '%s in cart', 'woocommerce' ),
 						$quantity
+<<<<<<< HEAD
 					) : $add_to_cart_text;
 				},
 				'inTheCartText'    => $this->get_in_the_cart_text( $product ),
 				'noticeId'         => '',
 				'hasPressedButton' => false,
+=======
+					) : $addToCartText;
+				},
+				'inTheCartText' => sprintf(
+					/* translators: %s: product number. */
+					__( '%s in cart', 'woocommerce' ),
+					'###'
+				),
+				'noticeId'      => '',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		);
 
 		$number_of_items_in_cart  = $this->get_cart_item_quantities_by_product_id( $product->get_id() );
+<<<<<<< HEAD
 		$is_product_purchasable   = $this->is_product_purchasable( $product );
 		$cart_redirect_after_add  = get_option( 'woocommerce_cart_redirect_after_add' ) === 'yes';
 		$ajax_add_to_cart_enabled = get_option( 'woocommerce_enable_ajax_add_to_cart' ) === 'yes';
 		$is_ajax_button           = $ajax_add_to_cart_enabled && ! $cart_redirect_after_add && ( $is_descendant_of_add_to_cart_form || $product->supports( 'ajax_add_to_cart' ) ) && $is_product_purchasable;
 		$html_element             = $is_ajax_button || ( $is_descendant_of_add_to_cart_form && 'external' !== $product->get_type() ) ? 'button' : 'a';
+=======
+		$cart_redirect_after_add  = get_option( 'woocommerce_cart_redirect_after_add' ) === 'yes';
+		$ajax_add_to_cart_enabled = get_option( 'woocommerce_enable_ajax_add_to_cart' ) === 'yes';
+		$is_ajax_button           = $ajax_add_to_cart_enabled && ! $cart_redirect_after_add && $product->supports( 'ajax_add_to_cart' ) && $product->is_purchasable() && $product->is_in_stock();
+		$html_element             = $is_ajax_button ? 'button' : 'a';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$styles_and_classes       = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes, array(), array( 'extra_classes' ) );
 		$classname                = StyleAttributesUtils::get_classes_by_attributes( $attributes, array( 'extra_classes' ) );
 		$custom_width_classes     = isset( $attributes['width'] ) ? 'has-custom-width wp-block-button__width-' . $attributes['width'] : '';
@@ -143,6 +200,7 @@ class ProductButton extends AbstractBlock {
 			)
 		);
 
+<<<<<<< HEAD
 		$is_descendant_of_add_to_cart_form = isset( $block->context['woocommerce/isDescendantOfAddToCartWithOptions'] ) ? $block->context['woocommerce/isDescendantOfAddToCartWithOptions'] : false;
 
 		$default_quantity = 1;
@@ -169,10 +227,27 @@ class ProductButton extends AbstractBlock {
 			'productId'       => $product->get_id(),
 			'productType'     => $product->get_type(),
 			'addToCartText'   => $add_to_cart_text,
+=======
+		$default_quantity = 1;
+		/**
+		* Filters the change the quantity to add to cart.
+		*
+		* @since 10.9.0
+		* @param number $default_quantity The default quantity.
+		* @param number $product_id The product id.
+		*/
+		$quantity_to_add = apply_filters( 'woocommerce_add_to_cart_quantity', $default_quantity, $product->get_id() );
+
+		$context = array(
+			'quantityToAdd'   => $quantity_to_add,
+			'productId'       => $product->get_id(),
+			'addToCartText'   => null !== $product->add_to_cart_text() ? $product->add_to_cart_text() : __( 'Add to cart', 'woocommerce' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'tempQuantity'    => $number_of_items_in_cart,
 			'animationStatus' => 'IDLE',
 		);
 
+<<<<<<< HEAD
 		if ( $product->is_type( 'grouped' ) ) {
 			$context['groupedProductIds'] = $product->get_children();
 		}
@@ -188,6 +263,8 @@ class ProductButton extends AbstractBlock {
 			);
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Allow filtering of the add to cart button arguments.
 		 *
@@ -197,6 +274,7 @@ class ProductButton extends AbstractBlock {
 			'woocommerce_loop_add_to_cart_args',
 			array(
 				'class'      => $html_classes,
+<<<<<<< HEAD
 				'attributes' => array_merge(
 					$attributes,
 					array(
@@ -204,6 +282,13 @@ class ProductButton extends AbstractBlock {
 						'data-product_sku' => $product->get_sku(),
 						'aria-label'       => ! $is_descendant_of_add_to_cart_form || 'simple' === $product->get_type() ? $product->add_to_cart_description() : null,
 					),
+=======
+				'attributes' => array(
+					'data-product_id'  => $product->get_id(),
+					'data-product_sku' => $product->get_sku(),
+					'aria-label'       => $product->add_to_cart_description(),
+					'rel'              => 'nofollow',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				),
 			),
 			$product
@@ -213,16 +298,28 @@ class ProductButton extends AbstractBlock {
 			$args['attributes']['aria-label'] = wp_strip_all_tags( $args['attributes']['aria-label'] );
 		}
 
+<<<<<<< HEAD
+=======
+		if ( isset( WC()->cart ) && ! WC()->cart->is_empty() ) {
+			$this->prevent_cache();
+		}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$div_directives = '
 			data-wp-interactive="woocommerce/product-button"
 			data-wp-context=\'' . wp_json_encode( $context, JSON_NUMERIC_CHECK | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP ) . '\'
 			data-wp-init="actions.refreshCartItems"
 		';
 
+<<<<<<< HEAD
 		$button_directives = $is_descendant_of_add_to_cart_form ?
 			'data-wp-class--disabled="woocommerce/add-to-cart-with-options::!state.isFormValid"' :
 			'data-wp-on--click="actions.addCartItem"';
 		$anchor_directive  = $is_descendant_of_add_to_cart_form ? '' : 'data-wp-on--click="woocommerce/product-collection::actions.viewProduct"';
+=======
+		$button_directives = 'data-wp-on--click="actions.addCartItem"';
+		$anchor_directive  = 'data-wp-on--click="woocommerce/product-collection::actions.viewProduct"';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$span_button_directives = '
 			data-wp-text="state.addToCartText"
@@ -231,7 +328,10 @@ class ProductButton extends AbstractBlock {
 			data-wp-on--animationend="actions.handleAnimationEnd"
 			data-wp-watch="callbacks.startAnimation"
 			data-wp-run="callbacks.syncTempQuantityOnLoad"
+<<<<<<< HEAD
 			data-wp-on--click="actions.handlePressedState"
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		';
 
 		$wrapper_attributes = get_block_wrapper_attributes(
@@ -248,12 +348,15 @@ class ProductButton extends AbstractBlock {
 			)
 		);
 
+<<<<<<< HEAD
 		$button_classes = isset( $args['class'] ) ? esc_attr( $args['class'] . ' wc-interactive' ) : 'wc-interactive';
 		if ( $is_descendant_of_add_to_cart_form ) {
 			$button_classes             .= ' single_add_to_cart_button';
 			$args['attributes']['value'] = $product->get_id();
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Filters the add to cart button class.
 		 *
@@ -268,6 +371,10 @@ class ProductButton extends AbstractBlock {
 					{div_directives}
 				>
 					<{html_element}
+<<<<<<< HEAD
+=======
+						href="{add_to_cart_url}"
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						class="{button_classes}"
 						style="{button_styles}"
 						{attributes}
@@ -280,6 +387,7 @@ class ProductButton extends AbstractBlock {
 				array(
 					'{wrapper_attributes}'     => $wrapper_attributes,
 					'{html_element}'           => $html_element,
+<<<<<<< HEAD
 					'{button_classes}'         => $button_classes,
 					'{button_styles}'          => esc_attr( $styles_and_classes['styles'] ),
 					'{attributes}'             => isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
@@ -288,6 +396,17 @@ class ProductButton extends AbstractBlock {
 					'{button_directives}'      => $is_ajax_button ? $button_directives : $anchor_directive,
 					'{span_button_directives}' => $is_ajax_button ? $span_button_directives : '',
 					'{view_cart_html}'         => $is_ajax_button && CartCheckoutUtils::has_cart_page() ? $this->get_view_cart_html() : '',
+=======
+					'{add_to_cart_url}'        => esc_url( $product->add_to_cart_url() ),
+					'{button_classes}'         => isset( $args['class'] ) ? esc_attr( $args['class'] . ' wc-interactive' ) : 'wc-interactive',
+					'{button_styles}'          => esc_attr( $styles_and_classes['styles'] ),
+					'{attributes}'             => isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+					'{add_to_cart_text}'       => $is_ajax_button ? '' : $product->add_to_cart_text(),
+					'{div_directives}'         => $is_ajax_button ? $div_directives : '',
+					'{button_directives}'      => $is_ajax_button ? $button_directives : $anchor_directive,
+					'{span_button_directives}' => $is_ajax_button ? $span_button_directives : '',
+					'{view_cart_html}'         => $is_ajax_button ? $this->get_view_cart_html() : '',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				)
 			),
 			$product,
@@ -300,6 +419,30 @@ class ProductButton extends AbstractBlock {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Initialize the cart state.
+	 */
+	private function initialize_cart_state() {
+		if ( null === self::$cart ) {
+			$cart = isset( WC()->cart )
+				? rest_do_request( new \WP_REST_Request( 'GET', '/wc/store/v1/cart' ) )->data
+				: array();
+
+			wp_interactivity_state(
+				'woocommerce',
+				array(
+					'cart'     => $cart,
+					'nonce'    => wp_create_nonce( 'wc_store_api' ),
+					'noticeId' => '',
+					'restUrl'  => get_rest_url(),
+				)
+			);
+		}
+	}
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the number of items in the cart for a given product id.
 	 *
 	 * @param number $product_id The product id.
@@ -315,6 +458,7 @@ class ProductButton extends AbstractBlock {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Check if a product is purchasable.
 	 *
 	 * @param \WC_Product $product The product.
@@ -355,6 +499,13 @@ class ProductButton extends AbstractBlock {
 			__( '%s in cart', 'woocommerce' ),
 			'###'
 		);
+=======
+	 * Prevent caching on certain pages
+	 */
+	private function prevent_cache() {
+		\WC_Cache_Helper::set_nocache_constants();
+		nocache_headers();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

@@ -8,7 +8,10 @@ namespace Automattic\WooCommerce\Internal\Admin\RemoteFreeExtensions;
 defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Admin\PluginsHelper;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\RemoteSpecs\RuleProcessors\EvaluateOverrides;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Admin\RemoteSpecs\RuleProcessors\RuleEvaluator;
 
 /**
@@ -59,9 +62,13 @@ class EvaluateExtension {
 	 * @return array The bundles and errors.
 	 */
 	public static function evaluate_bundles( $specs, $allowed_bundles = array() ) {
+<<<<<<< HEAD
 		$bundles        = array();
 		$evaluate_order = new EvaluateOverrides();
 		$context        = array();
+=======
+		$bundles = array();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $specs as $spec ) {
 			$spec              = (object) $spec;
@@ -84,9 +91,12 @@ class EvaluateExtension {
 				}
 			}
 
+<<<<<<< HEAD
 			$context['plugins'] = $bundle['plugins'];
 			$bundle['plugins']  = $evaluate_order->evaluate( $bundle['plugins'], $context );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$bundles[] = $bundle;
 		}
 

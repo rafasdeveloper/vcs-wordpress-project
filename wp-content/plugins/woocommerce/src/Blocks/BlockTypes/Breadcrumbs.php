@@ -5,7 +5,11 @@ namespace Automattic\WooCommerce\Blocks\BlockTypes;
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 
 /**
+<<<<<<< HEAD
  * Breadcrumbs class.
+=======
+ * CatalogSorting class.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class Breadcrumbs extends AbstractBlock {
 
@@ -34,6 +38,7 @@ class Breadcrumbs extends AbstractBlock {
 			return;
 		}
 
+<<<<<<< HEAD
 		$classes_and_styles = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes, array(), array( 'font_size' ) );
 
 		$font_size_classes_and_styles  = $this->get_font_size_classes_and_styles( $attributes );
@@ -44,6 +49,18 @@ class Breadcrumbs extends AbstractBlock {
 			'<div class="woocommerce wp-block-breadcrumbs wc-block-breadcrumbs %1$s" style="%2$s">%3$s</div>',
 			esc_attr( $classes_and_styles['classes'] ),
 			esc_attr( $classes_and_styles['styles'] ),
+=======
+		$classes_and_styles = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes, array(), array( 'extra_classes' ) );
+
+		return sprintf(
+			'<div %1$s>%2$s</div>',
+			get_block_wrapper_attributes(
+				array(
+					'class' => 'wc-block-breadcrumbs woocommerce ' . esc_attr( $classes_and_styles['classes'] ),
+					'style' => $classes_and_styles['styles'],
+				)
+			),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$breadcrumb
 		);
 	}
@@ -56,6 +73,7 @@ class Breadcrumbs extends AbstractBlock {
 	protected function get_block_type_script( $key = null ) {
 		return null;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Gets font size classes and styles for the breadcrumbs block.
@@ -92,4 +110,6 @@ class Breadcrumbs extends AbstractBlock {
 			'style' => null,
 		);
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -223,6 +223,7 @@ class WC_REST_Payment_Gateways_Controller extends WC_REST_Payment_Gateways_V2_Co
 
 		return $this->add_additional_fields_schema( $schema );
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Validate multiselect based settings (with support for nested options).
@@ -271,4 +272,6 @@ class WC_REST_Payment_Gateways_Controller extends WC_REST_Payment_Gateways_V2_Co
 
 		return $keys;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

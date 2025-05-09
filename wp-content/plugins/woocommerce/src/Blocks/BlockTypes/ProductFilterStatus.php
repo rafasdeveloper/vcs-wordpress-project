@@ -3,8 +3,13 @@ declare( strict_types = 1);
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
 use Automattic\WooCommerce\Blocks\BlockTypes\ProductCollection\Utils as ProductCollectionUtils;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\ProductFilters\FilterDataProvider;
 use Automattic\WooCommerce\Internal\ProductFilters\QueryClauses;
+=======
+use Automattic\WooCommerce\Blocks\QueryFilters;
+use Automattic\WooCommerce\Blocks\Package;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Product Filter: Status Block.
@@ -85,10 +90,17 @@ final class ProductFilterStatus extends AbstractBlock {
 
 		foreach ( $active_statuses as $status ) {
 			$items[] = array(
+<<<<<<< HEAD
 				'type'        => 'status',
 				'value'       => $status,
 				// translators: %s: status.
 				'activeLabel' => sprintf( __( 'Status: %s', 'woocommerce' ), $status_options[ $status ] ),
+=======
+				'type'  => 'status',
+				'value' => $status,
+				// translators: %s: status.
+				'label' => sprintf( __( 'Status: %s', 'woocommerce' ), $status_options[ $status ] ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 
@@ -122,6 +134,11 @@ final class ProductFilterStatus extends AbstractBlock {
 			return '';
 		}
 
+<<<<<<< HEAD
+=======
+		wp_enqueue_script_module( $this->get_full_block_name() );
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$stock_status_data       = $this->get_stock_status_counts( $block );
 		$stock_statuses          = wc_get_product_stock_status_options();
 		$filter_params           = $block->context['filterParams'] ?? array();
@@ -129,6 +146,7 @@ final class ProductFilterStatus extends AbstractBlock {
 		$selected_stock_statuses = array_filter( explode( ',', $query ) );
 
 		$filter_options = array_map(
+<<<<<<< HEAD
 			function ( $item ) use ( $stock_statuses, $selected_stock_statuses ) {
 				return array(
 					'label'    => $stock_statuses[ $item['status'] ],
@@ -136,12 +154,24 @@ final class ProductFilterStatus extends AbstractBlock {
 					'selected' => in_array( $item['status'], $selected_stock_statuses, true ),
 					'count'    => $item['count'],
 					'type'     => 'status',
+=======
+			function ( $item ) use ( $stock_statuses, $selected_stock_statuses, $attributes ) {
+				$label = $stock_statuses[ $item['status'] ] . ( $attributes['showCounts'] ? ' (' . $item['count'] . ')' : '' );
+				return array(
+					'label'     => $label,
+					'ariaLabel' => $label,
+					'value'     => $item['status'],
+					'selected'  => in_array( $item['status'], $selected_stock_statuses, true ),
+					'type'      => 'status',
+					'data'      => $item,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				);
 			},
 			$stock_status_data
 		);
 
 		$filter_context = array(
+<<<<<<< HEAD
 			'items'      => array_values( $filter_options ),
 			'showCounts' => $attributes['showCounts'] ?? false,
 			'groupLabel' => __( 'Status', 'woocommerce' ),
@@ -158,11 +188,31 @@ final class ProductFilterStatus extends AbstractBlock {
 				),
 				JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
 			),
+=======
+			'items'  => array_values( $filter_options ),
+			'parent' => $this->get_full_block_name(),
+		);
+
+		$wrapper_attributes = array(
+			'data-wp-interactive'  => $this->get_full_block_name(),
+			'data-wp-context'      => wp_json_encode(
+				array(
+					'hasFilterOptions'    => ! empty( $filter_options ),
+					/* translators: {{label}} is the status filter item label. */
+					'activeLabelTemplate' => __( 'Status: {{label}}', 'woocommerce' ),
+				),
+				JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
+			),
+			'data-wp-bind--hidden' => '!context.hasFilterOptions',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		if ( empty( $filter_options ) ) {
 			$wrapper_attributes['hidden'] = true;
+<<<<<<< HEAD
 			$wrapper_attributes['class']  = 'wc-block-product-filter--hidden';
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return sprintf(
@@ -187,6 +237,10 @@ final class ProductFilterStatus extends AbstractBlock {
 	 * @param WP_Block $block Block instance.
 	 */
 	private function get_stock_status_counts( $block ) {
+<<<<<<< HEAD
+=======
+		$filters    = Package::container()->get( QueryFilters::class );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$query_vars = ProductCollectionUtils::get_query_vars( $block, 1 );
 
 		unset(
@@ -205,14 +259,23 @@ final class ProductFilterStatus extends AbstractBlock {
 			$query_vars['meta_query'] = ProductCollectionUtils::remove_query_array( $query_vars['meta_query'], 'key', '_stock_status' );
 		}
 
+<<<<<<< HEAD
 		$container = wc_get_container();
 		$counts    = $container->get( FilterDataProvider::class )->with( $container->get( QueryClauses::class ) )->get_stock_status_counts( $query_vars, array_keys( wc_get_product_stock_status_options() ) );
 		$data      = array();
+=======
+		$counts = $filters->get_stock_status_counts( $query_vars );
+		$data   = array();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $counts as $key => $value ) {
 			$data[] = array(
 				'status' => $key,
+<<<<<<< HEAD
 				'count'  => intval( $value ),
+=======
+				'count'  => $value,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 
@@ -225,6 +288,7 @@ final class ProductFilterStatus extends AbstractBlock {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Disable the editor style handle for this block type.
 	 *
 	 * @return null
@@ -237,6 +301,12 @@ final class ProductFilterStatus extends AbstractBlock {
 	 * Disable the script handle for this block type. We use block.json to load the script.
 	 *
 	 * @param string|null $key The key of the script to get.
+=======
+	 * Disable the block type script, this uses script modules.
+	 *
+	 * @param string|null $key The key.
+	 *
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return null
 	 */
 	protected function get_block_type_script( $key = null ) {

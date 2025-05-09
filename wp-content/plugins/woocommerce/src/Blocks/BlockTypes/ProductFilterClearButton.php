@@ -1,7 +1,10 @@
 <?php
+<<<<<<< HEAD
 
 declare( strict_types = 1 );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
 /**
@@ -17,6 +20,18 @@ final class ProductFilterClearButton extends AbstractBlock {
 	protected $block_name = 'product-filter-clear-button';
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Get the frontend style handle for this block type.
+	 *
+	 * @return null
+	 */
+	protected function get_block_type_style() {
+		return null;
+	}
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the frontend script handle for this block type.
 	 *
 	 * @param string $key Data to get, or default to everything.
@@ -40,15 +55,37 @@ final class ProductFilterClearButton extends AbstractBlock {
 		if (
 			is_admin() ||
 			wp_doing_ajax() ||
+<<<<<<< HEAD
 			empty( $block->context['filterData'] )
+=======
+			empty( $block->context['filterData'] ) ||
+			empty( $block->context['filterData']['parent'] )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		) {
 			return '';
 		}
 
+<<<<<<< HEAD
 		$p = new \WP_HTML_Tag_Processor( $content );
 
 		if ( $p->next_tag( array( 'class_name' => 'wp-block-button__link' ) ) ) {
 			$p->set_attribute( 'data-wp-on--click', 'actions.removeAllActiveFilters' );
+=======
+		$wrapper_attributes = get_block_wrapper_attributes(
+			array(
+				'data-wp-bind--hidden' => '!state.hasSelectedFilters',
+				'data-wp-interactive'  => $block->context['filterData']['parent'],
+			)
+		);
+
+		$p = new \WP_HTML_Tag_Processor( $content );
+
+		if ( $p->next_tag( array( 'class_name' => 'wp-block-button__link' ) ) ) {
+			$p->set_attribute( 'data-wp-on--click', 'actions.clearFilters' );
+
+			$style = $p->get_attribute( 'style' );
+			$p->set_attribute( 'style', 'outline:none;' . $style );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			$content = $p->get_updated_html();
 		}
@@ -56,8 +93,13 @@ final class ProductFilterClearButton extends AbstractBlock {
 		$content = str_replace( array( '<a', '</a>' ), array( '<button', '</button>' ), $content );
 
 		return sprintf(
+<<<<<<< HEAD
 			'<div %1$s>%2$s</div>',
 			get_block_wrapper_attributes(),
+=======
+			'<div %1$s hidden>%2$s</div>',
+			$wrapper_attributes,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$content
 		);
 	}

@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -7,6 +8,15 @@
 
 declare(strict_types = 1);
 namespace Automattic\WooCommerce\EmailEditor\Engine;
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare(strict_types = 1);
+namespace MailPoet\EmailEditor\Engine;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * This class is responsible checking the dependencies of the email editor.

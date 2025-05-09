@@ -243,6 +243,7 @@ class WC_Order_Refund extends WC_Abstract_Order {
 		wc_deprecated_function( 'get_refund_reason', '3.0', 'get_reason' );
 		return $this->get_reason();
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Indicates if the current order has an associated Cost of Goods Sold value.
@@ -255,4 +256,6 @@ class WC_Order_Refund extends WC_Abstract_Order {
 	public function has_cogs() {
 		return true;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

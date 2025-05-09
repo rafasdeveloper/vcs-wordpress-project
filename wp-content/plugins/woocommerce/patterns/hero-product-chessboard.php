@@ -5,6 +5,7 @@
  * Categories: WooCommerce, featured-selling
  */
 
+<<<<<<< HEAD
 
 $image1 = plugins_url( 'assets/images/pattern-placeholders/plant-white-leaf-flower-vase-green.jpg', WC_PLUGIN_FILE );
 $image2 = plugins_url( 'assets/images/pattern-placeholders/table-wood-house-chair-floor-window.jpg', WC_PLUGIN_FILE );
@@ -18,6 +19,22 @@ $second_description = __( 'From bold prints to intricate details, our products a
 $third_description  = __( 'Add a touch of charm and coziness this holiday season with a wide selection of hand-picked decorations — from minimalist vases to designer furniture.', 'woocommerce' );
 
 $button = __( 'Shop home decor', 'woocommerce' );
+=======
+use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
+
+$image1 = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/plant-white-leaf-flower-vase-green.jpg' );
+$image2 = PatternsHelper::get_image_url( $images, 1, 'assets/images/pattern-placeholders/table-wood-house-chair-floor-window.jpg' );
+
+$first_title  = $content['titles'][0]['default'] ?? '';
+$second_title = $content['titles'][1]['default'] ?? '';
+$third_title  = $content['titles'][2]['default'] ?? '';
+
+$first_description  = $content['descriptions'][0]['default'] ?? '';
+$second_description = $content['descriptions'][1]['default'] ?? '';
+$third_description  = $content['descriptions'][2]['default'] ?? '';
+
+$button = $content['buttons'][0]['default'] ?? '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","bottom":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","left":"var(--wp--style--root--padding-left, var(--wp--custom--gap--horizontal))","right":"var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal))"},"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained","justifyContent":"center"}} -->

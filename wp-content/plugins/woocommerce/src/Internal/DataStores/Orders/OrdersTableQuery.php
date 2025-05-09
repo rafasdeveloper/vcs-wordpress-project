@@ -60,6 +60,7 @@ class OrdersTableQuery {
 	private $args = array();
 
 	/**
+<<<<<<< HEAD
 	 * Original query vars used to build this query.
 	 *
 	 * @var array
@@ -67,6 +68,8 @@ class OrdersTableQuery {
 	private $query_args = array();
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Columns to be selected in the SELECT clause.
 	 *
 	 * @var array
@@ -200,8 +203,12 @@ class OrdersTableQuery {
 		$this->suppress_filters = array_key_exists( 'suppress_filters', $args ) ? (bool) $args['suppress_filters'] : false;
 		unset( $args['suppress_filters'] );
 
+<<<<<<< HEAD
 		$this->args       = $args;
 		$this->query_args = $args; // Keep a copy of the original vars used to initialize the query.
+=======
+		$this->args = $args;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// TODO: args to be implemented.
 		unset( $this->args['customer_note'], $this->args['name'] );
@@ -236,7 +243,11 @@ class OrdersTableQuery {
 		 *     @type int   $max_num_pages The number of pages.
 		 * }
 		 * @param OrdersTableQuery   $query The OrdersTableQuery instance.
+<<<<<<< HEAD
 		 * @param string             $sql   Fully built SQL query.
+=======
+		 * @param string             $sql The OrdersTableQuery instance.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 */
 		$pre_query = apply_filters( 'woocommerce_hpos_pre_query', null, $this, $this->sql );
 		if ( ! $pre_query || ! isset( $pre_query[0] ) || ! is_array( $pre_query[0] ) ) {
@@ -1493,6 +1504,7 @@ class OrdersTableQuery {
 
 		return $result;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Return the query args that were used to initialize the query.
@@ -1503,4 +1515,6 @@ class OrdersTableQuery {
 	public function get_query_args(): array {
 		return $this->query_args;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

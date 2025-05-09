@@ -670,6 +670,7 @@ class WC_Query {
 	public function price_filter_post_clauses( $args, $wp_query ) {
 		global $wpdb;
 
+<<<<<<< HEAD
 		/**
 		 * Filter whether to add the filter post clauses
 		 *
@@ -682,6 +683,10 @@ class WC_Query {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! $enable_filtering || ( ! isset( $_GET['max_price'] ) && ! isset( $_GET['min_price'] ) ) ) {
+=======
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! $wp_query->is_main_query() || ( ! isset( $_GET['max_price'] ) && ! isset( $_GET['min_price'] ) ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $args;
 		}
 
@@ -942,10 +947,13 @@ class WC_Query {
 			if ( ! empty( $_GET ) ) {
 				foreach ( $_GET as $key => $value ) {
 					if ( 0 === strpos( $key, 'filter_' ) ) {
+<<<<<<< HEAD
 						if ( ! is_string( $value ) ) {
 							continue;
 						}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						$attribute    = wc_sanitize_taxonomy_name( str_replace( 'filter_', '', $key ) );
 						$taxonomy     = wc_attribute_taxonomy_name( $attribute );
 						$filter_terms = ! empty( $value ) ? explode( ',', wc_clean( wp_unslash( $value ) ) ) : array();

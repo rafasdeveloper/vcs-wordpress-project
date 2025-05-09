@@ -52,6 +52,7 @@ jQuery( function ( $ ) {
 				'.wc_input_variations_price',
 				this.maybe_enable_button_to_add_price_to_variations
 			);
+<<<<<<< HEAD
 			$( document.body ).on(
 				'input',
 				'.variation-cost-field',
@@ -62,6 +63,8 @@ jQuery( function ( $ ) {
 				'a.switch-to-general-tab',
 				this.switch_to_general_tab
 			);
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		},
 
 		create_variations: function ( event ) {
@@ -196,6 +199,7 @@ jQuery( function ( $ ) {
 		},
 
 		/**
+<<<<<<< HEAD
 		 * Show or hide the description under the cost field when its value changes
 		 */
 		show_or_hide_cost_description: function ( e ) {
@@ -218,6 +222,8 @@ jQuery( function ( $ ) {
 		},
 
 		/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Check if variation manage stock and show/hide elements
 		 */
 		variable_manage_stock: function () {

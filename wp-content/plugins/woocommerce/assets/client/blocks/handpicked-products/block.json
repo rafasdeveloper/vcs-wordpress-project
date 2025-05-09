@@ -2,6 +2,7 @@
 	"name": "woocommerce/handpicked-products",
 	"title": "Hand-picked Products",
 	"category": "woocommerce",
+<<<<<<< HEAD
 	"keywords": [ "Handpicked Products", "WooCommerce" ],
 	"description": "Display a selection of hand-picked products in a grid.",
 	"supports": {
@@ -9,6 +10,18 @@
 			"clientNavigation": false
 		},
 		"align": [ "wide", "full" ],
+=======
+	"keywords": [
+		"Handpicked Products",
+		"WooCommerce"
+	],
+	"description": "Display a selection of hand-picked products in a grid.",
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"html": false,
 		"inserter": false
 	},

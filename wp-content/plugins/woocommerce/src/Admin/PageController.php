@@ -6,8 +6,11 @@
 namespace Automattic\WooCommerce\Admin;
 
 use Automattic\WooCommerce\Internal\Admin\Loader;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Gateway_BACS;
 use WC_Gateway_Cheque;
 use WC_Gateway_COD;
@@ -254,6 +257,7 @@ class PageController {
 	 * @return string Current screen ID.
 	 */
 	public function get_current_screen_id() {
+<<<<<<< HEAD
 		// Return early if this is a REST API request.
 		if ( wp_is_serving_rest_request() ) {
 			/**
@@ -267,6 +271,8 @@ class PageController {
 			return apply_filters( 'woocommerce_navigation_current_screen_id', false, null );
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$current_screen = get_current_screen();
 		if ( ! $current_screen ) {
 			// Filter documentation below.
@@ -605,6 +611,7 @@ class PageController {
 	public static function is_embed_page() {
 		return wc_admin_is_connected_page();
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Returns true if we are on a modern settings page.
@@ -612,4 +619,6 @@ class PageController {
 	public static function is_modern_settings_page() {
 		return self::is_settings_page() && Features::is_enabled( 'settings' );
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

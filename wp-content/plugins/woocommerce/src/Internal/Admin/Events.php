@@ -10,10 +10,17 @@ defined( 'ABSPATH' ) || exit;
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Admin\RemoteInboxNotifications\RemoteInboxNotificationsDataSourcePoller;
 use Automattic\WooCommerce\Admin\RemoteInboxNotifications\RemoteInboxNotificationsEngine;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Admin\Notes\CustomizeStoreWithBlocks;
 use Automattic\WooCommerce\Internal\Admin\Notes\CustomizingProductCatalog;
 use Automattic\WooCommerce\Internal\Admin\Notes\EditProductsOnTheMove;
 use Automattic\WooCommerce\Internal\Admin\Notes\EmailImprovements;
+=======
+use Automattic\WooCommerce\Internal\Admin\Notes\AddFirstProduct;
+use Automattic\WooCommerce\Internal\Admin\Notes\CustomizeStoreWithBlocks;
+use Automattic\WooCommerce\Internal\Admin\Notes\CustomizingProductCatalog;
+use Automattic\WooCommerce\Internal\Admin\Notes\EditProductsOnTheMove;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Notes\EUVATNumber;
 use Automattic\WooCommerce\Internal\Admin\Notes\FirstProduct;
 use Automattic\WooCommerce\Internal\Admin\Notes\InstallJPAndWCSPlugins;
@@ -21,6 +28,10 @@ use Automattic\WooCommerce\Internal\Admin\Notes\LaunchChecklist;
 use Automattic\WooCommerce\Internal\Admin\Notes\MagentoMigration;
 use Automattic\WooCommerce\Internal\Admin\Notes\ManageOrdersOnTheGo;
 use Automattic\WooCommerce\Internal\Admin\Notes\MarketingJetpack;
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Internal\Admin\Notes\MerchantEmailNotifications;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Notes\MigrateFromShopify;
 use Automattic\WooCommerce\Internal\Admin\Notes\MobileApp;
 use Automattic\WooCommerce\Internal\Admin\Notes\NewSalesRecord;
@@ -67,10 +78,17 @@ class Events {
 	 * @var array
 	 */
 	private static $note_classes_to_added_or_updated = array(
+<<<<<<< HEAD
 		CustomizeStoreWithBlocks::class,
 		CustomizingProductCatalog::class,
 		EditProductsOnTheMove::class,
 		EmailImprovements::class,
+=======
+		AddFirstProduct::class,
+		CustomizeStoreWithBlocks::class,
+		CustomizingProductCatalog::class,
+		EditProductsOnTheMove::class,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		EUVATNumber::class,
 		FirstProduct::class,
 		LaunchChecklist::class,
@@ -145,6 +163,13 @@ class Events {
 			RemoteInboxNotificationsEngine::run();
 		}
 
+<<<<<<< HEAD
+=======
+		if ( $this->is_merchant_email_notifications_enabled() ) {
+			MerchantEmailNotifications::run();
+		}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( Features::is_enabled( 'core-profiler' ) ) {
 			( new MailchimpScheduler() )->run();
 		}

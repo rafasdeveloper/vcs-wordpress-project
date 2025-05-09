@@ -175,7 +175,11 @@ final class QuantityLimits {
 
 		if ( $product->is_sold_individually() ) {
 			$limits[] = 1;
+<<<<<<< HEAD
 		} elseif ( $product->managing_stock() || ! $product->backorders_allowed() ) {
+=======
+		} elseif ( ! $product->backorders_allowed() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$limits[] = $this->get_remaining_stock( $product );
 		}
 

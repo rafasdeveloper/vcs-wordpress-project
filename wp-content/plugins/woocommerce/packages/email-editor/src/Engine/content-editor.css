@@ -63,7 +63,11 @@
  * For the WYSIWYG experience we don't want to display any margins between blocks in the editor
  */
 .wp-block {
+<<<<<<< HEAD
 	clear: both;
+=======
+	clear: both; // for ensuring that floated elements (images) are cleared
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /*
@@ -114,6 +118,7 @@ ol.has-background {
 	max-width: 100% !important;
 	height: auto !important;
 }
+<<<<<<< HEAD
 
 /*
  * Reset default margin for blocks in template-mode
@@ -179,3 +184,5 @@ ol.has-background {
 	background-color:#000;
 	color:#fff;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

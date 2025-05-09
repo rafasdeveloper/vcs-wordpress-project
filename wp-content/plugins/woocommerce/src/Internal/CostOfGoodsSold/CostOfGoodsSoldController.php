@@ -53,7 +53,11 @@ class CostOfGoodsSoldController implements RegisterHooksInterface {
 	 */
 	public function add_feature_definition( $features_controller ) {
 		$definition = array(
+<<<<<<< HEAD
 			'description'        => __( 'Allows entering cost of goods sold information for products.', 'woocommerce' ),
+=======
+			'description'        => __( 'Allows entering cost of goods sold information for products. Feature under active development, enable only for testing purposes', 'woocommerce' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'is_experimental'    => true,
 			'enabled_by_default' => false,
 		);
@@ -145,6 +149,7 @@ class CostOfGoodsSoldController implements RegisterHooksInterface {
 			)
 		);
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Get the tooltip text for the COGS value field in the product editor.
@@ -157,4 +162,6 @@ class CostOfGoodsSoldController implements RegisterHooksInterface {
 			__( 'Add the amount it costs you to buy or make this product. This will be applied as the default value for variations.', 'woocommerce' ) :
 			__( 'Add the amount it costs you to buy or make this product.', 'woocommerce' );
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

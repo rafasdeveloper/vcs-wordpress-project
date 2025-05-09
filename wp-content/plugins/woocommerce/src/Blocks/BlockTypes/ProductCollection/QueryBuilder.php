@@ -1066,10 +1066,16 @@ class QueryBuilder {
 		}
 
 		if ( 'menu_order' === $orderby ) {
+<<<<<<< HEAD
 			add_filter( 'posts_clauses', array( $this, 'add_menu_order_with_title_fallback_posts_clauses' ), 10, 2 );
 			return array(
 				'isProductCollection' => true,
 				'orderby'             => $orderby,
+=======
+			return array(
+				'orderby' => 'menu_order',
+				'order'   => 'ASC',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 
@@ -1208,6 +1214,7 @@ class QueryBuilder {
 
 		return array_values( array_unique( $post__in, SORT_NUMERIC ) );
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Add the `posts_clauses` filter to add menu order with title fallback sorting
@@ -1237,4 +1244,6 @@ class QueryBuilder {
 
 		return $clauses;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

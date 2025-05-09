@@ -63,10 +63,14 @@ class ProductStockIndicator extends AbstractBlock {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Renders the stock indicator block.
 	 *
 	 * This method handles both direct product context and global product context,
 	 * ensuring the stock indicator displays correctly in various template scenarios.
+=======
+	 * Include and render the block.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @param array    $attributes Block attributes. Default empty array.
 	 * @param string   $content    Block content. Default empty string.
@@ -74,13 +78,17 @@ class ProductStockIndicator extends AbstractBlock {
 	 * @return string Rendered block type output.
 	 */
 	protected function render( $attributes, $content, $block ) {
+<<<<<<< HEAD
 		global $product;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! empty( $content ) ) {
 			parent::register_block_type_assets();
 			$this->register_chunk_translations( [ $this->block_name ] );
 			return $content;
 		}
+<<<<<<< HEAD
 		$post_id           = isset( $block->context['postId'] ) ? $block->context['postId'] : '';
 		$product_to_render = wc_get_product( $post_id );
 
@@ -94,18 +102,36 @@ class ProductStockIndicator extends AbstractBlock {
 		}
 
 		$availability = ProductAvailabilityUtils::get_product_availability( $product_to_render );
+=======
+		$post_id = isset( $block->context['postId'] ) ? $block->context['postId'] : '';
+		$product = wc_get_product( $post_id );
+
+		if ( ! $product || in_array( $product->get_type(), $this->get_product_types_without_stock_indicator(), true ) ) {
+			return '';
+		}
+
+		$availability = ProductAvailabilityUtils::get_product_availability( $product );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( empty( $availability['availability'] ) ) {
 			return '';
 		}
 
+<<<<<<< HEAD
 		$total_stock        = $product_to_render->get_stock_quantity();
+=======
+		$total_stock        = $product->get_stock_quantity();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$classes_and_styles = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes );
 
 		$classnames  = isset( $classes_and_styles['classes'] ) ? ' ' . $classes_and_styles['classes'] . ' ' : '';
 		$classnames .= sprintf( ' wc-block-components-product-stock-indicator--%s', $availability['class'] );
 
+<<<<<<< HEAD
 		$is_backorder_notification_visible = $product_to_render->is_in_stock() && $product_to_render->backorders_require_notification();
+=======
+		$is_backorder_notification_visible = $product->is_in_stock() && $product->backorders_require_notification();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( empty( $content ) && $is_backorder_notification_visible && $total_stock > 0 ) {
 			$low_stock_text = sprintf(

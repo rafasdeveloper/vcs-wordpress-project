@@ -52,7 +52,11 @@ if ( ! class_exists( 'WC_Email_Customer_Note', false ) ) :
 
 			// Must be after parent's constructor which sets `email_improvements_enabled` property.
 			$this->description = $this->email_improvements_enabled
+<<<<<<< HEAD
 				? __( 'Send an email to customers notifying them when you’ve added a note to their order', 'woocommerce' )
+=======
+				? __( 'Let your shoppers know when you’ve added a note to their order.', 'woocommerce' )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				: __( 'Customer note emails are sent when you add a note to an order.', 'woocommerce' );
 		}
 
@@ -167,6 +171,7 @@ if ( ! class_exists( 'WC_Email_Customer_Note', false ) ) :
 				? __( 'Thanks again! If you need any help with your order, please contact us at {store_email}.', 'woocommerce' )
 				: __( 'Thanks for reading.', 'woocommerce' );
 		}
+<<<<<<< HEAD
 
 		/**
 		 * Get block editor email template content.
@@ -185,6 +190,8 @@ if ( ! class_exists( 'WC_Email_Customer_Note', false ) ) :
 				)
 			);
 		}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 endif;

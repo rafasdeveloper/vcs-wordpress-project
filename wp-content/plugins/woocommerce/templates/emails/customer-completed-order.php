@@ -12,7 +12,11 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
+<<<<<<< HEAD
  * @version 9.9.0
+=======
+ * @version 9.8.0
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -39,9 +43,17 @@ if ( ! empty( $order->get_billing_first_name() ) ) {
 }
 ?>
 </p>
+<<<<<<< HEAD
 <p><?php esc_html_e( 'We have finished processing your order.', 'woocommerce' ); ?></p>
 <?php if ( $email_improvements_enabled ) : ?>
 	<p><?php esc_html_e( 'Here’s a reminder of what you’ve ordered:', 'woocommerce' ); ?></p>
+=======
+<?php if ( $email_improvements_enabled ) : ?>
+	<p><?php esc_html_e( 'We’ve successfully processed your order, and it’s on its way to you.', 'woocommerce' ); ?></p>
+	<p><?php esc_html_e( 'Here’s a reminder of what you’ve ordered:', 'woocommerce' ); ?></p>
+<?php else : ?>
+	<p><?php esc_html_e( 'We have finished processing your order.', 'woocommerce' ); ?></p>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 <?php endif; ?>
 <?php echo $email_improvements_enabled ? '</div>' : ''; ?>
 

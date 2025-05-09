@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "woocommerce/product-gallery-large-image",
@@ -20,3 +21,29 @@
 	"viewScriptModule": "woocommerce/product-gallery-large-image",
 	"editorStyle": "file:../woocommerce/product-gallery-large-image-editor.css"
 }
+=======
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "woocommerce/product-gallery-large-image",
+    "version": "1.0.0",
+    "title": "Large Image",
+    "description": "Display the Large Image of a product.",
+    "category": "woocommerce",
+    "keywords": [
+        "WooCommerce"
+    ],
+    "usesContext": [
+        "postId",
+        "hoverZoom",
+        "fullScreenOnClick",
+        "cropImages"
+    ],
+    "supports": {
+        "interactivity": true
+    },
+    "textdomain": "woocommerce",
+    "ancestor": [
+        "woocommerce/product-gallery"
+    ]
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

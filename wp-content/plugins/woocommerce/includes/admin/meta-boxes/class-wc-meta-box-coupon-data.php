@@ -7,7 +7,11 @@
  * @author      WooThemes
  * @category    Admin
  * @package     WooCommerce\Admin\Meta Boxes
+<<<<<<< HEAD
  * @version     x.x.x
+=======
+ * @version     2.1.0
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -117,7 +121,11 @@ class WC_Meta_Box_Coupon_Data {
 						'id'                => 'expiry_date',
 						'value'             => esc_attr( $expiry_date ),
 						'label'             => __( 'Coupon expiry date', 'woocommerce' ),
+<<<<<<< HEAD
 						'placeholder'       => _x( 'YYYY-MM-DD', 'coupon expiry date placeholder', 'woocommerce' ),
+=======
+						'placeholder'       => 'YYYY-MM-DD',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						'description'       => __( 'The coupon will expire at 00:00:00 of this date.', 'woocommerce' ),
 						'desc_tip'          => true,
 						'class'             => 'date-picker',
@@ -182,7 +190,11 @@ class WC_Meta_Box_Coupon_Data {
 					)
 				);
 
+<<<<<<< HEAD
 				echo '</div><div class="options_group"><div class="hr-section hr-section-coupon_restrictions">' . esc_html__( 'And', 'woocommerce' ) . '</div>';
+=======
+				echo '</div><div class="options_group">';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				// Product ids.
 				?>
@@ -222,7 +234,11 @@ class WC_Meta_Box_Coupon_Data {
 				</p>
 				<?php
 
+<<<<<<< HEAD
 				echo '</div><div class="options_group"><div class="hr-section hr-section-coupon_restrictions">' . esc_html__( 'And', 'woocommerce' ) . '</div>';
+=======
+				echo '</div><div class="options_group">';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				// Categories.
 				?>
@@ -260,7 +276,11 @@ class WC_Meta_Box_Coupon_Data {
 					<?php echo wc_help_tip( __( 'Product categories that the coupon will not be applied to, or that cannot be in the cart in order for the "Fixed cart discount" to be applied.', 'woocommerce' ) ); ?>
 				</p>
 			</div>
+<<<<<<< HEAD
 			<div class="options_group"><div class="hr-section hr-section-coupon_restrictions"><?php echo esc_html__( 'And', 'woocommerce' ); ?></div>
+=======
+			<div class="options_group">
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				<?php
 				// Customers.
 				woocommerce_wp_text_input(
@@ -367,7 +387,11 @@ class WC_Meta_Box_Coupon_Data {
 		$exclude_product_categories = isset( $_POST['exclude_product_categories'] ) ? (array) $_POST['exclude_product_categories'] : array();
 
 		$coupon = new WC_Coupon( $post_id );
+<<<<<<< HEAD
 		$errors = $coupon->set_props(
+=======
+		$coupon->set_props(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			array(
 				'code'                        => $post->post_title,
 				'discount_type'               => wc_clean( $_POST['discount_type'] ),
@@ -388,6 +412,7 @@ class WC_Meta_Box_Coupon_Data {
 				'email_restrictions'          => array_filter( array_map( 'trim', explode( ',', wc_clean( $_POST['customer_email'] ) ) ) ),
 			)
 		);
+<<<<<<< HEAD
 
 		if ( is_wp_error( $errors ) ) {
 			foreach ( $errors->get_error_messages() as $error_message ) {
@@ -395,6 +420,8 @@ class WC_Meta_Box_Coupon_Data {
 			}
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$coupon->save();
 		do_action( 'woocommerce_coupon_options_save', $post_id, $coupon );
 	}

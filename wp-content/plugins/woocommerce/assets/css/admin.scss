@@ -20,7 +20,10 @@
 
 $font-sf-pro-text: helveticaneue-light, "Helvetica Neue Light",
 "Helvetica Neue", sans-serif;
+<<<<<<< HEAD
 $font-sf-pro-display: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 .wc-addons-wrap {
 	.marketplace-header {
@@ -2189,10 +2192,13 @@ ul.wc_coupon_list_block {
 			}
 		}
 
+<<<<<<< HEAD
 		.cost-total {
 			opacity: 50%;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		.refunded-total {
 			color: $red;
 		}
@@ -2247,6 +2253,7 @@ ul.wc_coupon_list_block {
 	}
 }
 
+<<<<<<< HEAD
 #woocommerce-order-items .woocommerce_order_items_wrapper, .wc-order-preview-table-wrapper {
 	small.refunded {
 		display: block;
@@ -2266,6 +2273,8 @@ ul.wc_coupon_list_block {
 	}
 }
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 #woocommerce-order-items {
 	.inside {
 		display: block !important;
@@ -2413,19 +2422,25 @@ ul.wc_coupon_list_block {
 				text-align: center;
 			}
 
+<<<<<<< HEAD
 			.item_cost_of_goods {
 				.view {
 					opacity: 50%;
 				}
 			}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			.cost,
 			.tax,
 			.quantity,
 			.line_cost,
 			.line_tax,
 			.tax_class,
+<<<<<<< HEAD
 			.item_cost_of_goods,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			.item_cost {
 				text-align: right;
 
@@ -2695,6 +2710,26 @@ ul.wc_coupon_list_block {
 					visibility: visible;
 				}
 			}
+<<<<<<< HEAD
+=======
+
+			small.refunded {
+				display: block;
+				color: $red;
+				white-space: nowrap;
+				margin-top: 0.5em;
+
+				&::before {
+					@include icon_dashicons("\f171");
+					position: relative;
+					top: auto;
+					left: auto;
+					margin: -1px 4px 0 0;
+					vertical-align: middle;
+					line-height: 1em;
+				}
+			}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -2813,10 +2848,13 @@ ul.wc_coupon_list_block {
 		border: 0 none;
 		float: none;
 	}
+<<<<<<< HEAD
 
 	.select2-container {
 		margin: 8px;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 #side-sortables #woocommerce-order-downloads {
@@ -3928,7 +3966,10 @@ table.wc_input_table {
 		background-color: #fefbcc;
 	}
 
+<<<<<<< HEAD
 	.item_cost_of_goods,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	.item_cost,
 	.cost {
 		text-align: right;
@@ -4591,7 +4632,11 @@ table {
 }
 
 #wc-shipping-zone-region-picker-root .woocommerce-tree-select-control {
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	.components-base-control {
 		padding: 2px 8px;
 		border-radius: 4px;
@@ -5067,6 +5112,7 @@ img.help_tip {
 		}
 	}
 
+<<<<<<< HEAD
 	.wc-admin-header {
 		small {
 			margin-right: 0.5em;
@@ -5080,6 +5126,8 @@ img.help_tip {
 		}
 	}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	#template div {
 		margin: 0;
 
@@ -5107,9 +5155,12 @@ img.help_tip {
 
 	table.form-table {
 		margin: 0;
+<<<<<<< HEAD
 		&.wc-shipping-zone-settings {
 			margin-top: 8px;
 		}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		position: relative;
 		table-layout: fixed;
 
@@ -5757,6 +5808,7 @@ img.help_tip {
 	}
 }
 
+<<<<<<< HEAD
 #usage_restriction_coupon_data.woocommerce_options_panel {
 	.options_group {
 
@@ -5794,6 +5846,8 @@ img.help_tip {
 	}
 }
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 #woocommerce-product-data,
 #woocommerce-coupon-data,
 .woocommerce {
@@ -5908,7 +5962,11 @@ img.help_tip {
 }
 
 /**
+<<<<<<< HEAD
  * Settings / Advanced / Features / Emails
+=======
+ * Settings / Advanced / Features
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 .woocommerce_page_wc-settings {
 	.wc-settings-row-woocommerce_custom_orders_table_enabled td.forminp {
@@ -5918,9 +5976,12 @@ img.help_tip {
 	.wc-settings-row-woocommerce_custom_orders_table_data_sync_enabled td.forminp {
 		padding-top: 0;
 	}
+<<<<<<< HEAD
 	#email_notification_settings-description {
 		margin-top: 16px;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /**
@@ -8301,7 +8362,11 @@ table.bar_chart {
 .woocommerce-exporter-wrapper,
 .woocommerce-importer-wrapper {
 	text-align: center;
+<<<<<<< HEAD
 	max-width: 710px;
+=======
+	max-width: 700px;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	margin: 40px auto;
 
 	.error {
@@ -8909,6 +8974,7 @@ html:has(#status-table-templates){
 .woocommerce-admin-page #postbox-container-2 {
 	clear: left;
 }
+<<<<<<< HEAD
 
 body.woocommerce_page_wc-settings {
 	.woocommerce-layout {
@@ -9040,3 +9106,5 @@ body.woocommerce_page_wc-settings {
 	}
 }
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

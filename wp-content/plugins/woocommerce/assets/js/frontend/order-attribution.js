@@ -47,6 +47,7 @@
 	 */
 	function updateCheckoutBlockData( values ) {
 		// Update Checkout block data if available.
+<<<<<<< HEAD
 		if (
 			window.wp &&
 			window.wp.data &&
@@ -61,6 +62,14 @@
 					values,
 					true
 				);
+=======
+		if ( window.wp && window.wp.data && window.wp.data.dispatch && window.wc && window.wc.wcBlocksData ) {
+			window.wp.data.dispatch( window.wc.wcBlocksData.CHECKOUT_STORE_KEY ).__internalSetExtensionData(
+				'woocommerce/order-attribution',
+				values,
+				true
+			);
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 

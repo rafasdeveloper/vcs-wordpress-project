@@ -78,7 +78,11 @@ class COTMigrationUtil {
 			return false;
 		}
 
+<<<<<<< HEAD
 		return ! $this->data_synchronizer->has_orders_pending_sync();
+=======
+		return 0 === $this->data_synchronizer->get_total_pending_count();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

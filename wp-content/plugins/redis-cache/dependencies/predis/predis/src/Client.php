@@ -4,7 +4,7 @@
  * This file is part of the Predis package.
  *
  * (c) 2009-2020 Daniele Alessandri
- * (c) 2021-2025 Till Krüss
+ * (c) 2021-2023 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -25,15 +25,9 @@ use Predis\Configuration\OptionsInterface;
 use Predis\Connection\ConnectionInterface;
 use Predis\Connection\Parameters;
 use Predis\Connection\ParametersInterface;
-use Predis\Connection\RelayConnection;
 use Predis\Monitor\Consumer as MonitorConsumer;
-use Predis\Pipeline\Atomic;
-use Predis\Pipeline\FireAndForget;
 use Predis\Pipeline\Pipeline;
-use Predis\Pipeline\RelayAtomic;
-use Predis\Pipeline\RelayPipeline;
 use Predis\PubSub\Consumer as PubSubConsumer;
-use Predis\PubSub\RelayConsumer as RelayPubSubConsumer;
 use Predis\Response\ErrorInterface as ErrorResponseInterface;
 use Predis\Response\ResponseInterface;
 use Predis\Response\ServerException;
@@ -53,7 +47,7 @@ use Traversable;
  */
 class Client implements ClientInterface, IteratorAggregate
 {
-    public const VERSION = '2.4.0';
+    public const VERSION = '2.1.2';
 
     /** @var OptionsInterface */
     private $options;
@@ -269,32 +263,6 @@ class Client implements ClientInterface, IteratorAggregate
     }
 
     /**
-     * Applies the configured serializer and compression to given value.
-     *
-     * @param  mixed  $value
-     * @return string
-     */
-    public function pack($value)
-    {
-        return $this->connection instanceof RelayConnection
-            ? $this->connection->pack($value)
-            : $value;
-    }
-
-    /**
-     * Deserializes and decompresses to given value.
-     *
-     * @param  mixed  $value
-     * @return string
-     */
-    public function unpack($value)
-    {
-        return $this->connection instanceof RelayConnection
-            ? $this->connection->unpack($value)
-            : $value;
-    }
-
-    /**
      * Executes a command without filtering its arguments, parsing the response,
      * applying any prefix to keys or throwing exceptions on Redis errors even
      * regardless of client options.
@@ -346,29 +314,29 @@ class Client implements ClientInterface, IteratorAggregate
     }
 
     /**
-     * @param  string             $name
+     * @param $name
      * @return ContainerInterface
      */
-    public function __get(string $name)
+    public function __get($name)
     {
         return ContainerFactory::create($this, $name);
     }
 
     /**
-     * @param  string $name
-     * @param  mixed  $value
+     * @param $name
+     * @param $value
      * @return mixed
      */
-    public function __set(string $name, $value)
+    public function __set($name, $value)
     {
         throw new RuntimeException('Not allowed');
     }
 
     /**
-     * @param  string $name
+     * @param $name
      * @return mixed
      */
-    public function __isset(string $name)
+    public function __isset($name)
     {
         throw new RuntimeException('Not allowed');
     }
@@ -467,29 +435,19 @@ class Client implements ClientInterface, IteratorAggregate
     /**
      * Actual pipeline context initializer method.
      *
-     * @param array|null $options  Options for the context.
-     * @param mixed      $callable Optional callable used to execute the context.
+     * @param array $options  Options for the context.
+     * @param mixed $callable Optional callable used to execute the context.
      *
      * @return Pipeline|array
      */
-    protected function createPipeline(?array $options = null, $callable = null)
+    protected function createPipeline(array $options = null, $callable = null)
     {
         if (isset($options['atomic']) && $options['atomic']) {
-            $class = Atomic::class;
+            $class = 'Predis\Pipeline\Atomic';
         } elseif (isset($options['fire-and-forget']) && $options['fire-and-forget']) {
-            $class = FireAndForget::class;
+            $class = 'Predis\Pipeline\FireAndForget';
         } else {
-            $class = Pipeline::class;
-        }
-
-        if ($this->connection instanceof RelayConnection) {
-            if (isset($options['atomic']) && $options['atomic']) {
-                $class = RelayAtomic::class;
-            } elseif (isset($options['fire-and-forget']) && $options['fire-and-forget']) {
-                throw new NotSupportedException('The "relay" extension does not support fire-and-forget pipelines.');
-            } else {
-                $class = RelayPipeline::class;
-            }
+            $class = 'Predis\Pipeline\Pipeline';
         }
 
         /*
@@ -520,12 +478,12 @@ class Client implements ClientInterface, IteratorAggregate
     /**
      * Actual transaction context initializer method.
      *
-     * @param array|null $options  Options for the context.
-     * @param mixed      $callable Optional callable used to execute the context.
+     * @param array $options  Options for the context.
+     * @param mixed $callable Optional callable used to execute the context.
      *
      * @return MultiExecTransaction|array
      */
-    protected function createTransaction(?array $options = null, $callable = null)
+    protected function createTransaction(array $options = null, $callable = null)
     {
         $transaction = new MultiExecTransaction($this, $options);
 
@@ -552,18 +510,14 @@ class Client implements ClientInterface, IteratorAggregate
     /**
      * Actual publish/subscribe context initializer method.
      *
-     * @param array|null $options  Options for the context.
-     * @param mixed      $callable Optional callable used to execute the context.
+     * @param array $options  Options for the context.
+     * @param mixed $callable Optional callable used to execute the context.
      *
      * @return PubSubConsumer|null
      */
-    protected function createPubSub(?array $options = null, $callable = null)
+    protected function createPubSub(array $options = null, $callable = null)
     {
-        if ($this->connection instanceof RelayConnection) {
-            $pubsub = new RelayPubSubConsumer($this, $options);
-        } else {
-            $pubsub = new PubSubConsumer($this, $options);
-        }
+        $pubsub = new PubSubConsumer($this, $options);
 
         if (!isset($callable)) {
             return $pubsub;

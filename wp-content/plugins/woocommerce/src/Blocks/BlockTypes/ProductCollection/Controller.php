@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace Automattic\WooCommerce\Blocks\BlockTypes\ProductCollection;
 
 use Automattic\WooCommerce\Blocks\BlockTypes\AbstractBlock;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\BlockTypes\EnableBlockJsonAssetsTrait;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_Query;
 
 /**
@@ -12,8 +15,11 @@ use WP_Query;
  */
 class Controller extends AbstractBlock {
 
+<<<<<<< HEAD
 	use EnableBlockJsonAssetsTrait;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -123,6 +129,7 @@ class Controller extends AbstractBlock {
 	 * @return boolean
 	 */
 	private function is_block_compatible( $block_name ) {
+<<<<<<< HEAD
 		$block_type = \WP_Block_Type_Registry::get_instance()->get_registered( $block_name );
 		// Client side navigation can be true in two states:
 		// - supports.interactivity === true;
@@ -131,6 +138,34 @@ class Controller extends AbstractBlock {
 		$supports_client_navigation = isset( $block_type->supports['interactivity']['clientNavigation'] ) && true === $block_type->supports['interactivity']['clientNavigation'];
 
 		return $supports_interactivity || $supports_client_navigation;
+=======
+		// Check for explicitly unsupported blocks.
+		$unsupported_blocks = array(
+			'core/post-content',
+			'woocommerce/mini-cart',
+			'woocommerce/featured-product',
+			'woocommerce/active-filters',
+			'woocommerce/price-filter',
+			'woocommerce/stock-filter',
+			'woocommerce/attribute-filter',
+			'woocommerce/rating-filter',
+		);
+
+		if ( in_array( $block_name, $unsupported_blocks, true ) ) {
+			return false;
+		}
+
+		// Check for supported prefixes.
+		if (
+			str_starts_with( $block_name, 'core/' ) ||
+			str_starts_with( $block_name, 'woocommerce/' )
+		) {
+			return true;
+		}
+
+		// Otherwise block is unsupported.
+		return false;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -187,14 +222,22 @@ class Controller extends AbstractBlock {
 					array_pop( $enhanced_query_stack );
 
 					if ( empty( $enhanced_query_stack ) ) {
+<<<<<<< HEAD
 						remove_filter( 'render_block_woocommerce/product-collection', $render_product_collection_callback, 5 );
+=======
+						remove_filter( 'render_block_woocommerce/product-collection', $render_product_collection_callback );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						$render_product_collection_callback = null;
 					}
 
 					return $content;
 				};
 
+<<<<<<< HEAD
 				add_filter( 'render_block_woocommerce/product-collection', $render_product_collection_callback, 5, 2 );
+=======
+				add_filter( 'render_block_woocommerce/product-collection', $render_product_collection_callback, 10, 2 );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		} elseif (
 			! empty( $enhanced_query_stack ) &&
@@ -403,4 +446,19 @@ class Controller extends AbstractBlock {
 		$collection_handler_store = $this->collection_handler_registry->register_core_collections();
 		$this->query_builder->set_collection_handler_store( $collection_handler_store );
 	}
+<<<<<<< HEAD
+=======
+
+
+	/**
+	 * Disable the block type script, this block uses script modules.
+	 *
+	 * @param string|null $key The key of the script.
+	 *
+	 * @return null
+	 */
+	protected function get_block_type_script( $key = null ) {
+		return null;
+	}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

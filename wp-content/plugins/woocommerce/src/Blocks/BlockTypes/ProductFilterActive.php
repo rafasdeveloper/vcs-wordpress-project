@@ -1,7 +1,10 @@
 <?php
+<<<<<<< HEAD
 
 declare( strict_types = 1 );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
 /**
@@ -28,6 +31,7 @@ final class ProductFilterActive extends AbstractBlock {
 			return $content;
 		}
 
+<<<<<<< HEAD
 		$active_filters = $block->context['activeFilters'];
 
 		$filter_context = array(
@@ -61,6 +65,28 @@ final class ProductFilterActive extends AbstractBlock {
 				'removeLabelTemplate' => __( 'Remove filter: {{label}}', 'woocommerce' ),
 			)
 		);
+=======
+		wp_enqueue_script_module( $this->get_full_block_name() );
+
+		$active_filters = $block->context['activeFilters'];
+
+		$filter_context = array(
+			'items'  => $active_filters,
+			'parent' => $this->get_full_block_name(),
+		);
+
+		$wrapper_attributes = array(
+			'data-wp-interactive'  => $this->get_full_block_name(),
+			'data-wp-key'          => wp_unique_prefixed_id( $this->get_full_block_name() ),
+			'data-wp-bind--hidden' => '!state.hasSelectedFilters',
+			/* translators:  {{label}} is the label of the active filter item. */
+			'data-wp-context'      => wp_json_encode( array( 'removeLabelTemplate' => __( 'Remove filter: {{label}}', 'woocommerce' ) ), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP ),
+		);
+
+		if ( empty( $active_filters ) ) {
+			$wrapper_attributes['hidden'] = true;
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return sprintf(
 			'<div %1$s>%2$s</div>',
@@ -86,6 +112,7 @@ final class ProductFilterActive extends AbstractBlock {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Disable the editor style handle for this block type.
 	 *
 	 * @return null
@@ -98,6 +125,12 @@ final class ProductFilterActive extends AbstractBlock {
 	 * Disable the script handle for this block type. We use block.json to load the script.
 	 *
 	 * @param string|null $key The key of the script to get.
+=======
+	 * Disable the block type script, this uses script modules.
+	 *
+	 * @param string|null $key The key.
+	 *
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return null
 	 */
 	protected function get_block_type_script( $key = null ) {

@@ -1,5 +1,6 @@
 {
 	"name": "woocommerce/featured-product",
+<<<<<<< HEAD
 	"title": "Featured Product",
 	"description": "Highlight a product or variation.",
 	"category": "woocommerce",
@@ -10,6 +11,20 @@
 		},
 		"align": [ "wide", "full" ],
 		"ariaLabel": true,
+=======
+	"version": "1.0.0",
+	"title": "Featured Product",
+	"description": "Highlight a product or variation.",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"html": false,
 		"color": {
 			"background": true,
@@ -108,4 +123,8 @@
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

@@ -1,9 +1,16 @@
 {
 	"name": "woocommerce/product-summary",
+<<<<<<< HEAD
 	"icon": "page",
 	"title": "Product Summary",
 	"description": "Display a short description about a product.",
 	"category": "woocommerce-product-elements",
+=======
+	"version": "1.0.0",
+	"icon": "page",
+	"title": "Product Summary",
+	"description": "Display a short description about a product.",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"attributes": {
 		"productId": {
 			"type": "number",
@@ -42,6 +49,7 @@
 			"default": ""
 		}
 	},
+<<<<<<< HEAD
 	"supports": {
 		"interactivity": {
 			"clientNavigation": true
@@ -76,6 +84,8 @@
 		"woocommerce/product-template",
 		"core/post-template"
 	],
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"usesContext": [ "query", "queryId", "postId" ],
 	"keywords": [ "WooCommerce" ],
 	"textdomain": "woocommerce",

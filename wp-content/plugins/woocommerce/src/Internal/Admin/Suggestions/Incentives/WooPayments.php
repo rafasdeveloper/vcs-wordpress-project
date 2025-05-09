@@ -135,7 +135,12 @@ class WooPayments extends Incentive {
 			// WooCommerce store active for duration in seconds.
 			'active_for'   => WCAdminHelper::get_wcadmin_active_for_in_seconds(),
 			'has_orders'   => $this->has_orders(),
+<<<<<<< HEAD
 			'has_payments' => $this->has_enabled_payment_gateways(),
+=======
+			// Whether the store has at least one payment gateway enabled.
+			'has_payments' => ! empty( WC()->payment_gateways()->get_available_payment_gateways() ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'has_wcpay'    => $this->has_wcpay(),
 		);
 
@@ -337,6 +342,7 @@ class WooPayments extends Incentive {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Check if the store has at least one enabled payment gateway.
 	 *
 	 * @return boolean Whether the store has any enabled payment gateways.
@@ -357,6 +363,8 @@ class WooPayments extends Incentive {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Generate a hash from the store context data.
 	 *
 	 * @param array $context The store context data.

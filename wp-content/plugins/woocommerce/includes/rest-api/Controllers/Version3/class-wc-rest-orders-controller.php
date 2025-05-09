@@ -10,9 +10,13 @@
 
 use Automattic\WooCommerce\Enums\OrderStatus;
 use Automattic\WooCommerce\Internal\CostOfGoodsSold\CogsAwareTrait;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Utilities\Users;
 use Automattic\WooCommerce\Utilities\ArrayUtil;
 use Automattic\WooCommerce\Utilities\OrderUtil;
+=======
+use Automattic\WooCommerce\Utilities\ArrayUtil;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\StringUtil;
 
 defined( 'ABSPATH' ) || exit;
@@ -54,7 +58,11 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 		$current_order_coupons      = array_values( $order->get_coupons() );
 		$current_order_coupon_codes = array_map(
 			function ( $coupon ) {
+<<<<<<< HEAD
 				return wc_strtolower( $coupon->get_code() );
+=======
+				return $coupon->get_code();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			},
 			$current_order_coupons
 		);
@@ -73,7 +81,11 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			$coupon      = new WC_Coupon( $coupon_code );
 
 			// Skip check if the coupon is already applied to the order, as this could wrongly throw an error for single-use coupons.
+<<<<<<< HEAD
 			if ( ! in_array( wc_strtolower( $coupon_code ), $current_order_coupon_codes, true ) ) {
+=======
+			if ( ! in_array( $coupon_code, $current_order_coupon_codes, true ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$check_result = $discounts->is_coupon_valid( $coupon );
 				if ( is_wp_error( $check_result ) ) {
 					throw new WC_REST_Exception( 'woocommerce_rest_' . $check_result->get_error_code(), $check_result->get_error_message(), 400 );
@@ -120,12 +132,15 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 
 			if ( ! is_null( $value ) ) {
 				switch ( $key ) {
+<<<<<<< HEAD
 					case 'created_via':
 						// Created via is only writable on order creation.
 						if ( ! $creating ) {
 							unset( $request[ $key ] );
 						}
 						break;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					case 'coupon_lines':
 					case 'status':
 						// Change should be done later so transitions have new data.
@@ -254,7 +269,10 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 	 * @return WC_Data|WP_Error
 	 */
 	protected function save_object( $request, $creating = false ) {
+<<<<<<< HEAD
 		$object = null;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		try {
 			$object = $this->prepare_object_for_database( $request, $creating );
 
@@ -266,8 +284,13 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			WC()->payment_gateways();
 
 			if ( ! is_null( $request['customer_id'] ) && 0 !== $request['customer_id'] ) {
+<<<<<<< HEAD
 				// The customer must exist, and in a multisite context must be visible to the current user.
 				if ( is_wp_error( Users::get_user_in_current_site( $request['customer_id'] ) ) ) {
+=======
+				// Make sure customer exists.
+				if ( false === get_user_by( 'id', $request['customer_id'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					throw new WC_REST_Exception( 'woocommerce_rest_invalid_customer_id', __( 'Customer ID is invalid.', 'woocommerce' ), 400 );
 				}
 
@@ -278,7 +301,11 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			}
 
 			if ( $creating ) {
+<<<<<<< HEAD
 				$object->set_created_via( ! empty( $request['created_via'] ) ? sanitize_text_field( wp_unslash( $request['created_via'] ) ) : 'rest-api' );
+=======
+				$object->set_created_via( 'rest-api' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$object->set_prices_include_tax( 'yes' === get_option( 'woocommerce_prices_include_tax' ) );
 				$object->save();
 				$object->calculate_totals();
@@ -309,6 +336,7 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 
 			return $this->get_object( $object->get_id() );
 		} catch ( WC_Data_Exception $e ) {
+<<<<<<< HEAD
 			$data = $e->getErrorData();
 
 			if ( $creating && $object && $object->get_id() ) {
@@ -326,6 +354,11 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			}
 
 			return new WP_Error( $e->getErrorCode(), $e->getMessage(), $data );
+=======
+			return new WP_Error( $e->getErrorCode(), $e->getMessage(), $e->getErrorData() );
+		} catch ( WC_REST_Exception $e ) {
+			return new WP_Error( $e->getErrorCode(), $e->getMessage(), array( 'status' => $e->getCode() ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -356,6 +389,7 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			}
 		}
 
+<<<<<<< HEAD
 		// If created_via filter is provided, add it to query args.
 		if ( ! empty( $request['created_via'] ) ) {
 			if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
@@ -369,6 +403,8 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			}
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Put the statuses back for further processing (next/prev links, etc).
 		$request['status'] = $statuses;
 
@@ -383,8 +419,11 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 	public function get_item_schema() {
 		$schema = parent::get_item_schema();
 
+<<<<<<< HEAD
 		$schema['properties']['created_via']['readonly'] = false;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$schema['properties']['coupon_lines']['items']['properties']['discount']['readonly'] = true;
 
 		$schema['properties']['manual_update'] = array(
@@ -458,6 +497,7 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			'validate_callback' => 'rest_validate_request_arg',
 		);
 
+<<<<<<< HEAD
 		$params['created_via'] = array(
 			'description'       => __( 'Limit result set to orders created via specific sources (e.g. checkout, admin).', 'woocommerce' ),
 			'type'              => 'array',
@@ -468,6 +508,8 @@ class WC_REST_Orders_Controller extends WC_REST_Orders_V2_Controller {
 			'sanitize_callback' => 'wp_parse_list',
 		);
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $params;
 	}
 

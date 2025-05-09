@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -18,6 +19,24 @@ use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Preproces
 use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Typography_Preprocessor;
 use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Quote_Preprocessor;
 use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Postprocessors\Border_Style_Postprocessor;
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare(strict_types = 1);
+namespace MailPoet\EmailEditor\Engine\Renderer\ContentRenderer;
+
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Postprocessors\Highlighting_Postprocessor;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Postprocessors\Postprocessor;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Postprocessors\Variables_Postprocessor;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Blocks_Width_Preprocessor;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Cleanup_Preprocessor;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Preprocessor;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Spacing_Preprocessor;
+use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Typography_Preprocessor;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class Process_Manager
@@ -44,28 +63,42 @@ class Process_Manager {
 	 * @param Blocks_Width_Preprocessor  $blocks_width_preprocessor Blocks width preprocessor.
 	 * @param Typography_Preprocessor    $typography_preprocessor Typography preprocessor.
 	 * @param Spacing_Preprocessor       $spacing_preprocessor Spacing preprocessor.
+<<<<<<< HEAD
 	 * @param Quote_Preprocessor         $quote_preprocessor Quote preprocessor.
 	 * @param Highlighting_Postprocessor $highlighting_postprocessor Highlighting postprocessor.
 	 * @param Variables_Postprocessor    $variables_postprocessor Variables postprocessor.
 	 * @param Border_Style_Postprocessor $border_style_postprocessor Border style postprocessor.
+=======
+	 * @param Highlighting_Postprocessor $highlighting_postprocessor Highlighting postprocessor.
+	 * @param Variables_Postprocessor    $variables_postprocessor Variables postprocessor.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function __construct(
 		Cleanup_Preprocessor $cleanup_preprocessor,
 		Blocks_Width_Preprocessor $blocks_width_preprocessor,
 		Typography_Preprocessor $typography_preprocessor,
 		Spacing_Preprocessor $spacing_preprocessor,
+<<<<<<< HEAD
 		Quote_Preprocessor $quote_preprocessor,
 		Highlighting_Postprocessor $highlighting_postprocessor,
 		Variables_Postprocessor $variables_postprocessor,
 		Border_Style_Postprocessor $border_style_postprocessor
+=======
+		Highlighting_Postprocessor $highlighting_postprocessor,
+		Variables_Postprocessor $variables_postprocessor
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	) {
 		$this->register_preprocessor( $cleanup_preprocessor );
 		$this->register_preprocessor( $blocks_width_preprocessor );
 		$this->register_preprocessor( $typography_preprocessor );
 		$this->register_preprocessor( $spacing_preprocessor );
+<<<<<<< HEAD
 		$this->register_preprocessor( $quote_preprocessor );
 		$this->register_postprocessor( $highlighting_postprocessor );
 		$this->register_postprocessor( $border_style_postprocessor );
+=======
+		$this->register_postprocessor( $highlighting_postprocessor );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->register_postprocessor( $variables_postprocessor );
 	}
 

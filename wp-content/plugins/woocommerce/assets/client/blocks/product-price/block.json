@@ -1,5 +1,9 @@
 {
 	"name": "woocommerce/product-price",
+<<<<<<< HEAD
+=======
+	"version": "1.0.0",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Product Price",
 	"description": "Display the price of a product.",
 	"category": "woocommerce-product-elements",
@@ -21,6 +25,7 @@
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
 	"supports": {
+<<<<<<< HEAD
 		"html": false,
 		"interactivity": true,
 		"color": {
@@ -43,6 +48,9 @@
 			"margin": true,
 			"padding": true
 		}
+=======
+		"html": false
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	},
 	"ancestor": [
 		"woocommerce/all-products",

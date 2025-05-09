@@ -1,9 +1,19 @@
 {
 	"name": "woocommerce/attribute-filter",
+<<<<<<< HEAD
 	"title": "Filter by Attribute Controls",
 	"description": "Enable customers to filter the product grid by selecting one or more attributes, such as color.",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],
+=======
+	"version": "1.0.0",
+	"title": "Filter by Attribute Controls",
+	"description": "Enable customers to filter the product grid by selecting one or more attributes, such as color.",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"supports": {
 		"html": false,
 		"color": {
@@ -11,8 +21,12 @@
 			"background": false
 		},
 		"inserter": false,
+<<<<<<< HEAD
 		"lock": false,
 		"interactivity": false
+=======
+		"lock": false
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	},
 	"attributes": {
 		"className": {
@@ -55,4 +69,8 @@
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

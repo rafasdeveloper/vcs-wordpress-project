@@ -4,6 +4,10 @@ declare( strict_types = 1);
 
 namespace Automattic\WooCommerce\Admin\Features\Blueprint\Exporters;
 
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Blueprint\Exporters\ExportsStep;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blueprint\Exporters\HasAlias;
 use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
 use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
@@ -12,7 +16,11 @@ use Automattic\WooCommerce\Blueprint\UseWPFunctions;
 /**
  * Class ExportWCTaskOptions
  *
+<<<<<<< HEAD
  * This class exports WooCommerce task options.
+=======
+ * This class exports WooCommerce task options and implements the StepExporter and HasAlias interfaces.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  *
  * @package Automattic\WooCommerce\Admin\Features\Blueprint\Exporters
  */
@@ -66,6 +74,7 @@ class ExportWCTaskOptions implements StepExporter, HasAlias {
 	 * @return string
 	 */
 	public function get_description() {
+<<<<<<< HEAD
 		return __( 'Includes the task configurations for WooCommerce.', 'woocommerce' );
 	}
 
@@ -76,5 +85,8 @@ class ExportWCTaskOptions implements StepExporter, HasAlias {
 	 */
 	public function check_step_capabilities(): bool {
 		return current_user_can( 'manage_woocommerce' );
+=======
+		return __( 'It includes the task configurations for WooCommerce.', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

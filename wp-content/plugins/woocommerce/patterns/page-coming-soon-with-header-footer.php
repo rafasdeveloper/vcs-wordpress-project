@@ -20,7 +20,11 @@ $body_font_family    = $fonts['body'];
 <div class="wp-block-woocommerce-coming-soon woocommerce-coming-soon-store-only">
 
 <?php
+<<<<<<< HEAD
 if ( wp_is_block_theme() ) {
+=======
+if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	echo '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->';
 }
 ?>
@@ -48,7 +52,11 @@ if ( wp_is_block_theme() ) {
 <!-- /wp:group -->
 
 <?php
+<<<<<<< HEAD
 if ( wp_is_block_theme() ) {
+=======
+if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	echo '<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->';
 }
 ?>

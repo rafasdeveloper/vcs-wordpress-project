@@ -108,6 +108,16 @@ class Package {
 					);
 				}
 			);
+<<<<<<< HEAD
+=======
+			// register Bootstrap.
+			$container->register(
+				Migration::class,
+				function () {
+					return new Migration();
+				}
+			);
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return $container;
 	}

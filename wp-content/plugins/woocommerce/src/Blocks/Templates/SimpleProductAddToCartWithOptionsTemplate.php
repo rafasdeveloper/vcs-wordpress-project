@@ -36,7 +36,11 @@ class SimpleProductAddToCartWithOptionsTemplate extends AbstractTemplatePart {
 	 * @return string
 	 */
 	public function get_template_title() {
+<<<<<<< HEAD
 		return _x( 'Simple Product Add to Cart + Options', 'Template name', 'woocommerce' );
+=======
+		return _x( 'Simple Product Add to Cart with Options', 'Template name', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -45,6 +49,10 @@ class SimpleProductAddToCartWithOptionsTemplate extends AbstractTemplatePart {
 	 * @return string
 	 */
 	public function get_template_description() {
+<<<<<<< HEAD
 		return __( 'Template used to display the Add to Cart + Options form for Simple Products.', 'woocommerce' );
+=======
+		return __( 'Template used to display the Add to Cart with Options form for Simple Products.', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

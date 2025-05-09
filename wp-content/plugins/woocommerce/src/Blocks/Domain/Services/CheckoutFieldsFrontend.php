@@ -3,6 +3,10 @@
 namespace Automattic\WooCommerce\Blocks\Domain\Services;
 
 use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFieldsSchema\DocumentObject;
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Admin\Features\Features;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Customer;
 use WC_Order;
 
@@ -115,10 +119,21 @@ class CheckoutFieldsFrontend {
 
 		$customer = new WC_Customer( get_current_user_id() );
 
+<<<<<<< HEAD
 		$document_object = new DocumentObject();
 		$document_object->set_customer( $customer );
 		$document_object->set_context( $address_type . '_address' );
 		$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( 'address', $document_object );
+=======
+		if ( Features::is_enabled( 'experimental-blocks' ) ) {
+			$document_object = new DocumentObject();
+			$document_object->set_customer( $customer );
+			$document_object->set_context( $address_type . '_address' );
+			$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( 'address', $document_object );
+		} else {
+			$fields = $this->checkout_fields_controller->get_fields_for_location( 'address' );
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! $fields || ! $customer ) {
 			return;
@@ -144,10 +159,21 @@ class CheckoutFieldsFrontend {
 	public function edit_account_form_fields() {
 		$customer = new WC_Customer( get_current_user_id() );
 
+<<<<<<< HEAD
 		$document_object = new DocumentObject();
 		$document_object->set_customer( $customer );
 		$document_object->set_context( 'contact' );
 		$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( 'contact', $document_object );
+=======
+		if ( Features::is_enabled( 'experimental-blocks' ) ) {
+			$document_object = new DocumentObject();
+			$document_object->set_customer( $customer );
+			$document_object->set_context( 'contact' );
+			$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( 'contact', $document_object );
+		} else {
+			$fields = $this->checkout_fields_controller->get_fields_for_location( 'contact' );
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $fields as $key => $field ) {
 			$field_key           = CheckoutFields::get_group_key( 'other' ) . $key;
@@ -178,10 +204,21 @@ class CheckoutFieldsFrontend {
 	public function edit_address_fields( $address, $address_type ) {
 		$customer = new WC_Customer( get_current_user_id() );
 
+<<<<<<< HEAD
 		$document_object = new DocumentObject();
 		$document_object->set_customer( $customer );
 		$document_object->set_context( $address_type . '_address' );
 		$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( 'address', $document_object );
+=======
+		if ( Features::is_enabled( 'experimental-blocks' ) ) {
+			$document_object = new DocumentObject();
+			$document_object->set_customer( $customer );
+			$document_object->set_context( $address_type . '_address' );
+			$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( 'address', $document_object );
+		} else {
+			$fields = $this->checkout_fields_controller->get_fields_for_location( 'address' );
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $fields as $key => $field ) {
 			$field_key                      = CheckoutFields::get_group_key( $address_type ) . $key;
@@ -313,6 +350,7 @@ class CheckoutFieldsFrontend {
 		$field_values           = $this->get_posted_additional_field_values( $location, $group, false ); // These values are used to see if required fields have values.
 		$sanitized_field_values = $this->get_posted_additional_field_values( $location, $group ); // These values are used to validate custom rules, generate the document object, and save fields to the account.
 
+<<<<<<< HEAD
 		$document_object = new DocumentObject(
 			[
 				'customer' => [
@@ -323,6 +361,22 @@ class CheckoutFieldsFrontend {
 		$document_object->set_customer( $customer );
 		$document_object->set_context( 'address' === $location ? $group . '_address' : $location );
 		$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( $location, $document_object );
+=======
+		if ( Features::is_enabled( 'experimental-blocks' ) ) {
+			$document_object = new DocumentObject(
+				[
+					'customer' => [
+						( 'address' === $location ? $group . '_address' : 'additional_fields' ) => $sanitized_field_values,
+					],
+				]
+			);
+			$document_object->set_customer( $customer );
+			$document_object->set_context( 'address' === $location ? $group . '_address' : $location );
+			$fields = $this->checkout_fields_controller->get_contextual_fields_for_location( $location, $document_object );
+		} else {
+			$fields = $this->checkout_fields_controller->get_fields_for_location( $location );
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Holds values to be persisted to the customer object.
 		$persist_fields = [];
@@ -333,7 +387,11 @@ class CheckoutFieldsFrontend {
 			$field_value = $field_values[ $field_key ];
 
 			if ( empty( $field_value ) ) {
+<<<<<<< HEAD
 				if ( true === $field['required'] ) {
+=======
+				if ( ! empty( $field['required'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$errors->add(
 						'required_field',
 						/* translators: %s: is the field label */

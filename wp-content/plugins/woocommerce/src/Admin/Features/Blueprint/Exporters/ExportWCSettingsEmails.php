@@ -5,6 +5,7 @@ declare( strict_types = 1);
 namespace Automattic\WooCommerce\Admin\Features\Blueprint\Exporters;
 
 use Automattic\WooCommerce\Admin\Features\Blueprint\SettingOptions;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Blueprint\UseWPFunctions;
 use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
 
@@ -12,6 +13,17 @@ use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
  * Class ExportWCSettingsEmails
  *
  * This class exports WooCommerce settings on the Emails page.
+=======
+use Automattic\WooCommerce\Blueprint\Exporters\HasAlias;
+use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
+use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
+use Automattic\WooCommerce\Blueprint\UseWPFunctions;
+
+/**
+ * Class ExportWCSettingsProducts
+ *
+ * This class exports WooCommerce settings and implements the StepExporter and HasAlias interfaces.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  *
  * @package Automattic\WooCommerce\Admin\Features\Blueprint\Exporters
  */
@@ -28,6 +40,7 @@ class ExportWCSettingsEmails extends ExportWCSettings {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Export WooCommerce settings.
 	 *
 	 * @return SetSiteOptions
@@ -50,6 +63,8 @@ class ExportWCSettingsEmails extends ExportWCSettings {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Return label used in the frontend.
 	 *
 	 * @return string
@@ -64,7 +79,11 @@ class ExportWCSettingsEmails extends ExportWCSettings {
 	 * @return string
 	 */
 	public function get_description() {
+<<<<<<< HEAD
 		return __( 'Includes all settings in WooCommerce | Settings | Emails.', 'woocommerce' );
+=======
+		return __( 'It includes all settings in WooCommerce | Settings | Emails.', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

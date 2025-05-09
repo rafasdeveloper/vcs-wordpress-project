@@ -86,6 +86,15 @@ class Init {
 				'Automattic\WooCommerce\Admin\API\OnboardingProducts',
 				'Automattic\WooCommerce\Admin\API\MobileAppMagicLink',
 				'Automattic\WooCommerce\Admin\API\ShippingPartnerSuggestions',
+<<<<<<< HEAD
+=======
+				'Automattic\WooCommerce\Admin\API\AI\StoreTitle',
+				'Automattic\WooCommerce\Admin\API\AI\BusinessDescription',
+				'Automattic\WooCommerce\Admin\API\AI\StoreInfo',
+				'Automattic\WooCommerce\Admin\API\AI\Images',
+				'Automattic\WooCommerce\Admin\API\AI\Patterns',
+				'Automattic\WooCommerce\Admin\API\AI\Product',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 

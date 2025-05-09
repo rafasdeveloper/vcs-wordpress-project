@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -9,6 +10,17 @@ declare(strict_types = 1);
 namespace Automattic\WooCommerce\EmailEditor\Engine\Templates;
 
 use Automattic\WooCommerce\EmailEditor\Validator\Builder;
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare(strict_types = 1);
+namespace MailPoet\EmailEditor\Engine\Templates;
+
+use MailPoet\EmailEditor\Validator\Builder;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_Block_Template;
 
 /**
@@ -20,7 +32,11 @@ class Templates {
 	 *
 	 * @var string $plugin_slug
 	 */
+<<<<<<< HEAD
 	private string $template_prefix = 'woocommerce';
+=======
+	private string $template_prefix = 'mailpoet';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * The post type.
 	 *
@@ -57,7 +73,11 @@ class Templates {
 	public function initialize( array $post_types ): void {
 		$this->post_types = $post_types;
 		add_filter( 'theme_templates', array( $this, 'add_theme_templates' ), 10, 4 ); // Workaround needed when saving post – template association.
+<<<<<<< HEAD
 		add_filter( 'woocommerce_email_editor_register_templates', array( $this, 'register_templates' ) );
+=======
+		add_filter( 'mailpoet_email_editor_register_templates', array( $this, 'register_templates' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->templates_registry->initialize();
 		$this->register_post_types_to_api();
 	}
@@ -155,6 +175,7 @@ class Templates {
 		if ( $post_type && ! in_array( $post_type, $this->post_types, true ) ) {
 			return $templates;
 		}
+<<<<<<< HEAD
 		$block_templates       = get_block_templates();
 		$email_templates_slugs = array_map(
 			function ( Template $template ) {
@@ -170,6 +191,16 @@ class Templates {
 				continue;
 			}
 			$templates[ $block_template->slug ] = $block_template->title;  // Requires only the template title, not the full template object.
+=======
+		$block_templates = get_block_templates();
+		foreach ( $block_templates as $block_template ) {
+			// Ideally we could check for supported post_types but there seems to be a bug and once a template has some edits and is stored in DB
+			// the core returns null for post_types.
+			if ( $block_template->plugin !== $this->template_prefix ) {
+				continue;
+			}
+			$templates[ $block_template->slug ] = $block_template;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return $templates;
 	}

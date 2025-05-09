@@ -101,11 +101,14 @@ class WC_Order_Item extends WC_Data implements ArrayAccess {
 			$this->set_object_read( true );
 		}
 
+<<<<<<< HEAD
 		if ( $this->get_id() && __CLASS__ === get_class( $this ) ) {
 			wc_doing_it_wrong( __METHOD__, 'WC_Order_Item should not be instantiated directly.', '9.9.0' );
 			return;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$type             = 'line_item' === $this->get_type() ? 'product' : $this->get_type();
 		$this->data_store = WC_Data_Store::load( 'order-item-' . $type );
 		if ( $this->get_id() > 0 ) {
@@ -551,6 +554,7 @@ class WC_Order_Item extends WC_Data implements ArrayAccess {
 			$this->set_prop( 'cogs_value', $value );
 		}
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Returns the Cost of Goods Sold value in html format.
@@ -631,4 +635,6 @@ class WC_Order_Item extends WC_Data implements ArrayAccess {
 		 */
 		return apply_filters( 'woocommerce_order_item_cogs_per_item_tooltip', $tooltip_text, $cost_per_item, $formatted_cost_per_item, $this );
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -5,6 +5,7 @@
 	"name": "woocommerce/all-products",
 	"title": "All Products",
 	"category": "woocommerce",
+<<<<<<< HEAD
 	"keywords": [ "WooCommerce" ],
 	"description": "Display products from your store in a grid layout.",
 	"supports": {
@@ -12,6 +13,17 @@
 			"clientNavigation": false
 		},
 		"align": [ "wide", "full" ],
+=======
+	"keywords": [
+		"WooCommerce"
+	],
+	"description": "Display products from your store in a grid layout.",
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"html": false,
 		"multiple": false,
 		"inserter": false

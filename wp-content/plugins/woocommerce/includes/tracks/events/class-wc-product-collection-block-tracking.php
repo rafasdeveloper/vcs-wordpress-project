@@ -33,7 +33,11 @@ class WC_Product_Collection_Block_Tracking {
 	 */
 	public function track_collection_instances( $post_id, $post ) {
 
+<<<<<<< HEAD
 		if ( ! defined( 'REST_REQUEST' ) || ! REST_REQUEST || ! wp_is_block_theme() ) {
+=======
+		if ( ! defined( 'REST_REQUEST' ) || ! REST_REQUEST || ! wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return;
 		}
 

@@ -10,8 +10,11 @@
  * @since    3.0.0
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Utilities\Users;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -180,6 +183,7 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 	 * @return WP_Error|boolean
 	 */
 	public function get_item_permissions_check( $request ) {
+<<<<<<< HEAD
 		return $this->permissions_check(
 			$request,
 			'read',
@@ -189,6 +193,15 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 				array( 'status' => rest_authorization_required_code() )
 			)
 		);
+=======
+		$id = (int) $request['id'];
+
+		if ( ! wc_rest_check_user_permissions( 'read', $id ) ) {
+			return new WP_Error( 'woocommerce_rest_cannot_view', __( 'Sorry, you cannot view this resource.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+
+		return true;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -199,6 +212,7 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 	 * @return bool|WP_Error
 	 */
 	public function update_item_permissions_check( $request ) {
+<<<<<<< HEAD
 		$permission_result = $this->permissions_check(
 			$request,
 			'edit',
@@ -211,12 +225,21 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 
 		if ( ! $permission_result || is_wp_error( $permission_result ) ) {
 			return $permission_result;
+=======
+		$id = (int) $request['id'];
+
+		if ( ! wc_rest_check_user_permissions( 'edit', $id ) ) {
+			return new WP_Error( 'woocommerce_rest_cannot_edit', __( 'Sorry, you are not allowed to edit this resource.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		$allowed_roles = $this->allowed_roles();
 
+<<<<<<< HEAD
 		$id = (int) $request['id'];
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$customer = new WC_Customer( $id );
 
 		if ( $customer && ! in_array( $customer->get_role(), $allowed_roles, true ) ) {
@@ -250,6 +273,7 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 	 * @return bool|WP_Error
 	 */
 	public function delete_item_permissions_check( $request ) {
+<<<<<<< HEAD
 		$permission_result = $this->permissions_check(
 			$request,
 			'delete',
@@ -266,6 +290,14 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 
 		$id = (int) $request['id'];
 
+=======
+		$id = (int) $request['id'];
+
+		if ( ! wc_rest_check_user_permissions( 'delete', $id ) ) {
+			return new WP_Error( 'woocommerce_rest_cannot_delete', __( 'Sorry, you are not allowed to delete this resource.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
+		}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$allowed_roles = $this->allowed_roles();
 		$customer      = new WC_Customer( $id );
 
@@ -301,6 +333,7 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Check if the necessary permissions to view or act on a customer are in place.
 	 *
 	 * @internal Use of this method by third parties is discouraged.
@@ -327,6 +360,8 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get all customers.
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
@@ -484,6 +519,7 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 	 * @return WP_Error|WP_REST_Response
 	 */
 	public function get_item( $request ) {
+<<<<<<< HEAD
 		$user = \Automattic\WooCommerce\Internal\Utilities\Users::get_user_in_current_site( $request['id'] );
 		if ( is_wp_error( $user ) ) {
 			$user->add_data( array( 'status' => 404 ) );
@@ -491,6 +527,16 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 		}
 
 		$customer = $this->prepare_item_for_response( $user, $request );
+=======
+		$id        = (int) $request['id'];
+		$user_data = get_userdata( $id );
+
+		if ( empty( $id ) || empty( $user_data->ID ) ) {
+			return new WP_Error( 'woocommerce_rest_invalid_id', __( 'Invalid resource ID.', 'woocommerce' ), array( 'status' => 404 ) );
+		}
+
+		$customer = $this->prepare_item_for_response( $user_data, $request );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$response = rest_ensure_response( $customer );
 
 		return $response;
@@ -504,6 +550,7 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 	 */
 	public function update_item( $request ) {
 		try {
+<<<<<<< HEAD
 			$user = \Automattic\WooCommerce\Internal\Utilities\Users::get_user_in_current_site( $request['id'] );
 			if ( is_wp_error( $user ) ) {
 				$id = 0;
@@ -511,6 +558,9 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 				$id = $user->ID;
 			}
 
+=======
+			$id       = (int) $request['id'];
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$customer = new WC_Customer( $id );
 
 			if ( ! $customer->get_id() ) {
@@ -579,6 +629,7 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 			return new WP_Error( 'woocommerce_rest_trash_not_supported', __( 'Customers do not support trashing.', 'woocommerce' ), array( 'status' => 501 ) );
 		}
 
+<<<<<<< HEAD
 		$user_data = \Automattic\WooCommerce\Internal\Utilities\Users::get_user_in_current_site( $id );
 		if ( is_wp_error( $user_data ) ) {
 			$user_data->add_data( array( 'status' => 404 ) );
@@ -589,6 +640,15 @@ class WC_REST_Customers_V1_Controller extends WC_REST_Controller {
 			$reassign_user = \Automattic\WooCommerce\Internal\Utilities\Users::get_user_in_current_site( $reassign );
 
 			if ( $reassign === $id || is_wp_error( $reassign_user ) ) {
+=======
+		$user_data = get_userdata( $id );
+		if ( ! $user_data ) {
+			return new WP_Error( 'woocommerce_rest_invalid_id', __( 'Invalid resource id.', 'woocommerce' ), array( 'status' => 400 ) );
+		}
+
+		if ( ! empty( $reassign ) ) {
+			if ( $reassign === $id || ! get_userdata( $reassign ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				return new WP_Error( 'woocommerce_rest_customer_invalid_reassign', __( 'Invalid resource id for reassignment.', 'woocommerce' ), array( 'status' => 400 ) );
 			}
 		}

@@ -1,11 +1,20 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
  */
 
 namespace Automattic\WooCommerce\EmailEditor\Engine\Renderer;
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+namespace MailPoet\EmailEditor\Engine\Renderer;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 interface Css_Inliner {
 	/**

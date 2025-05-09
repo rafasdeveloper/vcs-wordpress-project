@@ -10,9 +10,12 @@ use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
  * CatalogSorting class.
  */
 class AddToCartForm extends AbstractBlock {
+<<<<<<< HEAD
 
 	use EnableBlockJsonAssetsTrait;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -62,7 +65,11 @@ class AddToCartForm extends AbstractBlock {
 	protected function enqueue_data( array $attributes = [] ) {
 		parent::enqueue_data( $attributes );
 		$this->asset_data_registry->add( 'isStepperLayoutFeatureEnabled', Features::is_enabled( 'add-to-cart-with-options-stepper-layout' ) );
+<<<<<<< HEAD
 		$this->asset_data_registry->add( 'isBlockTheme', wp_is_block_theme() );
+=======
+		$this->asset_data_registry->add( 'isBlockifiedAddToCart', Features::is_enabled( 'blockified-add-to-cart' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -77,10 +84,17 @@ class AddToCartForm extends AbstractBlock {
 		$pattern = '/(<input[^>]*id="quantity_[^"]*"[^>]*\/>)/';
 		// Replacement string to add button BEFORE the matched <input> element.
 		/* translators: %s refers to the item name in the cart. */
+<<<<<<< HEAD
 		$minus_button = '<button aria-label="' . esc_attr( sprintf( __( 'Reduce quantity of %s', 'woocommerce' ), $product_name ) ) . '"type="button" data-wp-on--click="actions.removeQuantity" class="wc-block-components-quantity-selector__button wc-block-components-quantity-selector__button--minus">-</button>$1';
 		// Replacement string to add button AFTER the matched <input> element.
 		/* translators: %s refers to the item name in the cart. */
 		$plus_button = '$1<button aria-label="' . esc_attr( sprintf( __( 'Increase quantity of %s', 'woocommerce' ), $product_name ) ) . '" type="button" data-wp-on--click="actions.addQuantity" class="wc-block-components-quantity-selector__button wc-block-components-quantity-selector__button--plus">+</button>';
+=======
+		$minus_button = '<button aria-label="' . esc_attr( sprintf( __( 'Reduce quantity of %s', 'woocommerce' ), $product_name ) ) . '"type="button" data-wc-on--click="actions.removeQuantity" class="wc-block-components-quantity-selector__button wc-block-components-quantity-selector__button--minus">-</button>$1';
+		// Replacement string to add button AFTER the matched <input> element.
+		/* translators: %s refers to the item name in the cart. */
+		$plus_button = '$1<button aria-label="' . esc_attr( sprintf( __( 'Increase quantity of %s', 'woocommerce' ), $product_name ) ) . '" type="button" data-wc-on--click="actions.addQuantity" class="wc-block-components-quantity-selector__button wc-block-components-quantity-selector__button--plus">+</button>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$new_html    = preg_replace( $pattern, $minus_button, $product_html );
 		$new_html    = preg_replace( $pattern, $plus_button, $new_html );
 		return $new_html;
@@ -109,6 +123,7 @@ class AddToCartForm extends AbstractBlock {
 		return $html->get_updated_html();
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Check if a variation product has all attributes set.
 	 * Returns true if the product is not variation, or if all variation attributes have defined values.
@@ -138,6 +153,8 @@ class AddToCartForm extends AbstractBlock {
 
 		return true;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Render the block.
@@ -167,6 +184,7 @@ class AddToCartForm extends AbstractBlock {
 			return '';
 		}
 
+<<<<<<< HEAD
 		// Check if all attributes are set for variation product.
 		if ( $product->is_type( 'variation' ) && ! $this->has_all_attributes_set( $product ) ) {
 			$product = $previous_product;
@@ -182,6 +200,10 @@ class AddToCartForm extends AbstractBlock {
 		 * The stepper buttons don't show when the product is sold individually or stock quantity is less or equal to 1 because the quantity input field is hidden.
 		 */
 		$is_stepper_style = 'stepper' === $attributes['quantitySelectorStyle'] && ! $product->is_sold_individually() && ( ( $managing_stock && $stock_quantity > 1 ) || ! $managing_stock ) && Features::is_enabled( 'add-to-cart-with-options-stepper-layout' );
+=======
+		$is_external_product_with_url = $product instanceof \WC_Product_External && $product->get_product_url();
+		$is_stepper_style             = 'stepper' === $attributes['quantitySelectorStyle'] && ! $product->is_sold_individually() && Features::is_enabled( 'add-to-cart-with-options-stepper-layout' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( $is_descendent_of_single_product_block ) {
 			add_filter( 'woocommerce_add_to_cart_form_action', array( $this, 'add_to_cart_form_action' ), 10 );
@@ -190,22 +212,28 @@ class AddToCartForm extends AbstractBlock {
 		ob_start();
 
 		/**
+<<<<<<< HEAD
 		 * Manage variations in the same way as simple products.
 		 */
 		add_action( 'woocommerce_variation_add_to_cart', 'woocommerce_simple_add_to_cart', 10 );
 
 		/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Trigger the single product add to cart action for each product type.
 		 *
 		 * @since 9.7.0
 		 */
 		do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
 
+<<<<<<< HEAD
 		/**
 		 * Remove the hook to prevent potential conflicts with existing code and extensions.
 		 */
 		remove_action( 'woocommerce_variation_add_to_cart', 'woocommerce_simple_add_to_cart', 10 );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$product_html = ob_get_clean();
 
 		if ( $is_descendent_of_single_product_block ) {
@@ -217,7 +245,10 @@ class AddToCartForm extends AbstractBlock {
 
 			return '';
 		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$product_name = $product->get_name();
 		$product_html = $is_stepper_style ? $this->add_steppers( $product_html, $product_name ) : $product_html;
 
@@ -249,7 +280,16 @@ class AddToCartForm extends AbstractBlock {
 		$form = sprintf(
 			'<div %1$s %2$s>%3$s</div>',
 			$wrapper_attributes,
+<<<<<<< HEAD
 			$is_stepper_style ? 'data-wp-interactive="woocommerce/add-to-cart-form"' : '',
+=======
+			$is_stepper_style ? 'data-wc-interactive=\'' . wp_json_encode(
+				array(
+					'namespace' => 'woocommerce/add-to-cart-form',
+				),
+				JSON_NUMERIC_CHECK | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
+			) . '\'' : '',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$product_html
 		);
 

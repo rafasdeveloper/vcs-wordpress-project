@@ -166,12 +166,21 @@ class WC_Product_Variation extends WC_Product_Simple {
 	public function get_permalink( $item_object = null ) {
 		$url = get_permalink( $this->get_parent_id() );
 
+<<<<<<< HEAD
 		if ( ! empty( $item_object['item_meta_array'] ) ) {
 			$data_keys   = array_map( 'wc_variation_attribute_name', wp_list_pluck( $item_object['item_meta_array'], 'key' ) );
 			$data_values = wp_list_pluck( $item_object['item_meta_array'], 'value' );
 			$data        = array_intersect_key( array_combine( $data_keys, $data_values ), $this->get_variation_attributes() );
 		} elseif ( ! empty( $item_object['variation'] ) ) {
 			$data = $item_object['variation'];
+=======
+		if ( ! empty( $item_object['variation'] ) ) {
+			$data = $item_object['variation'];
+		} elseif ( ! empty( $item_object['item_meta_array'] ) ) {
+			$data_keys   = array_map( 'wc_variation_attribute_name', wp_list_pluck( $item_object['item_meta_array'], 'key' ) );
+			$data_values = wp_list_pluck( $item_object['item_meta_array'], 'value' );
+			$data        = array_intersect_key( array_combine( $data_keys, $data_values ), $this->get_variation_attributes() );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		} else {
 			$data = $this->get_variation_attributes();
 		}

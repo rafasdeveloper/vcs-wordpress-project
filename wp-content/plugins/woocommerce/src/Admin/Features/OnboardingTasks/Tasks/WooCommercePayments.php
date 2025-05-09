@@ -13,9 +13,13 @@ use WC_Gateway_Cheque;
 use WC_Gateway_COD;
 
 /**
+<<<<<<< HEAD
  * WooCommercePayments Task.
  *
  * @deprecated 9.9.0 The WooPayments onboarding task is deprecated and will be removed in a future version of WooCommerce.
+=======
+ * WooCommercePayments Task
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class WooCommercePayments extends Task {
 	/**
@@ -240,7 +244,11 @@ class WooCommercePayments extends Task {
 	 * @return \WC_Payments|null
 	 */
 	private static function get_gateway() {
+<<<<<<< HEAD
 		$payment_gateways = WC()->payment_gateways()->payment_gateways();
+=======
+		$payment_gateways = WC()->payment_gateways->payment_gateways();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( isset( $payment_gateways['woocommerce_payments'] ) ) {
 			return $payment_gateways['woocommerce_payments'];
 		}
@@ -255,7 +263,11 @@ class WooCommercePayments extends Task {
 	 * @return bool
 	 */
 	public static function has_other_ecommerce_gateways(): bool {
+<<<<<<< HEAD
 		$gateways         = WC()->payment_gateways()->payment_gateways;
+=======
+		$gateways         = WC()->payment_gateways->get_available_payment_gateways();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$enabled_gateways = array_filter(
 			$gateways,
 			function ( $gateway ) {

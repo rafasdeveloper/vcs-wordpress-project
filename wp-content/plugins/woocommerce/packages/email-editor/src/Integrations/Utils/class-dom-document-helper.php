@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -7,6 +8,15 @@
 
 declare( strict_types = 1 );
 namespace Automattic\WooCommerce\EmailEditor\Integrations\Utils;
+=======
+ * This file is part of the MailPoet plugin.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare( strict_types = 1 );
+namespace MailPoet\EmailEditor\Integrations\Utils;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * This class should guarantee that our work with the DOMDocument is unified and safe.
@@ -95,6 +105,12 @@ class Dom_Document_Helper {
 		$inner_html = '';
 		$children   = $element->childNodes; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		foreach ( $children as $child ) {
+<<<<<<< HEAD
+=======
+			if ( ! $child instanceof \DOMNode ) {
+				continue;
+			}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$inner_html .= $this->dom->saveHTML( $child );
 		}
 		return $inner_html;

@@ -20,10 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * an account on WooCommerce.com.
  */
 class WC_Helper_Admin {
+<<<<<<< HEAD
 	/**
 	 * Clear cache tool identifier.
 	 */
 	const CACHE_TOOL_ID = 'clear_woocommerce_helper_cache';
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Loads the class, runs on init
@@ -39,8 +42,11 @@ class WC_Helper_Admin {
 			if ( $is_wc_home_or_in_app_marketplace ) {
 				add_filter( 'woocommerce_admin_shared_settings', array( __CLASS__, 'add_marketplace_settings' ) );
 			}
+<<<<<<< HEAD
 
 			add_filter( 'woocommerce_debug_tools', array( __CLASS__, 'register_cache_clear_tool' ) );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		add_filter( 'rest_api_init', array( __CLASS__, 'register_rest_routes' ) );
@@ -71,12 +77,20 @@ class WC_Helper_Admin {
 			$installed_products
 		);
 
+<<<<<<< HEAD
 		$blog_name = get_bloginfo( 'name' );
+=======
+		$woo_connect_notice_type = WC_Helper_Updater::get_woo_connect_notice_type();
+		$blog_name               = get_bloginfo( 'name' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$settings['wccomHelper'] = array(
 			'isConnected'                => WC_Helper::is_site_connected(),
 			'connectURL'                 => self::get_connection_url(),
+<<<<<<< HEAD
 			'reConnectURL'               => self::get_connection_url( true ),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'userEmail'                  => $auth_user_email,
 			'userAvatar'                 => get_avatar_url( $auth_user_email, array( 'size' => '48' ) ),
 			'storeCountry'               => wc_get_base_location()['country'],
@@ -88,6 +102,7 @@ class WC_Helper_Admin {
 			'wooUpdateManagerActive'     => WC_Woo_Update_Manager_Plugin::is_plugin_active(),
 			'wooUpdateManagerInstallUrl' => WC_Woo_Update_Manager_Plugin::generate_install_url(),
 			'wooUpdateManagerPluginSlug' => WC_Woo_Update_Manager_Plugin::WOO_UPDATE_MANAGER_SLUG,
+<<<<<<< HEAD
 			'dismissNoticeNonce'         => wp_create_nonce( 'dismiss_notice' ),
 		);
 
@@ -108,6 +123,20 @@ class WC_Helper_Admin {
 			} else {
 				$settings['wccomHelper']['disconnected_notice'] = PluginsHelper::get_wccom_disconnected_notice();
 			}
+=======
+			'wooUpdateCount'             => WC_Helper_Updater::get_updates_count_based_on_site_status(),
+			'woocomConnectNoticeType'    => $woo_connect_notice_type,
+			'dismissNoticeNonce'         => wp_create_nonce( 'dismiss_notice' ),
+			'connected_notice'           => PluginsHelper::get_wccom_connected_notice( $auth_user_email ),
+		);
+
+		if ( WC_Helper::is_site_connected() ) {
+			$settings['wccomHelper']['subscription_expired_notice']  = PluginsHelper::get_expired_subscription_notice( false );
+			$settings['wccomHelper']['subscription_expiring_notice'] = PluginsHelper::get_expiring_subscription_notice( false );
+			$settings['wccomHelper']['subscription_missing_notice']  = PluginsHelper::get_missing_subscription_notice();
+		} else {
+			$settings['wccomHelper']['disconnected_notice'] = PluginsHelper::get_wccom_disconnected_notice();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $settings;
@@ -117,11 +146,19 @@ class WC_Helper_Admin {
 	 * Generates the URL for connecting or disconnecting the store to/from WooCommerce.com.
 	 * Approach taken from existing helper code that isn't exposed.
 	 *
+<<<<<<< HEAD
 	 * @param bool $reconnect indicate if the site is being reconnected.
 	 *
 	 * @return string
 	 */
 	public static function get_connection_url( $reconnect = false ) {
+=======
+	 * @return string
+	 */
+	public static function get_connection_url() {
+		global $current_screen;
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Default to wc-addons, although this can be changed from the frontend
 		// in the function `connectUrl()` within marketplace functions.tsx.
 		$connect_url_args = array(
@@ -130,7 +167,11 @@ class WC_Helper_Admin {
 		);
 
 		// No active connection.
+<<<<<<< HEAD
 		if ( WC_Helper::is_site_connected() && ! $reconnect ) {
+=======
+		if ( WC_Helper::is_site_connected() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$connect_url_args['wc-helper-disconnect'] = 1;
 			$connect_url_args['wc-helper-nonce']      = wp_create_nonce( 'disconnect' );
 		} else {
@@ -153,11 +194,19 @@ class WC_Helper_Admin {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Registers the REST routes for the featured products and product
 	 * previews endpoints.
 	 */
 	public static function register_rest_routes() {
 		/* Used by the WooCommerce > Extensions > Discover page. */
+=======
+	 * Registers the REST routes for the featured products endpoint.
+	 * This endpoint is used by the WooCommerce > Extensions > Discover
+	 * page.
+	 */
+	public static function register_rest_routes() {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		register_rest_route(
 			'wc/v3',
 			'/marketplace/featured',
@@ -167,6 +216,7 @@ class WC_Helper_Admin {
 				'permission_callback' => array( __CLASS__, 'get_permission' ),
 			)
 		);
+<<<<<<< HEAD
 
 		/* Used to show previews of products in a modal in in-app marketplace. */
 		register_rest_route(
@@ -178,6 +228,8 @@ class WC_Helper_Admin {
 				'permission_callback' => array( __CLASS__, 'get_permission' ),
 			)
 		);
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -201,6 +253,7 @@ class WC_Helper_Admin {
 
 		wp_send_json( $featured );
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Fetch data for product previews from WooCommerce.com.
@@ -294,6 +347,8 @@ class WC_Helper_Admin {
 
 		return __( 'Helper cache cleared.', 'woocommerce' );
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 WC_Helper_Admin::load();

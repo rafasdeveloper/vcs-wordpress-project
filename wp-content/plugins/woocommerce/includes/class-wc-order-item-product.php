@@ -7,7 +7,10 @@
  * @since   3.0.0
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Enums\OrderStatus;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Enums\ProductTaxStatus;
 use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\Utilities\NumberUtil;
@@ -436,6 +439,7 @@ class WC_Order_Item_Product extends WC_Order_Item {
 		return $product ? $product->get_tax_status() : ProductTaxStatus::TAXABLE;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Get formatted meta data for the item.
 	 *
@@ -473,6 +477,8 @@ class WC_Order_Item_Product extends WC_Order_Item {
 		return $formatted_meta;
 	}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/*
 	|--------------------------------------------------------------------------
 	| Array Access Methods

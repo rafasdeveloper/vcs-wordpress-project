@@ -233,8 +233,12 @@ abstract class AbstractAddressSchema extends AbstractSchema {
 		}
 
 		if ( ! empty( $address['phone'] ) ) {
+<<<<<<< HEAD
 			// This is a safe sanitize to prevent copy-paste issues with invisible chars. Won't ensure validation.
 			$address['phone'] = wc_remove_non_displayable_chars( $address['phone'] );
+=======
+			$address['phone'] = wc_sanitize_phone_number( $address['phone'] );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			if ( ! \WC_Validation::is_phone( $address['phone'] ) ) {
 				$errors->add(
@@ -295,7 +299,11 @@ abstract class AbstractAddressSchema extends AbstractSchema {
 				'description' => $field['label'],
 				'type'        => 'string',
 				'context'     => [ 'view', 'edit' ],
+<<<<<<< HEAD
 				'required'    => $this->additional_fields_controller->is_conditional_field( $field ) ? false : true === $field['required'],
+=======
+				'required'    => $this->additional_fields_controller->is_conditional_field( $field ) ? false : $field['required'],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			];
 
 			if ( 'select' === $field['type'] ) {

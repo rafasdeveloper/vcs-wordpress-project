@@ -12,7 +12,10 @@ use Automattic\WooCommerce\Enums\OrderStatus;
 use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\Internal\Admin\Analytics;
 use Automattic\WooCommerce\Internal\Admin\WCAdminAssets;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\CostOfGoodsSold\CostOfGoodsSoldController;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -62,11 +65,14 @@ if ( ! class_exists( 'WC_Admin_Assets', false ) ) :
 			wp_style_add_data( 'woocommerce_admin_privacy_styles', 'rtl', 'replace' );
 
 			if ( $screen && $screen->is_block_editor() ) {
+<<<<<<< HEAD
 				if ( ! wp_is_block_theme() ) {
 					wp_register_style( 'woocommerce-classictheme-editor-fonts', WC()->plugin_url() . '/assets/css/woocommerce-classictheme-editor-fonts.css', array(), $version );
 					wp_enqueue_style( 'woocommerce-classictheme-editor-fonts' );
 				}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$styles = WC_Frontend_Scripts::get_styles();
 
 				if ( $styles ) {
@@ -183,7 +189,10 @@ if ( ! class_exists( 'WC_Admin_Assets', false ) ) :
 					'search_taxonomy_terms_nonce'     => wp_create_nonce( 'search-taxonomy-terms' ),
 					'search_product_attributes_nonce' => wp_create_nonce( 'search-product-attributes' ),
 					'search_pages_nonce'              => wp_create_nonce( 'search-pages' ),
+<<<<<<< HEAD
 					'search_order_metakeys_nonce'     => wp_create_nonce( 'search-order-metakeys' ),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				)
 			);
 
@@ -234,6 +243,7 @@ if ( ! class_exists( 'WC_Admin_Assets', false ) ) :
 					'mon_decimal_point'                 => wc_get_price_decimal_separator(),
 					'ajax_url'                          => admin_url( 'admin-ajax.php' ),
 					'strings'                           => array(
+<<<<<<< HEAD
 						'import_products'          => __( 'Import', 'woocommerce' ),
 						'export_products'          => __( 'Export', 'woocommerce' ),
 						// translators: %d: number of selected products.
@@ -242,6 +252,13 @@ if ( ! class_exists( 'WC_Admin_Assets', false ) ) :
 					'nonces'                            => array(
 						'gateway_toggle'                 => current_user_can( 'manage_woocommerce' ) ? wp_create_nonce( 'woocommerce-toggle-payment-gateway-enabled' ) : null,
 						'export_selected_products_nonce' => current_user_can( 'export' ) ? wp_create_nonce( 'export-selected-products' ) : null,
+=======
+						'import_products' => __( 'Import', 'woocommerce' ),
+						'export_products' => __( 'Export', 'woocommerce' ),
+					),
+					'nonces'                            => array(
+						'gateway_toggle' => current_user_can( 'manage_woocommerce' ) ? wp_create_nonce( 'woocommerce-toggle-payment-gateway-enabled' ) : null,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					),
 					'urls'                              => array(
 						'add_product'     => \Automattic\WooCommerce\Utilities\FeaturesUtil::feature_is_enabled( 'product_block_editor' ) ? esc_url_raw( admin_url( 'admin.php?page=wc-admin&path=/add-product' ) ) : null,
@@ -369,6 +386,10 @@ if ( ! class_exists( 'WC_Admin_Assets', false ) ) :
 				$remove_item_notice     = __( 'Are you sure you want to remove the selected items?', 'woocommerce' );
 				$remove_fee_notice      = __( 'Are you sure you want to remove the selected fees?', 'woocommerce' );
 				$remove_shipping_notice = __( 'Are you sure you want to remove the selected shipping?', 'woocommerce' );
+<<<<<<< HEAD
+=======
+				$product                = wc_get_product( $post_id );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				// Eventually this will become wc_data_or_post object as we implement more custom tables.
 				$order_or_post_object = $post;
@@ -457,11 +478,14 @@ if ( ! class_exists( 'WC_Admin_Assets', false ) ) :
 					'i18n_attributes_used_for_variations_placeholder' => sprintf( esc_attr__( 'Enter options for customers to choose from, f.e. “Blue” or “Large”. Use “%s” to separate different options.', 'woocommerce' ), esc_attr( WC_DELIMITER ) )
 				);
 
+<<<<<<< HEAD
 				$cogs_controller = wc_get_container()->get( CostOfGoodsSoldController::class );
 				if( $cogs_controller->feature_is_enabled() ) {
 					$params['cogs_value_tooltip_simple_products'] = esc_attr( $cogs_controller->get_general_cost_edit_field_tooltip( false ) );
 					$params['cogs_value_tooltip_variable_products'] = esc_attr( $cogs_controller->get_general_cost_edit_field_tooltip( true ) );
 				}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				wp_localize_script( 'wc-admin-meta-boxes', 'woocommerce_admin_meta_boxes', $params );
 			}
 

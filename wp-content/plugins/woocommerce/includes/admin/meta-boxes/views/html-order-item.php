@@ -9,12 +9,16 @@
 
 defined( 'ABSPATH' ) || exit;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\CostOfGoodsSold\CostOfGoodsSoldController;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 $product      = $item->get_product();
 $product_link = $product ? admin_url( 'post.php?post=' . $item->get_product_id() . '&action=edit' ) : '';
 $thumbnail    = $product ? apply_filters( 'woocommerce_admin_order_item_thumbnail', $product->get_image( 'thumbnail', array( 'title' => '' ), false ), $item_id, $item ) : '';
 $row_class    = apply_filters( 'woocommerce_admin_html_order_item_class', ! empty( $class ) ? $class : '', $item, $order );
+<<<<<<< HEAD
 $wc_price_arg = array( 'currency' => $order->get_currency() );
 $is_visible   = $product && $product->is_visible();
 
@@ -28,14 +32,22 @@ $is_visible   = $product && $product->is_visible();
  */
 $item_name = apply_filters( 'woocommerce_order_item_name', $item->get_name(), $item, $is_visible );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 <tr class="item <?php echo esc_attr( $row_class ); ?>" data-order_item_id="<?php echo esc_attr( $item_id ); ?>">
 	<td class="thumb">
 		<?php echo '<div class="wc-order-item-thumbnail">' . wp_kses_post( $thumbnail ) . '</div>'; ?>
 	</td>
+<<<<<<< HEAD
 	<td class="name" data-sort-value="<?php echo esc_attr( $item_name ); ?>">
 		<?php
 		echo $product_link ? '<a href="' . esc_url( $product_link ) . '" class="wc-order-item-name">' . wp_kses_post( $item_name ) . '</a>' : '<div class="wc-order-item-name">' . wp_kses_post( $item_name ) . '</div>';
+=======
+	<td class="name" data-sort-value="<?php echo esc_attr( $item->get_name() ); ?>">
+		<?php
+		echo $product_link ? '<a href="' . esc_url( $product_link ) . '" class="wc-order-item-name">' . wp_kses_post( $item->get_name() ) . '</a>' : '<div class="wc-order-item-name">' . wp_kses_post( $item->get_name() ) . '</div>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( $product && $product->get_sku() ) {
 			echo '<div class="wc-order-item-sku"><strong>' . esc_html__( 'SKU:', 'woocommerce' ) . '</strong> ' . esc_html( $product->get_sku() ) . '</div>';
@@ -62,6 +74,7 @@ $item_name = apply_filters( 'woocommerce_order_item_name', $item->get_name(), $i
 
 	<?php do_action( 'woocommerce_admin_order_item_values', $product, $item, absint( $item_id ) ); ?>
 
+<<<<<<< HEAD
 	<?php if ( wc_get_container()->get( CostOfGoodsSoldController::class )->feature_is_enabled() ) : ?>
 		<td class="item_cost_of_goods" width="1%" data-sort-value="<?php echo esc_attr( $item->get_cogs_value() ); ?>">
 			<?php $tooltip_text = $item->get_cogs_value_per_unit_tooltip_text(); ?>
@@ -88,6 +101,12 @@ $item_name = apply_filters( 'woocommerce_order_item_name', $item->get_name(), $i
 		<div class="view">
 			<?php
 			echo wc_price( $order->get_item_subtotal( $item, false, true ), $wc_price_arg ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+=======
+	<td class="item_cost" width="1%" data-sort-value="<?php echo esc_attr( $order->get_item_subtotal( $item, false, true ) ); ?>">
+		<div class="view">
+			<?php
+			echo wc_price( $order->get_item_subtotal( $item, false, true ), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			?>
 		</div>
 	</td>
@@ -138,17 +157,29 @@ $item_name = apply_filters( 'woocommerce_order_item_name', $item->get_name(), $i
 	<td class="line_cost" width="1%" data-sort-value="<?php echo esc_attr( $item->get_total() ); ?>">
 		<div class="view">
 			<?php
+<<<<<<< HEAD
 			echo wc_price( $item->get_total(), $wc_price_arg ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			if ( $item->get_subtotal() !== $item->get_total() ) {
 				/* translators: %s: discount amount */
 				echo '<span class="wc-order-item-discount">' . sprintf( esc_html__( '%s discount', 'woocommerce' ), wc_price( wc_format_decimal( $item->get_subtotal() - $item->get_total(), '' ), $wc_price_arg ) ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+=======
+			echo wc_price( $item->get_total(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+			if ( $item->get_subtotal() !== $item->get_total() ) {
+				/* translators: %s: discount amount */
+				echo '<span class="wc-order-item-discount">' . sprintf( esc_html__( '%s discount', 'woocommerce' ), wc_price( wc_format_decimal( $item->get_subtotal() - $item->get_total(), '' ), array( 'currency' => $order->get_currency() ) ) ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			$refunded = -1 * $order->get_total_refunded_for_item( $item_id );
 
 			if ( $refunded ) {
+<<<<<<< HEAD
 				echo '<small class="refunded">' . wc_price( $refunded, $wc_price_arg ) . '</small>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+=======
+				echo '<small class="refunded">' . wc_price( $refunded, array( 'currency' => $order->get_currency() ) ) . '</small>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 			?>
 		</div>
@@ -183,7 +214,11 @@ $item_name = apply_filters( 'woocommerce_order_item_name', $item->get_name(), $i
 				<div class="view">
 					<?php
 					if ( '' !== $tax_item_total ) {
+<<<<<<< HEAD
 						echo wc_price( wc_round_tax_total( $tax_item_total ), $wc_price_arg ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+=======
+						echo wc_price( wc_round_tax_total( $tax_item_total ), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					} else {
 						echo '&ndash;';
 					}
@@ -191,7 +226,11 @@ $item_name = apply_filters( 'woocommerce_order_item_name', $item->get_name(), $i
 					$refunded = -1 * $order->get_tax_refunded_for_item( $item_id, $tax_item_id );
 
 					if ( $refunded ) {
+<<<<<<< HEAD
 						echo '<small class="refunded">' . wc_price( $refunded, $wc_price_arg ) . '</small>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+=======
+						echo '<small class="refunded">' . wc_price( $refunded, array( 'currency' => $order->get_currency() ) ) . '</small>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					}
 					?>
 				</div>

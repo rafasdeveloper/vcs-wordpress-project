@@ -17,7 +17,12 @@ return array(
     'MaxMind\\Db\\' => array($vendorDir . '/maxmind-db/reader/src/MaxMind/Db'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
     'Automattic\\WooCommerce\\Vendor\\' => array($baseDir . '/lib/packages'),
+<<<<<<< HEAD
     'Automattic\\WooCommerce\\Blueprint\\' => array($baseDir . '/packages/blueprint/src'),
+=======
+    'Automattic\\WooCommerce\\Blueprint\\Tests\\' => array($vendorDir . '/woocommerce/blueprint/tests'),
+    'Automattic\\WooCommerce\\Blueprint\\' => array($vendorDir . '/woocommerce/blueprint/src'),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
     'Automattic\\WooCommerce\\' => array($baseDir . '/src'),
     'Automattic\\Jetpack\\Autoloader\\' => array($vendorDir . '/automattic/jetpack-autoloader/src'),
 );

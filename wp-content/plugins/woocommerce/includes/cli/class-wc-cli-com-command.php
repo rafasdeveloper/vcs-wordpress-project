@@ -48,11 +48,15 @@ class WC_CLI_COM_Command {
 	 * @param  array $assoc_args  WP-CLI associative arguments.
 	 */
 	public static function list_extensions( array $args, array $assoc_args ) {
+<<<<<<< HEAD
 		try {
 			$data = WC_Helper::get_subscriptions();
 		} catch ( Exception $e ) {
 			$data = array();
 		}
+=======
+		$data = WC_Helper::get_subscriptions();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$data = array_values( $data );
 

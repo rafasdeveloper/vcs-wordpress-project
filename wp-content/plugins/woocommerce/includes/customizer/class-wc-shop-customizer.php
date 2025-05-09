@@ -291,6 +291,10 @@ class WC_Shop_Customizer {
 			</script>
 			<?php
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -949,3 +953,15 @@ class WC_Shop_Customizer {
 		return strpos( $post->post_content, '<!-- wp:woocommerce/checkout' ) !== false;
 	}
 }
+<<<<<<< HEAD
+=======
+
+global $pagenow;
+if (
+	'customize.php' === $pagenow ||
+	isset( $_REQUEST['customize_theme'] ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	! wc_current_theme_is_fse_theme()
+) {
+	new WC_Shop_Customizer();
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

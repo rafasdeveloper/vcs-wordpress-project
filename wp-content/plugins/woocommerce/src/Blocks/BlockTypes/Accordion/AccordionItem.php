@@ -4,14 +4,21 @@ declare(strict_types=1);
 namespace Automattic\WooCommerce\Blocks\BlockTypes\Accordion;
 
 use Automattic\WooCommerce\Blocks\BlockTypes\AbstractBlock;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\BlockTypes\EnableBlockJsonAssetsTrait;
+=======
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * AccordionItem class.
  */
 class AccordionItem extends AbstractBlock {
+<<<<<<< HEAD
 
 	use EnableBlockJsonAssetsTrait;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -37,7 +44,11 @@ class AccordionItem extends AbstractBlock {
 
 		// Initialize the state of the item on the server using a closure,
 		// since we need to get derived state based on the current context.
+<<<<<<< HEAD
 		wp_interactivity_state(
+=======
+		wc_initial_state(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'woocommerce/accordion',
 			array(
 				'isOpen' => function () {
@@ -52,6 +63,7 @@ class AccordionItem extends AbstractBlock {
 				'id'            => $unique_id,
 				'openByDefault' => $attributes['openByDefault'],
 			);
+<<<<<<< HEAD
 			$p->set_attribute( 'data-wp-context', wp_json_encode( $interactivity_context, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP ) );
 			$p->set_attribute( 'data-wp-class--is-open', 'state.isOpen' );
 			$p->set_attribute( 'data-wp-init', 'callbacks.initIsOpen' );
@@ -61,12 +73,27 @@ class AccordionItem extends AbstractBlock {
 				$p->set_attribute( 'id', $unique_id );
 				$p->set_attribute( 'aria-controls', $unique_id . '-panel' );
 				$p->set_attribute( 'data-wp-bind--aria-expanded', 'state.isOpen' );
+=======
+			$p->set_attribute( 'data-wc-context', wp_json_encode( $interactivity_context, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP ) );
+			$p->set_attribute( 'data-wc-class--is-open', 'state.isOpen' );
+			$p->set_attribute( 'data-wc-init', 'callbacks.initIsOpen' );
+
+			if ( $p->next_tag( array( 'class_name' => 'accordion-item__toggle' ) ) ) {
+				$p->set_attribute( 'data-wc-on--click', 'actions.toggle' );
+				$p->set_attribute( 'id', $unique_id );
+				$p->set_attribute( 'aria-controls', $unique_id . '-panel' );
+				$p->set_attribute( 'data-wc-bind--aria-expanded', 'state.isOpen' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				if ( $p->next_tag( array( 'class_name' => 'wp-block-woocommerce-accordion-panel' ) ) ) {
 					$p->set_attribute( 'id', $unique_id . '-panel' );
 					$p->set_attribute( 'aria-labelledby', $unique_id );
 					$p->set_attribute( 'role', 'region' );
+<<<<<<< HEAD
 					$p->set_attribute( 'data-wp-bind--inert', '!state.isOpen' );
+=======
+					$p->set_attribute( 'data-wc-bind--inert', '!state.isOpen' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 					// Only modify content if all directives have been set.
 					$content = $p->get_updated_html();
@@ -76,4 +103,27 @@ class AccordionItem extends AbstractBlock {
 
 		return $content;
 	}
+<<<<<<< HEAD
+=======
+
+	/**
+	 * Get the frontend style handle for this block type.
+	 *
+	 * @return string[]|null
+	 */
+	protected function get_block_type_style() {
+		return null;
+	}
+
+	/**
+	 * Get the frontend script handle for this block type.
+	 *
+	 * @see $this->register_block_type()
+	 * @param string $key Data to get, or default to everything.
+	 * @return array|string|null
+	 */
+	protected function get_block_type_script( $key = null ) {
+		return null;
+	}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -7,7 +7,11 @@
  */
 
 use Automattic\Jetpack\Constants;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Features\FeaturesController;
+=======
+use Automattic\WooCommerce\Admin\Features\Features;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -51,6 +55,7 @@ if ( ! class_exists( 'WC_Admin_Settings', false ) ) :
 
 				include_once __DIR__ . '/settings/class-wc-settings-page.php';
 
+<<<<<<< HEAD
 				$settings[] = include_once __DIR__ . '/settings/class-wc-settings-general.php';
 				$settings[] = include_once __DIR__ . '/settings/class-wc-settings-products.php';
 				$settings[] = include_once __DIR__ . '/settings/class-wc-settings-tax.php';
@@ -82,12 +87,33 @@ if ( ! class_exists( 'WC_Admin_Settings', false ) ) :
 
 				// Reset settings when features that affect settings are toggled.
 				add_action( FeaturesController::FEATURE_ENABLED_CHANGED_ACTION, array( __CLASS__, 'reset_settings_pages_on_feature_change' ), 10, 2 );
+=======
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-general.php';
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-products.php';
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-tax.php';
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-shipping.php';
+				if ( FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-settings' ) ) {
+					$settings[] = include __DIR__ . '/settings/class-wc-settings-payment-gateways-react.php';
+				} else {
+					$settings[] = include __DIR__ . '/settings/class-wc-settings-payment-gateways.php';
+				}
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-accounts.php';
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-emails.php';
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-integrations.php';
+				if ( \Automattic\WooCommerce\Admin\Features\Features::is_enabled( 'launch-your-store' ) ) {
+					$settings[] = include __DIR__ . '/settings/class-wc-settings-site-visibility.php';
+				}
+				$settings[] = include __DIR__ . '/settings/class-wc-settings-advanced.php';
+
+				self::$settings = apply_filters( 'woocommerce_get_settings_pages', $settings );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			return self::$settings;
 		}
 
 		/**
+<<<<<<< HEAD
 		 * Reset settings when features that affect settings are toggled.
 		 *
 		 * @param string $feature_id The feature ID.
@@ -103,12 +129,22 @@ if ( ! class_exists( 'WC_Admin_Settings', false ) ) :
 		}
 
 		/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Save the settings.
 		 */
 		public static function save() {
 			global $current_tab;
 
+<<<<<<< HEAD
 			check_admin_referer( 'woocommerce-settings' );
+=======
+			if ( Features::is_enabled( 'settings' ) ) {
+				check_admin_referer( 'wp_rest' );
+			} else {
+				check_admin_referer( 'woocommerce-settings' );
+			}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			// Trigger actions.
 			do_action( 'woocommerce_settings_save_' . $current_tab );
@@ -739,7 +775,11 @@ if ( ! class_exists( 'WC_Admin_Settings', false ) ) :
 							<th scope="row" class="titledesc">
 								<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
 							</th>
+<<<<<<< HEAD
 							<td class="forminp"><select name="<?php echo esc_attr( $value['field_name'] ); ?>" id="<?php echo esc_attr( $value['id'] ); ?>" style="<?php echo esc_attr( $value['css'] ); ?>" data-placeholder="<?php esc_attr_e( 'Choose a country / region&hellip;', 'woocommerce' ); ?>" aria-label="<?php esc_attr_e( 'Country / Region', 'woocommerce' ); ?>" class="wc-enhanced-select">
+=======
+							<td class="forminp"><select name="<?php echo esc_attr( $value['field_name'] ); ?>" style="<?php echo esc_attr( $value['css'] ); ?>" data-placeholder="<?php esc_attr_e( 'Choose a country / region&hellip;', 'woocommerce' ); ?>" aria-label="<?php esc_attr_e( 'Country / Region', 'woocommerce' ); ?>" class="wc-enhanced-select">
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 								<?php WC()->countries->country_dropdown_options( $country, $state ); ?>
 							</select> <?php echo $description; // WPCS: XSS ok. ?>
 							</td>
@@ -764,6 +804,7 @@ if ( ! class_exists( 'WC_Admin_Settings', false ) ) :
 								<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
 							</th>
 							<td class="forminp">
+<<<<<<< HEAD
 								<select
 									multiple="multiple"
 									name="<?php echo esc_attr( $value['field_name'] ); ?>[]"
@@ -772,6 +813,9 @@ if ( ! class_exists( 'WC_Admin_Settings', false ) ) :
 									data-placeholder="<?php esc_attr_e( 'Choose countries / regions&hellip;', 'woocommerce' ); ?>"
 									aria-label="<?php esc_attr_e( 'Country / Region', 'woocommerce' ); ?>"
 									class="wc-enhanced-select">
+=======
+								<select multiple="multiple" name="<?php echo esc_attr( $value['field_name'] ); ?>[]" style="width:350px" data-placeholder="<?php esc_attr_e( 'Choose countries / regions&hellip;', 'woocommerce' ); ?>" aria-label="<?php esc_attr_e( 'Country / Region', 'woocommerce' ); ?>" class="wc-enhanced-select">
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 									<?php
 									if ( ! empty( $countries ) ) {
 										foreach ( $countries as $key => $val ) {

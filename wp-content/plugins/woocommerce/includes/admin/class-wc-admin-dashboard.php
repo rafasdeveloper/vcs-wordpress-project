@@ -137,6 +137,7 @@ if ( ! class_exists( 'WC_Admin_Dashboard', false ) ) :
 			$version = Constants::get_constant( 'WC_VERSION' );
 
 			wp_enqueue_script( 'wc-status-widget', WC()->plugin_url() . '/assets/js/admin/wc-status-widget' . $suffix . '.js', array( 'jquery', 'flot' ), $version, true );
+<<<<<<< HEAD
 			wp_enqueue_script( 'wc-status-widget-async', WC()->plugin_url() . '/assets/js/admin/wc-status-widget-async' . $suffix . '.js', array( 'jquery' ), $version, true );
 
 			wp_localize_script(
@@ -160,6 +161,9 @@ if ( ! class_exists( 'WC_Admin_Dashboard', false ) ) :
 		 * This contains the original content of the status_widget() method.
 		 */
 		public function status_widget_content() {
+=======
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			//phpcs:ignore
 			$is_wc_admin_disabled = apply_filters( 'woocommerce_admin_disabled', false ) || ! Features::is_enabled( 'analytics' );
 

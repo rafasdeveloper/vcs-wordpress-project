@@ -79,6 +79,11 @@ class WC_Admin_List_Table_Products extends WC_Admin_List_Table {
 
 		echo '</div>';
 
+<<<<<<< HEAD
+=======
+		do_action( 'wc_marketplace_suggestions_products_empty_state' );
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		echo '</div>';
 	}
 
@@ -269,7 +274,11 @@ class WC_Admin_List_Table_Products extends WC_Admin_List_Table {
 		} else {
 			$termlist = array();
 			foreach ( $terms as $term ) {
+<<<<<<< HEAD
 				$termlist[] = '<a href="' . esc_url( admin_url( 'edit.php?product_cat=' . $term->slug . '&post_type=product' ) ) . '">' . esc_html( $term->name ) . '</a>';
+=======
+				$termlist[] = '<a href="' . esc_url( admin_url( 'edit.php?product_cat=' . $term->slug . '&post_type=product' ) ) . ' ">' . esc_html( $term->name ) . '</a>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			echo apply_filters( 'woocommerce_admin_product_term_list', implode( ', ', $termlist ), 'product_cat', $this->object->get_id(), $termlist, $terms ); // WPCS: XSS ok.
@@ -286,7 +295,11 @@ class WC_Admin_List_Table_Products extends WC_Admin_List_Table {
 		} else {
 			$termlist = array();
 			foreach ( $terms as $term ) {
+<<<<<<< HEAD
 				$termlist[] = '<a href="' . esc_url( admin_url( 'edit.php?product_tag=' . $term->slug . '&post_type=product' ) ) . '">' . esc_html( $term->name ) . '</a>';
+=======
+				$termlist[] = '<a href="' . esc_url( admin_url( 'edit.php?product_tag=' . $term->slug . '&post_type=product' ) ) . ' ">' . esc_html( $term->name ) . '</a>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			echo apply_filters( 'woocommerce_admin_product_term_list', implode( ', ', $termlist ), 'product_tag', $this->object->get_id(), $termlist, $terms ); // WPCS: XSS ok.

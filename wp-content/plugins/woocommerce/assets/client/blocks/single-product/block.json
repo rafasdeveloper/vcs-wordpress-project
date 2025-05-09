@@ -1,13 +1,28 @@
 {
 	"name": "woocommerce/single-product",
+<<<<<<< HEAD
+=======
+	"version": "1.0.0",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"icon": "info",
 	"title": "Single Product",
 	"description": "Display a single product.",
 	"category": "woocommerce",
+<<<<<<< HEAD
 	"keywords": [ "WooCommerce" ],
 	"supports": {
 		"interactivity": true,
 		"align": [ "wide", "full" ]
+=======
+	"keywords": [
+		"WooCommerce"
+	],
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		]
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	},
 	"attributes": {
 		"isPreview": {
@@ -20,7 +35,11 @@
 	},
 	"example": {
 		"attributes": {
+<<<<<<< HEAD
 			"isPreview": true
+=======
+  			"isPreview": true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	},
 	"usesContext": [ "postId", "postType", "queryId" ],

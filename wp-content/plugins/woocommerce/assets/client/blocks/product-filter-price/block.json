@@ -1,7 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"name": "woocommerce/product-filter-price",
+<<<<<<< HEAD
 	"title": "Price",
+=======
+	"version": "1.0.0",
+	"title": "Price (Experimental)",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"description": "Let shoppers filter products by choosing a price range.",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],
@@ -12,6 +17,10 @@
 		"interactivity": true,
 		"html": false
 	},
+<<<<<<< HEAD
 	"usesContext": [ "query", "filterParams" ],
 	"viewScriptModule": "woocommerce/product-filter-price"
+=======
+	"usesContext": [ "query", "filterParams" ]
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

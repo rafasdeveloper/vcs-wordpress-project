@@ -791,6 +791,7 @@
 		wc_order_lock.init();
 	} );
 
+<<<<<<< HEAD
 	// Function to handle selected product export
 	$( function () {
 		const $exportButton = $( 'a.page-title-action[href*="page=product_exporter"]');
@@ -836,4 +837,6 @@
 		);
 	} );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 } )( jQuery, woocommerce_admin );

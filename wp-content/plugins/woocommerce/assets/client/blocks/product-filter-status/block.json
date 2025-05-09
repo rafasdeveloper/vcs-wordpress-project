@@ -1,6 +1,11 @@
 {
 	"name": "woocommerce/product-filter-status",
+<<<<<<< HEAD
 	"title": "Status",
+=======
+	"version": "1.0.0",
+	"title": "Status (Experimental)",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"description": "Let shoppers filter products by choosing stock status.",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],
@@ -71,7 +76,14 @@
 			"default": true
 		}
 	},
+<<<<<<< HEAD
 	"usesContext": [ "query", "filterParams" ],
+=======
+	"usesContext": [
+		"query",
+		"filterParams"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"example": {
 		"attributes": {
 			"isPreview": true

@@ -6,7 +6,10 @@
  */
 
 use Automattic\WooCommerce\Enums\OrderStatus;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Enums\PaymentGatewayFeature;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Enums\ProductType;
 
 defined( 'ABSPATH' ) || exit;
@@ -552,7 +555,11 @@ class WC_Form_Handler {
 			if ( isset( $available_gateways[ $payment_method_id ] ) ) {
 				$gateway = $available_gateways[ $payment_method_id ];
 
+<<<<<<< HEAD
 				if ( ! $gateway->supports( PaymentGatewayFeature::ADD_PAYMENT_METHODS ) && ! $gateway->supports( PaymentGatewayFeature::TOKENIZATION ) ) {
+=======
+				if ( ! $gateway->supports( 'add_payment_method' ) && ! $gateway->supports( 'tokenization' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					wc_add_notice( __( 'Invalid payment gateway.', 'woocommerce' ), 'error' );
 					return;
 				}
@@ -987,7 +994,11 @@ class WC_Form_Handler {
 			$valid_nonce = wp_verify_nonce( $nonce_value, 'woocommerce-login' );
 		}
 
+<<<<<<< HEAD
 		if ( isset( $_POST['login'], $_POST['username'], $_POST['password'] ) && is_string( $_POST['username'] ) && is_string( $_POST['password'] ) && $valid_nonce ) {
+=======
+		if ( isset( $_POST['login'], $_POST['username'], $_POST['password'] ) && $valid_nonce ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			try {
 				$creds = array(

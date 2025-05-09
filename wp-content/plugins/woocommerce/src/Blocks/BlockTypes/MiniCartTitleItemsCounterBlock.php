@@ -1,8 +1,11 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * MiniCartTitleItemsCounterBlock class.
  */
@@ -13,6 +16,7 @@ class MiniCartTitleItemsCounterBlock extends AbstractInnerBlock {
 	 * @var string
 	 */
 	protected $block_name = 'mini-cart-title-items-counter-block';
+<<<<<<< HEAD
 
 	/**
 	 * Render the block.
@@ -82,4 +86,6 @@ class MiniCartTitleItemsCounterBlock extends AbstractInnerBlock {
 
 		return null;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

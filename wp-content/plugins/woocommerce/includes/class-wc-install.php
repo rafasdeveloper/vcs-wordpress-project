@@ -7,12 +7,21 @@
  */
 
 use Automattic\Jetpack\Constants;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\Internal\Admin\EmailImprovements\EmailImprovements;
+=======
+use Automattic\WooCommerce\Admin\Notes\Notes;
+use Automattic\WooCommerce\Enums\ProductType;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\TransientFiles\TransientFilesEngine;
 use Automattic\WooCommerce\Internal\DataStores\Orders\{ CustomOrdersTableController, DataSynchronizer, OrdersTableDataStore };
 use Automattic\WooCommerce\Internal\Features\FeaturesController;
 use Automattic\WooCommerce\Internal\ProductAttributesLookup\DataRegenerator;
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\Register as Download_Directories;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\Synchronize as Download_Directories_Sync;
 use Automattic\WooCommerce\Internal\Utilities\DatabaseUtil;
 use Automattic\WooCommerce\Internal\WCCom\ConnectionHelper as WCConnectionHelper;
@@ -38,7 +47,11 @@ class WC_Install {
 	 * @var array
 	 */
 	private static $db_updates = array(
+<<<<<<< HEAD
 		'2.0.0'  => array(
+=======
+		'2.0.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_200_file_paths',
 			'wc_update_200_permalinks',
 			'wc_update_200_subcat_display',
@@ -47,33 +60,54 @@ class WC_Install {
 			'wc_update_200_images',
 			'wc_update_200_db_version',
 		),
+<<<<<<< HEAD
 		'2.0.9'  => array(
 			'wc_update_209_brazillian_state',
 			'wc_update_209_db_version',
 		),
 		'2.1.0'  => array(
+=======
+		'2.0.9' => array(
+			'wc_update_209_brazillian_state',
+			'wc_update_209_db_version',
+		),
+		'2.1.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_210_remove_pages',
 			'wc_update_210_file_paths',
 			'wc_update_210_db_version',
 		),
+<<<<<<< HEAD
 		'2.2.0'  => array(
+=======
+		'2.2.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_220_shipping',
 			'wc_update_220_order_status',
 			'wc_update_220_variations',
 			'wc_update_220_attributes',
 			'wc_update_220_db_version',
 		),
+<<<<<<< HEAD
 		'2.3.0'  => array(
 			'wc_update_230_options',
 			'wc_update_230_db_version',
 		),
 		'2.4.0'  => array(
+=======
+		'2.3.0' => array(
+			'wc_update_230_options',
+			'wc_update_230_db_version',
+		),
+		'2.4.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_240_options',
 			'wc_update_240_shipping_methods',
 			'wc_update_240_api_keys',
 			'wc_update_240_refunds',
 			'wc_update_240_db_version',
 		),
+<<<<<<< HEAD
 		'2.4.1'  => array(
 			'wc_update_241_variations',
 			'wc_update_241_db_version',
@@ -83,6 +117,17 @@ class WC_Install {
 			'wc_update_250_db_version',
 		),
 		'2.6.0'  => array(
+=======
+		'2.4.1' => array(
+			'wc_update_241_variations',
+			'wc_update_241_db_version',
+		),
+		'2.5.0' => array(
+			'wc_update_250_currency',
+			'wc_update_250_db_version',
+		),
+		'2.6.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_260_options',
 			'wc_update_260_termmeta',
 			'wc_update_260_zones',
@@ -90,17 +135,26 @@ class WC_Install {
 			'wc_update_260_refunds',
 			'wc_update_260_db_version',
 		),
+<<<<<<< HEAD
 		'3.0.0'  => array(
+=======
+		'3.0.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_300_grouped_products',
 			'wc_update_300_settings',
 			'wc_update_300_product_visibility',
 			'wc_update_300_db_version',
 		),
+<<<<<<< HEAD
 		'3.1.0'  => array(
+=======
+		'3.1.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_310_downloadable_products',
 			'wc_update_310_old_comments',
 			'wc_update_310_db_version',
 		),
+<<<<<<< HEAD
 		'3.1.2'  => array(
 			'wc_update_312_shop_manager_capabilities',
 			'wc_update_312_db_version',
@@ -110,6 +164,17 @@ class WC_Install {
 			'wc_update_320_db_version',
 		),
 		'3.3.0'  => array(
+=======
+		'3.1.2' => array(
+			'wc_update_312_shop_manager_capabilities',
+			'wc_update_312_db_version',
+		),
+		'3.2.0' => array(
+			'wc_update_320_mexican_states',
+			'wc_update_320_db_version',
+		),
+		'3.3.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_330_image_options',
 			'wc_update_330_webhooks',
 			'wc_update_330_product_stock_status',
@@ -118,12 +183,17 @@ class WC_Install {
 			'wc_update_330_set_paypal_sandbox_credentials',
 			'wc_update_330_db_version',
 		),
+<<<<<<< HEAD
 		'3.4.0'  => array(
+=======
+		'3.4.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_340_states',
 			'wc_update_340_state',
 			'wc_update_340_last_active',
 			'wc_update_340_db_version',
 		),
+<<<<<<< HEAD
 		'3.4.3'  => array(
 			'wc_update_343_cleanup_foreign_keys',
 			'wc_update_343_db_version',
@@ -144,22 +214,56 @@ class WC_Install {
 			'wc_update_354_db_version',
 		),
 		'3.6.0'  => array(
+=======
+		'3.4.3' => array(
+			'wc_update_343_cleanup_foreign_keys',
+			'wc_update_343_db_version',
+		),
+		'3.4.4' => array(
+			'wc_update_344_recreate_roles',
+			'wc_update_344_db_version',
+		),
+		'3.5.0' => array(
+			'wc_update_350_reviews_comment_type',
+			'wc_update_350_db_version',
+		),
+		'3.5.2' => array(
+			'wc_update_352_drop_download_log_fk',
+		),
+		'3.5.4' => array(
+			'wc_update_354_modify_shop_manager_caps',
+			'wc_update_354_db_version',
+		),
+		'3.6.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_360_product_lookup_tables',
 			'wc_update_360_term_meta',
 			'wc_update_360_downloadable_product_permissions_index',
 			'wc_update_360_db_version',
 		),
+<<<<<<< HEAD
 		'3.7.0'  => array(
+=======
+		'3.7.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_370_tax_rate_classes',
 			'wc_update_370_mro_std_currency',
 			'wc_update_370_db_version',
 		),
+<<<<<<< HEAD
 		'3.9.0'  => array(
+=======
+		'3.9.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_390_move_maxmind_database',
 			'wc_update_390_change_geolocation_database_update_cron',
 			'wc_update_390_db_version',
 		),
+<<<<<<< HEAD
 		'4.0.0'  => array(
+=======
+		'4.0.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_product_lookup_tables',
 			'wc_update_400_increase_size_of_column',
 			'wc_update_400_reset_action_scheduler_migration_status',
@@ -168,27 +272,47 @@ class WC_Install {
 			'wc_admin_update_0251_remove_unsnooze_action',
 			'wc_update_400_db_version',
 		),
+<<<<<<< HEAD
 		'4.4.0'  => array(
+=======
+		'4.4.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_440_insert_attribute_terms_for_variable_products',
 			'wc_admin_update_110_remove_facebook_note',
 			'wc_admin_update_130_remove_dismiss_action_from_tracking_opt_in_note',
 			'wc_update_440_db_version',
 		),
+<<<<<<< HEAD
 		'4.5.0'  => array(
 			'wc_update_450_sanitize_coupons_code',
 			'wc_update_450_db_version',
 		),
 		'5.0.0'  => array(
+=======
+		'4.5.0' => array(
+			'wc_update_450_sanitize_coupons_code',
+			'wc_update_450_db_version',
+		),
+		'5.0.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_500_fix_product_review_count',
 			'wc_admin_update_160_remove_facebook_note',
 			'wc_admin_update_170_homescreen_layout',
 			'wc_update_500_db_version',
 		),
+<<<<<<< HEAD
 		'5.6.0'  => array(
 			'wc_update_560_create_refund_returns_page',
 			'wc_update_560_db_version',
 		),
 		'6.0.0'  => array(
+=======
+		'5.6.0' => array(
+			'wc_update_560_create_refund_returns_page',
+			'wc_update_560_db_version',
+		),
+		'6.0.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_600_migrate_rate_limit_options',
 			'wc_admin_update_270_delete_report_downloads',
 			'wc_admin_update_271_update_task_list_options',
@@ -197,16 +321,25 @@ class WC_Install {
 			'wc_admin_update_290_delete_default_homepage_layout_option',
 			'wc_update_600_db_version',
 		),
+<<<<<<< HEAD
 		'6.3.0'  => array(
+=======
+		'6.3.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_630_create_product_attributes_lookup_table',
 			'wc_admin_update_300_update_is_read_from_last_read',
 			'wc_update_630_db_version',
 		),
+<<<<<<< HEAD
 		'6.4.0'  => array(
+=======
+		'6.4.0' => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'wc_update_640_add_primary_key_to_product_attributes_lookup_table',
 			'wc_admin_update_340_remove_is_primary_from_note_action',
 			'wc_update_640_db_version',
 		),
+<<<<<<< HEAD
 		'6.5.0'  => array(
 			'wc_update_650_approved_download_directories',
 		),
@@ -294,6 +427,77 @@ class WC_Install {
 			'wc_update_1000_multisite_visibility_setting',
 			'wc_update_1000_remove_patterns_toolkit_transient',
 		),
+=======
+		'6.5.0' => array(
+			'wc_update_650_approved_download_directories',
+		),
+		'6.5.1' => array(
+			'wc_update_651_approved_download_directories',
+		),
+		'6.7.0' => array(
+			'wc_update_670_purge_comments_count_cache',
+			'wc_update_670_delete_deprecated_remote_inbox_notifications_option',
+		),
+		'7.0.0' => array(
+			'wc_update_700_remove_download_log_fk',
+			'wc_update_700_remove_recommended_marketing_plugins_transient',
+		),
+		'7.2.1' => array(
+			'wc_update_721_adjust_new_zealand_states',
+			'wc_update_721_adjust_ukraine_states',
+		),
+		'7.2.2' => array(
+			'wc_update_722_adjust_new_zealand_states',
+			'wc_update_722_adjust_ukraine_states',
+		),
+		'7.5.0' => array(
+			'wc_update_750_add_columns_to_order_stats_table',
+			'wc_update_750_disable_new_product_management_experience',
+		),
+		'7.7.0' => array(
+			'wc_update_770_remove_multichannel_marketing_feature_options',
+		),
+		'8.1.0' => array(
+			'wc_update_810_migrate_transactional_metadata_for_hpos',
+		),
+		'8.6.0' => array(
+			'wc_update_860_remove_recommended_marketing_plugins_transient',
+		),
+		'8.7.0' => array(
+			'wc_update_870_prevent_listing_of_transient_files_directory',
+		),
+		'8.9.0' => array(
+			'wc_update_890_update_connect_to_woocommerce_note',
+			'wc_update_890_update_paypal_standard_load_eligibility',
+		),
+		'8.9.1' => array(
+			'wc_update_891_create_plugin_autoinstall_history_option',
+		),
+		'9.1.0' => array(
+			'wc_update_910_add_launch_your_store_tour_option',
+			'wc_update_910_remove_obsolete_user_meta',
+		),
+		'9.2.0' => array(
+			'wc_update_920_add_wc_hooked_blocks_version_option',
+		),
+		'9.3.0' => array(
+			'wc_update_930_add_woocommerce_coming_soon_option',
+			'wc_update_930_migrate_user_meta_for_launch_your_store_tour',
+		),
+		'9.4.0' => array(
+			'wc_update_940_add_phone_to_order_address_fts_index',
+			'wc_update_940_remove_help_panel_highlight_shown',
+		),
+		'9.5.0' => array(
+			'wc_update_950_tracking_option_autoload',
+		),
+		'9.6.1' => array(
+			'wc_update_961_migrate_default_email_base_color',
+		),
+		'9.8.0' => array(
+			'wc_update_980_remove_order_attribution_install_banner_dismissed_option',
+		),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	);
 
 	/**
@@ -321,16 +525,25 @@ class WC_Install {
 	 * Hook in tabs.
 	 */
 	public static function init() {
+<<<<<<< HEAD
 		if ( ! empty( $GLOBALS['wc_uninstalling_plugin'] ) ) {
 			return;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
 		add_action( 'init', array( __CLASS__, 'manual_database_update' ), 20 );
 		add_action( 'woocommerce_newly_installed', array( __CLASS__, 'maybe_enable_hpos' ), 20 );
 		add_action( 'woocommerce_newly_installed', array( __CLASS__, 'add_coming_soon_option' ), 20 );
+<<<<<<< HEAD
 		add_action( 'woocommerce_newly_installed', array( __CLASS__, 'enable_email_improvements_for_newly_installed' ), 20 );
 		add_action( 'woocommerce_updated', array( __CLASS__, 'enable_email_improvements_for_existing_merchants' ), 20 );
+=======
+		add_action( 'woocommerce_newly_installed', array( __CLASS__, 'enable_email_improvements' ), 20 );
+		add_action( 'woocommerce_newly_installed', array( __CLASS__, 'enable_new_payments_settings_page' ), 20 );
+		add_action( 'woocommerce_updated', array( __CLASS__, 'maybe_enable_new_payments_settings_page' ), 20 );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'admin_init', array( __CLASS__, 'wc_admin_db_update_notice' ) );
 		add_action( 'admin_init', array( __CLASS__, 'add_admin_note_after_page_created' ) );
 		add_action( 'woocommerce_run_update_callback', array( __CLASS__, 'run_update_callback' ) );
@@ -412,9 +625,14 @@ class WC_Install {
 	 */
 	public static function wc_admin_db_update_notice() {
 		if (
+<<<<<<< HEAD
 			WC()->is_wc_admin_active()
 			&& false !== get_option( 'woocommerce_admin_install_timestamp' )
 			&& ! self::is_db_auto_update_enabled()
+=======
+			WC()->is_wc_admin_active() &&
+			false !== get_option( 'woocommerce_admin_install_timestamp' )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		) {
 			new WC_Notes_Run_Db_Update();
 		}
@@ -481,7 +699,10 @@ class WC_Install {
 	public static function install_actions() {
 		if ( ! empty( $_GET['do_update_woocommerce'] ) ) { // WPCS: input var ok.
 			check_admin_referer( 'wc_db_update', 'wc_db_update_nonce' );
+<<<<<<< HEAD
 			wc_get_logger()->info( 'Manual database update triggered.', array( 'source' => 'wc-updater' ) );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			self::update();
 			WC_Admin_Notices::add_notice( 'update', true );
 
@@ -690,6 +911,7 @@ class WC_Install {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Is DB auto-update enabled? This controls whether database updates are applied without prompting the admin.
 	 * This is the default behavior since 9.9.0 and can be overridden via filter 'woocommerce_enable_auto_update_db'.
 	 *
@@ -707,6 +929,8 @@ class WC_Install {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * See if we need to set redirect transients for activation or not.
 	 *
 	 * @since 4.6.0
@@ -729,8 +953,12 @@ class WC_Install {
 			 *
 			 * @since 3.2.0
 			 */
+<<<<<<< HEAD
 			if ( self::is_db_auto_update_enabled() ) {
 				wc_get_logger()->info( 'Automatic database update triggered.', array( 'source' => 'wc-updater' ) );
+=======
+			if ( apply_filters( 'woocommerce_enable_auto_update_db', false ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				self::update();
 			} else {
 				WC_Admin_Notices::add_notice( 'update', true );
@@ -773,6 +1001,7 @@ class WC_Install {
 	 */
 	private static function update() {
 		$current_db_version = get_option( 'woocommerce_db_version' );
+<<<<<<< HEAD
 		$current_wc_version = WC()->version;
 		$scheduled_time     = time();
 
@@ -802,11 +1031,19 @@ class WC_Install {
 		}
 
 		$loop = 0;
+=======
+		$loop               = 0;
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		foreach ( self::get_db_update_callbacks() as $version => $update_callbacks ) {
 			if ( version_compare( $current_db_version, $version, '<' ) ) {
 				foreach ( $update_callbacks as $update_callback ) {
 					WC()->queue()->schedule_single(
+<<<<<<< HEAD
 						$scheduled_time + $loop,
+=======
+						time() + $loop,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						'woocommerce_run_update_callback',
 						array(
 							'update_callback' => $update_callback,
@@ -815,25 +1052,37 @@ class WC_Install {
 					);
 					++$loop;
 				}
+<<<<<<< HEAD
 
 				wc_get_logger()->info(
 					sprintf( '  Updates from version %s scheduled.', $version ),
 					array( 'source' => 'wc-updater' )
 				);
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 
 		// After the callbacks finish, update the db version to the current WC version.
+<<<<<<< HEAD
 		$success = true;
 		if ( version_compare( $current_db_version, $current_wc_version, '<' ) &&
 			! WC()->queue()->get_next( 'woocommerce_update_db_to_current_version' ) ) {
 			$success = WC()->queue()->schedule_single(
 				$scheduled_time + $loop,
+=======
+		$current_wc_version = WC()->version;
+		if ( version_compare( $current_db_version, $current_wc_version, '<' ) &&
+			! WC()->queue()->get_next( 'woocommerce_update_db_to_current_version' ) ) {
+			WC()->queue()->schedule_single(
+				time() + $loop,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'woocommerce_update_db_to_current_version',
 				array(
 					'version' => $current_wc_version,
 				),
 				'woocommerce-db-updates'
+<<<<<<< HEAD
 			) > 0;
 		}
 
@@ -850,6 +1099,10 @@ class WC_Install {
 		}
 
 		wc_get_logger()->info( 'Database updates scheduled.', array( 'source' => 'wc-updater' ) );
+=======
+			);
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -1110,9 +1363,14 @@ class WC_Install {
 	 *
 	 * @since 9.8.0
 	 */
+<<<<<<< HEAD
 	public static function enable_email_improvements_for_newly_installed() {
 		$feature_controller = wc_get_container()->get( FeaturesController::class );
 		$feature_controller->change_feature_enable( 'email_improvements', true );
+=======
+	public static function enable_email_improvements() {
+		update_option( 'woocommerce_feature_email_improvements_enabled', 'yes' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		update_option( 'woocommerce_email_improvements_default_enabled', 'yes' );
 		update_option( 'woocommerce_email_auto_sync_with_theme', 'yes' );
 		update_option( 'woocommerce_email_improvements_first_enabled_at', gmdate( 'Y-m-d H:i:s' ) );
@@ -1121,6 +1379,7 @@ class WC_Install {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Enable email improvements by default for existing shops if conditions are met.
 	 *
 	 * @since 9.9.0
@@ -1145,6 +1404,51 @@ class WC_Install {
 			update_option( 'woocommerce_email_improvements_enabled_count', 1 );
 		} else {
 			update_option( 'woocommerce_email_improvements_enabled_count', (int) $enabled_count + 1 );
+=======
+	 * Enable the new Payments Settings page by default for new shops.
+	 *
+	 * @since 9.8.2
+	 */
+	public static function enable_new_payments_settings_page() {
+		update_option( 'woocommerce_feature_reactify-classic-payments-settings_enabled', 'yes' );
+	}
+
+	/**
+	 * Enable the new Payments Settings page by default for existing shops, under certain circumstances.
+	 *
+	 * @since 9.8.2
+	 */
+	public static function maybe_enable_new_payments_settings_page() {
+		$option_name = 'woocommerce_feature_reactify-classic-payments-settings_enabled';
+
+		// First, migrate the WCAdmin feature flag to the new feature flag.
+		// If there is a value saved for the old feature flag, we will respect it.
+		$wc_admin_helper_features = get_option( 'wc_admin_helper_feature_values', array() );
+		foreach ( $wc_admin_helper_features as $feature => $value ) {
+			if ( 'reactify-classic-payments-settings' === $feature ) {
+				update_option( $option_name, filter_var( $value, FILTER_VALIDATE_BOOLEAN ) ? 'yes' : 'no' );
+
+				// Remove the old feature flag value to avoid further migrations.
+				unset( $wc_admin_helper_features[ $feature ] );
+				update_option( 'wc_admin_helper_feature_values', $wc_admin_helper_features );
+				return;
+			}
+		}
+
+		$wc_initial_installed_version = get_option( \WC_Install::INITIAL_INSTALLED_VERSION, '0.0.0' );
+		// If the WooCommerce installed version is 9.7+, we enable it.
+		if ( version_compare( $wc_initial_installed_version, '9.7.0', '>=' ) ) {
+			update_option( $option_name, 'yes' );
+		} else {
+			// For stores created pre-9.7, we check 9.7 experiment group first.
+			$experiment_transient = get_transient( 'abtest_variation_woocommerce_payment_settings_2025_v1' );
+			if ( 'treatment' === $experiment_transient ) {
+				// If the user is in the experiment treatment group and he didn't interact with the WCAdmin feature flag
+				// we will enable it by default.
+				update_option( $option_name, 'yes' );
+				delete_transient( 'abtest_variation_woocommerce_payment_settings_2025_v1' );
+			}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -1898,7 +2202,11 @@ CREATE TABLE {$wpdb->prefix}wc_order_product_lookup (
 	product_id bigint(20) unsigned NOT NULL,
 	variation_id bigint(20) unsigned NOT NULL,
 	customer_id bigint(20) unsigned NULL,
+<<<<<<< HEAD
 	date_created datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
+=======
+	date_created datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	product_qty int(11) NOT NULL,
 	product_net_revenue double DEFAULT 0 NOT NULL,
 	product_gross_revenue double DEFAULT 0 NOT NULL,
@@ -1910,8 +2218,12 @@ CREATE TABLE {$wpdb->prefix}wc_order_product_lookup (
 	KEY order_id (order_id),
 	KEY product_id (product_id),
 	KEY customer_id (customer_id),
+<<<<<<< HEAD
 	KEY date_created (date_created),
 	KEY customer_product_date (customer_id, product_id, date_created)
+=======
+	KEY date_created (date_created)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ) $collate;
 CREATE TABLE {$wpdb->prefix}wc_order_tax_lookup (
 	order_id bigint(20) unsigned NOT NULL,
@@ -2025,7 +2337,11 @@ $hpos_table_schema;
 			"{$wpdb->prefix}woocommerce_tax_rates",
 			"{$wpdb->prefix}wc_reserved_stock",
 			"{$wpdb->prefix}wc_rate_limits",
+<<<<<<< HEAD
 			"{$wpdb->prefix}wc_product_attributes_lookup",
+=======
+			wc_get_container()->get( DataRegenerator::class )->get_lookup_table_name(),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			// WCA Tables.
 			"{$wpdb->prefix}wc_order_stats",
@@ -2036,12 +2352,15 @@ $hpos_table_schema;
 			"{$wpdb->prefix}wc_admin_note_actions",
 			"{$wpdb->prefix}wc_customer_lookup",
 			"{$wpdb->prefix}wc_category_lookup",
+<<<<<<< HEAD
 
 			// HPOS.
 			"{$wpdb->prefix}wc_orders",
 			"{$wpdb->prefix}wc_order_addresses",
 			"{$wpdb->prefix}wc_order_operational_data",
 			"{$wpdb->prefix}wc_orders_meta",
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		/**
@@ -2181,7 +2500,10 @@ $hpos_table_schema;
 
 		$capabilities['core'] = array(
 			'manage_woocommerce',
+<<<<<<< HEAD
 			'create_customers',
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'view_woocommerce_reports',
 		);
 
@@ -2305,8 +2627,13 @@ $hpos_table_schema;
 		}
 
 		$upload_dir = wp_upload_dir();
+<<<<<<< HEAD
 		$source     = WC()->plugin_path() . '/assets/images/placeholder-attachment.webp';
 		$filename   = $upload_dir['basedir'] . '/woocommerce-placeholder.webp';
+=======
+		$source     = WC()->plugin_path() . '/assets/images/placeholder-attachment.png';
+		$filename   = $upload_dir['basedir'] . '/woocommerce-placeholder.png';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! file_exists( $filename ) ) {
 			copy( $source, $filename ); // @codingStandardsIgnoreLine.

@@ -12,7 +12,11 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
+<<<<<<< HEAD
  * @version 10.0.0
+=======
+ * @version 9.8.0
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -21,6 +25,7 @@ defined( 'ABSPATH' ) || exit;
 
 $email_improvements_enabled = FeaturesUtil::feature_is_enabled( 'email_improvements' );
 
+<<<<<<< HEAD
 /**
  * Fires to output the email header.
  *
@@ -28,6 +33,8 @@ $email_improvements_enabled = FeaturesUtil::feature_is_enabled( 'email_improveme
  *
  * @since 3.7.0
  */
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php echo $email_improvements_enabled ? '<div class="email-introduction">' : ''; ?>
@@ -39,7 +46,11 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 	<div class="hr hr-top"></div>
 	<?php /* translators: %s: Username */ ?>
 	<p><?php echo wp_kses( sprintf( __( 'Username: <b>%s</b>', 'woocommerce' ), esc_html( $user_login ) ), array( 'b' => array() ) ); ?></p>
+<<<<<<< HEAD
 	<?php if ( $password_generated && $set_password_url ) : ?>
+=======
+	<?php if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated && $set_password_url ) : ?>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		<?php // If the password has not been set by the user during the sign up process, send them a link to set a new password. ?>
 		<p><a href="<?php echo esc_attr( $set_password_url ); ?>"><?php printf( esc_html__( 'Set your new password.', 'woocommerce' ) ); ?></a></p>
 	<?php endif; ?>
@@ -49,7 +60,11 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <?php else : ?>
 	<?php /* translators: %1$s: Site title, %2$s: Username, %3$s: My account link */ ?>
 	<p><?php printf( esc_html__( 'Thanks for creating an account on %1$s. Your username is %2$s. You can access your account area to view orders, change your password, and more at: %3$s', 'woocommerce' ), esc_html( $blogname ), '<strong>' . esc_html( $user_login ) . '</strong>', make_clickable( esc_url( wc_get_page_permalink( 'myaccount' ) ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+<<<<<<< HEAD
 	<?php if ( $password_generated && $set_password_url ) : ?>
+=======
+	<?php if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated && $set_password_url ) : ?>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		<?php // If the password has not been set by the user during the sign up process, send them a link to set a new password. ?>
 		<p><a href="<?php echo esc_attr( $set_password_url ); ?>"><?php printf( esc_html__( 'Click here to set your new password.', 'woocommerce' ) ); ?></a></p>
 	<?php endif; ?>
@@ -66,6 +81,7 @@ if ( $additional_content ) {
 	echo $email_improvements_enabled ? '</td></tr></table>' : '';
 }
 
+<<<<<<< HEAD
 /**
  * Fires to output the email footer.
  *
@@ -74,3 +90,6 @@ if ( $additional_content ) {
  * @since 3.7.0
  */
 do_action( 'woocommerce_email_footer', $email );
+=======
+do_action( 'woocommerce_email_footer', $email );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

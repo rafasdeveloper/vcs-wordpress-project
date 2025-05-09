@@ -4,7 +4,7 @@
  * This file is part of the Predis package.
  *
  * (c) 2009-2020 Daniele Alessandri
- * (c) 2021-2025 Till Krüss
+ * (c) 2021-2023 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -53,9 +53,7 @@ class Handler implements SessionHandlerInterface
     }
 
     /**
-     * @param  string $save_path
-     * @param  string $session_id
-     * @return bool
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function open($save_path, $session_id)
@@ -65,7 +63,7 @@ class Handler implements SessionHandlerInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function close()
@@ -75,8 +73,7 @@ class Handler implements SessionHandlerInterface
     }
 
     /**
-     * @param  int  $maxlifetime
-     * @return bool
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function gc($maxlifetime)
@@ -86,8 +83,7 @@ class Handler implements SessionHandlerInterface
     }
 
     /**
-     * @param  string $session_id
-     * @return string
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function read($session_id)
@@ -100,9 +96,7 @@ class Handler implements SessionHandlerInterface
     }
 
     /**
-     * @param  string $session_id
-     * @param  string $session_data
-     * @return bool
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function write($session_id, $session_data)
@@ -113,8 +107,7 @@ class Handler implements SessionHandlerInterface
     }
 
     /**
-     * @param  string $session_id
-     * @return bool
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function destroy($session_id)

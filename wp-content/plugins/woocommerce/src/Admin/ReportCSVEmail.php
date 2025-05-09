@@ -50,6 +50,7 @@ class ReportCSVEmail extends \WC_Email {
 		$this->template_base  = WC()->plugin_path() . '/includes/react-admin/emails/';
 		$this->template_html  = 'html-admin-report-export-download.php';
 		$this->template_plain = 'plain-admin-report-export-download.php';
+<<<<<<< HEAD
 
 		/**
 		 * Used to customise report email labels.
@@ -74,6 +75,19 @@ class ReportCSVEmail extends \WC_Email {
 				'taxes'      => __( 'Taxes', 'woocommerce' ),
 				'variations' => __( 'Variations', 'woocommerce' ),
 			)
+=======
+		$this->report_labels  = array(
+			'categories' => __( 'Categories', 'woocommerce' ),
+			'coupons'    => __( 'Coupons', 'woocommerce' ),
+			'customers'  => __( 'Customers', 'woocommerce' ),
+			'downloads'  => __( 'Downloads', 'woocommerce' ),
+			'orders'     => __( 'Orders', 'woocommerce' ),
+			'products'   => __( 'Products', 'woocommerce' ),
+			'revenue'    => __( 'Revenue', 'woocommerce' ),
+			'stock'      => __( 'Stock', 'woocommerce' ),
+			'taxes'      => __( 'Taxes', 'woocommerce' ),
+			'variations' => __( 'Variations', 'woocommerce' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		// Call parent constructor.

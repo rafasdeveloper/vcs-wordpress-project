@@ -433,21 +433,33 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 	 */
 	public static function get_profile_properties() {
 		$properties = array(
+<<<<<<< HEAD
 			'completed'               => array(
+=======
+			'completed'                     => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not the profile was completed.', 'woocommerce' ),
 				'context'           => array( 'view' ),
 				'readonly'          => true,
 				'validate_callback' => 'rest_validate_request_arg',
 			),
+<<<<<<< HEAD
 			'skipped'                 => array(
+=======
+			'skipped'                       => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not the profile was skipped.', 'woocommerce' ),
 				'context'           => array( 'view' ),
 				'readonly'          => true,
 				'validate_callback' => 'rest_validate_request_arg',
 			),
+<<<<<<< HEAD
 			'industry'                => array(
+=======
+			'industry'                      => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'array',
 				'description'       => __( 'Industry.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -458,7 +470,107 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 					'type' => 'string',
 				),
 			),
+<<<<<<< HEAD
 			'business_extensions'     => array(
+=======
+			'product_types'                 => array(
+				'type'              => 'array',
+				'description'       => __( 'Types of products sold.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'sanitize_callback' => 'wp_parse_slug_list',
+				'validate_callback' => 'rest_validate_request_arg',
+				'items'             => array(
+					'enum' => array_keys( OnboardingProducts::get_allowed_product_types() ),
+					'type' => 'string',
+				),
+			),
+			'product_count'                 => array(
+				'type'              => 'string',
+				'description'       => __( 'Number of products to be added.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+				'enum'              => array(
+					'0',
+					'1-10',
+					'11-100',
+					'101-1000',
+					'1000+',
+				),
+			),
+			'selling_venues'                => array(
+				'type'              => 'string',
+				'description'       => __( 'Other places the store is selling products.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+				'enum'              => array(
+					'no',
+					'other',
+					'brick-mortar',
+					'brick-mortar-other',
+					'other-woocommerce',
+				),
+			),
+			'number_employees'              => array(
+				'type'              => 'string',
+				'description'       => __( 'Number of employees of the store.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+				'enum'              => array(
+					'1',
+					'<10',
+					'10-50',
+					'50-250',
+					'+250',
+					'not specified',
+				),
+			),
+			'revenue'                       => array(
+				'type'              => 'string',
+				'description'       => __( 'Current annual revenue of the store.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+				'enum'              => array(
+					'none',
+					'up-to-2500',
+					'2500-10000',
+					'10000-50000',
+					'50000-250000',
+					'more-than-250000',
+					'rather-not-say',
+				),
+			),
+			'other_platform'                => array(
+				'type'              => 'string',
+				'description'       => __( 'Name of other platform used to sell.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+				'enum'              => array(
+					'shopify',
+					'bigcommerce',
+					'magento',
+					'wix',
+					'amazon',
+					'ebay',
+					'etsy',
+					'squarespace',
+					'other',
+				),
+			),
+			'other_platform_name'           => array(
+				'type'              => 'string',
+				'description'       => __( 'Name of other platform used to sell (not listed).', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+			),
+			'business_extensions'           => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'array',
 				'description'       => __( 'Extra business extensions to install.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -469,14 +581,44 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 					'type' => 'string',
 				),
 			),
+<<<<<<< HEAD
 			'is_agree_marketing'      => array(
+=======
+			'theme'                         => array(
+				'type'              => 'string',
+				'description'       => __( 'Selected store theme.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'sanitize_callback' => 'sanitize_title_with_dashes',
+				'validate_callback' => 'rest_validate_request_arg',
+			),
+			'setup_client'                  => array(
+				'type'              => 'boolean',
+				'description'       => __( 'Whether or not this store was setup for a client.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+			),
+			'wccom_connected'               => array(
+				'type'              => 'boolean',
+				'description'       => __( 'Whether or not the store was connected to WooCommerce.com during the extension flow.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+			),
+			'is_agree_marketing'            => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not this store agreed to receiving marketing contents from WooCommerce.com.', 'woocommerce' ),
 				'context'           => array( 'view' ),
 				'readonly'          => true,
 				'validate_callback' => 'rest_validate_request_arg',
 			),
+<<<<<<< HEAD
 			'store_email'             => array(
+=======
+			'store_email'                   => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'string',
 				'description'       => __( 'Store email address.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -484,35 +626,65 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'nullable'          => true,
 				'validate_callback' => array( __CLASS__, 'rest_validate_marketing_email' ),
 			),
+<<<<<<< HEAD
 			'is_store_country_set'    => array(
+=======
+			'is_store_country_set'          => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not this store country is set via onboarding profiler.', 'woocommerce' ),
 				'context'           => array( 'view' ),
 				'readonly'          => true,
 				'validate_callback' => 'rest_validate_request_arg',
 			),
+<<<<<<< HEAD
 			'is_plugins_page_skipped' => array(
+=======
+			'is_plugins_page_skipped'       => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not plugins step in core profiler was skipped.', 'woocommerce' ),
 				'context'           => array( 'view' ),
 				'readonly'          => true,
 				'validate_callback' => 'rest_validate_request_arg',
 			),
+<<<<<<< HEAD
 			'business_choice'         => array(
+=======
+			'core_profiler_completed_steps' => array(
+				'type'              => 'array',
+				'description'       => __( 'Completed steps in core profiler.', 'woocommerce' ),
+				'context'           => array( 'view' ),
+				'readonly'          => true,
+				'validate_callback' => 'rest_validate_request_arg',
+				'items'             => array(
+					'type' => 'object',
+				),
+			),
+			'business_choice'               => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'        => 'string',
 				'description' => __( 'Business choice.', 'woocommerce' ),
 				'context'     => array( 'view' ),
 				'readonly'    => true,
 				'nullable'    => true,
 			),
+<<<<<<< HEAD
 			'selling_online_answer'   => array(
+=======
+			'selling_online_answer'         => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'        => 'string',
 				'description' => __( 'Selling online answer.', 'woocommerce' ),
 				'context'     => array( 'view' ),
 				'readonly'    => true,
 				'nullable'    => true,
 			),
+<<<<<<< HEAD
 			'selling_platforms'       => array(
+=======
+			'selling_platforms'             => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'        => array( 'array', 'null' ),
 				'description' => __( 'Selling platforms.', 'woocommerce' ),
 				'context'     => array( 'view' ),

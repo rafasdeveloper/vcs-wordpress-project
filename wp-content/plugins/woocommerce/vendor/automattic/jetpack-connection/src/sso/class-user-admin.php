@@ -11,7 +11,10 @@ use Automattic\Jetpack\Assets;
 use Automattic\Jetpack\Connection\Client;
 use Automattic\Jetpack\Connection\Manager;
 use Automattic\Jetpack\Connection\Package_Version;
+<<<<<<< HEAD
 use Automattic\Jetpack\Connection\Users_Connection_Admin as Base_Admin;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\Jetpack\Roles;
 use Automattic\Jetpack\Status\Host;
 use Automattic\Jetpack\Tracking;
@@ -22,7 +25,11 @@ use WP_User_Query;
 /**
  * Jetpack sso user admin class.
  */
+<<<<<<< HEAD
 class User_Admin extends Base_Admin {
+=======
+class User_Admin {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Instance of WP_User_Query.
 	 *
@@ -57,6 +64,10 @@ class User_Admin extends Base_Admin {
 		add_action( 'user_new_form', array( $this, 'render_custom_email_message_form_field' ), 1 );
 		add_action( 'delete_user_form', array( $this, 'render_invitations_notices_for_deleted_users' ) );
 		add_action( 'delete_user', array( $this, 'revoke_user_invite' ) );
+<<<<<<< HEAD
+=======
+		add_filter( 'manage_users_columns', array( $this, 'jetpack_user_connected_th' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_filter( 'manage_users_custom_column', array( $this, 'jetpack_show_connection_status' ), 10, 3 );
 		add_action( 'user_row_actions', array( $this, 'jetpack_user_table_row_actions' ), 10, 2 );
 
@@ -70,7 +81,10 @@ class User_Admin extends Base_Admin {
 		add_action( 'admin_print_styles-users.php', array( $this, 'jetpack_user_table_styles' ) );
 		add_filter( 'users_list_table_query_args', array( $this, 'set_user_query' ), 100, 1 );
 		add_action( 'admin_print_styles-user-new.php', array( $this, 'jetpack_new_users_styles' ) );
+<<<<<<< HEAD
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		self::$tracking = new Tracking();
 	}
@@ -107,7 +121,10 @@ class User_Admin extends Base_Admin {
 	 * Revokes WordPress.com invitation.
 	 *
 	 * @param int $user_id The user ID.
+<<<<<<< HEAD
 	 * @return mixed Response from the API call or false on failure.
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function revoke_user_invite( $user_id ) {
 		try {
@@ -976,6 +993,7 @@ class User_Admin extends Base_Admin {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Deprecated method. Adds a column in the user admin table to display user connection status and actions.
 	 *
 	 * @param array $columns User list table columns.
@@ -984,6 +1002,41 @@ class User_Admin extends Base_Admin {
 	 */
 	public function jetpack_user_connected_th( $columns ) {
 		_deprecated_function( __METHOD__, 'package-6.5.0' );
+=======
+	 * Adds a column in the user admin table to display user connection status and actions.
+	 *
+	 * @param array $columns User list table columns.
+	 *
+	 * @return array
+	 */
+	public function jetpack_user_connected_th( $columns ) {
+		Assets::register_script(
+			'jetpack-sso-users',
+			'../../dist/jetpack-sso-users.js',
+			__FILE__,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+				'enqueue'   => true,
+				'version'   => Package_Version::PACKAGE_VERSION,
+			)
+		);
+
+		$tooltip_string = esc_attr__( 'Jetpack SSO allows a seamless and secure experience on WordPress.com. Join millions of WordPress users who trust us to keep their accounts safe.', 'jetpack-connection' );
+
+		wp_add_inline_script(
+			'jetpack-sso-users',
+			"var Jetpack_SSOTooltip = { 'tooltipString': '{$tooltip_string}' }",
+			'before'
+		);
+
+		$columns['user_jetpack'] = sprintf(
+			'<span class="jetpack-sso-invitation-tooltip-icon jetpack-sso-status-column" role="tooltip" aria-label="%3$s: %1$s" tabindex="0">%2$s</span>',
+			$tooltip_string,
+			esc_html__( 'SSO Status', 'jetpack-connection' ),
+			esc_attr__( 'Tooltip', 'jetpack-connection' )
+		);
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $columns;
 	}
 
@@ -1156,6 +1209,7 @@ class User_Admin extends Base_Admin {
 	 * @param string $val HTML for the column.
 	 * @param string $col User list table column.
 	 * @param int    $user_id User ID.
+<<<<<<< HEAD
 	 * @return string Modified column content.
 	 */
 	public function jetpack_show_connection_status( $val, $col, $user_id ) {
@@ -1201,13 +1255,65 @@ class User_Admin extends Base_Admin {
 		}
 
 		return $connection_status;
+=======
+	 *
+	 * @return string
+	 */
+	public function jetpack_show_connection_status( $val, $col, $user_id ) {
+		if ( 'user_jetpack' === $col ) {
+			if ( ( new Manager() )->is_user_connected( $user_id ) ) {
+				$connection_html = sprintf(
+					'<span title="%1$s" class="jetpack-sso-invitation">%2$s</span>',
+					esc_attr__( 'This user is connected and can log-in to this site.', 'jetpack-connection' ),
+					esc_html__( 'Connected', 'jetpack-connection' )
+				);
+				return $connection_html;
+			} else {
+				$has_pending_invite = self::has_pending_wpcom_invite( $user_id );
+				if ( $has_pending_invite ) {
+					$connection_html = sprintf(
+						'<span title="%1$s" class="jetpack-sso-invitation sso-pending-invite">%2$s</span>',
+						esc_attr__( 'This user didn&#8217;t accept the invitation to join this site yet.', 'jetpack-connection' ),
+						esc_html__( 'Pending invite', 'jetpack-connection' )
+					);
+					return $connection_html;
+				}
+				$nonce           = wp_create_nonce( 'jetpack-sso-invite-user' );
+				$connection_html = sprintf(
+				// Using formmethod and formaction because we can't nest forms and have to submit using the main form.
+					'<span tabindex="0" role="tooltip" aria-label="%4$s: %3$s" class="jetpack-sso-invitation-tooltip-icon sso-disconnected-user">
+						<a href="%1$s" class="jetpack-sso-invitation sso-disconnected-user">%2$s</a>
+						<span class="sso-disconnected-user-icon dashicons dashicons-warning">
+							<span class="jetpack-sso-invitation-tooltip jetpack-sso-td-tooltip">%3$s</span>
+						</span>
+					</span>',
+					add_query_arg(
+						array(
+							'user_id'      => $user_id,
+							'invite_nonce' => $nonce,
+							'action'       => 'jetpack_invite_user_to_wpcom',
+						),
+						admin_url( 'admin-post.php' )
+					),
+					esc_html__( 'Send invite', 'jetpack-connection' ),
+					esc_attr__( 'This user doesn&#8217;t have an SSO connection to WordPress.com. Invite them to the site to increase security and improve their experience.', 'jetpack-connection' ),
+					esc_attr__( 'Tooltip', 'jetpack-connection' )
+				);
+				return $connection_html;
+			}
+		}
+		return $val;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Creates error notices and redirects the user to the previous page.
 	 *
 	 * @param array $query_params - query parameters added to redirection URL.
+<<<<<<< HEAD
 	 * @phan-suppress PhanPluginNeverReturnMethod
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function create_error_notice_and_redirect( $query_params ) {
 		$ref = wp_get_referer();
@@ -1219,8 +1325,12 @@ class User_Admin extends Base_Admin {
 			$query_params,
 			$ref
 		);
+<<<<<<< HEAD
 		wp_safe_redirect( $url );
 		exit;
+=======
+		return wp_safe_redirect( $url );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -1235,6 +1345,12 @@ class User_Admin extends Base_Admin {
 		#the-list tr:has(.sso-pending-invite) {
 			background: #E9F0F5;
 		}
+<<<<<<< HEAD
+=======
+		.fixed .column-user_jetpack {
+			width: 100px;
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		.jetpack-sso-invitation {
 			background: none;
 			border: none;
@@ -1271,6 +1387,12 @@ class User_Admin extends Base_Admin {
 			position: relative;
 			cursor: pointer;
 		}
+<<<<<<< HEAD
+=======
+		.jetpack-sso-th-tooltip {
+			left: -170px;
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		.jetpack-sso-td-tooltip {
 			left: -256px;
 		}
@@ -1294,6 +1416,7 @@ class User_Admin extends Base_Admin {
 	</style>
 		<?php
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Enqueue SSO-specific scripts.
@@ -1319,4 +1442,6 @@ class User_Admin extends Base_Admin {
 			)
 		);
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

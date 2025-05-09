@@ -157,7 +157,11 @@ class WC_Shortcode_Checkout {
 								}
 
 								// We only need to check products managing stock, with a limited stock qty.
+<<<<<<< HEAD
 								if ( ! $product->managing_stock() || $product->backorders_allowed() ) {
+=======
+								if ( ! $product->managing_stock() || $product->backorders_allowed()  ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 									continue;
 								}
 

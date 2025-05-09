@@ -147,10 +147,13 @@ class Host {
 		}
 
 		$dns_records = dns_get_record( $domain, DNS_NS ); // Fetches the DNS records of type NS (Name Server)
+<<<<<<< HEAD
 		if ( false === $dns_records ) {
 			return array();
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$nameservers = array();
 		foreach ( $dns_records as $record ) {
 			if ( isset( $record['target'] ) ) {
@@ -239,6 +242,7 @@ class Host {
 	/**
 	 * Returns a guess of the hosting provider for the current site based on various checks.
 	 *
+<<<<<<< HEAD
 	 * @since 5.0.4 Added $guess parameter.
 	 *
 	 * @param bool $guess Whether to guess the hosting provider.
@@ -246,6 +250,11 @@ class Host {
 	 * @return string
 	 */
 	public function get_known_host_guess( $guess = true ) {
+=======
+	 * @return string
+	 */
+	public function get_known_host_guess() {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$host = Cache::get( 'host_guess' );
 
 		if ( null !== $host ) {
@@ -275,10 +284,16 @@ class Host {
 				break;
 		}
 
+<<<<<<< HEAD
 		// Second, let's check if we can recognize provider by nameservers.
 		// Only do this if we're asked to guess.
 		$domain = isset( $_SERVER['SERVER_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : '';
 		if ( $provider === 'unknown' && ! empty( $domain ) && $guess ) {
+=======
+		// Second, let's check if we can recognize provider by nameservers:
+		$domain = isset( $_SERVER['SERVER_NAME'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : '';
+		if ( $provider === 'unknown' && ! empty( $domain ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$provider = $this->get_hosting_provider_by_nameserver( $domain );
 		}
 

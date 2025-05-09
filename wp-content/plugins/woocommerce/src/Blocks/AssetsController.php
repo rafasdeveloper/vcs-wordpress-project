@@ -4,7 +4,10 @@ declare( strict_types = 1 );
 namespace Automattic\WooCommerce\Blocks;
 
 use Automattic\WooCommerce\Blocks\Assets\Api as AssetApi;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * AssetsController class.
@@ -45,6 +48,7 @@ final class AssetsController {
 		add_action( 'wp_enqueue_scripts', array( $this, 'update_block_settings_dependencies' ), 100 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'update_block_settings_dependencies' ), 100 );
 		add_filter( 'js_do_concat', array( $this, 'skip_boost_minification_for_cart_checkout' ), 10, 2 );
+<<<<<<< HEAD
 
 		if ( Features::is_enabled( 'experimental-iapi-runtime' ) ) {
 			// Run after the WordPress iAPI runtime has been registered by setting a lower priority.
@@ -68,6 +72,8 @@ final class AssetsController {
 
 			wp_register_script_module( $handle_without_js, plugins_url( $this->api->get_block_asset_build_path( $handle_without_js ), dirname( __DIR__ ) ), $data['dependencies'], $data['version'] );
 		}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

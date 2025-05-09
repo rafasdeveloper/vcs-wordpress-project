@@ -96,7 +96,10 @@ class CSVUploadHelper {
 		add_filter( 'wp_unique_filename', array( $this, 'override_unique_filename' ), 0, 2 );
 		add_filter( 'wp_handle_upload_overrides', $overrides_callback, 999 );
 		add_filter( 'wp_handle_upload_prefilter', array( $this, 'remove_txt_from_uploaded_file' ), 0 );
+<<<<<<< HEAD
 		add_filter( 'wp_check_filetype_and_ext', array( $this, 'filter_woocommerce_check_filetype_for_csv' ), 10, 5 );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$orig_files_import = $_FILES['import'] ?? null; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification.Missing
 		$_FILES['import']  = $file;  // wp_import_handle_upload() expects the file to be in 'import'.
@@ -107,7 +110,10 @@ class CSVUploadHelper {
 		remove_filter( 'wp_unique_filename', array( $this, 'override_unique_filename' ), 0 );
 		remove_filter( 'wp_handle_upload_overrides', $overrides_callback, 999 );
 		remove_filter( 'wp_handle_upload_prefilter', array( $this, 'remove_txt_from_uploaded_file' ), 0 );
+<<<<<<< HEAD
 		remove_filter( 'wp_check_filetype_and_ext', array( $this, 'filter_woocommerce_check_filetype_for_csv' ), 10 );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( $orig_files_import ) {
 			$_FILES['import'] = $orig_files_import;
@@ -177,6 +183,7 @@ class CSVUploadHelper {
 		$file['name'] = substr( $file['name'], 0, -4 );
 		return $file;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Filters the WordPress determination of a file's type and extension, specifically to correct
@@ -207,4 +214,6 @@ class CSVUploadHelper {
 
 		return $data;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

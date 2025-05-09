@@ -167,16 +167,27 @@ class RemoteInboxNotificationsEngine extends RemoteSpecsEngine {
 	public static function get_stored_state() {
 		$stored_state = get_option( self::STORED_STATE_OPTION_NAME );
 
+<<<<<<< HEAD
 		if ( false === $stored_state || ! is_object( $stored_state ) ) {
+=======
+		if ( false === $stored_state ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$stored_state = new \stdClass();
 
 			$stored_state = StoredStateSetupForProducts::init_stored_state(
 				$stored_state
 			);
 
+<<<<<<< HEAD
 			update_option(
 				self::STORED_STATE_OPTION_NAME,
 				$stored_state,
+=======
+			add_option(
+				self::STORED_STATE_OPTION_NAME,
+				$stored_state,
+				'',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				false
 			);
 		}

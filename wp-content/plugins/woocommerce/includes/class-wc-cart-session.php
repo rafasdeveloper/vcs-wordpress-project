@@ -242,8 +242,12 @@ final class WC_Cart_Session {
 		do_action( 'woocommerce_cart_loaded_from_session', $this->cart );
 
 		if ( $update_cart_session || is_null( WC()->session->get( 'cart_totals', null ) ) ) {
+<<<<<<< HEAD
 			$cart_for_session = $this->get_cart_for_session();
 			WC()->session->set( 'cart', empty( $cart_for_session ) ? null : $cart_for_session );
+=======
+			WC()->session->set( 'cart', $this->get_cart_for_session() );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$this->cart->calculate_totals();
 
 			if ( $merge_saved_cart ) {
@@ -348,6 +352,7 @@ final class WC_Cart_Session {
 	 * Sets the php session data for the cart and coupons.
 	 */
 	public function set_session() {
+<<<<<<< HEAD
 		$wc_session = WC()->session;
 
 		$cart                       = $this->get_cart_for_session();
@@ -366,6 +371,14 @@ final class WC_Cart_Session {
 		$wc_session->set( 'coupon_discount_totals', empty( $coupon_discount_totals ) ? null : $coupon_discount_totals );
 		$wc_session->set( 'coupon_discount_tax_totals', empty( $coupon_discount_tax_totals ) ? null : $coupon_discount_tax_totals );
 		$wc_session->set( 'removed_cart_contents', empty( $removed_cart_contents ) ? null : $removed_cart_contents );
+=======
+		WC()->session->set( 'cart', $this->get_cart_for_session() );
+		WC()->session->set( 'cart_totals', $this->cart->get_totals() );
+		WC()->session->set( 'applied_coupons', $this->cart->get_applied_coupons() );
+		WC()->session->set( 'coupon_discount_totals', $this->cart->get_coupon_discount_totals() );
+		WC()->session->set( 'coupon_discount_tax_totals', $this->cart->get_coupon_discount_tax_totals() );
+		WC()->session->set( 'removed_cart_contents', $this->cart->get_removed_cart_contents() );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		do_action( 'woocommerce_cart_updated' );
 	}
@@ -455,7 +468,11 @@ final class WC_Cart_Session {
 		if ( apply_filters( 'woocommerce_persistent_cart_enabled', true ) ) {
 			$saved_cart_meta = get_user_meta( get_current_user_id(), '_woocommerce_persistent_cart_' . get_current_blog_id(), true );
 
+<<<<<<< HEAD
 			if ( is_array( $saved_cart_meta ) && isset( $saved_cart_meta['cart'] ) ) {
+=======
+			if ( isset( $saved_cart_meta['cart'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$saved_cart = array_filter( (array) $saved_cart_meta['cart'] );
 			}
 		}

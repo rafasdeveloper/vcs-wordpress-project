@@ -71,8 +71,13 @@ class RoutesController {
 				Routes\V1\ProductsBySlug::IDENTIFIER     => Routes\V1\ProductsBySlug::class,
 			],
 			'private' => [
+<<<<<<< HEAD
 				// This route should be moved outside of the Store API namespace.
 				Routes\V1\Patterns::IDENTIFIER => Routes\V1\Patterns::class,
+=======
+				Routes\V1\AI\Products::IDENTIFIER => Routes\V1\AI\Products::class,
+				Routes\V1\Patterns::IDENTIFIER    => Routes\V1\Patterns::class,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			],
 		];
 	}

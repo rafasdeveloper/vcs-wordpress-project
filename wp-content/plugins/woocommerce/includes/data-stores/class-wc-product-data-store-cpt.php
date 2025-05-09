@@ -1925,11 +1925,17 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP implements WC_Object_Da
 				$search_terms = array( $term_group );
 			}
 
+<<<<<<< HEAD
 			$term_group_query = array();
+=======
+			$term_group_query = '';
+			$searchand        = '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			foreach ( $search_terms as $search_term ) {
 				$like = '%' . $wpdb->esc_like( $search_term ) . '%';
 
+<<<<<<< HEAD
 				// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- an array of placeholders is a valid arg.
 				$term_query = $wpdb->prepare(
 					'( posts.post_title LIKE %s ) OR ( posts.post_excerpt LIKE %s ) OR ( posts.post_content LIKE %s ) OR ( wc_product_meta_lookup.sku LIKE %s )',
@@ -1946,6 +1952,21 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP implements WC_Object_Da
 
 			if ( $term_group_query ) {
 				$search_queries[] = implode( ' AND ', $term_group_query );
+=======
+				// Variations should also search the parent's meta table for fallback fields.
+				if ( $include_variations ) {
+					$variation_query = $wpdb->prepare( " OR ( wc_product_meta_lookup.sku = '' AND parent_wc_product_meta_lookup.sku LIKE %s ) ", $like );
+				} else {
+					$variation_query = '';
+				}
+
+				$term_group_query .= $wpdb->prepare( " {$searchand} ( ( posts.post_title LIKE %s) OR ( posts.post_excerpt LIKE %s) OR ( posts.post_content LIKE %s ) OR ( wc_product_meta_lookup.sku LIKE %s ) $variation_query)", $like, $like, $like, $like ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$searchand         = ' AND ';
+			}
+
+			if ( $term_group_query ) {
+				$search_queries[] = $term_group_query;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 

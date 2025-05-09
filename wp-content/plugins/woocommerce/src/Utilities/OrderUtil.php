@@ -6,7 +6,10 @@
 namespace Automattic\WooCommerce\Utilities;
 
 use Automattic\WooCommerce\Caches\OrderCacheController;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Caches\OrderCountCache;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Orders\PageController;
 use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
 use Automattic\WooCommerce\Internal\Utilities\COTMigrationUtil;
@@ -206,10 +209,17 @@ final class OrderUtil {
 	public static function get_count_for_type( $order_type ) {
 		global $wpdb;
 
+<<<<<<< HEAD
 		$order_count_cache = new OrderCountCache();
 		$count_per_status  = $order_count_cache->get( $order_type );
 
 		if ( null === $count_per_status ) {
+=======
+		$cache_key        = \WC_Cache_Helper::get_cache_prefix( 'orders' ) . 'order-count-' . $order_type;
+		$count_per_status = wp_cache_get( $cache_key, 'counts' );
+
+		if ( false === $count_per_status ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			if ( self::custom_orders_table_usage_is_enabled() ) {
 				// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
 				$results = $wpdb->get_results(
@@ -222,13 +232,17 @@ final class OrderUtil {
 				// phpcs:enable
 
 				$count_per_status = array_map( 'absint', array_column( $results, 'count', 'status' ) );
+<<<<<<< HEAD
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			} else {
 				$count_per_status = (array) wp_count_posts( $order_type );
 			}
 
 			// Make sure all order statuses are included just in case.
 			$count_per_status = array_merge(
+<<<<<<< HEAD
 				array_fill_keys( $order_count_cache->get_default_statuses(), 0 ),
 				$count_per_status
 			);
@@ -236,6 +250,13 @@ final class OrderUtil {
 			foreach ( $count_per_status as $order_status => $count ) {
 				$order_count_cache->set( $order_type, $order_status, $count );
 			}
+=======
+				array_fill_keys( array_keys( wc_get_order_statuses() ), 0 ),
+				$count_per_status
+			);
+
+			wp_cache_set( $cache_key, $count_per_status, 'counts' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $count_per_status;

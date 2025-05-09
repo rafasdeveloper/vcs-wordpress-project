@@ -144,6 +144,7 @@ jQuery( function ( $ ) {
 				$( 'input#_virtual' ).prop( 'checked', false );
 			}
 
+<<<<<<< HEAD
 			const cogs_field_tip = $( '._cogs_value_field' ).find( '.woocommerce-help-tip' );
 			const cogs_field_tip_text =
 				'variable' === select_val ?
@@ -158,6 +159,8 @@ jQuery( function ( $ ) {
 				keepAlive: true,
 			} );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			show_and_hide_panels();
 			change_product_type_tip( get_product_tip_content( select_val ) );
 
@@ -481,9 +484,13 @@ jQuery( function ( $ ) {
 				.attr( 'disabled', 'disabled' );
 		}
 
+<<<<<<< HEAD
 		if ( 'undefined' === $(el).attr( 'data-taxonomy' ) ||
 			false === $(el).attr( 'data-taxonomy' ) ||
 			'' === $(el).attr( 'data-taxonomy' ) ) {
+=======
+		if ( 'undefined' === $(el).attr( 'data-taxonomy' ) || false === $(el).attr( 'data-taxonomy' ) || '' === $(el).attr( 'data-taxonomy' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			add_placeholder_to_attribute_values_field( $(el) );
 
 			$( '.woocommerce_attribute input.woocommerce_attribute_used_for_variations' ).on( 'change', function() {
@@ -546,11 +553,17 @@ jQuery( function ( $ ) {
 		var $used_for_variations_checkbox = $attributeListItem.find( 'input.woocommerce_attribute_used_for_variations' );
 
 		if ( $used_for_variations_checkbox.length && $used_for_variations_checkbox.is( ':checked' ) ) {
+<<<<<<< HEAD
 			$attributeListItem.find( 'textarea' )
 				.attr( 'placeholder', woocommerce_admin_meta_boxes.i18n_attributes_used_for_variations_placeholder );
 		} else {
 			$attributeListItem.find( 'textarea' )
 				.attr( 'placeholder', woocommerce_admin_meta_boxes.i18n_attributes_default_placeholder );
+=======
+			$attributeListItem.find( 'textarea' ).attr( 'placeholder', woocommerce_admin_meta_boxes.i18n_attributes_used_for_variations_placeholder );
+		} else {
+			$attributeListItem.find( 'textarea' ).attr( 'placeholder', woocommerce_admin_meta_boxes.i18n_attributes_default_placeholder );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -1270,8 +1283,12 @@ jQuery( function ( $ ) {
 
 	// add a tooltip to the right of the product image meta box "Set product image" and "Add product gallery images"
 	const setProductImageLink = $( '#set-post-thumbnail' );
+<<<<<<< HEAD
 	const tooltipMarkup =
 		`<span class="woocommerce-help-tip" tabindex="0" aria-label="${ woocommerce_admin_meta_boxes.i18n_product_image_tip }"></span>`;
+=======
+	const tooltipMarkup = `<span class="woocommerce-help-tip" tabindex="0" aria-label="${ woocommerce_admin_meta_boxes.i18n_product_image_tip }"></span>`;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	const tooltipData = {
 		attribute: 'data-tip',
 		content: woocommerce_admin_meta_boxes.i18n_product_image_tip,

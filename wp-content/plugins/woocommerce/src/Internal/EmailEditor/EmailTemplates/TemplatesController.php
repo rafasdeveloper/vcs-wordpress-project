@@ -4,8 +4,13 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\EmailEditor\EmailTemplates;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\EmailEditor\Engine\Templates\Template;
 use Automattic\WooCommerce\EmailEditor\Engine\Templates\Templates_Registry;
+=======
+use MailPoet\EmailEditor\Engine\Templates\Template;
+use MailPoet\EmailEditor\Engine\Templates\Templates_Registry;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\EmailEditor\Integration;
 
 defined( 'ABSPATH' ) || exit;
@@ -31,6 +36,7 @@ class TemplatesController {
 	 * @return void
 	 */
 	final public function init(): void {
+<<<<<<< HEAD
 		add_filter( 'woocommerce_email_editor_register_templates', array( $this, 'register_templates' ) );
 		// Priority 100 ensures this runs last to remove email templates from the Site Editor.
 		add_filter( 'get_block_templates', array( $this, 'filter_email_templates' ), 100, 1 );
@@ -69,6 +75,9 @@ class TemplatesController {
 		}
 
 		return $templates;
+=======
+		add_filter( 'mailpoet_email_editor_register_templates', array( $this, 'register_templates' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

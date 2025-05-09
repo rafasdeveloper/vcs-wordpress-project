@@ -5,9 +5,12 @@
  * @package WooCommerce\Admin
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Internal\AddressProvider\AddressProviderController;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 defined( 'ABSPATH' ) || exit;
 
 if ( class_exists( 'WC_Settings_General', false ) ) {
@@ -49,6 +52,7 @@ class WC_Settings_General extends WC_Settings_Page {
 			$currency_code_options[ $code ] = $name . ' (' . get_woocommerce_currency_symbol( $code ) . ') — ' . esc_html( $code );
 		}
 
+<<<<<<< HEAD
 		$enable_address_autocomplete_setting             = array();
 		$address_autocomplete_preferred_provider_setting = array();
 		$address_autocomplete_setting_desc_tip           = __( 'Suggest full addresses for customer as they type.', 'woocommerce' );
@@ -103,6 +107,8 @@ class WC_Settings_General extends WC_Settings_Page {
 			}
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$settings =
 			array(
 
@@ -245,10 +251,13 @@ class WC_Settings_General extends WC_Settings_Page {
 					),
 				),
 
+<<<<<<< HEAD
 				$enable_address_autocomplete_setting,
 
 				$address_autocomplete_preferred_provider_setting,
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				array(
 					'title'    => __( 'Enable taxes', 'woocommerce' ),
 					'desc'     => __( 'Enable tax rates and calculations', 'woocommerce' ),
@@ -359,6 +368,7 @@ class WC_Settings_General extends WC_Settings_Page {
 				),
 			);
 
+<<<<<<< HEAD
 		// Remove any empty items from settings array.
 		// e.g. The preferred autocomplete provider setting would be empty if <=1 providers are registered.
 		$settings = array_filter(
@@ -367,6 +377,8 @@ class WC_Settings_General extends WC_Settings_Page {
 				return ! empty( $setting );
 			}
 		);
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_general_settings', $settings );
 	}
 
@@ -383,6 +395,7 @@ class WC_Settings_General extends WC_Settings_Page {
 			<input name="' . esc_attr( $id ) . '" id="' . esc_attr( $id ) . '" type="text" value="' . esc_attr( $value ) . '" class="colorpick" /> <div id="colorPickerDiv_' . esc_attr( $id ) . '" class="colorpickdiv"></div>
 		</div>';
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Output settings with additional JS to hide preferred provider if autocomplete is disabled.
@@ -415,6 +428,8 @@ class WC_Settings_General extends WC_Settings_Page {
 			"
 		);
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 return new WC_Settings_General();

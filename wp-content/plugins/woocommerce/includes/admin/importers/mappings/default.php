@@ -5,8 +5,11 @@
  * @package WooCommerce\Admin\Importers
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\CostOfGoodsSold\CostOfGoodsSoldController;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -82,10 +85,13 @@ function wc_importer_default_english_mappings( $mappings ) {
 		'Position'                                => 'menu_order',
 	);
 
+<<<<<<< HEAD
 	if ( wc_get_container()->get( CostOfGoodsSoldController::class )->feature_is_enabled() ) {
 		$new_mappings['Cost of goods'] = 'cogs_value';
 	}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	return array_merge( $mappings, $new_mappings );
 }
 add_filter( 'woocommerce_csv_product_import_mapping_default_columns', 'wc_importer_default_english_mappings', 100 );

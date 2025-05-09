@@ -9,7 +9,10 @@
  */
 
 use Automattic\Jetpack\Constants;
+<<<<<<< HEAD
 use Automattic\WooCommerce\StoreApi\Utilities\LocalPickupUtils;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -313,9 +316,16 @@ class WC_Shipping {
 
 		$package['rates'] = array();
 
+<<<<<<< HEAD
 		// If the package is not shippable, e.g. trying to ship to an invalid country, do not calculate rates. We can return
 		// local pickup rates here however since those are not shipped.
 		$is_shippable = $this->is_package_shippable( $package );
+=======
+		// If the package is not shippable, e.g. trying to ship to an invalid country, do not calculate rates.
+		if ( ! $this->is_package_shippable( $package ) ) {
+			return $package;
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Check if we need to recalculate shipping for this package.
 		$package_to_hash = $package;
@@ -334,11 +344,14 @@ class WC_Shipping {
 
 		if ( ! is_array( $stored_rates ) || $package_hash !== $stored_rates['package_hash'] || 'yes' === get_option( 'woocommerce_shipping_debug_mode', 'no' ) ) {
 			foreach ( $this->load_shipping_methods( $package ) as $shipping_method ) {
+<<<<<<< HEAD
 				// If the package is not shippable and the shipping method does not support local pickup, skip it.
 				if ( ! $is_shippable && ! LocalPickupUtils::is_local_pickup_method( $shipping_method->id ) ) {
 					continue;
 				}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				if ( ! $shipping_method->supports( 'shipping-zones' ) || $shipping_method->get_instance_id() ) {
 					/**
 					 * Fires before getting shipping rates for a package.
@@ -363,6 +376,7 @@ class WC_Shipping {
 				}
 			}
 
+<<<<<<< HEAD
 			// Hide shipping rates when free shipping is available.
 			if ( 'yes' === get_option( 'woocommerce_shipping_hide_rates_when_free', 'no' ) ) {
 				$free_shipping = array();
@@ -384,11 +398,16 @@ class WC_Shipping {
 				}
 			}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			/**
 			 * Filter the calculated shipping rates.
 			 *
 			 * @see https://gist.github.com/woogists/271654709e1d27648546e83253c1a813 for cache invalidation methods.
+<<<<<<< HEAD
 			 * @since 2.0.0
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			 * @param array $package['rates'] Package rates.
 			 * @param array $package Package of cart items.
 			 */

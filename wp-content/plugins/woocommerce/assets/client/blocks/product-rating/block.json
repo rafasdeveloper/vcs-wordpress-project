@@ -1,9 +1,16 @@
 {
 	"name": "woocommerce/product-rating",
+<<<<<<< HEAD
 	"icon": "info",
 	"title": "Product Rating",
 	"description": "Display the average rating of a product.",
 	"category": "woocommerce-product-elements",
+=======
+	"version": "1.0.0",
+	"icon": "info",
+	"title": "Product Rating",
+	"description": "Display the average rating of a product.",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"attributes": {
 		"productId": {
 			"type": "number",
@@ -26,6 +33,7 @@
 			"default": false
 		}
 	},
+<<<<<<< HEAD
 	"supports": {
 		"interactivity": {
 			"clientNavigation": true
@@ -58,3 +66,20 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
+=======
+	"usesContext": [
+		"query",
+		"queryId",
+		"postId"
+	],
+	"keywords": [
+		"WooCommerce"
+	],
+	"supports": {
+		"align": true
+	},
+	"textdomain": "woocommerce",
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json"
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

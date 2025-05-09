@@ -70,9 +70,13 @@ class Init {
 		wp_register_style(
 			$style_name,
 			WCAdminAssets::get_url( $style_path_name . '/style', 'css' ),
+<<<<<<< HEAD
 			// Manually set dependencies for now, because the asset file is not being generated correctly.
 			// See plugins/woocommerce/assets/client/admin/settings-editor/style.asset.php. Should be: `isset( $style_assets['dependencies'] ) ? $style_assets['dependencies'] : array(),`.
 			array( 'wp-components', 'wc-components' ),
+=======
+			isset( $style_assets['dependencies'] ) ? $style_assets['dependencies'] : array(),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			WCAdminAssets::get_file_version( 'css', $style_assets['version'] ),
 		);
 
@@ -82,6 +86,30 @@ class Init {
 		wp_register_style( 'wc-global-presets', false ); // phpcs:ignore
 		wp_add_inline_style( 'wc-global-presets', wp_get_global_stylesheet( array( 'presets' ) ) );
 		wp_enqueue_style( 'wc-global-presets' );
+<<<<<<< HEAD
+=======
+
+		// Gutenberg posts editor styles.
+		if ( function_exists( 'gutenberg_url' ) ) {
+			// phpcs:disable WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			wp_register_style(
+				'wp-gutenberg-posts-dashboard',
+				gutenberg_url( 'build/edit-site/posts.css', __FILE__ ),
+				array( 'wp-components' ),
+			);
+			// phpcs:enable WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			wp_enqueue_style( 'wp-gutenberg-posts-dashboard' );
+
+			// phpcs:disable WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			wp_register_style(
+				'wp-gutenberg-edit-site',
+				gutenberg_url( 'build/edit-site/style.css', __FILE__ ),
+				array( 'wp-components' ),
+			);
+			// phpcs:enable WordPress.WP.EnqueuedResourceParameters.MissingVersion
+			wp_enqueue_style( 'wp-gutenberg-edit-site' );
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -104,7 +132,11 @@ class Init {
 		wp_enqueue_script(
 			$script_name,
 			WCAdminAssets::get_url( $script_path_name . '/index', 'js' ),
+<<<<<<< HEAD
 			$script_assets['dependencies'],
+=======
+			array_merge( array( 'wp-edit-site' ), $script_assets['dependencies'] ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			WCAdminAssets::get_file_version( 'js', $script_assets['version'] ),
 			true
 		);

@@ -9,7 +9,11 @@ defined( 'ABSPATH' ) || exit;
 /**
  * This class is used to initialize the email editor package.
  *
+<<<<<<< HEAD
  * It is a wrapper around the Automattic\WooCommerce\EmailEditor\Package class and
+=======
+ * It is a wrapper around the MailPoet\EmailEditor\Package class and
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * ensures that the email editor package is only initialized if the block editor feature flag is enabled.
  */
 class Package {
@@ -18,7 +22,11 @@ class Package {
 	 *
 	 * @var string
 	 */
+<<<<<<< HEAD
 	const VERSION = \Automattic\WooCommerce\EmailEditor\Package::VERSION;
+=======
+	const VERSION = \MailPoet\EmailEditor\Package::VERSION;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Package active.
@@ -41,7 +49,12 @@ class Package {
 		}
 
 		self::initialize();
+<<<<<<< HEAD
 		\Automattic\WooCommerce\EmailEditor\Package::init();
+=======
+
+		\MailPoet\EmailEditor\Package::init(); // The namespace will be changed to Automattic\WooCommerce\EmailEditor\Package in the future.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -50,7 +63,11 @@ class Package {
 	 * @return string
 	 */
 	public static function get_version() {
+<<<<<<< HEAD
 		return \Automattic\WooCommerce\EmailEditor\Package::get_version();
+=======
+		return \MailPoet\EmailEditor\Package::get_version();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -59,7 +76,11 @@ class Package {
 	 * @return string
 	 */
 	public static function get_path() {
+<<<<<<< HEAD
 		return \Automattic\WooCommerce\EmailEditor\Package::get_path();
+=======
+		return \MailPoet\EmailEditor\Package::get_path();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

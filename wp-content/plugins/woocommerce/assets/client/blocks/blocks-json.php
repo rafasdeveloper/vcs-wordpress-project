@@ -72,14 +72,22 @@ return array(
 		'allowedBlocks' => array(
 			'woocommerce/accordion-item'
 		),
+<<<<<<< HEAD
 		'textdomain' => 'woocommerce',
 		'viewScriptModule' => 'woocommerce/accordion-group',
 		'style' => 'file:../woocommerce/accordion-group-style.css'
+=======
+		'textdomain' => 'woocommerce'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'accordion-header' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/accordion-header',
+<<<<<<< HEAD
+=======
+		'version' => '0.1.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Accordion Header',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -193,6 +201,10 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/accordion-item',
+<<<<<<< HEAD
+=======
+		'version' => '0.1.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Accordion',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -254,6 +266,10 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/accordion-panel',
+<<<<<<< HEAD
+=======
+		'version' => '0.1.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Accordion Panel',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -344,6 +360,10 @@ return array(
 	),
 	'active-filters' => array(
 		'name' => 'woocommerce/active-filters',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Active Filters Controls',
 		'description' => 'Display the currently active filters.',
 		'category' => 'woocommerce',
@@ -351,9 +371,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'html' => false,
 			'multiple' => false,
 			'inserter' => false,
@@ -379,8 +402,14 @@ return array(
 	),
 	'add-to-cart-form' => array(
 		'name' => 'woocommerce/add-to-cart-form',
+<<<<<<< HEAD
 		'title' => 'Add to Cart with Options',
 		'description' => 'Display a button that lets customers add a product to their cart. Use the added options to optimize for different product types.',
+=======
+		'version' => '1.0.0',
+		'title' => 'Add to Cart with Options',
+		'description' => 'Display a button so the customer can add a product to their cart. Options will also be displayed depending on product type. e.g. quantity, variation.',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'category' => 'woocommerce-product-elements',
 		'attributes' => array(
 			'quantitySelectorStyle' => array(
@@ -403,6 +432,7 @@ return array(
 			'interactivity' => true
 		),
 		'apiVersion' => 3,
+<<<<<<< HEAD
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'viewScriptModule' => 'woocommerce/add-to-cart-form',
 		'style' => 'file:../woocommerce/add-to-cart-form-style.css',
@@ -418,18 +448,34 @@ return array(
 				'type' => 'boolean',
 				'default' => true
 			)
+=======
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+	),
+	'add-to-cart-with-options' => array(
+		'name' => 'woocommerce/add-to-cart-with-options',
+		'version' => '1.0.0',
+		'title' => 'Add to Cart with Options (Experimental)',
+		'description' => 'Create an "Add To Cart" composition by using blocks',
+		'category' => 'woocommerce-product-elements',
+		'attributes' => array(
+			
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'usesContext' => array(
 			'postId'
 		),
+<<<<<<< HEAD
 		'providesContext' => array(
 			'woocommerce/isDescendantOfAddToCartWithOptions' => 'isDescendantOfAddToCartWithOptions'
 		),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'textdomain' => 'woocommerce',
 		'supports' => array(
 			'interactivity' => true
 		),
 		'apiVersion' => 3,
+<<<<<<< HEAD
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'viewScriptModule' => 'woocommerce/add-to-cart-with-options',
 		'style' => 'file:../woocommerce/add-to-cart-with-options-style.css',
@@ -438,6 +484,33 @@ return array(
 	'add-to-cart-with-options-grouped-product-item' => array(
 		'name' => 'woocommerce/add-to-cart-with-options-grouped-product-item',
 		'title' => 'Grouped Product: Template (Beta)',
+=======
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+	),
+	'add-to-cart-with-options-grouped-product-selector' => array(
+		'name' => 'woocommerce/add-to-cart-with-options-grouped-product-selector',
+		'version' => '1.0.0',
+		'title' => 'Grouped Product Selector (Experimental)',
+		'description' => 'Display a group of products that can be added to the cart.',
+		'category' => 'woocommerce-product-elements',
+		'keywords' => array(
+			'WooCommerce'
+		),
+		'usesContext' => array(
+			'postId'
+		),
+		'ancestor' => array(
+			'woocommerce/add-to-cart-with-options'
+		),
+		'textdomain' => 'woocommerce',
+		'apiVersion' => 3,
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+	),
+	'add-to-cart-with-options-grouped-product-selector-item' => array(
+		'name' => 'woocommerce/add-to-cart-with-options-grouped-product-selector-item',
+		'version' => '1.0.0',
+		'title' => 'Grouped Product Selector Item Template (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'A list item template that represents a child product within the Grouped Product Selector block.',
 		'category' => 'woocommerce-product-elements',
 		'keywords' => array(
@@ -453,6 +526,7 @@ return array(
 		'apiVersion' => 3,
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'supports' => array(
+<<<<<<< HEAD
 			'inserter' => false,
 			'interactivity' => true
 		),
@@ -562,6 +636,27 @@ return array(
 		'title' => 'Product Quantity (Beta)',
 		'description' => 'Display an input field customers can use to select the number of products to add to their cart. ',
 		'category' => 'woocommerce-product-elements',
+=======
+			'inserter' => false
+		)
+	),
+	'add-to-cart-with-options-quantity-selector' => array(
+		'name' => 'woocommerce/add-to-cart-with-options-quantity-selector',
+		'version' => '1.0.0',
+		'title' => 'Quantity Selector (Experimental)',
+		'description' => 'Display an input field to select the number of products to add to cart.',
+		'category' => 'woocommerce-product-elements',
+		'attributes' => array(
+			'quantitySelectorStyle' => array(
+				'type' => 'string',
+				'enum' => array(
+					'input',
+					'stepper'
+				),
+				'default' => 'input'
+			)
+		),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'keywords' => array(
 			'WooCommerce'
 		),
@@ -573,6 +668,7 @@ return array(
 		),
 		'textdomain' => 'woocommerce',
 		'apiVersion' => 3,
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => true
 		),
@@ -583,6 +679,15 @@ return array(
 		'name' => 'woocommerce/add-to-cart-with-options-variation-selector',
 		'title' => 'Variation Selector (Beta)',
 		'description' => 'Display any product variations available to select from and add to cart.',
+=======
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+	),
+	'add-to-cart-with-options-variation-selector' => array(
+		'name' => 'woocommerce/add-to-cart-with-options-variation-selector',
+		'version' => '1.0.0',
+		'title' => 'Variation Selector (Experimental)',
+		'description' => 'Display a dropdown to select a variation to add to cart.',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'category' => 'woocommerce-product-elements',
 		'keywords' => array(
 			'WooCommerce'
@@ -595,6 +700,7 @@ return array(
 		),
 		'textdomain' => 'woocommerce',
 		'apiVersion' => 3,
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => true
 		),
@@ -727,6 +833,10 @@ return array(
 		'viewScriptModule' => 'woocommerce/add-to-cart-with-options-variation-selector-attribute-options',
 		'style' => 'file:../woocommerce/add-to-cart-with-options-variation-selector-attribute-options-style.css'
 	),
+=======
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+	),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	'all-products' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -739,9 +849,12 @@ return array(
 		),
 		'description' => 'Display products from your store in a grid layout.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -775,6 +888,7 @@ return array(
 			)
 		)
 	),
+<<<<<<< HEAD
 	'all-reviews' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -801,6 +915,11 @@ return array(
 	),
 	'attribute-filter' => array(
 		'name' => 'woocommerce/attribute-filter',
+=======
+	'attribute-filter' => array(
+		'name' => 'woocommerce/attribute-filter',
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Filter by Attribute Controls',
 		'description' => 'Enable customers to filter the product grid by selecting one or more attributes, such as color.',
 		'category' => 'woocommerce',
@@ -814,8 +933,12 @@ return array(
 				'background' => false
 			),
 			'inserter' => false,
+<<<<<<< HEAD
 			'lock' => false,
 			'interactivity' => false
+=======
+			'lock' => false
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'attributes' => array(
 			'className' => array(
@@ -859,8 +982,32 @@ return array(
 		'apiVersion' => 3,
 		'$schema' => 'https://schemas.wp.org/trunk/block.json'
 	),
+<<<<<<< HEAD
 	'breadcrumbs' => array(
 		'name' => 'woocommerce/breadcrumbs',
+=======
+	'blockified-product-details' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'woocommerce/blockified-product-details',
+		'version' => '1.0.0',
+		'title' => 'Blockified Product Details',
+		'description' => 'Display a product\'s description, attributes, and reviews',
+		'category' => 'woocommerce',
+		'textdomain' => 'woocommerce',
+		'attributes' => array(
+			
+		),
+		'usesContext' => array(
+			'query',
+			'queryId',
+			'postId'
+		)
+	),
+	'breadcrumbs' => array(
+		'name' => 'woocommerce/breadcrumbs',
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Store Breadcrumbs',
 		'description' => 'Enable customers to keep track of their location within the store and navigate back to parent pages.',
 		'category' => 'woocommerce',
@@ -882,9 +1029,12 @@ return array(
 			)
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -896,6 +1046,7 @@ return array(
 			'html' => false,
 			'typography' => array(
 				'fontSize' => true,
+<<<<<<< HEAD
 				'lineHeight' => true,
 				'__experimentalFontFamily' => true,
 				'__experimentalFontStyle' => true,
@@ -904,6 +1055,9 @@ return array(
 				'__experimentalDefaultControls' => array(
 					'fontSize' => true
 				)
+=======
+				'lineHeight' => true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		),
 		'apiVersion' => 3,
@@ -911,6 +1065,10 @@ return array(
 	),
 	'cart-link' => array(
 		'name' => 'woocommerce/cart-link',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Cart Link',
 		'icon' => 'cart',
 		'description' => 'Display a link to the cart.',
@@ -920,9 +1078,12 @@ return array(
 		),
 		'textdomain' => 'woocommerce',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'html' => false,
 			'multiple' => false,
 			'typography' => array(
@@ -962,6 +1123,10 @@ return array(
 	),
 	'catalog-sorting' => array(
 		'name' => 'woocommerce/catalog-sorting',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Catalog Sorting',
 		'description' => 'Enable customers to change the sorting order of the products.',
 		'category' => 'woocommerce',
@@ -969,9 +1134,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'color' => array(
 				'text' => true,
 				'background' => false
@@ -1037,6 +1205,10 @@ return array(
 	),
 	'classic-shortcode' => array(
 		'name' => 'woocommerce/classic-shortcode',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Classic Shortcode',
 		'description' => 'Renders classic WooCommerce shortcodes.',
 		'category' => 'woocommerce',
@@ -1044,9 +1216,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => true,
 			'html' => false,
 			'multiple' => false,
@@ -1098,6 +1273,10 @@ return array(
 	),
 	'customer-account' => array(
 		'name' => 'woocommerce/customer-account',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Customer account',
 		'description' => 'A block that allows your customers to log in and out of their accounts in your store.',
 		'category' => 'woocommerce',
@@ -1106,9 +1285,12 @@ return array(
 			'My Account'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => true,
 			'color' => array(
 				'text' => true
@@ -1142,6 +1324,10 @@ return array(
 	),
 	'featured-category' => array(
 		'name' => 'woocommerce/featured-category',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Featured Category',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -1149,14 +1335,20 @@ return array(
 		),
 		'description' => 'Visually highlight a product category and encourage prompt action.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
 			),
+<<<<<<< HEAD
 			'ariaLabel' => true,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'html' => false,
 			'color' => array(
 				'background' => true,
@@ -1253,6 +1445,10 @@ return array(
 	),
 	'featured-product' => array(
 		'name' => 'woocommerce/featured-product',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Featured Product',
 		'description' => 'Highlight a product or variation.',
 		'category' => 'woocommerce',
@@ -1260,14 +1456,20 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
 			),
+<<<<<<< HEAD
 			'ariaLabel' => true,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'html' => false,
 			'color' => array(
 				'background' => true,
@@ -1369,17 +1571,24 @@ return array(
 	),
 	'filter-wrapper' => array(
 		'name' => 'woocommerce/filter-wrapper',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Filter Block',
 		'category' => 'woocommerce',
 		'keywords' => array(
 			'WooCommerce'
 		),
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
 			'inserter' => false
 		),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'attributes' => array(
 			'filterType' => array(
 				'type' => 'string'
@@ -1402,9 +1611,12 @@ return array(
 		),
 		'description' => 'Display a selection of hand-picked products in a grid.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -2305,6 +2517,10 @@ return array(
 	),
 	'page-content-wrapper' => array(
 		'name' => 'woocommerce/page-content-wrapper',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'WooCommerce Page',
 		'description' => 'Displays WooCommerce page content.',
 		'category' => 'woocommerce',
@@ -2332,6 +2548,10 @@ return array(
 	),
 	'price-filter' => array(
 		'name' => 'woocommerce/price-filter',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Filter by Price Controls',
 		'description' => 'Enable customers to filter the product grid by choosing a price range.',
 		'category' => 'woocommerce',
@@ -2339,9 +2559,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'html' => false,
 			'multiple' => false,
 			'color' => array(
@@ -2394,6 +2617,7 @@ return array(
 		'ancestor' => array(
 			'woocommerce/single-product'
 		),
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => array(
 				'clientNavigation' => true
@@ -2415,6 +2639,8 @@ return array(
 			),
 			'__experimentalSelector' => '.wc-block-components-product-average-rating'
 		),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'textdomain' => 'woocommerce',
 		'$schema' => 'https://schemas.wp.org/trunk/block.json'
 	),
@@ -2427,9 +2653,12 @@ return array(
 		),
 		'description' => 'Display a grid of your all-time best selling products.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -2523,6 +2752,10 @@ return array(
 	),
 	'product-button' => array(
 		'name' => 'woocommerce/product-button',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Add to Cart Button',
 		'description' => 'Display a call to action button which either adds the product to the cart, or links to the product page.',
 		'category' => 'woocommerce-product-elements',
@@ -2532,8 +2765,12 @@ return array(
 		'usesContext' => array(
 			'query',
 			'queryId',
+<<<<<<< HEAD
 			'postId',
 			'woocommerce/isDescendantOfAddToCartWithOptions'
+=======
+			'postId'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'textdomain' => 'woocommerce',
 		'attributes' => array(
@@ -2563,15 +2800,21 @@ return array(
 				'full'
 			),
 			'color' => array(
+<<<<<<< HEAD
 				'text' => true,
 				'background' => true,
 				'link' => false,
 				'__experimentalSkipSerialization' => true
+=======
+				'background' => false,
+				'link' => true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 			'interactivity' => true,
 			'html' => false,
 			'typography' => array(
 				'fontSize' => true,
+<<<<<<< HEAD
 				'lineHeight' => true,
 				'__experimentalFontWeight' => true,
 				'__experimentalFontFamily' => true,
@@ -2593,6 +2836,10 @@ return array(
 				'__experimentalSkipSerialization' => true
 			),
 			'__experimentalSelector' => '.wp-block-button.wc-block-components-product-button .wc-block-components-product-button__button'
+=======
+				'lineHeight' => true
+			)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'ancestor' => array(
 			'woocommerce/all-products',
@@ -2611,10 +2858,18 @@ return array(
 				'label' => 'Outline'
 			)
 		),
+<<<<<<< HEAD
 		'apiVersion' => 3,
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'viewScriptModule' => 'woocommerce/product-button',
 		'style' => 'file:../woocommerce/product-button-style.css'
+=======
+		'viewScript' => array(
+			'wc-product-button-interactivity-frontend'
+		),
+		'apiVersion' => 3,
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-categories' => array(
 		'name' => 'woocommerce/product-categories',
@@ -2625,9 +2880,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -2690,9 +2948,12 @@ return array(
 		),
 		'description' => 'Display a grid of products from your selected categories.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -2788,6 +3049,10 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/product-collection',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Collection',
 		'description' => 'Display a collection of products from your store.',
 		'category' => 'woocommerce',
@@ -2862,15 +3127,23 @@ return array(
 			'html' => false,
 			'__experimentalLayout' => true,
 			'interactivity' => true
+<<<<<<< HEAD
 		),
 		'editorStyle' => 'file:../woocommerce/product-collection-editor.css',
 		'style' => 'file:../woocommerce/product-collection-style.css'
+=======
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-collection-no-results' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/product-collection-no-results',
 		'title' => 'No results',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'category' => 'woocommerce',
 		'description' => 'The contents of this block will display when there are no products found.',
 		'textdomain' => 'woocommerce',
@@ -2885,9 +3158,12 @@ return array(
 			'woocommerce/product-collection'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => true,
 			'reusable' => false,
 			'html' => false,
@@ -2910,6 +3186,7 @@ return array(
 			)
 		)
 	),
+<<<<<<< HEAD
 	'product-description' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -3019,11 +3296,43 @@ return array(
 			'postId',
 			'postType'
 		)
+=======
+	'product-details' => array(
+		'name' => 'woocommerce/product-details',
+		'version' => '1.0.0',
+		'icon' => 'info',
+		'title' => 'Product Details',
+		'description' => 'Display a product\'s description, attributes, and reviews.',
+		'category' => 'woocommerce-product-elements',
+		'attributes' => array(
+			'hideTabTitle' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'keywords' => array(
+			'WooCommerce'
+		),
+		'supports' => array(
+			'align' => true,
+			'spacing' => array(
+				'margin' => true
+			)
+		),
+		'textdomain' => 'woocommerce',
+		'apiVersion' => 3,
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-filter-active' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'name' => 'woocommerce/product-filter-active',
+<<<<<<< HEAD
 		'title' => 'Active',
+=======
+		'version' => '1.0.0',
+		'title' => 'Active (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'Display the currently active filters.',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -3061,13 +3370,22 @@ return array(
 		),
 		'usesContext' => array(
 			'activeFilters'
+<<<<<<< HEAD
 		),
 		'viewScriptModule' => 'woocommerce/product-filter-active'
+=======
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-filter-attribute' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'name' => 'woocommerce/product-filter-attribute',
+<<<<<<< HEAD
 		'title' => 'Attribute',
+=======
+		'version' => '1.0.0',
+		'title' => 'Attribute (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'Enable customers to filter the product grid by selecting one or more attributes, such as color.',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -3165,12 +3483,20 @@ return array(
 			'attributes' => array(
 				'isPreview' => true
 			)
+<<<<<<< HEAD
 		),
 		'style' => 'woocommerce/product-filter-attribute-view-style'
+=======
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-filter-checkbox-list' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'name' => 'woocommerce/product-filter-checkbox-list',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'List',
 		'description' => 'Display a list of filter options.',
 		'category' => 'woocommerce',
@@ -3181,10 +3507,19 @@ return array(
 		'apiVersion' => 3,
 		'ancestor' => array(
 			'woocommerce/product-filter-attribute',
+<<<<<<< HEAD
 			'woocommerce/product-filter-status',
 			'woocommerce/product-filter-rating'
 		),
 		'supports' => array(
+=======
+			'woocommerce/product-filter-status'
+		),
+		'supports' => array(
+			'color' => array(
+				'enableContrastChecker' => false
+			),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'interactivity' => true
 		),
 		'usesContext' => array(
@@ -3214,6 +3549,7 @@ return array(
 			'customOptionElement' => array(
 				'type' => 'string',
 				'default' => ''
+<<<<<<< HEAD
 			),
 			'labelElement' => array(
 				'type' => 'string',
@@ -3227,10 +3563,18 @@ return array(
 		'viewScriptModule' => 'woocommerce/product-filter-checkbox-list',
 		'style' => 'file:../woocommerce/product-filter-checkbox-list-style.css',
 		'editorStyle' => 'file:../woocommerce/product-filter-checkbox-list-editor.css'
+=======
+			)
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-filter-chips' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'name' => 'woocommerce/product-filter-chips',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Chips',
 		'description' => 'Display filter options as chips.',
 		'category' => 'woocommerce',
@@ -3286,15 +3630,24 @@ return array(
 			'customSelectedChipBorder' => array(
 				'type' => 'string'
 			)
+<<<<<<< HEAD
 		),
 		'viewScriptModule' => 'woocommerce/product-filter-chips',
 		'style' => 'file:../woocommerce/product-filter-chips-style.css',
 		'editorStyle' => 'file:../woocommerce/product-filter-chips-editor.css'
+=======
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-filter-clear-button' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'name' => 'woocommerce/product-filter-clear-button',
+<<<<<<< HEAD
 		'title' => 'Clear filters',
+=======
+		'version' => '0.1.0',
+		'title' => 'Clear filters (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'Allows shoppers to clear active filters.',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -3317,7 +3670,12 @@ return array(
 	'product-filter-price' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'name' => 'woocommerce/product-filter-price',
+<<<<<<< HEAD
 		'title' => 'Price',
+=======
+		'version' => '1.0.0',
+		'title' => 'Price (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'Let shoppers filter products by choosing a price range.',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -3335,11 +3693,19 @@ return array(
 		'usesContext' => array(
 			'query',
 			'filterParams'
+<<<<<<< HEAD
 		),
 		'viewScriptModule' => 'woocommerce/product-filter-price'
 	),
 	'product-filter-price-slider' => array(
 		'name' => 'woocommerce/product-filter-price-slider',
+=======
+		)
+	),
+	'product-filter-price-slider' => array(
+		'name' => 'woocommerce/product-filter-price-slider',
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Price Slider',
 		'description' => 'A slider helps shopper choose a price range.',
 		'category' => 'woocommerce',
@@ -3397,6 +3763,7 @@ return array(
 		),
 		'textdomain' => 'woocommerce',
 		'apiVersion' => 3,
+<<<<<<< HEAD
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'viewScriptModule' => 'woocommerce/product-filter-price-slider',
 		'style' => 'file:../woocommerce/product-filter-price-slider-style.css'
@@ -3404,6 +3771,14 @@ return array(
 	'product-filter-rating' => array(
 		'name' => 'woocommerce/product-filter-rating',
 		'title' => 'Rating',
+=======
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+	),
+	'product-filter-rating' => array(
+		'name' => 'woocommerce/product-filter-rating',
+		'version' => '1.0.0',
+		'title' => 'Rating (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'Enable customers to filter the product collection by rating.',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -3448,6 +3823,10 @@ return array(
 	'product-filter-removable-chips' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'name' => 'woocommerce/product-filter-removable-chips',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Chips',
 		'description' => 'Display removable active filters as chips.',
 		'category' => 'woocommerce',
@@ -3463,6 +3842,10 @@ return array(
 			'layout' => array(
 				'allowSwitching' => false,
 				'allowInheriting' => false,
+<<<<<<< HEAD
+=======
+				'allowJustification' => false,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'allowVerticalAlignment' => false,
 				'default' => array(
 					'type' => 'flex'
@@ -3493,12 +3876,21 @@ return array(
 			'customChipBorder' => array(
 				'type' => 'string'
 			)
+<<<<<<< HEAD
 		),
 		'style' => 'file:../woocommerce/product-filter-removable-chips-style.css'
 	),
 	'product-filter-status' => array(
 		'name' => 'woocommerce/product-filter-status',
 		'title' => 'Status',
+=======
+		)
+	),
+	'product-filter-status' => array(
+		'name' => 'woocommerce/product-filter-status',
+		'version' => '1.0.0',
+		'title' => 'Status (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'Let shoppers filter products by choosing stock status.',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -3587,7 +3979,12 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/product-filters',
+<<<<<<< HEAD
 		'title' => 'Product Filters',
+=======
+		'version' => '1.0.0',
+		'title' => 'Product Filters (Experimental)',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'description' => 'Let shoppers filter products displayed on the page.',
 		'category' => 'woocommerce',
 		'keywords' => array(
@@ -3627,6 +4024,10 @@ return array(
 			'query',
 			'queryId'
 		),
+<<<<<<< HEAD
+=======
+		'viewScript' => 'wc-product-filters-frontend',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'attributes' => array(
 			'isPreview' => array(
 				'type' => 'boolean',
@@ -3637,15 +4038,23 @@ return array(
 			'attributes' => array(
 				'isPreview' => true
 			)
+<<<<<<< HEAD
 		),
 		'viewScriptModule' => 'woocommerce/product-filters',
 		'style' => 'file:../woocommerce/product-filters-style.css',
 		'editorStyle' => 'file:../woocommerce/product-filters-editor.css'
+=======
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/product-gallery',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Gallery (Beta)',
 		'description' => 'Showcase your products relevant images and media.',
 		'category' => 'woocommerce',
@@ -3654,6 +4063,7 @@ return array(
 		),
 		'supports' => array(
 			'align' => true,
+<<<<<<< HEAD
 			'interactivity' => true,
 			'layout' => array(
 				'default' => array(
@@ -3665,6 +4075,9 @@ return array(
 				'allowEditing' => true,
 				'allowJustification' => false
 			)
+=======
+			'interactivity' => true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'textdomain' => 'woocommerce',
 		'usesContext' => array(
@@ -3672,12 +4085,24 @@ return array(
 		),
 		'providesContext' => array(
 			'hoverZoom' => 'hoverZoom',
+<<<<<<< HEAD
 			'fullScreenOnClick' => 'fullScreenOnClick'
+=======
+			'fullScreenOnClick' => 'fullScreenOnClick',
+			'cropImages' => 'cropImages'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'ancestor' => array(
 			'woocommerce/single-product'
 		),
 		'attributes' => array(
+<<<<<<< HEAD
+=======
+			'cropImages' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'hoverZoom' => array(
 				'type' => 'boolean',
 				'default' => true
@@ -3690,14 +4115,22 @@ return array(
 		'viewScript' => 'wc-product-gallery-frontend',
 		'example' => array(
 			
+<<<<<<< HEAD
 		),
 		'viewScriptModule' => 'woocommerce/product-gallery',
 		'style' => 'file:../woocommerce/product-gallery-style.css'
+=======
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-gallery-large-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/product-gallery-large-image',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Large Image',
 		'description' => 'Display the Large Image of a product.',
 		'category' => 'woocommerce',
@@ -3707,11 +4140,17 @@ return array(
 		'usesContext' => array(
 			'postId',
 			'hoverZoom',
+<<<<<<< HEAD
 			'fullScreenOnClick'
+=======
+			'fullScreenOnClick',
+			'cropImages'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'supports' => array(
 			'interactivity' => true
 		),
+<<<<<<< HEAD
 		'allowedBlocks' => array(
 			'woocommerce/product-image',
 			'woocommerce/product-sale-badge',
@@ -3723,11 +4162,21 @@ return array(
 		),
 		'viewScriptModule' => 'woocommerce/product-gallery-large-image',
 		'editorStyle' => 'file:../woocommerce/product-gallery-large-image-editor.css'
+=======
+		'textdomain' => 'woocommerce',
+		'ancestor' => array(
+			'woocommerce/product-gallery'
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-gallery-large-image-next-previous' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/product-gallery-large-image-next-previous',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Next/Previous Buttons',
 		'description' => 'Display next and previous buttons.',
 		'category' => 'woocommerce',
@@ -3739,6 +4188,7 @@ return array(
 		),
 		'textdomain' => 'woocommerce',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => true,
 			'color' => array(
 				'background' => true,
@@ -3771,11 +4221,68 @@ return array(
 			'woocommerce/product-gallery-large-image'
 		),
 		'editorStyle' => 'file:../woocommerce/product-gallery-large-image-next-previous-editor.css'
+=======
+			'layout' => array(
+				'default' => array(
+					'type' => 'flex',
+					'verticalAlignment' => 'bottom'
+				),
+				'allowVerticalAlignment' => true,
+				'allowJustification' => false,
+				'allowOrientation' => false,
+				'allowInheriting' => false
+			)
+		),
+		'ancestor' => array(
+			'woocommerce/product-gallery-large-image'
+		)
+	),
+	'product-gallery-pager' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'woocommerce/product-gallery-pager',
+		'version' => '1.0.0',
+		'title' => 'Pager',
+		'description' => 'Display the gallery pager in format "current image/total images".',
+		'category' => 'woocommerce',
+		'keywords' => array(
+			'WooCommerce'
+		),
+		'textdomain' => 'woocommerce',
+		'ancestor' => array(
+			'woocommerce/product-gallery'
+		),
+		'supports' => array(
+			'color' => array(
+				'text' => true,
+				'background' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'lineHeight' => true,
+				'textAlign' => true,
+				'__experimentalFontFamily' => true,
+				'__experimentalFontWeight' => true,
+				'__experimentalLetterSpacing' => true
+			)
+		),
+		'usesContext' => array(
+			'postId'
+		)
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	),
 	'product-gallery-thumbnails' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'woocommerce/product-gallery-thumbnails',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Thumbnails',
 		'description' => 'Display the Thumbnails of a product.',
 		'category' => 'woocommerce',
@@ -3783,13 +4290,19 @@ return array(
 			'WooCommerce'
 		),
 		'usesContext' => array(
+<<<<<<< HEAD
 			'postId'
+=======
+			'postId',
+			'cropImages'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'textdomain' => 'woocommerce',
 		'ancestor' => array(
 			'woocommerce/product-gallery'
 		),
 		'attributes' => array(
+<<<<<<< HEAD
 			'thumbnailSize' => array(
 				'type' => 'string',
 				'default' => '25%'
@@ -3797,10 +4310,16 @@ return array(
 			'aspectRatio' => array(
 				'type' => 'string',
 				'default' => '1'
+=======
+			'numberOfThumbnails' => array(
+				'type' => 'number',
+				'default' => 3
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		),
 		'supports' => array(
 			'spacing' => array(
+<<<<<<< HEAD
 				'margin' => true
 			),
 			'interactivity' => true
@@ -3809,6 +4328,18 @@ return array(
 	),
 	'product-image' => array(
 		'name' => 'woocommerce/product-image',
+=======
+				'margin' => true,
+				'__experimentalDefaultControls' => array(
+					'margin' => true
+				)
+			)
+		)
+	),
+	'product-image' => array(
+		'name' => 'woocommerce/product-image',
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Image',
 		'description' => 'Display the main product image.',
 		'category' => 'woocommerce-product-elements',
@@ -3855,6 +4386,7 @@ return array(
 				'type' => 'string'
 			)
 		),
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => array(
 				'clientNavigation' => true
@@ -3889,6 +4421,12 @@ return array(
 			'postId',
 			'query',
 			'queryId'
+=======
+		'usesContext' => array(
+			'query',
+			'queryId',
+			'postId'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'keywords' => array(
 			'WooCommerce'
@@ -3899,14 +4437,21 @@ return array(
 	),
 	'product-image-gallery' => array(
 		'name' => 'woocommerce/product-image-gallery',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Image Gallery',
 		'icon' => 'gallery',
 		'description' => 'Display a product\'s images.',
 		'category' => 'woocommerce-product-elements',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => true,
 			'multiple' => false
 		),
@@ -3924,14 +4469,21 @@ return array(
 	),
 	'product-meta' => array(
 		'name' => 'woocommerce/product-meta',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Meta',
 		'icon' => 'product',
 		'description' => 'Display a product’s SKU, categories, tags, and more.',
 		'category' => 'woocommerce-product-elements',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => true,
 			'reusable' => false
 		),
@@ -3956,9 +4508,12 @@ return array(
 		),
 		'description' => 'Display a grid of your newest products.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -4050,6 +4605,7 @@ return array(
 		'apiVersion' => 3,
 		'$schema' => 'https://schemas.wp.org/trunk/block.json'
 	),
+<<<<<<< HEAD
 	'product-on-sale' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -4142,6 +4698,11 @@ return array(
 	),
 	'product-price' => array(
 		'name' => 'woocommerce/product-price',
+=======
+	'product-price' => array(
+		'name' => 'woocommerce/product-price',
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Price',
 		'description' => 'Display the price of a product.',
 		'category' => 'woocommerce-product-elements',
@@ -4178,6 +4739,7 @@ return array(
 		'textdomain' => 'woocommerce',
 		'apiVersion' => 3,
 		'supports' => array(
+<<<<<<< HEAD
 			'html' => false,
 			'interactivity' => true,
 			'color' => array(
@@ -4200,6 +4762,9 @@ return array(
 				'margin' => true,
 				'padding' => true
 			)
+=======
+			'html' => false
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'ancestor' => array(
 			'woocommerce/all-products',
@@ -4211,10 +4776,17 @@ return array(
 	),
 	'product-rating' => array(
 		'name' => 'woocommerce/product-rating',
+<<<<<<< HEAD
 		'icon' => 'info',
 		'title' => 'Product Rating',
 		'description' => 'Display the average rating of a product.',
 		'category' => 'woocommerce-product-elements',
+=======
+		'version' => '1.0.0',
+		'icon' => 'info',
+		'title' => 'Product Rating',
+		'description' => 'Display the average rating of a product.',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'attributes' => array(
 			'productId' => array(
 				'type' => 'number',
@@ -4237,6 +4809,7 @@ return array(
 				'default' => false
 			)
 		),
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => array(
 				'clientNavigation' => true
@@ -4263,6 +4836,8 @@ return array(
 			'woocommerce/product-template',
 			'core/post-template'
 		),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'usesContext' => array(
 			'query',
 			'queryId',
@@ -4271,12 +4846,22 @@ return array(
 		'keywords' => array(
 			'WooCommerce'
 		),
+<<<<<<< HEAD
+=======
+		'supports' => array(
+			'align' => true
+		),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'textdomain' => 'woocommerce',
 		'apiVersion' => 3,
 		'$schema' => 'https://schemas.wp.org/trunk/block.json'
 	),
 	'product-rating-counter' => array(
 		'name' => 'woocommerce/product-rating-counter',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Rating Counter',
 		'description' => 'Display the review count of a product',
 		'category' => 'woocommerce-product-elements',
@@ -4302,6 +4887,7 @@ return array(
 				'default' => false
 			)
 		),
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => array(
 				'clientNavigation' => true
@@ -4322,6 +4908,8 @@ return array(
 			),
 			'__experimentalSelector' => '.wc-block-components-product-rating-counter'
 		),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'usesContext' => array(
 			'query',
 			'queryId',
@@ -4330,6 +4918,12 @@ return array(
 		'keywords' => array(
 			'WooCommerce'
 		),
+<<<<<<< HEAD
+=======
+		'supports' => array(
+			'align' => true
+		),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'ancestor' => array(
 			'woocommerce/single-product'
 		),
@@ -4373,6 +4967,7 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
@@ -4392,6 +4987,9 @@ return array(
 				'__experimentalSkipSerialization' => true
 			),
 			'__experimentalSelector' => '.wc-block-components-product-rating'
+=======
+			'align' => true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'ancestor' => array(
 			'woocommerce/single-product'
@@ -4402,6 +5000,10 @@ return array(
 	),
 	'product-results-count' => array(
 		'name' => 'woocommerce/product-results-count',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Product Results Count',
 		'description' => 'Display the number of products on the archive page or search result page.',
 		'category' => 'woocommerce',
@@ -4409,9 +5011,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'color' => array(
 				'text' => true,
 				'background' => false
@@ -4430,6 +5035,7 @@ return array(
 		'apiVersion' => 3,
 		'$schema' => 'https://schemas.wp.org/trunk/block.json'
 	),
+<<<<<<< HEAD
 	'product-review-author-name' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -4737,10 +5343,25 @@ return array(
 		'category' => 'woocommerce',
 		'ancestor' => array(
 			'woocommerce/product-reviews'
+=======
+	'product-reviews' => array(
+		'name' => 'woocommerce/product-reviews',
+		'version' => '1.0.0',
+		'icon' => 'admin-comments',
+		'title' => 'Product Reviews',
+		'description' => 'A block that shows the reviews for a product.',
+		'category' => 'woocommerce-product-elements',
+		'keywords' => array(
+			'WooCommerce'
+		),
+		'supports' => array(
+			
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		),
 		'attributes' => array(
 			
 		),
+<<<<<<< HEAD
 		'description' => 'Contains the block elements used to display product reviews, like the title, author, date, rating and more.',
 		'textdomain' => 'woocommerce',
 		'usesContext' => array(
@@ -5138,6 +5759,18 @@ return array(
 	),
 	'product-sale-badge' => array(
 		'name' => 'woocommerce/product-sale-badge',
+=======
+		'usesContext' => array(
+			'postId'
+		),
+		'textdomain' => 'woocommerce',
+		'apiVersion' => 3,
+		'$schema' => 'https://schemas.wp.org/trunk/block.json'
+	),
+	'product-sale-badge' => array(
+		'name' => 'woocommerce/product-sale-badge',
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'On-Sale Badge',
 		'description' => 'Displays an on-sale badge if the product is on-sale.',
 		'category' => 'woocommerce-product-elements',
@@ -5150,15 +5783,19 @@ return array(
 				'type' => 'boolean',
 				'default' => false
 			),
+<<<<<<< HEAD
 			'isDescendentOfSingleProductBlock' => array(
 				'type' => 'boolean',
 				'default' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'isDescendentOfSingleProductTemplate' => array(
 				'type' => 'boolean',
 				'default' => false
 			)
 		),
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => array(
 				'clientNavigation' => true
@@ -5384,6 +6021,8 @@ return array(
 			'woocommerce/product-template',
 			'core/post-template'
 		),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'usesContext' => array(
 			'query',
 			'queryId',
@@ -5398,10 +6037,17 @@ return array(
 	),
 	'product-summary' => array(
 		'name' => 'woocommerce/product-summary',
+<<<<<<< HEAD
 		'icon' => 'page',
 		'title' => 'Product Summary',
 		'description' => 'Display a short description about a product.',
 		'category' => 'woocommerce-product-elements',
+=======
+		'version' => '1.0.0',
+		'icon' => 'page',
+		'title' => 'Product Summary',
+		'description' => 'Display a short description about a product.',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'attributes' => array(
 			'productId' => array(
 				'type' => 'number',
@@ -5440,6 +6086,7 @@ return array(
 				'default' => ''
 			)
 		),
+<<<<<<< HEAD
 		'supports' => array(
 			'interactivity' => array(
 				'clientNavigation' => true
@@ -5474,6 +6121,8 @@ return array(
 			'woocommerce/product-template',
 			'core/post-template'
 		),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'usesContext' => array(
 			'query',
 			'queryId',
@@ -5495,9 +6144,12 @@ return array(
 		),
 		'description' => 'Display a grid of products with selected tags.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -5599,7 +6251,10 @@ return array(
 			'__privateProductCollectionPreviewState'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => true,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'inserter' => false,
 			'reusable' => false,
 			'html' => false,
@@ -5629,6 +6284,7 @@ return array(
 					'fontSize' => true
 				)
 			)
+<<<<<<< HEAD
 		),
 		'editorStyle' => 'file:../woocommerce/product-template-editor.css',
 		'style' => 'file:../woocommerce/product-template-style.css'
@@ -5689,6 +6345,8 @@ return array(
 		),
 		'ancestor' => array(
 			'woocommerce/all-products'
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		)
 	),
 	'product-top-rated' => array(
@@ -5700,9 +6358,12 @@ return array(
 		),
 		'description' => 'Display a grid of your top rated products.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -5803,9 +6464,12 @@ return array(
 		),
 		'description' => 'Display a grid of products with selected attributes.',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -5899,6 +6563,10 @@ return array(
 	),
 	'rating-filter' => array(
 		'name' => 'woocommerce/rating-filter',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Filter by Rating Controls',
 		'description' => 'Enable customers to filter the product grid by rating.',
 		'category' => 'woocommerce',
@@ -5906,9 +6574,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'html' => false,
 			'multiple' => false,
 			'color' => array(
@@ -5951,14 +6622,21 @@ return array(
 	),
 	'related-products' => array(
 		'name' => 'woocommerce/related-products',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Related Products',
 		'icon' => 'product',
 		'description' => 'Display related products.',
 		'category' => 'woocommerce',
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => true,
 			'reusable' => false,
 			'inserter' => false
@@ -5975,6 +6653,7 @@ return array(
 		'apiVersion' => 3,
 		'$schema' => 'https://schemas.wp.org/trunk/block.json'
 	),
+<<<<<<< HEAD
 	'reviews-by-category' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -6025,6 +6704,11 @@ return array(
 	),
 	'single-product' => array(
 		'name' => 'woocommerce/single-product',
+=======
+	'single-product' => array(
+		'name' => 'woocommerce/single-product',
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'icon' => 'info',
 		'title' => 'Single Product',
 		'description' => 'Display a single product.',
@@ -6033,7 +6717,10 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => true,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'align' => array(
 				'wide',
 				'full'
@@ -6064,6 +6751,10 @@ return array(
 	),
 	'stock-filter' => array(
 		'name' => 'woocommerce/stock-filter',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Filter by Stock Controls',
 		'description' => 'Enable customers to filter the product grid by stock status.',
 		'category' => 'woocommerce',
@@ -6071,9 +6762,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => false
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'html' => false,
 			'multiple' => false,
 			'color' => array(
@@ -6120,6 +6814,10 @@ return array(
 	),
 	'store-notices' => array(
 		'name' => 'woocommerce/store-notices',
+<<<<<<< HEAD
+=======
+		'version' => '1.0.0',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'title' => 'Store Notices',
 		'description' => 'Display shopper-facing notifications generated by WooCommerce or extensions.',
 		'category' => 'woocommerce',
@@ -6127,9 +6825,12 @@ return array(
 			'WooCommerce'
 		),
 		'supports' => array(
+<<<<<<< HEAD
 			'interactivity' => array(
 				'clientNavigation' => true
 			),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'multiple' => false,
 			'align' => array(
 				'wide',
@@ -7731,8 +8432,12 @@ return array(
 			'inserter' => true,
 			'color' => array(
 				'text' => true,
+<<<<<<< HEAD
 				'background' => true,
 				'__experimentalSkipSerialization' => true
+=======
+				'background' => true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		),
 		'attributes' => array(

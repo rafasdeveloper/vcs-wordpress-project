@@ -241,6 +241,12 @@
           "fontWeight": "400",
           "fontStyle": "normal",
           "lineHeight": "1.5"
+<<<<<<< HEAD
+=======
+        },
+        "color": {
+          "text": "#000000"
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
         }
       },
       "h1": {

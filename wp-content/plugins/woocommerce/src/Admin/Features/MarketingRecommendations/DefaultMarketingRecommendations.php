@@ -124,6 +124,7 @@ class DefaultMarketingRecommendations {
 				'tags'           => array(),
 			),
 			array(
+<<<<<<< HEAD
 				'title'          => 'Meta Ads and Pixel by Kliken',
 				'description'    => __( 'Automate Facebook & Instagram marketing with Kliken. Launch ads and schedule a month of posts in 5 minutes—first 5 free! Plans start at just $20/mo.', 'woocommerce' ),
 				'url'            => "https://woocommerce.com/products/meta-ads-and-pixel/{$utm_string}",
@@ -140,6 +141,8 @@ class DefaultMarketingRecommendations {
 				'tags'           => array(),
 			),
 			array(
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'title'          => 'MailPoet',
 				'description'    => __( 'Create and send purchase follow-up emails, newsletters, and promotional campaigns straight from your dashboard.', 'woocommerce' ),
 				'url'            => "https://woocommerce.com/products/mailpoet/{$utm_string}",

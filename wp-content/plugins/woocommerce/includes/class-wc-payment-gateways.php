@@ -8,10 +8,13 @@
  * @package WooCommerce\Classes\Payment
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Enums\PaymentGatewayFeature;
 use Automattic\WooCommerce\Internal\Admin\Settings\Payments as SettingsPaymentsService;
 use Automattic\WooCommerce\Internal\Admin\Settings\PaymentsProviders;
 use Automattic\WooCommerce\Internal\Logging\SafeGlobalFunctionProxy;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Proxies\LegacyProxy;
 use Automattic\WooCommerce\Utilities\ArrayUtil;
 
@@ -175,6 +178,7 @@ class WC_Payment_Gateways {
 	 * @since 8.5.0
 	 */
 	private function payment_gateway_settings_option_changed( $gateway, $value, $option, $old_value = null ) {
+<<<<<<< HEAD
 		if ( $this->was_gateway_enabled( $value, $old_value ) ) {
 			// This is a change to a payment gateway's settings and it was just enabled. Let's send an email to the admin.
 			// "untitled" shouldn't happen, but just in case.
@@ -188,6 +192,15 @@ class WC_Payment_Gateways {
 			// This is a change to a payment gateway's settings and it was just disabled. Let's track it.
 			$this->record_gateway_event( 'disable', $gateway );
 		}
+=======
+		if ( ! $this->was_gateway_enabled( $value, $old_value ) ) {
+			return;
+		}
+
+		// This is a change to a payment gateway's settings and it was just enabled. Let's send an email to the admin.
+		// "untitled" shouldn't happen, but just in case.
+		$this->notify_admin_payment_gateway_enabled( $gateway );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -299,6 +312,7 @@ All at %6$s
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Determines from changes in settings if a gateway was disabled.
 	 *
 	 * @param array $value New value.
@@ -323,6 +337,8 @@ All at %6$s
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get gateways.
 	 *
 	 * @return array
@@ -350,6 +366,7 @@ All at %6$s
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Get available gateways for checkout.
 	 *
 	 * This should be used when displaying the available gateways/payment methods to the user,
@@ -359,6 +376,11 @@ All at %6$s
 	 * and cause fatal errors when the session is not available.
 	 *
 	 * @return array The available payment gateways.
+=======
+	 * Get available gateways.
+	 *
+	 * @return array
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function get_available_payment_gateways() {
 		$_available_gateways = array();
@@ -367,7 +389,11 @@ All at %6$s
 			if ( $gateway->is_available() ) {
 				if ( ! is_add_payment_method_page() ) {
 					$_available_gateways[ $gateway->id ] = $gateway;
+<<<<<<< HEAD
 				} elseif ( $gateway->supports( PaymentGatewayFeature::ADD_PAYMENT_METHODS ) || $gateway->supports( PaymentGatewayFeature::TOKENIZATION ) ) {
+=======
+				} elseif ( $gateway->supports( 'add_payment_method' ) || $gateway->supports( 'tokenization' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$_available_gateways[ $gateway->id ] = $gateway;
 				}
 			}
@@ -448,6 +474,7 @@ All at %6$s
 		$paypal = new WC_Gateway_Paypal();
 		return $paypal->should_load();
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Send a Tracks event.
@@ -526,4 +553,6 @@ All at %6$s
 
 		wc_admin_record_tracks_event( $name, $properties );
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

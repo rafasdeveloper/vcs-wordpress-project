@@ -57,7 +57,11 @@
 		}
 	},
 	"allowedBlocks": [ "woocommerce/accordion-item" ],
+<<<<<<< HEAD
 	"textdomain": "woocommerce",
 	"viewScriptModule": "woocommerce/accordion-group",
 	"style": "file:../woocommerce/accordion-group-style.css"
+=======
+	"textdomain": "woocommerce"
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

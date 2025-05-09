@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 declare( strict_types = 1 );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 namespace Automattic\WooCommerce\Internal\Utilities;
 
@@ -17,7 +20,11 @@ class BlocksUtil {
 	public static function flatten_blocks( $blocks ) {
 		return array_reduce(
 			$blocks,
+<<<<<<< HEAD
 			function ( $carry, $block ) {
+=======
+			function( $carry, $block ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				array_push( $carry, array_diff_key( $block, array_flip( array( 'innerBlocks' ) ) ) );
 				if ( isset( $block['innerBlocks'] ) ) {
 					$inner_blocks = self::flatten_blocks( $block['innerBlocks'] );
@@ -37,6 +44,7 @@ class BlocksUtil {
 	 * @return array Array of blocks as returned by parse_blocks().
 	 */
 	public static function get_blocks_from_widget_area( $block_name ) {
+<<<<<<< HEAD
 		$blocks = get_option( 'widget_block' );
 
 		if ( ! is_array( $blocks ) || empty( $blocks ) ) {
@@ -49,6 +57,15 @@ class BlocksUtil {
 				$parsed_blocks = ! empty( $block['content'] ) ? parse_blocks( $block['content'] ) : array();
 				if ( ! empty( $parsed_blocks ) && $block_name === $parsed_blocks[0]['blockName'] ) {
 					array_push( $acc, $parsed_blocks[0] );
+=======
+		return array_reduce(
+			get_option( 'widget_block' ),
+			function ( $acc, $block ) use ( $block_name ) {
+				$parsed_blocks = ! empty( $block ) && is_array( $block ) ? parse_blocks( $block['content'] ) : array();
+				if ( ! empty( $parsed_blocks ) && $block_name === $parsed_blocks[0]['blockName'] ) {
+					array_push( $acc, $parsed_blocks[0] );
+					return $acc;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 				return $acc;
 			},

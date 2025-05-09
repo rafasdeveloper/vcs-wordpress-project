@@ -2,12 +2,17 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "woocommerce/product-gallery",
+<<<<<<< HEAD
+=======
+	"version": "1.0.0",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Product Gallery (Beta)",
 	"description": "Showcase your products relevant images and media.",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],
 	"supports": {
 		"align": true,
+<<<<<<< HEAD
 		"interactivity": true,
 		"layout": {
 			"default": {
@@ -19,15 +24,30 @@
 			"allowEditing": true,
 			"allowJustification": false
 		}
+=======
+		"interactivity": true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	},
 	"textdomain": "woocommerce",
 	"usesContext": [ "postId" ],
 	"providesContext": {
 		"hoverZoom": "hoverZoom",
+<<<<<<< HEAD
 		"fullScreenOnClick": "fullScreenOnClick"
 	},
 	"ancestor": [ "woocommerce/single-product" ],
 	"attributes": {
+=======
+		"fullScreenOnClick": "fullScreenOnClick",
+		"cropImages": "cropImages"
+	},
+	"ancestor": [ "woocommerce/single-product" ],
+	"attributes": {
+		"cropImages": {
+			"type": "boolean",
+			"default": false
+		},
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"hoverZoom": {
 			"type": "boolean",
 			"default": true
@@ -38,7 +58,11 @@
 		}
 	},
 	"viewScript": "wc-product-gallery-frontend",
+<<<<<<< HEAD
 	"example": {},
 	"viewScriptModule": "woocommerce/product-gallery",
 	"style": "file:../woocommerce/product-gallery-style.css"
+=======
+	"example": {}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

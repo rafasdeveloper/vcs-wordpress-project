@@ -1,5 +1,6 @@
 {
 	"name": "woocommerce/stock-filter",
+<<<<<<< HEAD
 	"title": "Filter by Stock Controls",
 	"description": "Enable customers to filter the product grid by stock status.",
 	"category": "woocommerce",
@@ -8,6 +9,16 @@
 		"interactivity": {
 			"clientNavigation": false
 		},
+=======
+	"version": "1.0.0",
+	"title": "Filter by Stock Controls",
+	"description": "Enable customers to filter the product grid by stock status.",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+	"supports": {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"html": false,
 		"multiple": false,
 		"color": {

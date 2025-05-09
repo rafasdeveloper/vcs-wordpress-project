@@ -7,8 +7,11 @@
  * @package WooCommerce
  */
 
+<<<<<<< HEAD
 // phpcs:disable WooCommerce.Commenting.CommentHooks.MissingHookComment
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
@@ -36,6 +39,7 @@ if ( ! $tab_exists ) {
 	exit;
 }
 
+<<<<<<< HEAD
 $hide_nav = 'checkout' === $current_tab && in_array( $current_section, array( 'offline', 'bacs', 'cheque', 'cod' ), true );
 
 // Move 'Advanced' to the last.
@@ -46,6 +50,10 @@ if ( array_key_exists( 'advanced', $tabs ) ) {
 	$tabs['advanced'] = $advanced;
 }
 
+=======
+$hide_nav = FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-settings' ) &&
+	( 'checkout' === $current_tab && 'offline' === $current_section );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <div class="wrap woocommerce">
@@ -69,6 +77,7 @@ if ( array_key_exists( 'advanced', $tabs ) ) {
 				?>
 			</nav>
 		<?php endif; ?>
+<<<<<<< HEAD
 			<h1 class="screen-reader-text"><?php echo esc_html( $current_tab_label ); ?></h1>
 			<?php
 				do_action( 'woocommerce_sections_' . $current_tab );
@@ -84,6 +93,23 @@ if ( array_key_exists( 'advanced', $tabs ) ) {
 				<?php endif; ?>
 				<?php wp_nonce_field( 'woocommerce-settings' ); ?>
 			</p>
+=======
+		<h1 class="screen-reader-text"><?php echo esc_html( $current_tab_label ); ?></h1>
+		<?php
+			do_action( 'woocommerce_sections_' . $current_tab );
+
+			WC_Admin_Settings::show_messages();
+
+			do_action( 'woocommerce_settings_' . $current_tab );
+			do_action( 'woocommerce_settings_tabs_' . $current_tab ); // @deprecated 3.4.0 hook.
+		?>
+		<p class="submit">
+			<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
+				<button name="save" disabled class="woocommerce-save-button components-button is-primary" type="submit" value="<?php esc_attr_e( 'Save changes', 'woocommerce' ); ?>"><?php esc_html_e( 'Save changes', 'woocommerce' ); ?></button>
+			<?php endif; ?>
+			<?php wp_nonce_field( 'woocommerce-settings' ); ?>
+		</p>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	</form>
 	<?php do_action( 'woocommerce_after_settings_' . $current_tab ); ?>
 </div>

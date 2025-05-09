@@ -59,6 +59,7 @@ class Filterer {
 	public function filter_by_attribute_post_clauses( array $args, \WP_Query $wp_query, array $attributes_to_filter_by ) {
 		global $wpdb;
 
+<<<<<<< HEAD
 		/**
 		 * Filter whether to add the filter post clauses
 		 *
@@ -70,6 +71,9 @@ class Filterer {
 		$enable_filtering = apply_filters( 'woocommerce_enable_post_clause_filtering', $wp_query->is_main_query(), $wp_query );
 
 		if ( ! $enable_filtering || ! $this->filtering_via_lookup_table_is_active() ) {
+=======
+		if ( ! $wp_query->is_main_query() || ! $this->filtering_via_lookup_table_is_active() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $args;
 		}
 
@@ -137,8 +141,11 @@ class Filterer {
 				WHERE is_variation_attribute=1
 				{$in_stock_clause}
 				AND term_id in {$term_ids_to_filter_by_list}
+<<<<<<< HEAD
 				GROUP BY product_or_parent_id
 				HAVING COUNT(DISTINCT term_id)={$count}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)";
 		}
 
@@ -290,8 +297,11 @@ class Filterer {
 							WHERE is_variation_attribute=1
 							{$in_stock_clause}
 							AND term_id in {$term_ids_list}
+<<<<<<< HEAD
 							GROUP BY product_or_parent_id
 							HAVING COUNT(DISTINCT term_id)={$terms_count}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						) temp )";
 				}
 			} else {

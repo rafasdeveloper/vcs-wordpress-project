@@ -1,5 +1,9 @@
 // eslint-disable-next-line max-len
+<<<<<<< HEAD
 /*global woocommerce_admin_meta_boxes, woocommerce_admin, accounting, woocommerce_admin_meta_boxes_order, wcSetClipboard, wcClearClipboard, wc_enhanced_select_params */
+=======
+/*global woocommerce_admin_meta_boxes, woocommerce_admin, accounting, woocommerce_admin_meta_boxes_order, wcSetClipboard, wcClearClipboard */
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 jQuery( function ( $ ) {
 
 	// Stand-in wcTracks.recordEvent in case tracks is not available (for any reason).
@@ -412,10 +416,21 @@ jQuery( function ( $ ) {
 					$line_subtotal_tax.attr( 'data-subtotal_tax' ),
 					woocommerce_admin.mon_decimal_point
 				) / o_qty;
+<<<<<<< HEAD
 
 				if ( 0 < unit_total_tax ) {
 					$line_total_tax.val(
 						parseFloat( accounting.formatNumber( unit_total_tax * qty, woocommerce_admin_meta_boxes.rounding_precision, '' ) )
+=======
+				var round_at_subtotal  = 'yes' === woocommerce_admin_meta_boxes.round_at_subtotal;
+				var precision          = woocommerce_admin_meta_boxes[
+					round_at_subtotal ? 'rounding_precision' : 'currency_format_num_decimals'
+					];
+
+				if ( 0 < unit_total_tax ) {
+					$line_total_tax.val(
+						parseFloat( accounting.formatNumber( unit_total_tax * qty, precision, '' ) )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							.toString()
 							.replace( '.', woocommerce_admin.mon_decimal_point )
 					);
@@ -423,11 +438,15 @@ jQuery( function ( $ ) {
 
 				if ( 0 < unit_subtotal_tax ) {
 					$line_subtotal_tax.val(
+<<<<<<< HEAD
 						parseFloat( accounting.formatNumber(
 							unit_subtotal_tax * qty,
 							woocommerce_admin_meta_boxes.rounding_precision,
 							''
 						) )
+=======
+						parseFloat( accounting.formatNumber( unit_subtotal_tax * qty, precision, '' ) )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							.toString()
 							.replace( '.', woocommerce_admin.mon_decimal_point )
 					);
@@ -1111,6 +1130,7 @@ jQuery( function ( $ ) {
 					) / qty;
 
 					if ( 0 < unit_total_tax ) {
+<<<<<<< HEAD
 
 						$refund_line_total_tax.val(
 							parseFloat( accounting.formatNumber(
@@ -1118,6 +1138,15 @@ jQuery( function ( $ ) {
 								woocommerce_admin_meta_boxes.rounding_precision,
 								''
 							) )
+=======
+						var round_at_subtotal = 'yes' === woocommerce_admin_meta_boxes.round_at_subtotal;
+						var precision         = woocommerce_admin_meta_boxes[
+							round_at_subtotal ? 'rounding_precision' : 'currency_format_num_decimals'
+							];
+
+						$refund_line_total_tax.val(
+							parseFloat( accounting.formatNumber( unit_total_tax * refund_qty, precision, '' ) )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 								.toString()
 								.replace( '.', woocommerce_admin.mon_decimal_point )
 						).trigger( 'change' );
@@ -1568,9 +1597,12 @@ jQuery( function ( $ ) {
 	 */
 	var wc_meta_boxes_order_custom_meta = {
 		init: function() {
+<<<<<<< HEAD
 			let select2_args;
 			let metakey_select;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			if ( ! $('#order_custom').length ) {
 				return;
 			}
@@ -1588,6 +1620,7 @@ jQuery( function ( $ ) {
 					$('table#list-table').show();
 				},
 
+<<<<<<< HEAD
 				delBefore: function( settings, el ) {
 					if (typeof select2_args.ajax == 'undefined') {
 						// If the list of meta keys have already loaded, prepend the deleted key to the list if it isn't already present.
@@ -1696,6 +1729,13 @@ jQuery( function ( $ ) {
 				});
 
 				metakey_select.selectWoo(select2_args).addClass('enhanced');
+=======
+				delBefore: function( settings ) {
+					settings.data.order_id = woocommerce_admin_meta_boxes.post_id;
+					settings.data.action   = 'woocommerce_order_delete_meta';
+					return settings;
+				}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			});
 		}
 	};
@@ -1705,6 +1745,7 @@ jQuery( function ( $ ) {
 	wc_meta_boxes_order_notes.init();
 	wc_meta_boxes_order_downloads.init();
 	wc_meta_boxes_order_custom_meta.init();
+<<<<<<< HEAD
 
 	/**
 	 * Event listeners to allow third-party plugins to reinitialize WooCommerce order meta boxes
@@ -1736,4 +1777,6 @@ jQuery( function ( $ ) {
 	window.addEventListener('wc_meta_boxes_order_custom_meta_init', (e) => {
 		wc_meta_boxes_order_custom_meta.init()
 	});
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 });

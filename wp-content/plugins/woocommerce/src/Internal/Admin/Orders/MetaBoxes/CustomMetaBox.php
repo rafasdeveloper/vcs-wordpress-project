@@ -141,12 +141,22 @@ class CustomMetaBox {
 	 * @return void
 	 */
 	public function render_meta_form( \WC_Order $order ) : void {
+<<<<<<< HEAD
+=======
+		$meta_key_input_id = 'metakeyselect';
+
+		$keys = $this->order_meta_keys_autofill( null, $order );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		?>
 		<p><strong><?php esc_html_e( 'Add New Custom Field:', 'woocommerce' ); ?></strong></p>
 		<table id="newmeta">
 			<thead>
 			<tr>
+<<<<<<< HEAD
 				<th class="left"><label for="metakeyselect"><?php esc_html_e( 'Name', 'woocommerce' ); ?></label></th>
+=======
+				<th class="left"><label for="<?php echo esc_attr( $meta_key_input_id ); ?>"><?php esc_html_e( 'Name', 'woocommerce' ); ?></label></th>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				<th><label for="metavalue"><?php esc_html_e( 'Value', 'woocommerce' ); ?></label></th>
 			</tr>
 			</thead>
@@ -154,6 +164,7 @@ class CustomMetaBox {
 			<tbody>
 			<tr>
 				<td id="newmetaleft" class="left">
+<<<<<<< HEAD
 					<span id="metakey-search">
 					<select id="metakeyselect" name="metakeyselect" class="wc-order-metakey-search" data-placeholder="<?php esc_attr_e( 'Add existing', 'woocommerce' ); ?>" data-minimum-input-length="0" data-order_id="<?php echo esc_attr( $order->get_id() ); ?>">
 					</select>
@@ -162,6 +173,27 @@ class CustomMetaBox {
 					<button type="button" id="newmeta-button" class="button button-small hide-if-no-js" onclick="jQuery('#metakeyinput, #metakeyselect, #enternew, #cancelnew, #metakey-search').toggleClass('hidden');jQuery('#metakeyinput, #metakeyselect').filter(':visible').trigger('focus');">
 					<span id="enternew"><?php esc_html_e( 'Enter new', 'woocommerce' ); ?></span>
 					<span id="cancelnew" class="hidden"><?php esc_html_e( 'Cancel', 'woocommerce' ); ?></span>
+=======
+					<?php if ( $keys ) { ?>
+						<select id="metakeyselect" name="metakeyselect">
+							<option value="#NONE#"><?php esc_html_e( '&mdash; Select &mdash;', 'woocommerce' ); ?></option>
+							<?php
+							foreach ( $keys as $key ) {
+								if ( is_protected_meta( $key, 'post' ) || ! current_user_can( 'edit_others_shop_orders' ) ) {
+									continue;
+								}
+								echo "\n<option value='" . esc_attr( $key ) . "'>" . esc_html( $key ) . '</option>';
+							}
+							?>
+						</select>
+						<input class="hidden" type="text" id="metakeyinput" name="metakeyinput" value="" aria-label="<?php esc_attr_e( 'New custom field name', 'woocommerce' ); ?>" />
+						<button type="button" id="newmeta-button" class="button button-small hide-if-no-js" onclick="jQuery('#metakeyinput, #metakeyselect, #enternew, #cancelnew').toggleClass('hidden');jQuery('#metakeyinput, #metakeyselect').filter(':visible').trigger('focus');">
+						<span id="enternew"><?php esc_html_e( 'Enter new', 'woocommerce' ); ?></span>
+						<span id="cancelnew" class="hidden"><?php esc_html_e( 'Cancel', 'woocommerce' ); ?></span>
+					<?php } else { ?>
+						<input type="text" id="metakeyinput" name="metakeyinput" value="" />
+					<?php } ?>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				</td>
 				<td><textarea id="metavalue" name="metavalue" rows="2" cols="25"></textarea>
 				<?php wp_nonce_field( 'add-meta', '_ajax_nonce-add-meta', false ); ?>
@@ -209,6 +241,7 @@ class CustomMetaBox {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * WP Ajax handler to render the list of unique meta keys asynchronously.
 	 *
 	 * @return void
@@ -232,6 +265,8 @@ class CustomMetaBox {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Reimplementation of WP core's `wp_ajax_add_meta` method to support order custom meta updates with custom tables.
 	 */
 	public function add_meta_ajax() {

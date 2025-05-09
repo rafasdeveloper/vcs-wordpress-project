@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -9,6 +10,17 @@ declare( strict_types = 1 );
 namespace Automattic\WooCommerce\EmailEditor\Integrations\Core\Renderer\Blocks;
 
 use Automattic\WooCommerce\EmailEditor\Engine\Settings_Controller;
+=======
+ * This file is part of the MailPoet plugin.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare( strict_types = 1 );
+namespace MailPoet\EmailEditor\Integrations\Core\Renderer\Blocks;
+
+use MailPoet\EmailEditor\Engine\Settings_Controller;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Renders a list item block.

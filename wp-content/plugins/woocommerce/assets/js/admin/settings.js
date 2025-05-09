@@ -349,6 +349,7 @@
 			$underObservation.on( 'change', changeAgent );
 			changeAgent();
 		} );
+<<<<<<< HEAD
 
 		// Ensures the active tab is visible and centered on small screens if it's out of view in a scrollable tab list.
 		function settings_scroll_to_active_tab() {
@@ -418,5 +419,7 @@
 		settings_scroll_to_active_tab();
 		settings_fix_nav_width();
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	} );
 } )( jQuery, woocommerce_settings_params, wp );

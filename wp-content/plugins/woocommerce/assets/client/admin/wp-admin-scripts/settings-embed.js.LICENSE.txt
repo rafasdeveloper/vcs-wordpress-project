@@ -4,6 +4,7 @@
 	http://jedwatson.github.io/classnames
 */
 
+<<<<<<< HEAD
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -11,6 +12,8 @@
  * Released under the MIT License.
  */
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * @license React
  * react-jsx-runtime.production.min.js
@@ -51,6 +54,7 @@
  *
  * @license MIT
  */
+<<<<<<< HEAD
 
 /** @license React v16.13.1
  * react-is.production.min.js
@@ -60,3 +64,5 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

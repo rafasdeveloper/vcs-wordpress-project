@@ -19,7 +19,11 @@ abstract class WC_Session {
 	/**
 	 * Customer ID.
 	 *
+<<<<<<< HEAD
 	 * @var string $_customer_id Customer ID.
+=======
+	 * @var int $_customer_id Customer ID.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	protected $_customer_id;
 
@@ -85,7 +89,10 @@ abstract class WC_Session {
 	 * @param mixed $key Key to unset.
 	 */
 	public function __unset( $key ) {
+<<<<<<< HEAD
 		$key = sanitize_key( $key );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( isset( $this->_data[ $key ] ) ) {
 			unset( $this->_data[ $key ] );
 			$this->_dirty = true;
@@ -111,6 +118,7 @@ abstract class WC_Session {
 	 * @param mixed  $value Value to set.
 	 */
 	public function set( $key, $value ) {
+<<<<<<< HEAD
 		if ( null === $value ) {
 			$this->__unset( $key );
 
@@ -127,12 +135,22 @@ abstract class WC_Session {
 
 		$this->_dirty        = true;
 		$this->_data[ $key ] = $serialized_value;
+=======
+		if ( $value !== $this->get( $key ) ) {
+			$this->_data[ sanitize_key( $key ) ] = maybe_serialize( $value );
+			$this->_dirty                        = true;
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Get customer ID.
 	 *
+<<<<<<< HEAD
 	 * @return string
+=======
+	 * @return int
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function get_customer_id() {
 		return $this->_customer_id;

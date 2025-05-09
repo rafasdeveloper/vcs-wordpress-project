@@ -11,7 +11,11 @@ use Automattic\WooCommerce\Internal\Admin\Onboarding\OnboardingProfile;
  * Products Task
  */
 class Products extends Task {
+<<<<<<< HEAD
 	const HAS_PRODUCT_TRANSIENT = 'woocommerce_product_task_has_product_transient';
+=======
+	const PRODUCT_COUNT_TRANSIENT_NAME = 'woocommerce_product_task_product_count_transient';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Constructor
@@ -20,12 +24,23 @@ class Products extends Task {
 	 */
 	public function __construct( $task_list ) {
 		parent::__construct( $task_list );
+<<<<<<< HEAD
 		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_import_return_notice_script' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_load_sample_return_notice_script' ) );
 
 		add_action( 'woocommerce_update_product', array( $this, 'maybe_set_has_product_transient' ), 10, 2 );
 		add_action( 'woocommerce_new_product', array( $this, 'maybe_set_has_product_transient' ), 10, 2 );
 		add_action( 'untrashed_post', array( $this, 'maybe_set_has_product_transient_on_untrashed_post' ) );
+=======
+		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_manual_return_notice_script' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_import_return_notice_script' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_load_sample_return_notice_script' ) );
+
+		add_action( 'woocommerce_update_product', array( $this, 'delete_product_count_cache' ) );
+		add_action( 'woocommerce_new_product', array( $this, 'delete_product_count_cache' ) );
+		add_action( 'wp_trash_post', array( $this, 'delete_product_count_cache' ) );
+		add_action( 'untrashed_post', array( $this, 'delete_product_count_cache' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'current_screen', array( $this, 'maybe_redirect_to_add_product_tasklist' ), 30, 0 );
 	}
 
@@ -80,10 +95,13 @@ class Products extends Task {
 	 * @return bool
 	 */
 	public function is_complete() {
+<<<<<<< HEAD
 		if ( $this->has_previously_completed() ) {
 			return true;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return self::has_products();
 	}
 
@@ -108,6 +126,30 @@ class Products extends Task {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Adds a return to task list notice when completing the manual product task.
+	 *
+	 * @param string $hook Page hook.
+	 */
+	public function possibly_add_manual_return_notice_script( $hook ) {
+		global $post;
+		if ( $hook !== 'post.php' || $post->post_type !== 'product' ) {
+			return;
+		}
+
+		if ( ! $this->is_active() || ! $this->is_complete() ) {
+			return;
+		}
+
+		WCAdminAssets::register_script( 'wp-admin-scripts', 'onboarding-product-notice', true );
+
+		// Clear the active task transient to only show notice once per active session.
+		delete_transient( self::ACTIVE_TASK_TRANSIENT );
+	}
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Adds a return to task list notice when completing the import product task.
 	 *
 	 * @param string $hook Page hook.
@@ -154,6 +196,7 @@ class Products extends Task {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Set the has products transient if the post qualifies as a user created product.
 	 *
 	 * @param int $post_id Post ID.
@@ -189,6 +232,14 @@ class Products extends Task {
 		return ProductStatus::PUBLISH === $product->get_status() &&
 			( ! $product->get_meta( '_headstart_post' ) ||
 			get_post_meta( $product->get_id(), '_edit_last', true ) );
+=======
+	 * Delete the product count transient used in has_products() method to refresh the cache.
+	 *
+	 * @return void
+	 */
+	public static function delete_product_count_cache() {
+		delete_transient( self::PRODUCT_COUNT_TRANSIENT_NAME );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -197,6 +248,7 @@ class Products extends Task {
 	 * @return bool
 	 */
 	public static function has_products() {
+<<<<<<< HEAD
 		$product_exists = get_transient( self::HAS_PRODUCT_TRANSIENT );
 		if ( $product_exists ) {
 			return 'yes' === $product_exists;
@@ -254,6 +306,45 @@ class Products extends Task {
 
 		set_transient( self::HAS_PRODUCT_TRANSIENT, $value );
 		return 'yes' === $value;
+=======
+		$product_counts = get_transient( self::PRODUCT_COUNT_TRANSIENT_NAME );
+		if ( false !== $product_counts && is_numeric( $product_counts ) ) {
+			return (int) $product_counts > 0;
+		}
+
+		$product_counts = self::count_user_products();
+		set_transient( self::PRODUCT_COUNT_TRANSIENT_NAME, $product_counts );
+		return $product_counts > 0;
+	}
+
+	/**
+	 * Count the number of user created products.
+	 * Generated products have the _headstart_post meta key.
+	 *
+	 * @return int The number of user created products.
+	 */
+	private static function count_user_products() {
+		$args = array(
+			'post_type'   => 'product',
+			'post_status' => ProductStatus::PUBLISH,
+			'fields'      => 'ids',
+			'meta_query'  => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				'relation' => 'OR',
+				array(
+					'key'     => '_headstart_post',
+					'compare' => 'NOT EXISTS',
+				),
+				array(
+					'key'     => '_edit_last',
+					'compare' => 'EXISTS',
+				),
+			),
+		);
+
+		$products_query = new \WP_Query( $args );
+
+		return $products_query->found_posts;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

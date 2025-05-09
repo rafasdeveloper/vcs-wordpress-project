@@ -3,7 +3,11 @@ declare( strict_types=1 );
 namespace Automattic\WooCommerce\StoreApi;
 
 use Automattic\WooCommerce\StoreApi\Utilities\RateLimits;
+<<<<<<< HEAD
 use Automattic\WooCommerce\StoreApi\Utilities\CartTokenUtils;
+=======
+use Automattic\WooCommerce\StoreApi\Utilities\JsonWebToken;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
 /**
@@ -20,7 +24,11 @@ class Authentication {
 		add_filter( 'rest_authentication_errors', array( $this, 'check_authentication' ) );
 		add_filter( 'rest_authentication_errors', array( $this, 'opt_in_checkout_endpoint' ), 9, 1 );
 		add_action( 'set_logged_in_cookie', array( $this, 'set_logged_in_cookie' ) );
+<<<<<<< HEAD
 		add_filter( 'rest_pre_serve_request', array( $this, 'send_cors_headers' ), 10, 4 );
+=======
+		add_filter( 'rest_pre_serve_request', array( $this, 'send_cors_headers' ), 10, 3 );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_filter( 'rest_allowed_cors_headers', array( $this, 'allowed_cors_headers' ) );
 		add_filter( 'rest_exposed_cors_headers', array( $this, 'exposed_cors_headers' ) );
 
@@ -63,6 +71,7 @@ class Authentication {
 	 *
 	 * Users of valid Cart Tokens are also allowed access from any origin.
 	 *
+<<<<<<< HEAD
 	 * @param bool              $served Whether the request has already been served.
 	 * @param \WP_REST_Response $result The response object.
 	 * @param \WP_REST_Request  $request The request object.
@@ -70,6 +79,14 @@ class Authentication {
 	 * @return bool
 	 */
 	public function send_cors_headers( $served, $result, $request, $server ) {
+=======
+	 * @param bool             $value  Whether the request has already been served.
+	 * @param \WP_REST_Server  $server The REST server instance.
+	 * @param \WP_REST_Request $request The REST request instance.
+	 * @return bool
+	 */
+	public function send_cors_headers( $value, $server, $request ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$origin = get_http_origin();
 
 		if ( 'null' !== $origin ) {
@@ -77,13 +94,21 @@ class Authentication {
 		}
 
 		// Send standard CORS headers.
+<<<<<<< HEAD
+=======
+		$server = rest_get_server();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$server->send_header( 'Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE' );
 		$server->send_header( 'Access-Control-Allow-Credentials', 'true' );
 		$server->send_header( 'Vary', 'Origin', false );
 
 		// Allow preflight requests, certain http origins, and any origin if a cart token is present. Preflight requests
 		// are allowed because we'll be unable to validate cart token headers at that point.
+<<<<<<< HEAD
 		if ( $this->is_preflight() || CartTokenUtils::validate_cart_token( $this->get_cart_token( $request ) ) || is_allowed_http_origin( $origin ) ) {
+=======
+		if ( $this->is_preflight() || JsonWebToken::validate( $this->get_cart_token( $request ), $this->get_cart_token_secret() ) || is_allowed_http_origin( $origin ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$server->send_header( 'Access-Control-Allow-Origin', $origin );
 		}
 
@@ -93,7 +118,11 @@ class Authentication {
 			exit;
 		}
 
+<<<<<<< HEAD
 		return $served;
+=======
+		return $value;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -116,6 +145,18 @@ class Authentication {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Gets the secret for the cart token using wp_salt.
+	 *
+	 * @return string
+	 */
+	protected function get_cart_token_secret() {
+		return '@' . wp_salt();
+	}
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * The Store API does not require authentication.
 	 *
 	 * @param \WP_Error|mixed $result Error from another authentication handler, null if we should handle it, or another value if not.

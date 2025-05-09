@@ -8,6 +8,10 @@ use Automattic\WooCommerce\Blocks\Assets\AssetDataRegistry;
 use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFieldsSchema\{
 	DocumentObject, Validation
 };
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Admin\Features\Features;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Customer;
 use WC_Data;
 use WC_Order;
@@ -169,7 +173,11 @@ class CheckoutFields {
 	 * @return WP_Error|void If there is a validation error, return an WP_Error object.
 	 */
 	public function default_validate_callback( $value, $field ) {
+<<<<<<< HEAD
 		if ( true === $field['required'] && empty( $value ) ) {
+=======
+		if ( ! empty( $field['required'] ) && empty( $value ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return new WP_Error(
 				'woocommerce_required_checkout_field',
 				sprintf(
@@ -210,7 +218,11 @@ class CheckoutFields {
 				'show_in_order_confirmation' => true,
 				'sanitize_callback'          => array( $this, 'default_sanitize_callback' ),
 				'validate_callback'          => array( $this, 'default_validate_callback' ),
+<<<<<<< HEAD
 				'validation'                 => [],
+=======
+				'rules'                      => [],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			],
 		);
 
@@ -248,8 +260,13 @@ class CheckoutFields {
 			if ( $this->is_hidden_field( $field, $document_object ) ) {
 				return false;
 			}
+<<<<<<< HEAD
 			if ( $this->contains_valid_rules( $field['required'] ) ) {
 				return true === Validation::validate_document_object( $document_object, $field['required'] );
+=======
+			if ( ! empty( $field['rules']['required'] ) ) {
+				return true === Validation::validate_document_object( $document_object, $field['rules']['required'] );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 		return true === $field['required'];
@@ -266,10 +283,17 @@ class CheckoutFields {
 		if ( is_string( $field ) ) {
 			$field = $this->additional_fields[ $field ] ?? [];
 		}
+<<<<<<< HEAD
 		if ( $document_object && $this->contains_valid_rules( $field['hidden'] ) ) {
 			return true === Validation::validate_document_object( $document_object, $field['hidden'] );
 		}
 		return false; // Fields cannot be registered as hidden.
+=======
+		if ( $document_object && ! empty( $field['rules']['hidden'] ) ) {
+			return true === Validation::validate_document_object( $document_object, $field['rules']['hidden'] );
+		}
+		return false; // `hidden` prop is not supported yet.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -282,7 +306,11 @@ class CheckoutFields {
 		if ( is_string( $field ) ) {
 			$field = $this->additional_fields[ $field ] ?? [];
 		}
+<<<<<<< HEAD
 		return $this->contains_valid_rules( $field['required'] ) || $this->contains_valid_rules( $field['hidden'] );
+=======
+		return ! empty( $field['rules']['required'] ) || ! empty( $field['rules']['hidden'] );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -293,14 +321,20 @@ class CheckoutFields {
 	 * @return bool|\WP_Error True if the field is valid, a WP_Error otherwise.
 	 */
 	public function is_valid_field( $field, $document_object = null ) {
+<<<<<<< HEAD
 		if ( $document_object && $this->contains_valid_rules( $field['validation'] ) ) {
 			$field_schema = Validation::get_field_schema_with_context( $field['id'], $field['validation'], $document_object->get_context() );
+=======
+		if ( $document_object && ! empty( $field['rules']['validation'] ) ) {
+			$field_schema = Validation::get_field_schema_with_context( $field['id'], $field['rules']['validation'], $document_object->get_context() );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return Validation::validate_document_object( $document_object, $field_schema );
 		}
 		return true;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Returns true if the property is an array and not empty.
 	 *
 	 * @param mixed $property The property to check.
@@ -311,6 +345,8 @@ class CheckoutFields {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Returns the validate callback for a given field.
 	 *
 	 * @param array               $field The field.
@@ -321,7 +357,11 @@ class CheckoutFields {
 		if ( is_string( $field ) ) {
 			$field = $this->additional_fields[ $field ] ?? [];
 		}
+<<<<<<< HEAD
 		if ( $document_object && $this->contains_valid_rules( $field['validation'] ) ) {
+=======
+		if ( $document_object && ! empty( $field['rules']['validation'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return function ( $field_value, $field ) use ( $document_object ) {
 				$errors = new WP_Error();
 
@@ -456,6 +496,7 @@ class CheckoutFields {
 			// Don't return here unlike the other fields because this is not an issue that will prevent registration.
 		}
 
+<<<<<<< HEAD
 		$rule_fields = [ 'required', 'hidden', 'validation' ];
 		$allow_bool  = [ 'required', 'hidden' ];
 
@@ -472,6 +513,21 @@ class CheckoutFields {
 					_doing_it_wrong( 'woocommerce_register_additional_checkout_field', esc_html( $message ), '8.6.0' );
 					return false;
 				}
+=======
+		if ( Features::is_enabled( 'experimental-blocks' ) && ! empty( $options['rules'] ) ) {
+			if ( ! is_array( $options['rules'] ) ) {
+				$message = sprintf( 'Unable to register field with id: "%s". %s', $options['id'], 'The rules must be an array.' );
+				_doing_it_wrong( 'woocommerce_register_additional_checkout_field', esc_html( $message ), '8.6.0' );
+				return false;
+			}
+
+			$valid = Validation::is_valid_schema( $options['rules'] );
+
+			if ( is_wp_error( $valid ) ) {
+				$message = sprintf( 'Unable to register field with id: "%s". %s', $options['id'], $valid->get_error_message() );
+				_doing_it_wrong( 'woocommerce_register_additional_checkout_field', esc_html( $message ), '8.6.0' );
+				return false;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 
@@ -491,6 +547,13 @@ class CheckoutFields {
 		} elseif ( 'select' === $field_data['type'] ) {
 			$field_data = $this->process_select_field( $field_data, $options );
 		}
+<<<<<<< HEAD
+=======
+		// If the field has conditional rules, we need to set the required property to false so it can be evaluated.
+		if ( Features::is_enabled( 'experimental-blocks' ) && ! empty( $field_data['rules']['required'] ) ) {
+			$field_data['required'] = false;
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $field_data;
 	}
 
@@ -556,10 +619,24 @@ class CheckoutFields {
 	 * @return array|false The updated $field_data array or false if an error was encountered.
 	 */
 	private function process_checkbox_field( $field_data, $options ) {
+<<<<<<< HEAD
 		$id                     = $options['id'];
 		$field_data['required'] = $options['required'] ?? false;
 
 		if ( false === $field_data['required'] && ! empty( $options['error_message'] ) ) {
+=======
+		$id = $options['id'];
+
+		if ( isset( $options['required'] ) && ! is_bool( $options['required'] ) ) {
+			$message = sprintf( 'The required property for field with id: "%s" must be a boolean, you passed %s. The field will not be registered.', $id, gettype( $options['required'] ) );
+			_doing_it_wrong( 'woocommerce_register_additional_checkout_field', esc_html( $message ), '9.8.0' );
+			return false;
+		}
+
+		$field_data['required'] = $options['required'] ?? false;
+
+		if ( ( ! isset( $field_data['required'] ) || false === $field_data['required'] ) && ! empty( $options['error_message'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$message = sprintf( 'Passing an error message to a non-required checkbox "%s" will have no effect. The error message has been removed from the field.', $id );
 			_doing_it_wrong( 'woocommerce_register_additional_checkout_field', esc_html( $message ), '9.8.0' );
 			unset( $field_data['error_message'] );
@@ -903,10 +980,13 @@ class CheckoutFields {
 
 				if ( is_wp_error( $validate_callback_result ) ) {
 					$errors->merge_from( $validate_callback_result );
+<<<<<<< HEAD
 				} elseif ( false === $validate_callback_result ) {
 					/* translators: %s: is the field label */
 					$error_message = sprintf( __( 'Please provide a valid %s', 'woocommerce' ), $field['label'] );
 					$errors->add( 'woocommerce_invalid_checkout_field', $error_message );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 
@@ -930,7 +1010,11 @@ class CheckoutFields {
 			trigger_error(
 				sprintf(
 					'Field validation for %s encountered an error. %s',
+<<<<<<< HEAD
 					esc_html( $field['id'] ),
+=======
+					esc_html( $field_key ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					esc_html( $e->getMessage() )
 				),
 				E_USER_WARNING

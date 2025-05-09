@@ -413,21 +413,27 @@ jQuery( function ( $ ) {
 				this.remove_coupon_clicked
 			);
 			$( document ).on(
+<<<<<<< HEAD
 				'keydown',
 				'a.woocommerce-remove-coupon',
 				this.on_keydown_remove_coupon
 			);
 			$( document ).on(
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'click',
 				'.woocommerce-cart-form .product-remove > a',
 				this.item_remove_clicked
 			);
 			$( document ).on(
+<<<<<<< HEAD
 				'keydown',
 				'.woocommerce-cart-form .product-remove > a',
 				this.on_keydown_remove_item
 			);
 			$( document ).on(
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'click',
 				'.woocommerce-cart .restore-item',
 				this.item_restore_clicked
@@ -438,7 +444,11 @@ jQuery( function ( $ ) {
 				this.input_changed
 			);
 			$( document ).on(
+<<<<<<< HEAD
 				'change input',
+=======
+				'blur change input',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'#coupon_code',
 				this.remove_coupon_error
 			);
@@ -666,6 +676,7 @@ jQuery( function ( $ ) {
 					).remove();
 					show_notice( response );
 					$( document.body ).trigger( 'removed_coupon', [ coupon ] );
+<<<<<<< HEAD
 					$( '#coupon_code' )
 						.val('')
 						.removeClass('has-error')
@@ -674,6 +685,8 @@ jQuery( function ( $ ) {
 						.closest('.coupon')
 						.find('.coupon-error-notice')
 						.remove();
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					unblock( $wrapper );
 				},
 				complete: function () {
@@ -683,6 +696,7 @@ jQuery( function ( $ ) {
 		},
 
 		/**
+<<<<<<< HEAD
 		 * Handle when pressing the Space key on the remove coupon link.
 		 * This is necessary because the link got the role="button" attribute
 		 * and needs to act like a button.
@@ -697,6 +711,8 @@ jQuery( function ( $ ) {
 		},
 
 		/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Handle when the coupon input loses focus.
 		 *
 		 * @param {Object} evt The JQuery event
@@ -775,6 +791,7 @@ jQuery( function ( $ ) {
 		},
 
 		/**
+<<<<<<< HEAD
 		 * Handle when pressing the Space key on the remove item link.
 		 * This is necessary because the link got the role="button" attribute
 		 * and needs to act like a button.
@@ -789,6 +806,8 @@ jQuery( function ( $ ) {
 		},
 
 		/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Handle when a restore item link is clicked.
 		 *
 		 * @param {Object} evt The JQuery event

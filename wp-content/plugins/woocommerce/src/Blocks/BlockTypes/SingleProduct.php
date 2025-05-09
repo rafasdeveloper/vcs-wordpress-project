@@ -1,15 +1,21 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Utils\ProductDataUtils;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * SingleProduct class.
  */
 class SingleProduct extends AbstractBlock {
+<<<<<<< HEAD
 
 	use EnableBlockJsonAssetsTrait;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -162,6 +168,7 @@ class SingleProduct extends AbstractBlock {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Render the Single Product block.
 	 *
 	 * @param array    $attributes Block attributes.
@@ -199,6 +206,8 @@ class SingleProduct extends AbstractBlock {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the frontend script handle for this block type.
 	 *
 	 * @param string $key Data to get, or default to everything.

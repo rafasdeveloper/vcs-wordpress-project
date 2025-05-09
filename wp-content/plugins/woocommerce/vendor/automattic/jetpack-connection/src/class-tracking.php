@@ -280,15 +280,22 @@ class Tracking {
 	 */
 	public function tracks_get_identity( $user_id ) {
 
+<<<<<<< HEAD
 		// Meta is set, and user is still connected. Use WPCOM ID.
 		$wpcom_id = get_user_meta( $user_id, 'jetpack_tracks_wpcom_id', true );
 		if ( $wpcom_id && is_string( $wpcom_id ) && $this->connection->is_user_connected( $user_id ) ) {
+=======
+		// Meta is set, and user is still connected.  Use WPCOM ID.
+		$wpcom_id = get_user_meta( $user_id, 'jetpack_tracks_wpcom_id', true );
+		if ( $wpcom_id && $this->connection->is_user_connected( $user_id ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return array(
 				'_ut' => 'wpcom:user_id',
 				'_ui' => $wpcom_id,
 			);
 		}
 
+<<<<<<< HEAD
 		// User is connected, but no meta is set yet. Use WPCOM ID and set meta.
 		if ( $this->connection->is_user_connected( $user_id ) ) {
 			$wpcom_user_data = $this->connection->get_connected_user_data( $user_id );
@@ -302,6 +309,17 @@ class Tracking {
 					'_ui' => $wpcom_id,
 				);
 			}
+=======
+		// User is connected, but no meta is set yet.  Use WPCOM ID and set meta.
+		if ( $this->connection->is_user_connected( $user_id ) ) {
+			$wpcom_user_data = $this->connection->get_connected_user_data( $user_id );
+			update_user_meta( $user_id, 'jetpack_tracks_wpcom_id', $wpcom_user_data['ID'] );
+
+			return array(
+				'_ut' => 'wpcom:user_id',
+				'_ui' => $wpcom_user_data['ID'],
+			);
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		// User isn't linked at all.  Fall back to anonymous ID.

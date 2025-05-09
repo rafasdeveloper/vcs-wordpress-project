@@ -12,7 +12,11 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails\Plain
+<<<<<<< HEAD
  * @version 9.9.0
+=======
+ * @version 9.8.0
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -27,9 +31,17 @@ echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
 /* translators: %s: Customer first name */
 echo sprintf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ) . "\n\n";
+<<<<<<< HEAD
 echo esc_html__( 'We have finished processing your order.', 'woocommerce' ) . "\n\n";
 if ( $email_improvements_enabled ) {
 	echo esc_html__( 'Here’s a reminder of what you’ve ordered:', 'woocommerce' ) . "\n\n";
+=======
+if ( $email_improvements_enabled ) {
+	echo esc_html__( 'We’ve successfully processed your order, and it’s on its way to you.', 'woocommerce' ) . "\n\n";
+	echo esc_html__( 'Here’s a reminder of what you’ve ordered:', 'woocommerce' ) . "\n\n";
+} else {
+	echo esc_html__( 'We have finished processing your order.', 'woocommerce' ) . "\n\n";
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /*

@@ -270,6 +270,7 @@ class WC_Admin_Report {
 
 				if ( strtolower( $value['operator'] ) === 'in' || strtolower( $value['operator'] ) === 'not in' ) {
 
+<<<<<<< HEAD
 					if ( ! empty( $value['meta_value'] ) && ! is_array( $value['meta_value'] ) ) {
 						$value['meta_value'] = (array) $value['meta_value']; // @phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 					}
@@ -280,6 +281,18 @@ class WC_Admin_Report {
 					}
 				} else {
 					$where_value = $value['operator'] . ' ' . $wpdb->prepare( '%s', $value['meta_value'] );
+=======
+					if ( is_array( $value['meta_value'] ) ) {
+						// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+						$value['meta_value'] = implode( "','", $value['meta_value'] );
+					}
+
+					if ( ! empty( $value['meta_value'] ) ) {
+						$where_value = "{$value['operator']} ('{$value['meta_value']}')";
+					}
+				} else {
+					$where_value = "{$value['operator']} '{$value['meta_value']}'";
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 
 				if ( ! empty( $where_value ) ) {
@@ -318,6 +331,7 @@ class WC_Admin_Report {
 
 				if ( strtolower( $value['operator'] ) === 'in' || strtolower( $value['operator'] ) === 'not in' ) {
 
+<<<<<<< HEAD
 					if ( ! empty( $value['value'] ) && ! is_array( $value['value'] ) ) {
 						$value['value'] = (array) $value['value'];
 					}
@@ -327,6 +341,17 @@ class WC_Admin_Report {
 					}
 				} else {
 					$where_value = $value['operator'] . ' ' . $wpdb->prepare( '%s', $value['value'] );
+=======
+					if ( is_array( $value['value'] ) ) {
+						$value['value'] = implode( "','", $value['value'] );
+					}
+
+					if ( ! empty( $value['value'] ) ) {
+						$where_value = "{$value['operator']} ('{$value['value']}')";
+					}
+				} else {
+					$where_value = "{$value['operator']} '{$value['value']}'";
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 
 				if ( ! empty( $where_value ) ) {

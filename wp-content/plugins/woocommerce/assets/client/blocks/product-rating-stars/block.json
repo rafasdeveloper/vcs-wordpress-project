@@ -25,6 +25,7 @@
 			"default": false
 		}
 	},
+<<<<<<< HEAD
 	"usesContext": [ "query", "queryId", "postId" ],
 	"keywords": [ "WooCommerce" ],
 	"supports": {
@@ -53,3 +54,23 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
+=======
+	"usesContext": [
+		"query",
+		"queryId",
+		"postId"
+	],
+	"keywords": [
+		"WooCommerce"
+	],
+	"supports": {
+		"align": true
+	},
+	"ancestor": [
+		"woocommerce/single-product"
+	],
+	"textdomain": "woocommerce",
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json"
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

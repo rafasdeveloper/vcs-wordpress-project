@@ -4,7 +4,7 @@
  * This file is part of the Predis package.
  *
  * (c) 2009-2020 Daniele Alessandri
- * (c) 2021-2025 Till Krüss
+ * (c) 2021-2023 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,7 +21,6 @@ use Predis\Command\CommandInterface;
 use Predis\Connection\NodeConnectionInterface;
 use Predis\NotSupportedException;
 use ReturnTypeWillChange;
-use Traversable;
 
 /**
  * Abstraction for a cluster of aggregate connections to various Redis servers
@@ -50,9 +49,9 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable
     private $distributor;
 
     /**
-     * @param StrategyInterface|null $strategy Optional cluster strategy.
+     * @param StrategyInterface $strategy Optional cluster strategy.
      */
-    public function __construct(?StrategyInterface $strategy = null)
+    public function __construct(StrategyInterface $strategy = null)
     {
         $this->strategy = $strategy ?: new PredisStrategy();
         $this->distributor = $this->strategy->getDistributor();
@@ -201,7 +200,7 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function count()
@@ -210,7 +209,7 @@ class PredisCluster implements ClusterInterface, IteratorAggregate, Countable
     }
 
     /**
-     * @return Traversable<string, NodeConnectionInterface>
+     * {@inheritdoc}
      */
     #[ReturnTypeWillChange]
     public function getIterator()

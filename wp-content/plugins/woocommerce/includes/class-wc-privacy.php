@@ -282,7 +282,10 @@ class WC_Privacy extends WC_Abstract_Privacy {
 					'limit'        => $limit, // Batches of 20.
 					'status'       => OrderInternalStatus::REFUNDED,
 					'type'         => 'shop_order',
+<<<<<<< HEAD
 					'anonymized'   => false,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				)
 			)
 		);
@@ -302,7 +305,11 @@ class WC_Privacy extends WC_Abstract_Privacy {
 		if ( $orders ) {
 			foreach ( $orders as $order ) {
 				$order->delete( false );
+<<<<<<< HEAD
 				++$count;
+=======
+				$count ++;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 
@@ -351,7 +358,11 @@ class WC_Privacy extends WC_Abstract_Privacy {
 		if ( $orders ) {
 			foreach ( $orders as $order ) {
 				WC_Privacy_Erasers::remove_order_personal_data( $order );
+<<<<<<< HEAD
 				++$count;
+=======
+				$count ++;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 
@@ -430,7 +441,11 @@ class WC_Privacy extends WC_Abstract_Privacy {
 						$user_id
 					)
 				);
+<<<<<<< HEAD
 				++$count;
+=======
+				$count ++;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 

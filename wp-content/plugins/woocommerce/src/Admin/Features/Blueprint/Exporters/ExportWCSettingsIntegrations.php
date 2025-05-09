@@ -4,13 +4,25 @@ declare( strict_types = 1);
 
 namespace Automattic\WooCommerce\Admin\Features\Blueprint\Exporters;
 
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Admin\Features\Blueprint\SettingOptions;
+use Automattic\WooCommerce\Blueprint\Exporters\HasAlias;
+use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
 use Automattic\WooCommerce\Blueprint\UseWPFunctions;
 
 /**
+<<<<<<< HEAD
  * Class ExportWCSettingsIntegrations
  *
  * This class exports WooCommerce settings on the Integrations page.
+=======
+ * Class ExportWCSettingsProducts
+ *
+ * This class exports WooCommerce settings and implements the StepExporter and HasAlias interfaces.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  *
  * @package Automattic\WooCommerce\Admin\Features\Blueprint\Exporters
  */
@@ -36,6 +48,7 @@ class ExportWCSettingsIntegrations extends ExportWCSettings {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Export WooCommerce settings.
 	 *
 	 * @return SetSiteOptions
@@ -58,12 +71,18 @@ class ExportWCSettingsIntegrations extends ExportWCSettings {
 
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Return description used in the frontend.
 	 *
 	 * @return string
 	 */
 	public function get_description() {
+<<<<<<< HEAD
 		return __( 'Includes all settings in WooCommerce | Settings | Integrations.', 'woocommerce' );
+=======
+		return __( 'It includes all settings in WooCommerce | Settings | Integrations.', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

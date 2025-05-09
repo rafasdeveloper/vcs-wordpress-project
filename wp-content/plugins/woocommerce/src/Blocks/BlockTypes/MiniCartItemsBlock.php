@@ -1,8 +1,11 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * MiniCartItemsBlock class.
  */
@@ -13,6 +16,7 @@ class MiniCartItemsBlock extends AbstractInnerBlock {
 	 * @var string
 	 */
 	protected $block_name = 'mini-cart-items-block';
+<<<<<<< HEAD
 
 	/**
 	 * Render the markup for the Mini-Cart Contents block.
@@ -136,4 +140,6 @@ class MiniCartItemsBlock extends AbstractInnerBlock {
 		<?php
 		return ob_get_clean();
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

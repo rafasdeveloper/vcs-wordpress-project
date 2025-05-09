@@ -18,6 +18,7 @@ defined( 'ABSPATH' ) || exit;
 class WC_Comments {
 
 	/**
+<<<<<<< HEAD
 	 * The cache group to use for comment counts.
 	 *
 	 * @var string
@@ -32,6 +33,8 @@ class WC_Comments {
 	private const PRODUCT_REVIEWS_PENDING_COUNT_CACHE_KEY = 'woocommerce_product_reviews_pending_count';
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Hook in methods.
 	 */
 	public static function init() {
@@ -52,6 +55,7 @@ class WC_Comments {
 		add_filter( 'comments_clauses', array( __CLASS__, 'exclude_webhook_comments' ), 10, 1 );
 		add_filter( 'comment_feed_where', array( __CLASS__, 'exclude_webhook_comments_from_feed_where' ) );
 
+<<<<<<< HEAD
 		// Secure potential remaining Action Logs.
 		add_filter( 'comments_clauses', array( __CLASS__, 'exclude_action_log_comments' ), 10, 2 );
 		add_filter( 'comment_feed_where', array( __CLASS__, 'exclude_action_log_comments_from_feed_where' ) );
@@ -61,17 +65,26 @@ class WC_Comments {
 
 		// Modifies the moderation URLs in the email notifications for product reviews.
 		add_filter( 'comment_moderation_text', array( ReviewsUtil::class, 'modify_product_review_moderation_urls' ), 10, 2 );
+=======
+		// Exclude product reviews.
+		add_filter( 'comments_clauses', array( ReviewsUtil::class, 'comments_clauses_without_product_reviews' ), 10, 1 );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Count comments.
 		add_filter( 'wp_count_comments', array( __CLASS__, 'wp_count_comments' ), 10, 2 );
 
 		// Delete comments count cache whenever there is a new comment or a comment status changes.
+<<<<<<< HEAD
 		add_action( 'wp_insert_comment', array( __CLASS__, 'increment_comments_count_cache_on_wp_insert_comment' ), 10, 2 );
 		add_action( 'transition_comment_status', array( __CLASS__, 'update_comments_count_cache_on_comment_status_change' ), 10, 3 );
 
 		// Count product reviews that pending moderation.
 		add_action( 'wp_insert_comment', array( __CLASS__, 'maybe_bump_products_reviews_pending_moderation_counter' ), 10, 2 );
 		add_action( 'transition_comment_status', array( __CLASS__, 'maybe_adjust_products_reviews_pending_moderation_counter' ), 10, 3 );
+=======
+		add_action( 'wp_insert_comment', array( __CLASS__, 'delete_comments_count_cache' ) );
+		add_action( 'wp_set_comment_status', array( __CLASS__, 'delete_comments_count_cache' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Support avatars for `review` comment type.
 		add_filter( 'get_avatar_comment_types', array( __CLASS__, 'add_avatar_for_review_comment_type' ) );
@@ -117,7 +130,11 @@ class WC_Comments {
 	 * @return array
 	 */
 	public static function exclude_order_comments( $clauses ) {
+<<<<<<< HEAD
 		$clauses['where'] .= ( trim( $clauses['where'] ) ? ' AND ' : '' ) . " comment_type != 'order_note' ";
+=======
+		$clauses['where'] .= ( $clauses['where'] ? ' AND ' : '' ) . " comment_type != 'order_note' ";
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $clauses;
 	}
 
@@ -138,7 +155,11 @@ class WC_Comments {
 	 * @return string
 	 */
 	public static function exclude_order_comments_from_feed_where( $where ) {
+<<<<<<< HEAD
 		return $where . ( trim( $where ) ? ' AND ' : '' ) . " comment_type != 'order_note' ";
+=======
+		return $where . ( $where ? ' AND ' : '' ) . " comment_type != 'order_note' ";
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -149,7 +170,11 @@ class WC_Comments {
 	 * @return array
 	 */
 	public static function exclude_webhook_comments( $clauses ) {
+<<<<<<< HEAD
 		$clauses['where'] .= ( trim( $clauses['where'] ) ? ' AND ' : '' ) . " comment_type != 'webhook_delivery' ";
+=======
+		$clauses['where'] .= ( $clauses['where'] ? ' AND ' : '' ) . " comment_type != 'webhook_delivery' ";
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $clauses;
 	}
 
@@ -171,6 +196,7 @@ class WC_Comments {
 	 * @return string
 	 */
 	public static function exclude_webhook_comments_from_feed_where( $where ) {
+<<<<<<< HEAD
 		return $where . ( trim( $where ) ? ' AND ' : '' ) . " comment_type != 'webhook_delivery' ";
 	}
 
@@ -200,6 +226,9 @@ class WC_Comments {
 		}
 
 		return $clauses;
+=======
+		return $where . ( $where ? ' AND ' : '' ) . " comment_type != 'webhook_delivery' ";
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -269,6 +298,7 @@ class WC_Comments {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Callback for 'wp_insert_comment' to delete the comment count cache if the comment is included in the count.
 	 *
 	 * @param int        $comment_id The comment ID.
@@ -315,12 +345,15 @@ class WC_Comments {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Delete comments count cache whenever there is
 	 * new comment or the status of a comment changes. Cache
 	 * will be regenerated next time WC_Comments::wp_count_comments()
 	 * is called.
 	 */
 	public static function delete_comments_count_cache() {
+<<<<<<< HEAD
 		$comment_status_keys = array(
 			'wc_count_comments_approved',
 			'wc_count_comments_unapproved',
@@ -390,11 +423,15 @@ class WC_Comments {
 				}
 			}
 		}
+=======
+		delete_transient( 'wc_count_comments' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Remove order notes, webhook delivery logs, and product reviews from wp_count_comments().
 	 *
+<<<<<<< HEAD
 	 * @param array|object $stats   Comment stats.
 	 * @param int          $post_id Post ID.
 	 *
@@ -447,6 +484,69 @@ class WC_Comments {
 		$comment_counts['total_comments'] = $comment_counts['all'] + $comment_counts['spam'];
 
 		return (object) $comment_counts;
+=======
+	 * @since  2.2
+	 * @param  object $stats   Comment stats.
+	 * @param  int    $post_id Post ID.
+	 * @return object
+	 */
+	public static function wp_count_comments( $stats, $post_id ) {
+		global $wpdb;
+
+		if ( 0 === $post_id ) {
+			$stats = get_transient( 'wc_count_comments' );
+
+			if ( ! $stats ) {
+				$stats = array(
+					'total_comments' => 0,
+					'all'            => 0,
+				);
+
+				$count = $wpdb->get_results(
+					"
+					SELECT comment_approved, COUNT(*) AS num_comments
+					FROM {$wpdb->comments}
+					LEFT JOIN {$wpdb->posts} ON comment_post_ID = {$wpdb->posts}.ID
+					WHERE comment_type NOT IN ('action_log', 'order_note', 'webhook_delivery') AND {$wpdb->posts}.post_type NOT IN ('product')
+					GROUP BY comment_approved
+					",
+					ARRAY_A
+				);
+
+				$approved = array(
+					'0'            => 'moderated',
+					'1'            => 'approved',
+					'spam'         => 'spam',
+					'trash'        => 'trash',
+					'post-trashed' => 'post-trashed',
+				);
+
+				foreach ( (array) $count as $row ) {
+					// Don't count post-trashed toward totals.
+					if ( ! in_array( $row['comment_approved'], array( 'post-trashed', 'trash', 'spam' ), true ) ) {
+						$stats['all']            += $row['num_comments'];
+						$stats['total_comments'] += $row['num_comments'];
+					} elseif ( ! in_array( $row['comment_approved'], array( 'post-trashed', 'trash' ), true ) ) {
+						$stats['total_comments'] += $row['num_comments'];
+					}
+					if ( isset( $approved[ $row['comment_approved'] ] ) ) {
+						$stats[ $approved[ $row['comment_approved'] ] ] = $row['num_comments'];
+					}
+				}
+
+				foreach ( $approved as $key ) {
+					if ( empty( $stats[ $key ] ) ) {
+						$stats[ $key ] = 0;
+					}
+				}
+
+				$stats = (object) $stats;
+				set_transient( 'wc_count_comments', $stats );
+			}
+		}
+
+		return $stats;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -484,9 +584,13 @@ class WC_Comments {
 		$comment  = get_comment( $comment_id );
 		$verified = false;
 		if ( 'product' === get_post_type( $comment->comment_post_ID ) ) {
+<<<<<<< HEAD
 			// When possible, narrow down wc_customer_bought_product inputs for better performance.
 			$email    = $comment->user_id ? '' : $comment->comment_author_email;
 			$verified = wc_customer_bought_product( $email, $comment->user_id, $comment->comment_post_ID );
+=======
+			$verified = wc_customer_bought_product( $comment->comment_author_email, $comment->user_id, $comment->comment_post_ID );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			add_comment_meta( $comment_id, 'verified', (int) $verified, true );
 		}
 		return $verified;

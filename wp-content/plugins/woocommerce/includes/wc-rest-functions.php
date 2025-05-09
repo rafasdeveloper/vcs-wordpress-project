@@ -8,8 +8,11 @@
  * @version 2.6.0
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Utilities\Users;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -250,16 +253,25 @@ function wc_rest_check_post_permissions( $post_type, $context = 'read', $object_
  * Check permissions of users on REST API.
  *
  * @since 2.6.0
+<<<<<<< HEAD
  * @since 9.4.0 Became multisite aware. The function now considers whether the user belongs to the current site.
  *
  * @param string $context   Request context.
  * @param int    $object_id User ID.
+=======
+ * @param string $context   Request context.
+ * @param int    $object_id Post ID.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * @return bool
  */
 function wc_rest_check_user_permissions( $context = 'read', $object_id = 0 ) {
 	$contexts = array(
 		'read'   => 'list_users',
+<<<<<<< HEAD
 		'create' => 'create_customers',
+=======
+		'create' => 'promote_users', // Check if current user can create users, shop managers are not allowed to create users.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'edit'   => 'edit_users',
 		'delete' => 'delete_users',
 		'batch'  => 'promote_users',
@@ -283,6 +295,7 @@ function wc_rest_check_user_permissions( $context = 'read', $object_id = 0 ) {
 		$permission = current_user_can( $contexts[ $context ], $object_id );
 	}
 
+<<<<<<< HEAD
 	// Possibly revoke $permission if the user is 'out of bounds' from a multisite-network perspective.
 	if ( $permission && ! Users::get_user_in_current_site( $object_id ) ) {
 		$permission = false;
@@ -299,6 +312,8 @@ function wc_rest_check_user_permissions( $context = 'read', $object_id = 0 ) {
 	 * @param int    $object_id   Object ID. This could be a user ID, order ID, post ID, etc.
 	 * @param string $object_type Type of object ('user', 'shop_order', etc) for which checks are being made.
 	 */
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	return apply_filters( 'woocommerce_rest_check_permissions', $permission, $context, $object_id, 'user' );
 }
 

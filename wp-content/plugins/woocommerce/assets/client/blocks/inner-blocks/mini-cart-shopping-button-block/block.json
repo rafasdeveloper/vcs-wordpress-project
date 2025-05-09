@@ -12,8 +12,12 @@
 		"inserter": true,
 		"color": {
 			"text": true,
+<<<<<<< HEAD
 			"background": true,
 			"__experimentalSkipSerialization": true
+=======
+			"background": true
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	},
 	"attributes": {

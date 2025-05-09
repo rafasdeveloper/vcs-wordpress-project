@@ -5,7 +5,11 @@ namespace Automattic\WooCommerce\Internal\ProductAttributesLookup;
 use WP_CLI;
 
 /**
+<<<<<<< HEAD
  * Command line tools to handle the regeneration of the product attributes lookup table.
+=======
+ * Command line tools to handle the regeneration of the product aatributes lookup table.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class CLIRunner {
 

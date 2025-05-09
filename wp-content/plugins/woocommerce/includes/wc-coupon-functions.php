@@ -72,6 +72,7 @@ function wc_coupons_enabled() {
 }
 
 /**
+<<<<<<< HEAD
  * Check if two coupon codes are the same.
  * Lowercasing to ensure case-insensitive comparison.
  *
@@ -86,6 +87,8 @@ function wc_is_same_coupon( $coupon_1, $coupon_2 ) {
 }
 
 /**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Get coupon code by ID.
  *
  * @since 3.0.0

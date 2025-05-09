@@ -22,6 +22,7 @@ jQuery( function ( $ ) {
 		$( '.woocommerce-store-notice' ).hide();
 	} else {
 		$( '.woocommerce-store-notice' ).show();
+<<<<<<< HEAD
 		/**
 		 * After adding the role="button" attribute to the 
 		 * .woocommerce-store-notice__dismiss-link element, 
@@ -48,6 +49,19 @@ jQuery( function ( $ ) {
 			.on( 'click', store_notice_click_handler )
 			.on( 'keydown', store_notice_keydown_handler );
 	}
+=======
+	}
+
+	// Set a cookie and hide the store notice when the dismiss button is clicked
+	$( '.woocommerce-store-notice__dismiss-link' ).on(
+		'click',
+		function ( event ) {
+			Cookies.set( cookieName, 'hidden', { path: '/' } );
+			$( '.woocommerce-store-notice' ).hide();
+			event.preventDefault();
+		}
+	);
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	// Make form field descriptions toggle on focus.
 	if ( $( '.woocommerce-input-wrapper span.description' ).length ) {
@@ -123,12 +137,25 @@ jQuery( function ( $ ) {
 	$( '.password-input' ).each( function () {
 		const describedBy = $( this ).find( 'input' ).attr( 'id' );
 		$( this ).append(
+<<<<<<< HEAD
 			'<button type="button" class="show-password-input" aria-label="' +
+=======
+			'<button class="show-password-input" aria-label="' +
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				woocommerce_params.i18n_password_show +
 				'" aria-describedBy="' +
 				describedBy +
 				'"></button>'
 		);
+<<<<<<< HEAD
+=======
+
+		$( this ).on( 'keydown', function ( event ) {
+			if ( 'Enter' === event.key ) {
+				event.preventDefault();
+			}
+		} );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	} );
 
 	$( '.show-password-input' ).on( 'click', function ( event ) {
@@ -160,6 +187,18 @@ jQuery( function ( $ ) {
 		$( this ).siblings( 'input' ).focus();
 	} );
 
+<<<<<<< HEAD
+=======
+	$( '#customer_login .password-input' ).on( 'keydown', function ( event ) {
+		if ( 'Enter' === event.key ) {
+			$( this )
+				.closest( 'form' )
+				.find( '[type=submit]' )
+				.click();
+		}
+	} );
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	$( 'a.coming-soon-footer-banner-dismiss' ).on( 'click', function ( e ) {
 		var target = $( e.target );
 		$.ajax( {
@@ -182,6 +221,7 @@ jQuery( function ( $ ) {
 		} );
 	} );
 
+<<<<<<< HEAD
 	// If the "Enable AJAX add to cart buttons on archives" setting is disabled
 	// the add-to-cart.js file won't be loaded, so we need to add the event listener here.
 	if ( typeof wc_add_to_cart_params === 'undefined') {
@@ -204,6 +244,12 @@ function on_keydown_remove_from_cart( event ) {
 }
 
 /**
+=======
+	$( document.body ).on( 'item_removed_from_classic_cart', focus_populate_live_region );
+} );
+
+/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Focus on the first notice element on the page.
  *
  * Populated live regions don't always are announced by screen readers.
@@ -243,11 +289,16 @@ function focus_populate_live_region() {
  */
 function refresh_sorted_by_live_region() {
 	var sorted_by_live_region = document.querySelector(
+<<<<<<< HEAD
 		'.woocommerce-result-count'
+=======
+		'.woocommerce-result-count[data-is-sorted-by="true"]'
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	);
 
 	if ( sorted_by_live_region ) {
 		var text = sorted_by_live_region.innerHTML;
+<<<<<<< HEAD
 		sorted_by_live_region.setAttribute('aria-hidden', 'true');
 		
 		var sorted_by_live_region_id = setTimeout( function () {
@@ -256,6 +307,14 @@ function refresh_sorted_by_live_region() {
 			sorted_by_live_region.innerHTML = text;
 			clearTimeout( sorted_by_live_region_id );
 		}, 2000 );
+=======
+
+		var sorted_by_live_region_id = setTimeout( function () {
+			sorted_by_live_region.innerHTML = '';
+			sorted_by_live_region.innerHTML = text;
+			clearTimeout( sorted_by_live_region_id );
+		}, 1000 );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }
 

@@ -33,11 +33,14 @@ class WC_Admin_Status {
 	 * Handles output of report.
 	 */
 	public static function status_report() {
+<<<<<<< HEAD
 		// Used by the report template.
 		if ( ! class_exists( 'WC_Plugin_Updates' ) ) {
 			include_once __DIR__ . '/plugin-updates/class-wc-plugin-updates.php';
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		include_once __DIR__ . '/views/html-admin-page-status-report.php';
 	}
 

@@ -37,6 +37,17 @@ final class WC_Cart_Totals {
 	protected $cart;
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Reference to customer object.
+	 *
+	 * @since 3.2.0
+	 * @var array
+	 */
+	protected $customer;
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Line items to calculate.
 	 *
 	 * @since 3.2.0
@@ -129,12 +140,17 @@ final class WC_Cart_Totals {
 			throw new Exception( 'A valid WC_Cart object is required' );
 		}
 
+<<<<<<< HEAD
 		// Check if customer is VAT exempt, if customer is defined.
 		$customer               = $cart->get_customer();
 		$is_customer_vat_exempt = $customer && $customer->get_is_vat_exempt();
 
 		$this->cart          = $cart;
 		$this->calculate_tax = wc_tax_enabled() && ! $is_customer_vat_exempt;
+=======
+		$this->cart          = $cart;
+		$this->calculate_tax = wc_tax_enabled() && ! $cart->get_customer()->get_is_vat_exempt();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->calculate();
 	}
 
@@ -342,10 +358,15 @@ final class WC_Cart_Totals {
 				$shipping_line->tax_class = get_option( 'woocommerce_shipping_tax_class', 'inherit' );
 				$shipping_line->taxable   = true;
 				$shipping_line->total     = wc_add_number_precision_deep( $shipping_object->cost );
+<<<<<<< HEAD
 				$shipping_line->taxes     = array_map(
 					array( $this, 'round_item_subtotal' ),
 					wc_add_number_precision_deep( $shipping_object->taxes, false )
 				);
+=======
+				$shipping_line->taxes     = wc_add_number_precision_deep( $shipping_object->taxes, false );
+				$shipping_line->taxes     = array_map( array( $this, 'round_item_subtotal' ), $shipping_line->taxes );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$shipping_line->total_tax = array_sum( $shipping_line->taxes );
 				return $shipping_line;
 			},
@@ -660,6 +681,7 @@ final class WC_Cart_Totals {
 			$item->total_tax = 0;
 
 			if ( has_filter( 'woocommerce_get_discounted_price' ) ) {
+<<<<<<< HEAD
 				$item->total = wc_add_number_precision(
 					/**
 					 * Allow plugins to filter this price like in the legacy cart class.
@@ -671,6 +693,17 @@ final class WC_Cart_Totals {
 					 * @since 3.2.0
 					 */
 					(float) apply_filters( 'woocommerce_get_discounted_price', wc_remove_number_precision( $item->total ), $item->object, $this->cart )
+=======
+				/**
+				 * Allow plugins to filter this price like in the legacy cart class.
+				 *
+				 * This is legacy and should probably be deprecated in the future.
+				 * $item->object is the cart item object.
+				 * $this->cart is the cart object.
+				 */
+				$item->total = wc_add_number_precision(
+					apply_filters( 'woocommerce_get_discounted_price', wc_remove_number_precision( $item->total ), $item->object, $this->cart )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				);
 			}
 
@@ -718,8 +751,12 @@ final class WC_Cart_Totals {
 		$merged_subtotal_taxes = array(); // Taxes indexed by tax rate ID for storage later.
 
 		$adjust_non_base_location_prices = apply_filters( 'woocommerce_adjust_non_base_location_prices', true );
+<<<<<<< HEAD
 		$customer                        = $this->cart->get_customer();
 		$is_customer_vat_exempt          = $customer && $customer->get_is_vat_exempt();
+=======
+		$is_customer_vat_exempt          = $this->cart->get_customer()->get_is_vat_exempt();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $this->items as $item_key => $item ) {
 			if ( $item->price_includes_tax ) {

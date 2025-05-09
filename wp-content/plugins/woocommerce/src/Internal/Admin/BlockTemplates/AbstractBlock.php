@@ -92,7 +92,11 @@ class AbstractBlock implements BlockInterface {
 	 * @throws \ValueError If the block configuration is invalid.
 	 * @throws \ValueError If the parent block container does not belong to the same template as the block.
 	 */
+<<<<<<< HEAD
 	public function __construct( array $config, BlockTemplateInterface &$root_template, ?ContainerInterface &$parent = null ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.parentFound
+=======
+	public function __construct( array $config, BlockTemplateInterface &$root_template, ContainerInterface &$parent = null ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->validate( $config, $root_template, $parent );
 
 		$this->root_template = $root_template;
@@ -137,7 +141,11 @@ class AbstractBlock implements BlockInterface {
 	 * @throws \ValueError If the block configuration is invalid.
 	 * @throws \ValueError If the parent block container does not belong to the same template as the block.
 	 */
+<<<<<<< HEAD
 	protected function validate( array $config, BlockTemplateInterface &$root_template, ?ContainerInterface &$parent = null ) { // phpcs:ignore Universal.NamingConventions.NoReservedKeywordParameterNames.parentFound
+=======
+	protected function validate( array $config, BlockTemplateInterface &$root_template, ContainerInterface &$parent = null ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( isset( $parent ) && ( $parent->get_root_template() !== $root_template ) ) {
 			throw new \ValueError( 'The parent block must belong to the same template as the block.' );
 		}

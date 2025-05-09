@@ -12,17 +12,28 @@
  *
  * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails
+<<<<<<< HEAD
  * @version 10.0.0
+=======
+ * @version 9.8.0
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
 if ( ! defined( 'ABSPATH' ) ) {
+<<<<<<< HEAD
 	exit; // Exit if accessed directly.
 }
 
 $email_improvements_enabled = FeaturesUtil::feature_is_enabled( 'email_improvements' );
 $store_name                 = $store_name ?? get_bloginfo( 'name', 'display' );
+=======
+	exit; // Exit if accessed directly
+}
+
+$email_improvements_enabled = FeaturesUtil::feature_is_enabled( 'email_improvements' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +41,11 @@ $store_name                 = $store_name ?? get_bloginfo( 'name', 'display' );
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo( 'charset' ); ?>" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<<<<<<< HEAD
 		<title><?php echo esc_html( $store_name ); ?></title>
+=======
+		<title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	</head>
 	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
 		<table width="100%" id="outer_wrapper">
@@ -60,9 +75,15 @@ $store_name                 = $store_name ?? get_bloginfo( 'name', 'display' );
 												<td id="template_header_image">
 													<?php
 													if ( $img ) {
+<<<<<<< HEAD
 														echo '<p style="margin-top:0;"><img src="' . esc_url( $img ) . '" alt="' . esc_attr( $store_name ) . '" /></p>';
 													} else {
 														echo '<p class="email-logo-text">' . esc_html( $store_name ) . '</p>';
+=======
+														echo '<p style="margin-top:0;"><img src="' . esc_url( $img ) . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" /></p>';
+													} else {
+														echo '<p class="email-logo-text">' . esc_html( get_bloginfo( 'name', 'display' ) ) . '</p>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 													}
 													?>
 												</td>
@@ -72,7 +93,11 @@ $store_name                 = $store_name ?? get_bloginfo( 'name', 'display' );
 										<div id="template_header_image">
 											<?php
 											if ( $img ) {
+<<<<<<< HEAD
 												echo '<p style="margin-top:0;"><img src="' . esc_url( $img ) . '" alt="' . esc_attr( $store_name ) . '" /></p>';
+=======
+												echo '<p style="margin-top:0;"><img src="' . esc_url( $img ) . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" /></p>';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 											}
 											?>
 										</div>

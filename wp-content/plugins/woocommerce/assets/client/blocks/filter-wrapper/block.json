@@ -1,5 +1,6 @@
 {
 	"name": "woocommerce/filter-wrapper",
+<<<<<<< HEAD
 	"title": "Filter Block",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],
@@ -9,6 +10,14 @@
 		},
 		"inserter": false
 	},
+=======
+	"version": "1.0.0",
+	"title": "Filter Block",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"attributes": {
 		"filterType": {
 			"type": "string"
@@ -20,4 +29,8 @@
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

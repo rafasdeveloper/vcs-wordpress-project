@@ -398,7 +398,11 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 		$this->update_intervals_sql_params( $query_args, $db_interval_count, $expected_interval_count, $table_name );
 		$this->interval_query->add_sql_clause( 'order_by', $this->get_sql_clause( 'order_by' ) );
 		$this->interval_query->add_sql_clause( 'limit', $this->get_sql_clause( 'limit' ) );
+<<<<<<< HEAD
 		$this->interval_query->add_sql_clause( 'select', ", MAX({$table_name}.{$this->date_column_name}) AS datetime_anchor" );
+=======
+		$this->interval_query->add_sql_clause( 'select', ", MAX({$table_name}.date_created) AS datetime_anchor" );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( '' !== $selections ) {
 			$this->interval_query->add_sql_clause( 'select', ', ' . $selections );
 		}

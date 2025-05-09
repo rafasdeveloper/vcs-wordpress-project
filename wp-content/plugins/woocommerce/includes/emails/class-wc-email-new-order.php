@@ -55,7 +55,11 @@ if ( ! class_exists( 'WC_Email_New_Order' ) ) :
 
 			// Must be after parent's constructor which sets `email_improvements_enabled` property.
 			$this->description = $this->email_improvements_enabled
+<<<<<<< HEAD
 				? __( 'Receive an email notification every time a new order is placed', 'woocommerce' )
+=======
+				? __( 'Choose who gets notified when a new order is received.', 'woocommerce' )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				: __( 'New order emails are sent to chosen recipient(s) when a new order is received.', 'woocommerce' );
 
 			// Other settings.
@@ -70,7 +74,11 @@ if ( ! class_exists( 'WC_Email_New_Order' ) ) :
 		 */
 		public function get_default_subject() {
 			return $this->email_improvements_enabled
+<<<<<<< HEAD
 				? __( '[{site_title}]: You\'ve got a new order: #{order_number}', 'woocommerce' )
+=======
+				? __( '[{site_title}]: Cha-ching! You’ve got a new order: #{order_number}', 'woocommerce' )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				: __( '[{site_title}]: New order #{order_number}', 'woocommerce' );
 		}
 
@@ -167,6 +175,7 @@ if ( ! class_exists( 'WC_Email_New_Order' ) ) :
 			);
 		}
 
+<<<<<<< HEAD
 
 		/**
 		 * Get block editor email template content.
@@ -186,6 +195,8 @@ if ( ! class_exists( 'WC_Email_New_Order' ) ) :
 		}
 
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Default content to show below main email content.
 		 *

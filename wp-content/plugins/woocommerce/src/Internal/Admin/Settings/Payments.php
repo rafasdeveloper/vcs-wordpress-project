@@ -3,8 +3,12 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\Admin\Settings;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Admin\Suggestions\PaymentsExtensionSuggestions as ExtensionSuggestions;
 use Automattic\WooCommerce\Internal\Logging\SafeGlobalFunctionProxy;
+=======
+use Automattic\WooCommerce\Internal\Admin\Suggestions\PaymentExtensionSuggestions as ExtensionSuggestions;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Exception;
 
 defined( 'ABSPATH' ) || exit;
@@ -13,6 +17,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Payments {
 
+<<<<<<< HEAD
 	const PAYMENTS_NOX_PROFILE_KEY              = 'woocommerce_payments_nox_profile';
 	const PAYMENTS_PROVIDER_STATE_SNAPSHOTS_KEY = 'woocommerce_payments_provider_state_snapshots';
 
@@ -32,6 +37,18 @@ class Payments {
 	 * @var PaymentsProviders
 	 */
 	private PaymentsProviders $providers;
+=======
+	const PAYMENTS_NOX_PROFILE_KEY = 'woocommerce_payments_nox_profile';
+
+	const SUGGESTIONS_CONTEXT = 'wc_settings_payments';
+
+	/**
+	 * The payment providers service.
+	 *
+	 * @var PaymentProviders
+	 */
+	private PaymentProviders $providers;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * The payment extension suggestions service.
@@ -43,12 +60,20 @@ class Payments {
 	/**
 	 * Initialize the class instance.
 	 *
+<<<<<<< HEAD
 	 * @param PaymentsProviders    $payment_providers             The payment providers service.
+=======
+	 * @param PaymentProviders     $payment_providers             The payment providers service.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @param ExtensionSuggestions $payment_extension_suggestions The payment extension suggestions service.
 	 *
 	 * @internal
 	 */
+<<<<<<< HEAD
 	final public function init( PaymentsProviders $payment_providers, ExtensionSuggestions $payment_extension_suggestions ): void {
+=======
+	final public function init( PaymentProviders $payment_providers, ExtensionSuggestions $payment_extension_suggestions ): void {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->providers             = $payment_providers;
 		$this->extension_suggestions = $payment_extension_suggestions;
 	}
@@ -56,6 +81,7 @@ class Payments {
 	/**
 	 * Get the payment provider details list for the settings page.
 	 *
+<<<<<<< HEAD
 	 * @param string $location    The location for which the providers are being determined.
 	 *                            This is an ISO 3166-1 alpha-2 country code.
 	 * @param bool   $for_display Whether the payment providers list is intended for display purposes or
@@ -65,12 +91,21 @@ class Payments {
 	 *                            should be shown to the user on the Payments Settings page.
 	 *                            This complication is for backward compatibility as it relates to legacy settings hooks
 	 *                            being fired or not.
+=======
+	 * @param string $location The location for which the providers are being determined.
+	 *                         This is a ISO 3166-1 alpha-2 country code.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @return array The payment providers details list.
 	 * @throws Exception If there are malformed or invalid suggestions.
 	 */
+<<<<<<< HEAD
 	public function get_payment_providers( string $location, bool $for_display = true ): array {
 		$payment_gateways = $this->providers->get_payment_gateways( $for_display );
+=======
+	public function get_payment_providers( string $location ): array {
+		$payment_gateways = $this->providers->get_payment_gateways();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$suggestions      = array();
 
 		$providers_order_map = $this->providers->get_order_map();
@@ -90,6 +125,7 @@ class Payments {
 					return $a['_priority'] <=> $b['_priority'];
 				}
 			);
+<<<<<<< HEAD
 			$last_preferred_order = -1;
 			foreach ( $suggestions['preferred'] as $suggestion ) {
 				$suggestion_order_map_id = $this->providers->get_suggestion_order_map_id( $suggestion['id'] );
@@ -106,12 +142,26 @@ class Payments {
 					// Save the preferred provider's order to know where we should be inserting next.
 					// But only if the last preferred order is less than the current one.
 					$last_preferred_order = $providers_order_map[ $suggestion_order_map_id ];
+=======
+			$added_to_top = 0;
+			foreach ( $suggestions['preferred'] as $suggestion ) {
+				$suggestion_order_map_id = $this->providers->get_suggestion_order_map_id( $suggestion['id'] );
+				// Determine the suggestion's order value.
+				// If we don't have an order for it, add it to the top but keep the relative order (PSP first, APM second).
+				if ( ! isset( $providers_order_map[ $suggestion_order_map_id ] ) ) {
+					$providers_order_map = Utils::order_map_add_at_order( $providers_order_map, $suggestion_order_map_id, $added_to_top );
+					++$added_to_top;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 
 				// Change suggestion details to align it with a regular payment gateway.
 				$suggestion['_suggestion_id'] = $suggestion['id'];
 				$suggestion['id']             = $suggestion_order_map_id;
+<<<<<<< HEAD
 				$suggestion['_type']          = PaymentsProviders::TYPE_SUGGESTION;
+=======
+				$suggestion['_type']          = PaymentProviders::TYPE_SUGGESTION;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$suggestion['_order']         = $providers_order_map[ $suggestion_order_map_id ];
 				unset( $suggestion['_priority'] );
 
@@ -134,6 +184,7 @@ class Payments {
 		}
 
 		// Add offline payment methods group entry if we have offline payment methods.
+<<<<<<< HEAD
 		if ( in_array( PaymentsProviders::TYPE_OFFLINE_PM, array_column( $payment_providers, '_type' ), true ) ) {
 			// Determine the item's order value.
 			// If we don't have an order for it, add it to the end.
@@ -147,13 +198,32 @@ class Payments {
 				'_order'      => $providers_order_map[ PaymentsProviders::OFFLINE_METHODS_ORDERING_GROUP ],
 				'title'       => esc_html__( 'Take offline payments', 'woocommerce' ),
 				'description' => esc_html__( 'Accept payments offline using multiple different methods. These can also be used to test purchases.', 'woocommerce' ),
+=======
+		if ( in_array( PaymentProviders::TYPE_OFFLINE_PM, array_column( $payment_providers, '_type' ), true ) ) {
+			// Determine the item's order value.
+			// If we don't have an order for it, add it to the end.
+			if ( ! isset( $providers_order_map[ PaymentProviders::OFFLINE_METHODS_ORDERING_GROUP ] ) ) {
+				$providers_order_map = Utils::order_map_add_at_order( $providers_order_map, PaymentProviders::OFFLINE_METHODS_ORDERING_GROUP, count( $payment_providers ) );
+			}
+
+			$payment_providers[] = array(
+				'id'          => PaymentProviders::OFFLINE_METHODS_ORDERING_GROUP,
+				'_type'       => PaymentProviders::TYPE_OFFLINE_PMS_GROUP,
+				'_order'      => $providers_order_map[ PaymentProviders::OFFLINE_METHODS_ORDERING_GROUP ],
+				'title'       => __( 'Take offline payments', 'woocommerce' ),
+				'description' => __( 'Accept payments offline using multiple different methods. These can also be used to test purchases.', 'woocommerce' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'icon'        => plugins_url( 'assets/images/payment_methods/cod.svg', WC_PLUGIN_FILE ),
 				// The offline PMs (and their group) are obviously from WooCommerce, and WC is always active.
 				'plugin'      => array(
 					'_type'  => 'wporg',
 					'slug'   => 'woocommerce',
 					'file'   => '', // This pseudo-provider should have no use for the plugin file.
+<<<<<<< HEAD
 					'status' => PaymentsProviders::EXTENSION_ACTIVE,
+=======
+					'status' => PaymentProviders::EXTENSION_ACTIVE,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				),
 				'management'  => array(
 					'_links' => array(
@@ -182,12 +252,15 @@ class Payments {
 			}
 		);
 
+<<<<<<< HEAD
 		// Only process payment provider states if we are displaying the providers.
 		// This is to ensure we don't introduce any performance issues outside the Payments settings page.
 		if ( $for_display ) {
 			$this->process_payment_provider_states( $payment_providers );
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $payment_providers;
 	}
 
@@ -230,11 +303,17 @@ class Payments {
 	/**
 	 * Set the business location country for the Payments settings.
 	 *
+<<<<<<< HEAD
 	 * @param string $location The country code. This should be an ISO 3166-1 alpha-2 country code.
 	 */
 	public function set_country( string $location ): bool {
 		$previous_country = $this->get_country();
 
+=======
+	 * @param string $location The country code. This should be a ISO 3166-1 alpha-2 country code.
+	 */
+	public function set_country( string $location ): bool {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$user_payments_nox_profile = get_user_meta( get_current_user_id(), self::PAYMENTS_NOX_PROFILE_KEY, true );
 
 		if ( empty( $user_payments_nox_profile ) ) {
@@ -244,6 +323,7 @@ class Payments {
 		}
 		$user_payments_nox_profile['business_country_code'] = $location;
 
+<<<<<<< HEAD
 		$result = false !== update_user_meta( get_current_user_id(), self::PAYMENTS_NOX_PROFILE_KEY, $user_payments_nox_profile );
 
 		if ( $result && $previous_country !== $location ) {
@@ -258,6 +338,9 @@ class Payments {
 		}
 
 		return $result;
+=======
+		return false !== update_user_meta( get_current_user_id(), self::PAYMENTS_NOX_PROFILE_KEY, $user_payments_nox_profile );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -268,6 +351,7 @@ class Payments {
 	 * @return bool True if the payment providers ordering was successfully updated, false otherwise.
 	 */
 	public function update_payment_providers_order_map( array $order_map ): bool {
+<<<<<<< HEAD
 		$result = $this->providers->update_payment_providers_order_map( $order_map );
 
 		if ( $result ) {
@@ -281,6 +365,9 @@ class Payments {
 		}
 
 		return $result;
+=======
+		return $this->providers->update_payment_providers_order_map( $order_map );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -288,12 +375,17 @@ class Payments {
 	 *
 	 * This is only an internal recording of attachment. No actual extension installation or activation happens.
 	 *
+<<<<<<< HEAD
 	 * @param string $id The ID of the payment extension suggestion to attach.
+=======
+	 * @param string $id The ID of the payment extension suggestion to hide.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @return bool True if the suggestion was successfully marked as attached, false otherwise.
 	 * @throws Exception If the suggestion ID is invalid.
 	 */
 	public function attach_payment_extension_suggestion( string $id ): bool {
+<<<<<<< HEAD
 		$result = $this->providers->attach_extension_suggestion( $id );
 
 		if ( $result ) {
@@ -307,6 +399,9 @@ class Payments {
 		}
 
 		return $result;
+=======
+		return $this->providers->attach_extension_suggestion( $id );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -318,6 +413,7 @@ class Payments {
 	 * @throws Exception If the suggestion ID is invalid.
 	 */
 	public function hide_payment_extension_suggestion( string $id ): bool {
+<<<<<<< HEAD
 		$result = $this->providers->hide_extension_suggestion( $id );
 
 		if ( $result ) {
@@ -331,6 +427,9 @@ class Payments {
 		}
 
 		return $result;
+=======
+		return $this->providers->hide_extension_suggestion( $id );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -340,12 +439,16 @@ class Payments {
 	 * @param string $incentive_id  The incentive ID.
 	 * @param string $context       Optional. The context in which the incentive should be dismissed.
 	 *                              Default is to dismiss the incentive in all contexts.
+<<<<<<< HEAD
 	 * @param bool   $do_not_track  Optional. If true, the incentive dismissal will not be tracked.
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @return bool True if the incentive was not previously dismissed and now it is.
 	 *              False if the incentive was already dismissed or could not be dismissed.
 	 * @throws Exception If the incentive could not be dismissed due to an error.
 	 */
+<<<<<<< HEAD
 	public function dismiss_extension_suggestion_incentive( string $suggestion_id, string $incentive_id, string $context = 'all', bool $do_not_track = false ): bool {
 		$result = $this->extension_suggestions->dismiss_incentive( $incentive_id, $suggestion_id, $context );
 
@@ -693,5 +796,9 @@ class Payments {
 				);
 			}
 		}
+=======
+	public function dismiss_extension_suggestion_incentive( string $suggestion_id, string $incentive_id, string $context = 'all' ): bool {
+		return $this->extension_suggestions->dismiss_incentive( $incentive_id, $suggestion_id, $context );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

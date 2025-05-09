@@ -8,11 +8,21 @@
  * @version 2.3.0
  */
 
+<<<<<<< HEAD
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 global $wpdb, $wp_version, $wc_uninstalling_plugin;
 
 $wc_uninstalling_plugin = true;
+=======
+use Automattic\WooCommerce\Admin\Notes\Notes;
+use Automattic\WooCommerce\Admin\ReportsSync;
+use Automattic\WooCommerce\Internal\DataStores\Orders\OrdersTableDataStore;
+
+defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
+
+global $wpdb, $wp_version;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 wp_clear_scheduled_hook( 'woocommerce_scheduled_sales' );
 wp_clear_scheduled_hook( 'woocommerce_cancel_unpaid_orders' );
@@ -33,7 +43,11 @@ wp_clear_scheduled_hook( 'wc_admin_unsnooze_admin_notes' );
  */
 if ( defined( 'WC_REMOVE_ALL_DATA' ) && true === WC_REMOVE_ALL_DATA ) {
 	// Load WooCommerce so we can access the container, install routines, etc, during uninstall.
+<<<<<<< HEAD
 	require_once __DIR__ . '/includes/class-wc-install.php';
+=======
+	require_once __DIR__ . '/woocommerce.php';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	// Roles + caps.
 	WC_Install::remove_roles();
@@ -71,6 +85,14 @@ if ( defined( 'WC_REMOVE_ALL_DATA' ) && true === WC_REMOVE_ALL_DATA ) {
 	$wpdb->query( "DELETE FROM {$wpdb->comments} WHERE comment_type IN ( 'order_note' );" );
 	$wpdb->query( "DELETE meta FROM {$wpdb->commentmeta} meta LEFT JOIN {$wpdb->comments} comments ON comments.comment_ID = meta.comment_id WHERE comments.comment_ID IS NULL;" );
 
+<<<<<<< HEAD
+=======
+	foreach ( wc_get_container()->get( OrdersTableDataStore::class )->get_all_table_names() as $cot_table ) {
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$wpdb->query( "DROP TABLE IF EXISTS {$cot_table}" );
+	}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	// Delete terms if > WP 4.2 (term splitting was added in 4.2).
 	if ( version_compare( $wp_version, '4.2', '>=' ) ) {
 		// Delete term taxonomies.
@@ -108,5 +130,8 @@ if ( defined( 'WC_REMOVE_ALL_DATA' ) && true === WC_REMOVE_ALL_DATA ) {
 	// Clear any cached data that has been removed.
 	wp_cache_flush();
 }
+<<<<<<< HEAD
 
 unset( $wc_uninstalling_plugin );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

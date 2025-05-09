@@ -10,8 +10,11 @@
  * @since    3.0.0
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Utilities\Users;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -66,6 +69,7 @@ class WC_REST_Customer_Downloads_V1_Controller extends WC_REST_Controller {
 	 * @return WP_Error|boolean
 	 */
 	public function get_items_permissions_check( $request ) {
+<<<<<<< HEAD
 		$user = Users::get_user_in_current_site( $request['customer_id'] );
 		if ( is_wp_error( $user ) ) {
 			$user->add_data( array( 'status' => 404 ) );
@@ -73,6 +77,16 @@ class WC_REST_Customer_Downloads_V1_Controller extends WC_REST_Controller {
 		}
 
 		if ( ! wc_rest_check_user_permissions( 'read', $user->ID ) ) {
+=======
+		$customer    = new WC_Customer( (int) $request['customer_id'] );
+		$customer_id = $customer->get_id();
+
+		if ( ! $customer_id ) {
+			return new WP_Error( 'woocommerce_rest_customer_invalid', __( 'Resource does not exist.', 'woocommerce' ), array( 'status' => 404 ) );
+		}
+
+		if ( ! wc_rest_check_user_permissions( 'read', $customer_id ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return new WP_Error( 'woocommerce_rest_cannot_view', __( 'Sorry, you cannot list resources.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 

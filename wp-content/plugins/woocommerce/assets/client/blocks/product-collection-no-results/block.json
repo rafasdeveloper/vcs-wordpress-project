@@ -3,6 +3,10 @@
 	"apiVersion": 3,
 	"name": "woocommerce/product-collection-no-results",
 	"title": "No results",
+<<<<<<< HEAD
+=======
+	"version": "1.0.0",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"category": "woocommerce",
 	"description": "The contents of this block will display when there are no products found.",
 	"textdomain": "woocommerce",
@@ -10,9 +14,12 @@
 	"usesContext": [ "queryId", "query" ],
 	"ancestor": [ "woocommerce/product-collection" ],
 	"supports": {
+<<<<<<< HEAD
 		"interactivity": {
 			"clientNavigation": true
 		},
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"align": true,
 		"reusable": false,
 		"html": false,

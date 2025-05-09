@@ -7,9 +7,19 @@ namespace Automattic\WooCommerce\Admin\Features\Blueprint;
 use Automattic\WooCommerce\Blueprint\Exporters\ExportInstallPluginSteps;
 use Automattic\WooCommerce\Blueprint\Exporters\ExportInstallThemeSteps;
 use Automattic\WooCommerce\Blueprint\ExportSchema;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Blueprint\ImportStep;
 use Automattic\WooCommerce\Internal\ComingSoon\ComingSoonHelper;
 use WP_Error;
+=======
+use Automattic\WooCommerce\Blueprint\ImportSchema;
+use Automattic\WooCommerce\Blueprint\ResultFormatters\JsonResultFormatter;
+use Automattic\WooCommerce\Blueprint\ImportStep;
+use Automattic\WooCommerce\Blueprint\StepProcessorResult;
+use Automattic\WooCommerce\Blueprint\ZipExportedSchema;
+use RecursiveArrayIterator;
+use RecursiveIteratorIterator;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class RestApi
@@ -32,6 +42,7 @@ class RestApi {
 	protected $namespace = 'wc-admin';
 
 	/**
+<<<<<<< HEAD
 	 * ComingSoonHelper instance.
 	 *
 	 * @var ComingSoonHelper
@@ -46,6 +57,8 @@ class RestApi {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get maximum allowed file size for blueprint uploads.
 	 *
 	 * @return int Maximum file size in bytes
@@ -73,9 +86,15 @@ class RestApi {
 				array(
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => array( $this, 'export' ),
+<<<<<<< HEAD
 					'permission_callback' => array( $this, 'check_export_permission' ),
 					'args'                => array(
 						'steps' => array(
+=======
+					'permission_callback' => array( $this, 'check_permission' ),
+					'args'                => array(
+						'steps'         => array(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'description' => __( 'A list of plugins to install', 'woocommerce' ),
 							'type'        => 'object',
 							'properties'  => array(
@@ -101,6 +120,15 @@ class RestApi {
 							'default'     => array(),
 							'required'    => true,
 						),
+<<<<<<< HEAD
+=======
+						'export_as_zip' => array(
+							'description' => __( 'Export as a zip file', 'woocommerce' ),
+							'type'        => 'boolean',
+							'default'     => false,
+							'required'    => false,
+						),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					),
 				),
 			)
@@ -113,7 +141,11 @@ class RestApi {
 				array(
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => array( $this, 'import_step' ),
+<<<<<<< HEAD
 					'permission_callback' => array( $this, 'check_import_permission' ),
+=======
+					'permission_callback' => array( $this, 'check_permission' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'args'                => array(
 						'step_definition' => array(
 							'description' => __( 'The step definition to import', 'woocommerce' ),
@@ -125,6 +157,7 @@ class RestApi {
 				'schema' => array( $this, 'get_import_step_response_schema' ),
 			)
 		);
+<<<<<<< HEAD
 
 		register_rest_route(
 			$this->namespace,
@@ -165,6 +198,18 @@ class RestApi {
 			! current_user_can( 'manage_options' )
 		) {
 			return new \WP_Error( 'woocommerce_rest_cannot_view', __( 'Sorry, you cannot import WooCommerce Blueprints.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
+=======
+	}
+
+	/**
+	 * Check if the current user has permission to perform the request.
+	 *
+	 * @return bool|\WP_Error
+	 */
+	public function check_permission() {
+		if ( ! current_user_can( 'install_plugins' ) ) {
+			return new \WP_Error( 'woocommerce_rest_cannot_view', __( 'Sorry, you cannot list resources.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return true;
 	}
@@ -179,10 +224,18 @@ class RestApi {
 		$payload = $request->get_param( 'steps' );
 		$steps   = $this->steps_payload_to_blueprint_steps( $payload );
 
+<<<<<<< HEAD
 		$exporter = new ExportSchema();
 
 		if ( isset( $payload['plugins'] ) ) {
 			$exporter->on_before_export(
+=======
+		$export_as_zip = $request->get_param( 'export_as_zip' );
+		$exporter      = new ExportSchema();
+
+		if ( isset( $payload['plugins'] ) ) {
+			$exporter->onBeforeExport(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'installPlugin',
 				function ( ExportInstallPluginSteps $exporter ) use ( $payload ) {
 					$exporter->filter(
@@ -195,7 +248,11 @@ class RestApi {
 		}
 
 		if ( isset( $payload['themes'] ) ) {
+<<<<<<< HEAD
 			$exporter->on_before_export(
+=======
+			$exporter->onBeforeExport(
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'installTheme',
 				function ( ExportInstallThemeSteps $exporter ) use ( $payload ) {
 					$exporter->filter(
@@ -207,16 +264,29 @@ class RestApi {
 			);
 		}
 
+<<<<<<< HEAD
 		$data = $exporter->export( $steps );
 
 		if ( is_wp_error( $data ) ) {
 			return new \WP_REST_Response( $data, 400 );
+=======
+		$data = $exporter->export( $steps, $export_as_zip );
+
+		if ( $export_as_zip ) {
+			$zip  = new ZipExportedSchema( $data );
+			$data = $zip->zip();
+			$data = site_url( str_replace( ABSPATH, '', $data ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return new \WP_HTTP_Response(
 			array(
 				'data' => $data,
+<<<<<<< HEAD
 				'type' => 'json',
+=======
+				'type' => $export_as_zip ? 'zip' : 'json',
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		);
 	}
@@ -242,6 +312,7 @@ class RestApi {
 	private function steps_payload_to_blueprint_steps( $steps ) {
 		$blueprint_steps = array();
 
+<<<<<<< HEAD
 		if ( isset( $steps['settings'] ) && count( $steps['settings'] ) > 0 ) {
 			$blueprint_steps = array_merge( $blueprint_steps, $steps['settings'] );
 		}
@@ -251,17 +322,63 @@ class RestApi {
 		}
 
 		if ( isset( $steps['themes'] ) && count( $steps['themes'] ) > 0 ) {
+=======
+		if ( isset( $steps['settings'] ) ) {
+			$blueprint_steps = array_merge( $blueprint_steps, $steps['settings'] );
+		}
+
+		if ( isset( $steps['plugins'] ) ) {
+			$blueprint_steps[] = 'installPlugin';
+		}
+
+		if ( isset( $steps['themes'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$blueprint_steps[] = 'installTheme';
 		}
 
 		return $blueprint_steps;
 	}
 
+<<<<<<< HEAD
+=======
+
+	/**
+	 * Get list of settings that will be overridden by the import.
+	 *
+	 * @param array $requested_steps List of steps from the import schema.
+	 * @return array List of settings that will be overridden.
+	 */
+	private function get_settings_to_overwrite( array $requested_steps ): array {
+		$settings_map = array(
+			'setWCSettings'            => __( 'Settings', 'woocommerce' ),
+			'setWCCoreProfilerOptions' => __( 'Core Profiler Options', 'woocommerce' ),
+			'setWCPaymentGateways'     => __( 'Payment Gateways', 'woocommerce' ),
+			'setWCShipping'            => __( 'Shipping', 'woocommerce' ),
+			'setWCTaskOptions'         => __( 'Task Options', 'woocommerce' ),
+			'setWCTaxRates'            => __( 'Tax Rates', 'woocommerce' ),
+			'installPlugin'            => __( 'Plugins', 'woocommerce' ),
+			'installTheme'             => __( 'Themes', 'woocommerce' ),
+		);
+
+		$settings = array();
+		foreach ( $requested_steps as $step ) {
+			$step_name = $step->meta->alias ?? $step->step;
+			if ( isset( $settings_map[ $step_name ] )
+			&& ! in_array( $settings_map[ $step_name ], $settings, true ) ) {
+				$settings[] = $settings_map[ $step_name ];
+			}
+		}
+
+		return $settings;
+	}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Import a single step.
 	 *
 	 * @param \WP_REST_Request $request The request object.
 	 *
+<<<<<<< HEAD
 	 * @return \WP_REST_Response|array
 	 */
 	public function import_step( \WP_REST_Request $request ) {
@@ -288,6 +405,11 @@ class RestApi {
 			set_transient( 'blueprint_import_session_' . $session_token, true, 10 * MINUTE_IN_SECONDS );
 		}
 
+=======
+	 * @return array
+	 */
+	public function import_step( \WP_REST_Request $request ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Get the raw body size.
 		$body_size = strlen( $request->get_body() );
 		if ( $body_size > $this->get_max_file_size() ) {
@@ -311,6 +433,7 @@ class RestApi {
 		$step_importer   = new ImportStep( $step_definition );
 		$result          = $step_importer->import();
 
+<<<<<<< HEAD
 		$response = new \WP_REST_Response(
 			array(
 				'success'  => $result->is_success(),
@@ -382,6 +505,88 @@ class RestApi {
 		);
 	}
 
+=======
+		return array(
+			'success'  => $result->is_success(),
+			'messages' => $result->get_messages(),
+		);
+	}
+
+
+
+	/**
+	 * Get the schema for the queue endpoint.
+	 *
+	 * @return array
+	 */
+	public function get_queue_response_schema() {
+		$schema = array(
+			'$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'queue',
+			'type'       => 'object',
+			'properties' => array(
+				'reference'             => array(
+					'type' => 'string',
+				),
+				'process_nonce'         => array(
+					'type' => 'string',
+				),
+				'settings_to_overwrite' => array(
+					'type'  => 'array',
+					'items' => array(
+						'type' => 'string',
+					),
+				),
+				'error_type'            => array(
+					'type'    => 'string',
+					'default' => null,
+					'enum'    => array( 'upload', 'schema_validation', 'conflict' ),
+				),
+				'errors'                => array(
+					'type'  => 'array',
+					'items' => array(
+						'type' => 'string',
+					),
+				),
+			),
+		);
+
+		return $schema;
+	}
+
+	/**
+	 * Get the schema for the process endpoint.
+	 *
+	 * @return array
+	 */
+	public function get_process_response_schema() {
+		$schema = array(
+			'$schema'    => 'http://json-schema.org/draft-04/schema#',
+			'title'      => 'process',
+			'type'       => 'object',
+			'properties' => array(
+				'processed' => array(
+					'type' => 'boolean',
+				),
+				'message'   => array(
+					'type' => 'string',
+				),
+				'data'      => array(
+					'type'       => 'object',
+					'properties' => array(
+						'redirect' => array(
+							'type' => 'string',
+						),
+						'result'   => array(
+							'type' => 'array',
+						),
+					),
+				),
+			),
+		);
+		return $schema;
+	}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Get the schema for the import-step endpoint.

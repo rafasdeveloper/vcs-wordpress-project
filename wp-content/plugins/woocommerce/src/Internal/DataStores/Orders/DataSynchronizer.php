@@ -114,6 +114,7 @@ class DataSynchronizer implements BatchProcessorInterface {
 		if ( self::BACKGROUND_SYNC_MODE_CONTINUOUS === $this->get_background_sync_mode() ) {
 			add_action( 'shutdown', array( $this, 'handle_continuous_background_sync' ) );
 		}
+<<<<<<< HEAD
 
 		if ( defined( 'WC_PLUGIN_BASENAME' ) ) {
 			add_action(
@@ -123,6 +124,8 @@ class DataSynchronizer implements BatchProcessorInterface {
 				}
 			);
 		}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -479,6 +482,11 @@ class DataSynchronizer implements BatchProcessorInterface {
 	 * @param bool $use_cache Whether to use the cached value instead of fetching from database.
 	 */
 	public function get_current_orders_pending_sync_count( $use_cache = false ): int {
+<<<<<<< HEAD
+=======
+		global $wpdb;
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( $use_cache ) {
 			$pending_count = wp_cache_get( 'woocommerce_hpos_pending_sync_count', 'counts' );
 			if ( false !== $pending_count ) {
@@ -486,6 +494,7 @@ class DataSynchronizer implements BatchProcessorInterface {
 			}
 		}
 
+<<<<<<< HEAD
 		$pending_count = $this->query_orders_pending_sync_count();
 
 		wp_cache_set( 'woocommerce_hpos_pending_sync_count', $pending_count, 'counts' );
@@ -526,16 +535,21 @@ class DataSynchronizer implements BatchProcessorInterface {
 	private function query_orders_pending_sync_count( $full_count = true ) {
 		global $wpdb;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$order_post_types = wc_get_order_types( 'cot-migration' );
 
 		$order_post_type_placeholder = implode( ', ', array_fill( 0, count( $order_post_types ), '%s' ) );
 
 		$orders_table = $this->data_store::get_orders_table_name();
 
+<<<<<<< HEAD
 		$count_clause = $full_count ? 'COUNT(1)' : '1';
 
 		$limit_clause = $full_count ? '' : 'LIMIT 1';
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( empty( $order_post_types ) ) {
 			$this->error_logger->debug(
 				sprintf(
@@ -553,7 +567,11 @@ class DataSynchronizer implements BatchProcessorInterface {
 		if ( ! $this->get_table_exists() ) {
 			$count = $wpdb->get_var(
 				$wpdb->prepare(
+<<<<<<< HEAD
 					"SELECT $count_clause FROM $wpdb->posts where post_type in ( $order_post_type_placeholder )",
+=======
+					"SELECT COUNT(*) FROM $wpdb->posts where post_type in ( $order_post_type_placeholder )",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$order_post_types
 				)
 			);
@@ -563,25 +581,41 @@ class DataSynchronizer implements BatchProcessorInterface {
 		if ( $this->custom_orders_table_is_authoritative() ) {
 			$missing_orders_count_sql = $wpdb->prepare(
 				"
+<<<<<<< HEAD
 SELECT $count_clause FROM $wpdb->posts posts
 RIGHT JOIN $orders_table orders ON posts.ID=orders.id
 WHERE (posts.post_type IS NULL OR posts.post_type = '" . self::PLACEHOLDER_ORDER_POST_TYPE . "')
  AND orders.status NOT IN ( 'auto-draft' )
  AND orders.type IN ($order_post_type_placeholder)
 $limit_clause",
+=======
+SELECT COUNT(1) FROM $wpdb->posts posts
+RIGHT JOIN $orders_table orders ON posts.ID=orders.id
+WHERE (posts.post_type IS NULL OR posts.post_type = '" . self::PLACEHOLDER_ORDER_POST_TYPE . "')
+ AND orders.status NOT IN ( 'auto-draft' )
+ AND orders.type IN ($order_post_type_placeholder)",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$order_post_types
 			);
 			$operator                 = '>';
 		} else {
 			$missing_orders_count_sql = $wpdb->prepare(
 				"
+<<<<<<< HEAD
 SELECT $count_clause FROM $wpdb->posts posts
+=======
+SELECT COUNT(1) FROM $wpdb->posts posts
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 LEFT JOIN $orders_table orders ON posts.ID=orders.id
 WHERE
   posts.post_type in ($order_post_type_placeholder)
   AND posts.post_status != 'auto-draft'
+<<<<<<< HEAD
   AND orders.id IS NULL
 $limit_clause",
+=======
+  AND orders.id IS NULL",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$order_post_types
 			);
 
@@ -612,12 +646,20 @@ SELECT(
 
 		$deleted_count  = $wpdb->get_var(
 			$wpdb->prepare(
+<<<<<<< HEAD
 				"SELECT $count_clause FROM {$wpdb->prefix}wc_orders_meta WHERE meta_key=%s AND meta_value=%s",
+=======
+				"SELECT count(1) FROM {$wpdb->prefix}wc_orders_meta WHERE meta_key=%s AND meta_value=%s",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				array( self::DELETED_RECORD_META_KEY, $deleted_from_table )
 			)
 		);
 		$pending_count += $deleted_count;
 
+<<<<<<< HEAD
+=======
+		wp_cache_set( 'woocommerce_hpos_pending_sync_count', $pending_count, 'counts' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $pending_count;
 	}
 

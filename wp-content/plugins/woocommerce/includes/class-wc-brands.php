@@ -38,7 +38,11 @@ class WC_Brands {
 		add_action( 'woocommerce_register_taxonomy', array( __CLASS__, 'init_taxonomy' ) );
 		add_action( 'widgets_init', array( $this, 'init_widgets' ) );
 
+<<<<<<< HEAD
 		if ( ! wp_is_block_theme() ) {
+=======
+		if ( ! wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			add_filter( 'template_include', array( $this, 'template_loader' ) );
 		}
 
@@ -567,6 +571,16 @@ class WC_Brands {
 		$alphabet       = apply_filters( 'woocommerce_brands_list_alphabet', range( 'a', 'z' ) );
 		$numbers        = apply_filters( 'woocommerce_brands_list_numbers', '0-9' );
 
+<<<<<<< HEAD
+=======
+		/**
+		 * Check for empty brands and remove them from the list.
+		 */
+		if ( ! $show_empty_brands ) {
+			$terms = $this->remove_terms_with_empty_products( $terms );
+		}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		foreach ( $terms as $term ) {
 			$term_letter = $this->get_brand_name_first_character( $term->name );
 
@@ -665,6 +679,13 @@ class WC_Brands {
 			return;
 		}
 
+<<<<<<< HEAD
+=======
+		if ( $hide_empty ) {
+			$brands = $this->remove_terms_with_empty_products( $brands );
+		}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		ob_start();
 
 		wc_get_template(
@@ -712,7 +733,11 @@ class WC_Brands {
 		$brands = get_terms(
 			'product_brand',
 			array(
+<<<<<<< HEAD
 				'hide_empty' => $hide_empty,
+=======
+				'hide_empty' => $args['hide_empty'],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'orderby'    => $args['orderby'],
 				'exclude'    => $exclude,
 				'number'     => $args['number'],
@@ -724,6 +749,13 @@ class WC_Brands {
 			return;
 		}
 
+<<<<<<< HEAD
+=======
+		if ( $hide_empty ) {
+			$brands = $this->remove_terms_with_empty_products( $brands );
+		}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		ob_start();
 
 		wc_get_template(
@@ -1012,6 +1044,25 @@ class WC_Brands {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Remove terms with empty products.
+	 *
+	 * @param WP_Term[] $terms The terms array that needs to be removed of empty products.
+	 *
+	 * @return WP_Term[]
+	 */
+	private function remove_terms_with_empty_products( $terms ) {
+		return array_filter(
+			$terms,
+			function ( $term ) {
+				return $term->count > 0;
+			}
+		);
+	}
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Invalidates the layered nav counts cache.
 	 *
 	 * @return void

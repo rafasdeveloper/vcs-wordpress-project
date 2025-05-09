@@ -502,9 +502,15 @@ class BlockTemplateUtils {
 	 * @return boolean
 	 */
 	public static function supports_block_templates( $template_type = 'wp_template' ) {
+<<<<<<< HEAD
 		if ( 'wp_template_part' === $template_type && ( wp_is_block_theme() || current_theme_supports( 'block-template-parts' ) ) ) {
 			return true;
 		} elseif ( 'wp_template' === $template_type && wp_is_block_theme() ) {
+=======
+		if ( 'wp_template_part' === $template_type && ( wc_current_theme_is_fse_theme() || current_theme_supports( 'block-template-parts' ) ) ) {
+			return true;
+		} elseif ( 'wp_template' === $template_type && wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return true;
 		}
 		return false;
@@ -691,7 +697,11 @@ class BlockTemplateUtils {
 		$use_blockified_templates = get_option( Options::WC_BLOCK_USE_BLOCKIFIED_PRODUCT_GRID_BLOCK_AS_TEMPLATE );
 
 		if ( false === $use_blockified_templates ) {
+<<<<<<< HEAD
 			return wp_is_block_theme();
+=======
+			return wc_current_theme_is_fse_theme();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return wc_string_to_bool( $use_blockified_templates );
@@ -716,6 +726,7 @@ class BlockTemplateUtils {
 				'core/pattern' === $block['blockName'] &&
 				isset( $block['attrs']['slug'] )
 			) {
+<<<<<<< HEAD
 				$registry = WP_Block_Patterns_Registry::get_instance();
 				$pattern  = $registry->get_registered( $block['attrs']['slug'] );
 				if ( isset( $pattern['content'] ) ) {
@@ -723,6 +734,14 @@ class BlockTemplateUtils {
 					if ( self::has_block_including_patterns( $block_names, $pattern_blocks ) ) {
 						return true;
 					}
+=======
+				$registry       = WP_Block_Patterns_Registry::get_instance();
+				$pattern        = $registry->get_registered( $block['attrs']['slug'] );
+				$pattern_blocks = parse_blocks( $pattern['content'] );
+
+				if ( self::has_block_including_patterns( $block_names, $pattern_blocks ) ) {
+					return true;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 		}

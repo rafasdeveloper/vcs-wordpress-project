@@ -239,7 +239,11 @@ return array(
 	'TO' => __( 'Tonga', 'woocommerce' ),
 	'TT' => __( 'Trinidad and Tobago', 'woocommerce' ),
 	'TN' => __( 'Tunisia', 'woocommerce' ),
+<<<<<<< HEAD
 	'TR' => __( 'Türkiye', 'woocommerce' ),
+=======
+	'TR' => __( 'Turkey', 'woocommerce' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	'TM' => __( 'Turkmenistan', 'woocommerce' ),
 	'TC' => __( 'Turks and Caicos Islands', 'woocommerce' ),
 	'TV' => __( 'Tuvalu', 'woocommerce' ),

@@ -12,7 +12,11 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails\HTML
+<<<<<<< HEAD
  * @version 10.0.0
+=======
+ * @version 9.8.0
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -32,7 +36,11 @@ echo $email_improvements_enabled ? '<div class="email-introduction">' : '';
 $text = __( 'You’ve received the following order from %s:', 'woocommerce' );
 if ( $email_improvements_enabled ) {
 	/* translators: %s: Customer billing full name */
+<<<<<<< HEAD
 	$text = __( 'You’ve received a new order from %s:', 'woocommerce' );
+=======
+	$text = __( 'Woo! You’ve received a new order from %s:', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 ?>
 <p><?php printf( esc_html( $text ), esc_html( $order->get_formatted_billing_full_name() ) ); ?></p>

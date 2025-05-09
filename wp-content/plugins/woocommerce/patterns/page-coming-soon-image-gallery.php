@@ -7,6 +7,10 @@
  * Inserter: false
  */
 
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blocks\Templates\ComingSoonTemplate;
 
 $fonts               = ComingSoonTemplate::get_font_families();
@@ -14,6 +18,7 @@ $heading_font_family = $fonts['heading'];
 $body_font_family    = $fonts['body'];
 
 $featured_image_urls = array(
+<<<<<<< HEAD
 	plugins_url( 'assets/images/pattern-placeholders/gallery-1.jpg', WC_PLUGIN_FILE ),
 	plugins_url( 'assets/images/pattern-placeholders/gallery-2.jpg', WC_PLUGIN_FILE ),
 	plugins_url( 'assets/images/pattern-placeholders/gallery-3.jpg', WC_PLUGIN_FILE ),
@@ -26,6 +31,20 @@ $featured_image_urls = array(
 	plugins_url( 'assets/images/pattern-placeholders/gallery-10.jpg', WC_PLUGIN_FILE ),
 	plugins_url( 'assets/images/pattern-placeholders/gallery-11.jpg', WC_PLUGIN_FILE ),
 	plugins_url( 'assets/images/pattern-placeholders/gallery-12.jpg', WC_PLUGIN_FILE ),
+=======
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-1.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-2.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-3.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-4.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-5.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-6.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-7.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-8.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-9.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-10.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-11.jpg' ),
+	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-12.jpg' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 );
 ?>
 

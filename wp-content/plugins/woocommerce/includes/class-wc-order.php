@@ -8,8 +8,11 @@
 
 use Automattic\WooCommerce\Enums\OrderStatus;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
+<<<<<<< HEAD
 use Automattic\WooCommerce\StoreApi\Utilities\LocalPickupUtils;
 use Automattic\WooCommerce\Utilities\NumberUtil;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 
@@ -117,9 +120,15 @@ class WC_Order extends WC_Abstract_Order {
 	 * Refunds for an order. Use {@see get_refunds()} instead.
 	 *
 	 * @deprecated 2.2.0
+<<<<<<< HEAD
 	 * @var WC_Order_Refund[]
 	 */
 	public $refunds = array();
+=======
+	 * @var stdClass|WC_Order[]
+	 */
+	public $refunds;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * When a payment is complete this function is called.
@@ -416,6 +425,7 @@ class WC_Order extends WC_Abstract_Order {
 	protected function status_transition() {
 		$status_transition = $this->status_transition;
 
+<<<<<<< HEAD
 		$order_persisted       = array() === $this->changes;
 		$order_items_persisted = array() === $this->items_to_delete && array() === array_filter(
 			$this->get_items(),
@@ -428,6 +438,12 @@ class WC_Order extends WC_Abstract_Order {
 		$this->status_transition = false;
 
 		if ( $status_transition && $order_persisted && $order_items_persisted ) {
+=======
+		// Reset status transition variable.
+		$this->status_transition = false;
+
+		if ( $status_transition ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			try {
 				/**
 				 * Fires when order status is changed.
@@ -1700,6 +1716,7 @@ class WC_Order extends WC_Abstract_Order {
 			return false;
 		}
 
+<<<<<<< HEAD
 		/**
 		 * Filter to hide the shipping address for an order.
 		 *
@@ -1708,6 +1725,9 @@ class WC_Order extends WC_Abstract_Order {
 		 * @since 2.7.0
 		 */
 		$hide          = apply_filters( 'woocommerce_order_hide_shipping_address', LocalPickupUtils::get_local_pickup_method_ids(), $this );
+=======
+		$hide          = apply_filters( 'woocommerce_order_hide_shipping_address', array( 'local_pickup' ), $this );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$needs_address = false;
 
 		foreach ( $this->get_shipping_methods() as $shipping_method ) {
@@ -2128,6 +2148,7 @@ class WC_Order extends WC_Abstract_Order {
 	*/
 
 	/**
+<<<<<<< HEAD
 	 * Returns an array of WC_Order_Refund objects for the order.
 	 *
 	 * Utilizes object cache to store refunds to avoid extra DB calls.
@@ -2161,6 +2182,30 @@ class WC_Order extends WC_Abstract_Order {
 				}
 			}
 		}
+=======
+	 * Get order refunds.
+	 *
+	 * @since 2.2
+	 * @return array of WC_Order_Refund objects
+	 */
+	public function get_refunds() {
+		$cache_key   = WC_Cache_Helper::get_cache_prefix( 'orders' ) . 'refunds' . $this->get_id();
+		$cached_data = wp_cache_get( $cache_key, $this->cache_group );
+
+		if ( false !== $cached_data ) {
+			return $cached_data;
+		}
+
+		$this->refunds = wc_get_orders(
+			array(
+				'type'   => 'shop_order_refund',
+				'parent' => $this->get_id(),
+				'limit'  => -1,
+			)
+		);
+
+		wp_cache_set( $cache_key, $this->refunds, $this->cache_group );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return $this->refunds;
 	}
@@ -2291,6 +2336,7 @@ class WC_Order extends WC_Abstract_Order {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Get the "refunded cost" (the combined Cost of Goods Sold of the refunded items) for a line item.
 	 *
 	 * @param  int    $item_id   ID of the item we're checking.
@@ -2314,22 +2360,36 @@ class WC_Order extends WC_Abstract_Order {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the refunded amount for a line item.
 	 *
 	 * @param  int    $item_id   ID of the item we're checking.
 	 * @param  string $item_type Type of the item we're checking, if not a line_item.
+<<<<<<< HEAD
 	 * @return float
+=======
+	 * @return int
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function get_total_refunded_for_item( $item_id, $item_type = 'line_item' ) {
 		$total = 0;
 		foreach ( $this->get_refunds() as $refund ) {
 			foreach ( $refund->get_items( $item_type ) as $refunded_item ) {
 				if ( absint( $refunded_item->get_meta( '_refunded_item_id' ) ) === $item_id ) {
+<<<<<<< HEAD
 					$total += (float) $refunded_item->get_total();
 				}
 			}
 		}
 		return NumberUtil::round( $total * -1, wc_get_price_decimals() );
+=======
+					$total += $refunded_item->get_total();
+				}
+			}
+		}
+		return $total * -1;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -2498,6 +2558,7 @@ class WC_Order extends WC_Abstract_Order {
 	public function has_cogs() {
 		return true;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Calculate the Cost of Goods Sold value for this order
@@ -2521,4 +2582,6 @@ class WC_Order extends WC_Abstract_Order {
 
 		return $value;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -137,9 +137,13 @@ class Manager {
 			add_filter( 'shutdown', array( new Package_Version_Tracker(), 'maybe_update_package_versions' ) );
 		}
 
+<<<<<<< HEAD
 		// This runs on priority 11 - at least one api method in the connection package is set to override a previously
 		// existing method from the Jetpack plugin. Running later than Jetpack's api init ensures the override is successful.
 		add_action( 'rest_api_init', array( $manager, 'initialize_rest_api_registration_connector' ), 11 );
+=======
+		add_action( 'rest_api_init', array( $manager, 'initialize_rest_api_registration_connector' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		( new Nonce_Handler() )->init_schedule();
 
@@ -156,6 +160,7 @@ class Manager {
 		add_action( 'deleted_user', array( $manager, 'disconnect_user_force' ), 9, 1 );
 		add_action( 'remove_user_from_blog', array( $manager, 'disconnect_user_force' ), 9, 1 );
 
+<<<<<<< HEAD
 		// Add hooks for cleaning up account mismatch transients
 		$user_account_status = new User_Account_Status();
 		add_action( 'delete_user', array( $user_account_status, 'clean_account_mismatch_transients' ), 9, 1 );
@@ -163,6 +168,8 @@ class Manager {
 		add_action( 'user_register', array( $user_account_status, 'clean_account_mismatch_transients' ), 9, 1 );
 		add_action( 'profile_update', array( $user_account_status, 'clean_account_mismatch_transients' ), 9, 1 );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$manager->add_connection_status_invalidation_hooks();
 
 		// Set up package version hook.
@@ -198,7 +205,10 @@ class Manager {
 		add_action( 'pre_update_jetpack_option_blog_token', array( $this, 'reset_connection_status' ) );
 		add_action( 'pre_update_jetpack_option_user_token', array( $this, 'reset_connection_status' ) );
 		add_action( 'pre_update_jetpack_option_user_tokens', array( $this, 'reset_connection_status' ) );
+<<<<<<< HEAD
 		// phpcs:ignore WPCUT.SwitchBlog.SwitchBlog -- wpcom flags **every** use of switch_blog, apparently expecting valid instances to ignore or suppress the sniff.
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'switch_blog', array( $this, 'reset_connection_status' ) );
 
 		self::$connection_invalidators_added = true;
@@ -327,7 +337,11 @@ class Manager {
 		nocache_headers();
 		$wp_xmlrpc_server->serve_request();
 
+<<<<<<< HEAD
 		exit( 0 );
+=======
+		exit;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -462,9 +476,14 @@ class Manager {
 
 		if (
 			empty( $token_key )
+<<<<<<< HEAD
 				|| empty( $version )
 				|| (string) $jetpack_api_version !== $version
 		) {
+=======
+		||
+			empty( $version ) || (string) $jetpack_api_version !== $version ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return new \WP_Error( 'malformed_token', 'Malformed token in request', compact( 'signature_details', 'error_type' ) );
 		}
 
@@ -945,31 +964,47 @@ class Manager {
 
 		// Using wp_redirect intentionally because we're redirecting outside.
 		wp_redirect( $this->get_authorization_url( $user, $redirect_url ) ); // phpcs:ignore WordPress.Security.SafeRedirect
+<<<<<<< HEAD
 		exit( 0 );
+=======
+		exit();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Force user disconnect.
 	 *
+<<<<<<< HEAD
 	 * @param int  $user_id Local (external) user ID.
 	 * @param bool $disconnect_all_users Whether to disconnect all users before disconnecting the primary user.
 	 *
 	 * @return bool
 	 */
 	public function disconnect_user_force( $user_id, $disconnect_all_users = false ) {
+=======
+	 * @param int $user_id Local (external) user ID.
+	 *
+	 * @return bool
+	 */
+	public function disconnect_user_force( $user_id ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! (int) $user_id ) {
 			// Missing user ID.
 			return false;
 		}
+<<<<<<< HEAD
 		// If we are disconnecting the primary user we may need to disconnect all other users first
 		if ( $user_id === $this->get_connection_owner_id() && $disconnect_all_users && ! $this->disconnect_all_users_except_primary() ) {
 			return false;
 		}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return $this->disconnect_user( $user_id, true, true );
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Disconnects all users except the primary user.
 	 *
 	 * @return bool
@@ -994,6 +1029,8 @@ class Manager {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Unlinks the current user from the linked WordPress.com user.
 	 *
 	 * @access public
@@ -1024,10 +1061,13 @@ class Manager {
 
 		$is_disconnected_locally = false;
 		if ( $is_disconnected_from_wpcom || $force_disconnect_locally ) {
+<<<<<<< HEAD
 			// Get the WordPress.com email before disconnecting the user
 			$wpcom_user_data = $this->get_connected_user_data( $user_id );
 			$wpcom_email     = isset( $wpcom_user_data['email'] ) ? $wpcom_user_data['email'] : null;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Disconnect the user locally.
 			$is_disconnected_locally = $this->get_tokens()->disconnect_user( $user_id );
 
@@ -1036,12 +1076,15 @@ class Manager {
 				$transient_key = "jetpack_connected_user_data_$user_id";
 				delete_transient( $transient_key );
 
+<<<<<<< HEAD
 				// Clean up account mismatch transients for this user
 				if ( $wpcom_email ) {
 					$user_account_status = new User_Account_Status();
 					$user_account_status->clean_account_mismatch_transients( $wpcom_email );
 				}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				/**
 				 * Fires after the current user has been unlinked from WordPress.com.
 				 *
@@ -1614,6 +1657,7 @@ class Manager {
 				// With site connections in mind, non-admin users can connect their account only if a connection owner exists.
 				$caps = $this->has_connected_owner() ? array( 'read' ) : array( 'manage_options' );
 				break;
+<<<<<<< HEAD
 			case 'jetpack_unlink_user':
 				$is_offline_mode = ( new Status() )->is_offline_mode();
 				if ( $is_offline_mode ) {
@@ -1624,6 +1668,8 @@ class Manager {
 				// Non-admins can always disconnect
 				$caps = array( 'read' );
 				break;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return $caps;
 	}
@@ -2249,8 +2295,11 @@ class Manager {
 
 		( new Nonce_Handler() )->clean_all();
 
+<<<<<<< HEAD
 		Heartbeat::init()->deactivate();
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Fires before a site is disconnected.
 		 *
@@ -2728,8 +2777,11 @@ class Manager {
 	/**
 	 * If the site-level connection is active, add the list of plugins using connection to the heartbeat (except Jetpack itself)
 	 *
+<<<<<<< HEAD
 	 * @since 6.11.0 Add the list of Jetpack package versions to the heartbeat.
 	 *
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @param array $stats The Heartbeat stats array.
 	 * @return array $stats
 	 */
@@ -2746,9 +2798,12 @@ class Manager {
 				$stats[ $stats_group ][] = $plugin_slug;
 			}
 		}
+<<<<<<< HEAD
 
 		$stats['jetpack_package_versions'] = apply_filters( 'jetpack_package_versions', array() );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $stats;
 	}
 

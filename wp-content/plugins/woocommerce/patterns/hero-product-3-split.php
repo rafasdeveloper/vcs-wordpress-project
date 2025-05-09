@@ -5,6 +5,7 @@
  * Categories: WooCommerce, featured-selling
  */
 
+<<<<<<< HEAD
 
 $main_title   = __( 'New: Retro Glass Jug', 'woocommerce' );
 $first_title  = __( 'Timeless elegance', 'woocommerce' );
@@ -14,6 +15,18 @@ $third_title  = __( 'Versatile charm', 'woocommerce' );
 $first_description  = __( 'Elevate your table with a 330ml Retro Glass Jug, blending classic design and durable hardened glass.', 'woocommerce' );
 $second_description = __( 'Crafted from resilient thick glass, this jug ensures lasting quality, making it perfect for everyday use with a touch of vintage charm.', 'woocommerce' );
 $third_description  = __( "The Retro Glass Jug's classic silhouette effortlessly complements any setting, making it the ideal choice for serving beverages with style and flair.", 'woocommerce' );
+=======
+use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
+
+$main_title   = $content['titles'][3]['default'] ?? '';
+$first_title  = $content['titles'][0]['default'] ?? '';
+$second_title = $content['titles'][1]['default'] ?? '';
+$third_title  = $content['titles'][2]['default'] ?? '';
+
+$first_description  = $content['descriptions'][0]['default'] ?? '';
+$second_description = $content['descriptions'][1]['default'] ?? '';
+$third_description  = $content['descriptions'][2]['default'] ?? '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","bottom":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","left":"var(--wp--style--root--padding-left, var(--wp--custom--gap--horizontal))","right":"var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal))"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","justifyContent":"center"}} -->
@@ -26,13 +39,21 @@ $third_description  = __( "The Retro Glass Jug's classic silhouette effortlessly
 	<div class="wp-block-columns alignwide" style="margin-top:0px;margin-bottom:0px">
 		<!-- wp:column -->
 		<div class="wp-block-column">
+<<<<<<< HEAD
 			<!-- wp:cover {"url":"<?php echo esc_url( plugins_url( 'assets/images/pattern-placeholders/drinkware-liquid-tableware-dishware-bottle-fluid.jpg', WC_PLUGIN_FILE ) ); ?>","dimRatio":0,"minHeight":800,"minHeightUnit":"px","isDark":false,"layout":{"type":"constrained"}} -->
+=======
+			<!-- wp:cover {"url":"<?php echo esc_url( PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/drinkware-liquid-tableware-dishware-bottle-fluid.jpg' ) ); ?>","dimRatio":0,"minHeight":800,"minHeightUnit":"px","isDark":false,"layout":{"type":"constrained"}} -->
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			<div class="wp-block-cover is-light" style="min-height:800px">
 				<span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span>
 				<img
 					class="wp-block-cover__image-background"
 					alt="<?php esc_attr_e( 'Placeholder image used to represent a product being showcased.', 'woocommerce' ); ?>"
+<<<<<<< HEAD
 					src="<?php echo esc_url( plugins_url( 'assets/images/pattern-placeholders/drinkware-liquid-tableware-dishware-bottle-fluid.jpg', WC_PLUGIN_FILE ) ); ?>"
+=======
+					src="<?php echo esc_url( PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/drinkware-liquid-tableware-dishware-bottle-fluid.jpg' ) ); ?>"
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					data-object-fit="cover" />
 				<div class="wp-block-cover__inner-container">
 					<!-- wp:paragraph {"align":"center","placeholder":" ","fontSize":"large"} -->

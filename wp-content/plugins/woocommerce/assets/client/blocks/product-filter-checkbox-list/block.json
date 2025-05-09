@@ -1,14 +1,25 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"name": "woocommerce/product-filter-checkbox-list",
+<<<<<<< HEAD
 	"title": "List",
 	"description": "Display a list of filter options.",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],
+=======
+	"version": "1.0.0",
+	"title": "List",
+	"description": "Display a list of filter options.",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
 	"ancestor": [
 		"woocommerce/product-filter-attribute",
+<<<<<<< HEAD
 		"woocommerce/product-filter-status",
 		"woocommerce/product-filter-rating"
 	],
@@ -16,6 +27,19 @@
 		"interactivity": true
 	},
 	"usesContext": [ "filterData" ],
+=======
+		"woocommerce/product-filter-status"
+	],
+	"supports": {
+		"color": {
+			"enableContrastChecker": false
+		},
+		"interactivity": true
+	},
+	"usesContext": [
+		"filterData"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"attributes": {
 		"optionElementBorder": {
 			"type": "string",
@@ -40,6 +64,7 @@
 		"customOptionElement": {
 			"type": "string",
 			"default": ""
+<<<<<<< HEAD
 		},
 		"labelElement": {
 			"type": "string",
@@ -53,4 +78,8 @@
 	"viewScriptModule": "woocommerce/product-filter-checkbox-list",
 	"style": "file:../woocommerce/product-filter-checkbox-list-style.css",
 	"editorStyle": "file:../woocommerce/product-filter-checkbox-list-editor.css"
+=======
+		}
+	}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

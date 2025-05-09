@@ -87,11 +87,16 @@ class Products extends AbstractRoute {
 			$query_results = $product_query->get_results( $request );
 		}
 
+<<<<<<< HEAD
 		$response      = ( new Pagination() )->add_headers( $response, $request, $query_results['total'], $query_results['pages'] );
 		$last_modified = $product_query->get_last_modified();
 		if ( $last_modified ) {
 			$response->header( 'Last-Modified', $last_modified );
 		}
+=======
+		$response = ( new Pagination() )->add_headers( $response, $request, $query_results['total'], $query_results['pages'] );
+		$response->header( 'Last-Modified', $product_query->get_last_modified() );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return $response;
 	}

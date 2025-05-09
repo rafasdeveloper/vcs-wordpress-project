@@ -1,16 +1,29 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 declare(strict_types = 1);
 
+<<<<<<< HEAD
 namespace Automattic\WooCommerce\EmailEditor\Engine;
 
 use Automattic\WooCommerce\EmailEditor\Engine\PersonalizationTags\HTML_Tag_Processor;
 use Automattic\WooCommerce\EmailEditor\Engine\PersonalizationTags\Personalization_Tags_Registry;
+=======
+namespace MailPoet\EmailEditor\Engine;
+
+use MailPoet\EmailEditor\Engine\PersonalizationTags\HTML_Tag_Processor;
+use MailPoet\EmailEditor\Engine\PersonalizationTags\Personalization_Tags_Registry;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class for replacing personalization tags with their values in the email content.
@@ -70,6 +83,7 @@ class Personalizer {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Get the current context.
 	 *
 	 * The `context` is an associative array containing recipient-specific or
@@ -83,6 +97,8 @@ class Personalizer {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Personalize the content by replacing the personalization tags with their values.
 	 *
 	 * @param string $content The content to personalize.
@@ -92,9 +108,14 @@ class Personalizer {
 		$content_processor = new HTML_Tag_Processor( $content );
 		while ( $content_processor->next_token() ) {
 			if ( $content_processor->get_token_type() === '#comment' ) {
+<<<<<<< HEAD
 				$modifiable_text = $content_processor->get_modifiable_text();
 				$token           = $this->parse_token( $modifiable_text );
 				$tag             = $this->tags_registry->get_by_token( $token['token'] );
+=======
+				$token = $this->parse_token( $content_processor->get_modifiable_text() );
+				$tag   = $this->tags_registry->get_by_token( $token['token'] );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				if ( ! $tag ) {
 					continue;
 				}
@@ -104,13 +125,21 @@ class Personalizer {
 
 			} elseif ( $content_processor->get_token_type() === '#tag' && $content_processor->get_tag() === 'TITLE' ) {
 				// The title tag contains the subject of the email which should be personalized. HTML_Tag_Processor does parse the header tags.
+<<<<<<< HEAD
 				$modifiable_text = $content_processor->get_modifiable_text();
 				$title           = $this->personalize_content( $modifiable_text );
+=======
+				$title = $this->personalize_content( $content_processor->get_modifiable_text() );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$content_processor->set_modifiable_text( $title );
 
 			} elseif ( $content_processor->get_token_type() === '#tag' && $content_processor->get_tag() === 'A' && $content_processor->get_attribute( 'data-link-href' ) ) {
 				// The anchor tag contains the data-link-href attribute which should be personalized.
+<<<<<<< HEAD
 				$href  = (string) $content_processor->get_attribute( 'data-link-href' );
+=======
+				$href  = $content_processor->get_attribute( 'data-link-href' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$token = $this->parse_token( $href );
 				$tag   = $this->tags_registry->get_by_token( $token['token'] );
 				if ( ! $tag ) {
@@ -124,6 +153,7 @@ class Personalizer {
 					$content_processor->remove_attribute( 'data-link-href' );
 					$content_processor->remove_attribute( 'contenteditable' );
 				}
+<<<<<<< HEAD
 			} elseif ( $content_processor->get_token_type() === '#tag' && $content_processor->get_tag() === 'A' ) {
 				$href = $content_processor->get_attribute( 'href' );
 				if ( ! is_string( $href ) ) {
@@ -146,6 +176,8 @@ class Personalizer {
 				if ( $value ) {
 					$content_processor->set_attribute( 'href', $value );
 				}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 
@@ -157,7 +189,11 @@ class Personalizer {
 	 * Parse a personalization tag to the token and attributes.
 	 *
 	 * @param string $token The token to parse.
+<<<<<<< HEAD
 	 * @return array{token: string, arguments: array<string, string>} The parsed token.
+=======
+	 * @return array{token: string, arguments: array} The parsed token.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	private function parse_token( string $token ): array {
 		$result = array(
@@ -171,7 +207,11 @@ class Personalizer {
 			$attributes_string = $matches[2]; // The attributes part (e.g., 'default="subscriber"').
 
 			// Step 2: Extract attributes from the attribute string.
+<<<<<<< HEAD
 			if ( preg_match_all( '/(\w+)=["\']([^"\']*)["\']/', $attributes_string, $attribute_matches, PREG_SET_ORDER ) ) {
+=======
+			if ( preg_match_all( '/(\w+)=["\']([^"\']+)["\']/', $attributes_string, $attribute_matches, PREG_SET_ORDER ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				foreach ( $attribute_matches as $attribute ) {
 					$result['arguments'][ $attribute[1] ] = $attribute[2];
 				}

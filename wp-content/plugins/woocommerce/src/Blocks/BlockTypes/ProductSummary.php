@@ -22,7 +22,34 @@ class ProductSummary extends AbstractBlock {
 	 *
 	 * @var string
 	 */
+<<<<<<< HEAD
 	protected $api_version = '3';
+=======
+	protected $api_version = '2';
+
+
+	/**
+	 * Get block supports. Shared with the frontend.
+	 * IMPORTANT: If you change anything here, make sure to update the JS file too.
+	 *
+	 * @return array
+	 */
+	protected function get_block_type_supports() {
+		return array(
+			'color'                  =>
+			array(
+				'link'       => true,
+				'background' => false,
+				'text'       => true,
+			),
+			'typography'             =>
+			array(
+				'fontSize' => true,
+			),
+			'__experimentalSelector' => '.wc-block-components-product-summary',
+		);
+	}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Overwrite parent method to prevent script registration.
@@ -150,7 +177,11 @@ class ProductSummary extends AbstractBlock {
 	 * but allows keeping the editor and frontend consistent.
 	 *
 	 * NOTE: If editing, keep it in sync with generateSummary function from
+<<<<<<< HEAD
 	 * plugins/woocommerce/client/blocks/assets/js/base/components/summary/utils.ts!
+=======
+	 * plugins/woocommerce-blocks/assets/js/base/components/summary/utils.ts!
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * Once HTML API allow for HTML manipulation both functions (PHP and JS)
 	 * should be updated to solution fully respecting the word count.

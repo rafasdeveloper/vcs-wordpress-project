@@ -36,12 +36,17 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 	protected $namespace = 'wc/v3';
 
 	/**
+<<<<<<< HEAD
 	 * The value of the 'search_sku' argument if present.
+=======
+	 * A string to inject into a query to do a partial match SKU search.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * See prepare_objects_query()
 	 *
 	 * @var string
 	 */
+<<<<<<< HEAD
 	private $search_sku_arg_value = '';
 
 	/**
@@ -51,6 +56,9 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 	 * @var array|null
 	 */
 	private $search_name_or_sku_tokens = null;
+=======
+	private $search_sku_in_product_lookup_table = '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Suggested product ids.
@@ -67,6 +75,7 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 	private $exclude_status = array();
 
 	/**
+<<<<<<< HEAD
 	 * Stores attachment IDs processed during the current request for potential cleanup.
 	 *
 	 * @var array
@@ -74,6 +83,8 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 	private $processed_attachment_ids_for_request = array();
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Register the routes for products.
 	 */
 	public function register_routes() {
@@ -311,6 +322,7 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 			);
 		}
 
+<<<<<<< HEAD
 		$search_name_or_sku_arg = $request['search_name_or_sku'] ?? '';
 
 		if ( '' !== $search_name_or_sku_arg ) {
@@ -327,6 +339,13 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 			if ( ! empty( $request['search_sku'] ) ) {
 				// Store this for use in the query clause filters.
 				$this->search_sku_arg_value = $request['search_sku'];
+=======
+		if ( wc_product_sku_enabled() ) {
+			// Do a partial match for a sku. Supersedes sku parameter that does exact matching.
+			if ( ! empty( $request['search_sku'] ) ) {
+				// Store this for use in the query clause filters.
+				$this->search_sku_in_product_lookup_table = $request['search_sku'];
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				unset( $request['sku'] );
 			}
@@ -401,7 +420,11 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 		}
 
 		// Force the post_type argument, since it's not a user input variable.
+<<<<<<< HEAD
 		if ( ! empty( $request['sku'] ) || ! empty( $request['search_sku'] ) || $this->search_name_or_sku_tokens ) {
+=======
+		if ( ! empty( $request['sku'] ) || ! empty( $request['search_sku'] ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$args['post_type'] = array( 'product', 'product_variation' );
 		} else {
 			$args['post_type'] = $this->post_type;
@@ -438,10 +461,15 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 	 * @return array
 	 */
 	protected function get_objects( $query_args ) {
+<<<<<<< HEAD
 		$add_search_criteria = $this->search_sku_arg_value || $this->search_name_or_sku_tokens;
 
 		// Add filters for search criteria in product postmeta via the lookup table.
 		if ( $add_search_criteria ) {
+=======
+		// Add filters for search criteria in product postmeta via the lookup table.
+		if ( ! empty( $this->search_sku_in_product_lookup_table ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			add_filter( 'posts_join', array( $this, 'add_search_criteria_to_wp_query_join' ) );
 			add_filter( 'posts_where', array( $this, 'add_search_criteria_to_wp_query_where' ) );
 		}
@@ -454,11 +482,19 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 		$result = parent::get_objects( $query_args );
 
 		// Remove filters for search criteria in product postmeta via the lookup table.
+<<<<<<< HEAD
 		if ( $add_search_criteria ) {
 			remove_filter( 'posts_join', array( $this, 'add_search_criteria_to_wp_query_join' ) );
 			remove_filter( 'posts_where', array( $this, 'add_search_criteria_to_wp_query_where' ) );
 
 			$this->search_sku_arg_value = '';
+=======
+		if ( ! empty( $this->search_sku_in_product_lookup_table ) ) {
+			remove_filter( 'posts_join', array( $this, 'add_search_criteria_to_wp_query_join' ) );
+			remove_filter( 'posts_where', array( $this, 'add_search_criteria_to_wp_query_where' ) );
+
+			$this->search_sku_in_product_lookup_table = '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		// Remove filters for excluding product statuses.
@@ -478,6 +514,7 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 	 * @return string
 	 */
 	public function add_search_criteria_to_wp_query_join( $join ) {
+<<<<<<< HEAD
 		if ( $this->search_name_or_sku_tokens ) {
 			if ( ! wc_product_sku_enabled() ) {
 				// The argument is effectively a tokenized name search: we don't need to join the meta lookup table.
@@ -492,6 +529,13 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 		$join .= " LEFT JOIN $wpdb->wc_product_meta_lookup wc_product_meta_lookup
 						ON $wpdb->posts.ID = wc_product_meta_lookup.product_id ";
 
+=======
+		global $wpdb;
+		if ( ! empty( $this->search_sku_in_product_lookup_table ) && ! strstr( $join, 'wc_product_meta_lookup' ) ) {
+			$join .= " LEFT JOIN $wpdb->wc_product_meta_lookup wc_product_meta_lookup
+						ON $wpdb->posts.ID = wc_product_meta_lookup.product_id ";
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $join;
 	}
 
@@ -503,6 +547,7 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 	 */
 	public function add_search_criteria_to_wp_query_where( $where ) {
 		global $wpdb;
+<<<<<<< HEAD
 
 		if ( $this->search_name_or_sku_tokens ) {
 			$use_sku                  = wc_product_sku_enabled();
@@ -525,6 +570,10 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 					" AND ($post_clause)";
 		} elseif ( ! empty( $this->search_sku_arg_value ) ) {
 			$like_search = '%' . $wpdb->esc_like( $this->search_sku_arg_value ) . '%';
+=======
+		if ( ! empty( $this->search_sku_in_product_lookup_table ) ) {
+			$like_search = '%' . $wpdb->esc_like( $this->search_sku_in_product_lookup_table ) . '%';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$where      .= ' AND ' . $wpdb->prepare( '(wc_product_meta_lookup.sku LIKE %s)', $like_search );
 		}
 		return $where;
@@ -568,8 +617,11 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 
 			foreach ( $images as $index => $image ) {
 				$attachment_id = isset( $image['id'] ) ? absint( $image['id'] ) : 0;
+<<<<<<< HEAD
 				// The request can contain an attachment ID, if it doesn't, it's a new upload.
 				$is_new_upload = false;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				if ( 0 === $attachment_id && isset( $image['src'] ) ) {
 					$upload = wc_rest_upload_image_from_url( esc_url_raw( $image['src'] ) );
@@ -583,7 +635,10 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 					}
 
 					$attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $product->get_id() );
+<<<<<<< HEAD
 					$is_new_upload = true;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 
 				if ( ! wp_attachment_is_image( $attachment_id ) ) {
@@ -591,11 +646,14 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 					throw new WC_REST_Exception( 'woocommerce_product_invalid_image_id', sprintf( __( '#%s is an invalid image ID.', 'woocommerce' ), $attachment_id ), 400 );
 				}
 
+<<<<<<< HEAD
 				if ( $is_new_upload && $attachment_id > 0 ) {
 					// Tracking this for rollback purposes.
 					$this->processed_attachment_ids_for_request[] = $attachment_id;
 				}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$featured_image = $product->get_image_id();
 
 				if ( 0 === $index ) {
@@ -1506,6 +1564,7 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 						),
 					),
 				),
+<<<<<<< HEAD
 				'brands'                => array(
 					'description' => __( 'List of brands.', 'woocommerce' ),
 					'type'        => 'array',
@@ -1533,6 +1592,8 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 						),
 					),
 				),
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'tags'                  => array(
 					'description' => __( 'List of tags.', 'woocommerce' ),
 					'type'        => 'array',
@@ -1786,6 +1847,7 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 		);
 
 		$params['search_sku'] = array(
+<<<<<<< HEAD
 			'description'       => __( "Limit results to those with a SKU that partial matches a string. This argument takes precedence over 'sku'.", 'woocommerce' ),
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
@@ -1794,6 +1856,9 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 
 		$params['search_name_or_sku'] = array(
 			'description'       => __( "Limit results to those with a name or SKU that partial matches a string. This argument takes precedence over 'search', 'sku' and 'search_sku'.", 'woocommerce' ),
+=======
+			'description'       => __( 'Limit results to those with a SKU that partial matches a string.', 'woocommerce' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
 			'validate_callback' => 'rest_validate_request_arg',
@@ -2036,6 +2101,7 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 
 		return $data;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Create a single item.
@@ -2062,4 +2128,6 @@ class WC_REST_Products_Controller extends WC_REST_Products_V2_Controller {
 
 		return $response;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

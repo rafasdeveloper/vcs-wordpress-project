@@ -827,9 +827,8 @@ class Plugin {
      * @return string
      */
     protected function admin_bar_style() {
-        // phpcs:disable Squiz.PHP.Heredoc.NotAllowed
         return <<<HTML
-            <style id="redis-cache-admin-bar-style">
+            <style>
                 #wpadminbar ul li.redis-cache-error {
                     background: #b30000;
                 }
@@ -853,7 +852,7 @@ HTML;
         $flushMessage = __( 'Flushing cache...', 'redis-cache' );
 
         return <<<HTML
-            <script id="redis-cache-admin-bar">
+            <script>
                 (function (element) {
                     if (! element) {
                         return;
@@ -1077,13 +1076,15 @@ HTML;
      * @return void
      */
     public function ajax_flush_cache() {
-        if ( ! wp_verify_nonce( $_POST['nonce'] ?? '' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-            wp_die( esc_html__( 'Invalid Nonce.', 'redis-cache' ) );
+        if ( ! wp_verify_nonce( $_POST['nonce'] ) ) {
+            $message = 'Invalid Nonce.';
         } else if ( wp_cache_flush() ) {
-            wp_die( esc_html__( 'Object cache flushed.', 'redis-cache' ) );
+            $message = 'Object cache flushed.';
         } else {
-            wp_die( esc_html__( 'Object cache could not be flushed.', 'redis-cache' ) );
+            $message = 'Object cache could not be flushed.';
         }
+
+        wp_die( __( $message , 'redis-cache' ) );
     }
 
     /**
@@ -1599,7 +1600,6 @@ HTML;
      * @return void
      */
     public function litespeed_disable_objectcache() {
-        // phpcs:ignore WordPress.Security.NonceVerification.Missing
         if ( isset( $_POST['LSCWP_CTRL'], $_POST['LSCWP_NONCE'], $_POST['object'] ) ) {
             $_POST['object'] = '0';
         }

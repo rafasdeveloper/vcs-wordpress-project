@@ -178,6 +178,7 @@ abstract class Incentive {
 			'timestamp' => $timestamp ?? time(),
 		);
 
+<<<<<<< HEAD
 		/**
 		 * Fires when a payments extension suggestion incentive is dismissed.
 		 *
@@ -190,6 +191,8 @@ abstract class Incentive {
 		 */
 		do_action( 'woocommerce_admin_payments_extension_suggestion_incentive_dismissed', $id, $this->suggestion_id, $context );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->save_all_dismissed_incentives( $all_dismissed_incentives );
 	}
 
@@ -250,6 +253,7 @@ abstract class Incentive {
 			return array();
 		}
 
+<<<<<<< HEAD
 		$dismissals = array_values(
 			array_filter(
 				$dismissed_incentives,
@@ -264,6 +268,14 @@ abstract class Incentive {
 			),
 			$dismissals
 		);
+=======
+		$dismissals = array_filter(
+			$dismissed_incentives,
+			fn( $dismissed_incentive ) => $id === $dismissed_incentive['id']
+		);
+
+		return array_column( $dismissals, 'context' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

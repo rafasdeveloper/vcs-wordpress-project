@@ -13,8 +13,11 @@ use Automattic\WooCommerce\Internal\Admin\WCAdminAssets;
  */
 class Tax extends Task {
 
+<<<<<<< HEAD
 	private const TAX_RATE_EXISTS_CACHE_KEY = 'woocommerce_onboarding_task_tax_rates_exist';
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Used to cache is_complete() method result.
 	 *
@@ -30,8 +33,11 @@ class Tax extends Task {
 	public function __construct( $task_list ) {
 		parent::__construct( $task_list );
 		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_return_notice_script' ) );
+<<<<<<< HEAD
 		add_action( 'woocommerce_tax_rate_added', array( $this, 'on_tax_rate_added' ) );
 		add_action( 'woocommerce_tax_rate_deleted', array( $this, 'on_tax_rate_deleted' ) );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -120,6 +126,7 @@ class Tax extends Task {
 			// phpcs:ignore WooCommerce.Commenting.CommentHooks.MissingHookComment -- We will replace this with a formal system by WC 9.6 so lets not advertise it yet.
 			$third_party_complete = apply_filters( 'woocommerce_admin_third_party_tax_setup_complete', false );
 
+<<<<<<< HEAD
 			/**
 			 * Ideally we would check against `wc_tax_enabled()` instead of `false !== get_option( 'woocommerce_no_sales_tax' )`,
 			 * however, tax is disabled by default making this task complete by default if we use it.  If we change taxes
@@ -130,12 +137,19 @@ class Tax extends Task {
 				$third_party_complete ||
 				false !== get_option( 'woocommerce_no_sales_tax' ) ||
 				$this->has_existing_tax_rates();
+=======
+			$this->is_complete_result = $is_wc_connect_taxes_enabled ||
+				count( TaxDataStore::get_taxes( array() ) ) > 0 ||
+				get_option( 'woocommerce_no_sales_tax' ) !== false ||
+				$third_party_complete;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $this->is_complete_result;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Determines if a tax rate exists in the database.  Result is indefinitely cached.
 	 *
 	 * @return bool
@@ -172,6 +186,8 @@ class Tax extends Task {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Additional data.
 	 *
 	 * @return array

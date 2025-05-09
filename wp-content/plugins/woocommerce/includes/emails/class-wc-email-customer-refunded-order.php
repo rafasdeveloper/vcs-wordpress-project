@@ -62,7 +62,11 @@ if ( ! class_exists( 'WC_Email_Customer_Refunded_Order', false ) ) :
 
 			// Must be after parent's constructor which sets `email_improvements_enabled` property.
 			$this->description = $this->email_improvements_enabled
+<<<<<<< HEAD
 				? __( 'Send an email to customers notifying them when an order has been partially or fully refunded', 'woocommerce' )
+=======
+				? __( 'Let shoppers know when a full or partial refund is on its way to them.', 'woocommerce' )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				: __( 'Order refunded emails are sent to customers when their orders are refunded.', 'woocommerce' );
 		}
 
@@ -111,6 +115,7 @@ if ( ! class_exists( 'WC_Email_Customer_Refunded_Order', false ) ) :
 			} else {
 				$subject = $this->get_option( 'subject_full', $this->get_default_subject() );
 			}
+<<<<<<< HEAD
 			/**
 			 * Filter the email subject for customer refunded order.
 			 *
@@ -124,6 +129,9 @@ if ( ! class_exists( 'WC_Email_Customer_Refunded_Order', false ) ) :
 				$subject = $this->personalizer->personalize_transactional_content( $subject, $this );
 			}
 			return $subject;
+=======
+			return apply_filters( 'woocommerce_email_subject_customer_refunded_order', $this->format_string( $subject ), $this->object, $this );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		/**
@@ -137,6 +145,7 @@ if ( ! class_exists( 'WC_Email_Customer_Refunded_Order', false ) ) :
 			} else {
 				$heading = $this->get_option( 'heading_full', $this->get_default_heading() );
 			}
+<<<<<<< HEAD
 			/**
 			 * Filter the email heading for customer refunded order.
 			 *
@@ -145,6 +154,8 @@ if ( ! class_exists( 'WC_Email_Customer_Refunded_Order', false ) ) :
 			 * @param WC_Email_Customer_Refunded_Order $email Email object.
 			 * @since 3.7.0
 			 */
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return apply_filters( 'woocommerce_email_heading_customer_refunded_order', $this->format_string( $heading ), $this->object, $this );
 		}
 
@@ -253,6 +264,7 @@ if ( ! class_exists( 'WC_Email_Customer_Refunded_Order', false ) ) :
 		}
 
 		/**
+<<<<<<< HEAD
 		 * Get block editor email template content.
 		 *
 		 * @return string
@@ -272,6 +284,8 @@ if ( ! class_exists( 'WC_Email_Customer_Refunded_Order', false ) ) :
 		}
 
 		/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Default content to show below main email content.
 		 *
 		 * @since 3.7.0

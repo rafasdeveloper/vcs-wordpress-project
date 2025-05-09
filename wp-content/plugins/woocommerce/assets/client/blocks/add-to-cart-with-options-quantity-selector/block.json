@@ -1,16 +1,34 @@
 {
 	"name": "woocommerce/add-to-cart-with-options-quantity-selector",
+<<<<<<< HEAD
 	"title": "Product Quantity (Beta)",
 	"description": "Display an input field customers can use to select the number of products to add to their cart. ",
 	"category": "woocommerce-product-elements",
+=======
+	"version": "1.0.0",
+	"title": "Quantity Selector (Experimental)",
+	"description": "Display an input field to select the number of products to add to cart.",
+	"category": "woocommerce-product-elements",
+	"attributes": {
+		"quantitySelectorStyle": {
+			"type": "string",
+			"enum": [ "input", "stepper" ],
+			"default": "input"
+		}
+	},
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"keywords": [ "WooCommerce" ],
 	"usesContext": [ "postId" ],
 	"ancestor": [ "woocommerce/add-to-cart-with-options" ],
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
+<<<<<<< HEAD
 	"supports": {
 		"interactivity": true
 	},
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"style": "file:../woocommerce/add-to-cart-with-options-quantity-selector-style.css"
+=======
+	"$schema": "https://schemas.wp.org/trunk/block.json"
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

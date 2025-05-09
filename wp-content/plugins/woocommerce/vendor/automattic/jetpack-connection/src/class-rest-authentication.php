@@ -219,6 +219,7 @@ class Rest_Authentication {
 
 		return true === $instance->rest_authentication_status && 'blog' === $instance->rest_authentication_type;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Whether the request was signed with a user token.
@@ -232,4 +233,6 @@ class Rest_Authentication {
 
 		return true === $instance->rest_authentication_status && 'user' === $instance->rest_authentication_type;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

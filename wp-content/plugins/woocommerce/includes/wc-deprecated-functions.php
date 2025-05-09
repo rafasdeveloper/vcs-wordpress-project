@@ -1179,6 +1179,7 @@ function wc_get_log_file_name( $handle ) {
 
 	return "{$file_id}-{$hash}";
 }
+<<<<<<< HEAD
 
 /**
  * Load the persistent cart.
@@ -1314,3 +1315,5 @@ function get_woocommerce_api_url( $path ) {
 
 	return $url;
 }
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

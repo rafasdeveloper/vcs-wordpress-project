@@ -18,8 +18,11 @@ defined( 'ABSPATH' ) || exit;
  * @extends WC_REST_WCCOM_Site_Status_Controller
  */
 class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Controller {
+<<<<<<< HEAD
 	const CONNECTION_DATA_FOUND = 'connection_data_found';
 	const CONNECTION_VALID      = 'connection_valid';
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Route base.
@@ -45,6 +48,7 @@ class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Contro
 				),
 			),
 		);
+<<<<<<< HEAD
 
 		register_rest_route(
 			$this->namespace,
@@ -57,6 +61,8 @@ class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Contro
 				),
 			),
 		);
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -96,6 +102,7 @@ class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Contro
 			)
 		);
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Get the status of the WooCommerce.com connection.
@@ -138,4 +145,6 @@ class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Contro
 			)
 		);
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

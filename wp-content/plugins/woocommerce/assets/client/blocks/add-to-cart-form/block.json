@@ -1,7 +1,13 @@
 {
 	"name": "woocommerce/add-to-cart-form",
+<<<<<<< HEAD
 	"title": "Add to Cart with Options",
 	"description": "Display a button that lets customers add a product to their cart. Use the added options to optimize for different product types.",
+=======
+	"version": "1.0.0",
+	"title": "Add to Cart with Options",
+	"description": "Display a button so the customer can add a product to their cart. Options will also be displayed depending on product type. e.g. quantity, variation.",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"category": "woocommerce-product-elements",
 	"attributes": {
 		"quantitySelectorStyle": {
@@ -17,8 +23,12 @@
 		"interactivity": true
 	},
 	"apiVersion": 3,
+<<<<<<< HEAD
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"viewScriptModule": "woocommerce/add-to-cart-form",
 	"style": "file:../woocommerce/add-to-cart-form-style.css",
 	"editorStyle": "file:../woocommerce/add-to-cart-form-editor.css"
+=======
+	"$schema": "https://schemas.wp.org/trunk/block.json"
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

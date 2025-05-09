@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -7,6 +8,15 @@
 
 declare(strict_types = 1);
 namespace Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer;
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare(strict_types = 1);
+namespace MailPoet\EmailEditor\Engine\Renderer\ContentRenderer;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 use WP_Block_Parser;
 
@@ -29,6 +39,10 @@ class Blocks_Parser extends WP_Block_Parser {
 	 */
 	public function parse( $document ) {
 		parent::parse( $document );
+<<<<<<< HEAD
 		return apply_filters( 'woocommerce_email_blocks_renderer_parsed_blocks', $this->output );
+=======
+		return apply_filters( 'mailpoet_blocks_renderer_parsed_blocks', $this->output );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

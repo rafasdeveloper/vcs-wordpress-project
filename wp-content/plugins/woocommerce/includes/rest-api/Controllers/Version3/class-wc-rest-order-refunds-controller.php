@@ -11,7 +11,10 @@
 defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Internal\RestApiParameterUtil;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\CostOfGoodsSold\CogsAwareTrait;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * REST API Order Refunds controller class.
@@ -20,7 +23,10 @@ use Automattic\WooCommerce\Internal\CostOfGoodsSold\CogsAwareTrait;
  * @extends WC_REST_Order_Refunds_V2_Controller
  */
 class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controller {
+<<<<<<< HEAD
 	use CogsAwareTrait;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Endpoint namespace.
@@ -91,6 +97,7 @@ class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controll
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Get formatted item data.
 	 * Invokes parents and then adds the proper Cost of Goods Sold information.
 	 *
@@ -123,6 +130,8 @@ class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controll
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the refund schema, conforming to JSON Schema.
 	 *
 	 * @return array
@@ -151,6 +160,7 @@ class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controll
 			'default'     => true,
 		);
 
+<<<<<<< HEAD
 		if ( $this->cogs_is_enabled() ) {
 			$schema = $this->add_cogs_related_schema( $schema );
 		}
@@ -193,6 +203,8 @@ class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controll
 			),
 		);
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $schema;
 	}
 }

@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -7,6 +8,15 @@
 
 declare(strict_types = 1);
 namespace Automattic\WooCommerce\EmailEditor\Engine;
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare(strict_types = 1);
+namespace MailPoet\EmailEditor\Engine;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 use WP_Block_Template;
 use WP_Post;
@@ -61,7 +71,11 @@ class Theme_Controller {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Gets combined theme data from the core and base theme and some handpicked settings from the site theme.
+=======
+	 * Gets combined theme data from the core and base theme.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @return WP_Theme_JSON
 	 */
@@ -70,6 +84,7 @@ class Theme_Controller {
 		$theme->merge( $this->core_theme );
 		$theme->merge( $this->base_theme );
 
+<<<<<<< HEAD
 		// Extract stuff from the site theme.
 		$filtered_site_theme_data = array(
 			'version'  => 3,
@@ -83,6 +98,9 @@ class Theme_Controller {
 		$site_theme = new WP_Theme_JSON( $filtered_site_theme_data, 'theme' );
 		$theme->merge( $site_theme );
 		return apply_filters( 'woocommerce_email_editor_theme_json', $theme );
+=======
+		return apply_filters( 'mailpoet_email_editor_theme_json', $theme );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -166,7 +184,17 @@ class Theme_Controller {
 	 * @return array
 	 */
 	public function get_settings(): array {
+<<<<<<< HEAD
 		return $this->get_theme()->get_settings();
+=======
+		$email_editor_theme_settings                              = $this->get_theme()->get_settings();
+		$site_theme_settings                                      = WP_Theme_JSON_Resolver::get_theme_data()->get_settings();
+		$email_editor_theme_settings['color']['palette']['theme'] = array();
+		if ( isset( $site_theme_settings['color']['palette']['theme'] ) ) {
+			$email_editor_theme_settings['color']['palette']['theme'] = $site_theme_settings['color']['palette']['theme'];
+		}
+		return $email_editor_theme_settings;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -209,7 +237,11 @@ class Theme_Controller {
 			$css_presets .= ".has-{$font_size['slug']}-font-size { font-size: {$font_size['size']}; } \n";
 		}
 		// Color palette classes.
+<<<<<<< HEAD
 		$color_definitions = array_merge( $email_theme_settings['color']['palette']['theme'] ?? array(), $email_theme_settings['color']['palette']['default'] ?? array() );
+=======
+		$color_definitions = array_merge( $email_theme_settings['color']['palette']['theme'], $email_theme_settings['color']['palette']['default'] );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		foreach ( $color_definitions as $color ) {
 			$css_presets .= ".has-{$color['slug']}-color { color: {$color['color']}; } \n";
 			$css_presets .= ".has-{$color['slug']}-background-color { background-color: {$color['color']}; } \n";
@@ -223,22 +255,33 @@ class Theme_Controller {
 			$css_blocks .= $this->get_theme()->get_styles_for_block( $block_metadata );
 		}
 
+<<<<<<< HEAD
 		// Remove `:root :where(...)` selectors since they are not supported in the CSS inliner.
 		$css_blocks = preg_replace( '/:root\s:where\((.*?)\)/', '$1', $css_blocks );
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Element specific styles.
 		$elements_styles = $this->get_theme()->get_raw_data()['styles']['elements'] ?? array();
 
 		// Because the section styles is not a part of the output the `get_styles_block_nodes` method, we need to get it separately.
 		if ( $template && $template->wp_id ) {
+<<<<<<< HEAD
 			$template_theme    = (array) get_post_meta( $template->wp_id, Email_Editor::WOOCOMMERCE_EMAIL_META_THEME_TYPE, true );
+=======
+			$template_theme    = (array) get_post_meta( $template->wp_id, 'mailpoet_email_theme', true );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$template_styles   = (array) ( $template_theme['styles'] ?? array() );
 			$template_elements = $template_styles['elements'] ?? array();
 			$elements_styles   = array_replace_recursive( (array) $elements_styles, (array) $template_elements );
 		}
 
 		if ( $post ) {
+<<<<<<< HEAD
 			$post_theme      = (array) get_post_meta( $post->ID, 'woocommerce_email_theme', true );
+=======
+			$post_theme      = (array) get_post_meta( $post->ID, 'mailpoet_email_theme', true );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$post_styles     = (array) ( $post_theme['styles'] ?? array() );
 			$post_elements   = $post_styles['elements'] ?? array();
 			$elements_styles = array_replace_recursive( (array) $elements_styles, (array) $post_elements );

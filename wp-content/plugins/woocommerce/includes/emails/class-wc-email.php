@@ -5,8 +5,11 @@
  * @package WooCommerce\Emails
  */
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\EmailEditor\BlockEmailRenderer;
 use Automattic\WooCommerce\Internal\EmailEditor\TransactionalEmailPersonalizer;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use Pelago\Emogrifier\CssInliner;
 use Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter;
@@ -260,6 +263,7 @@ class WC_Email extends WC_Settings_API {
 	public $email_improvements_enabled;
 
 	/**
+<<<<<<< HEAD
 	 * Whether email block editor feature is enabled.
 	 *
 	 * @var bool
@@ -283,11 +287,16 @@ class WC_Email extends WC_Settings_API {
 	public $template_block_content = 'emails/block/general-block-email.php';
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Constructor.
 	 */
 	public function __construct() {
 		$this->email_improvements_enabled = FeaturesUtil::feature_is_enabled( 'email_improvements' );
+<<<<<<< HEAD
 		$this->block_email_editor_enabled = FeaturesUtil::feature_is_enabled( 'block_email_editor' );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Find/replace.
 		$this->placeholders = array_merge(
@@ -312,6 +321,7 @@ class WC_Email extends WC_Settings_API {
 		$this->email_type = $this->get_option( 'email_type' );
 		$this->enabled    = $this->get_option( 'enabled' );
 		if ( FeaturesUtil::feature_is_enabled( 'email_improvements' ) ) {
+<<<<<<< HEAD
 			$this->cc  = $this->get_option( 'cc', '' );
 			$this->bcc = $this->get_option( 'bcc', '' );
 		}
@@ -319,6 +329,12 @@ class WC_Email extends WC_Settings_API {
 		if ( $this->block_email_editor_enabled ) {
 			$this->personalizer = wc_get_container()->get( TransactionalEmailPersonalizer::class );
 		}
+=======
+			$this->cc  = $this->get_option( 'cc' );
+			$this->bcc = $this->get_option( 'bcc' );
+		}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'phpmailer_init', array( $this, 'handle_multipart' ) );
 		add_action( 'woocommerce_update_options_email_' . $this->id, array( $this, 'process_admin_options' ) );
 	}
@@ -492,6 +508,7 @@ class WC_Email extends WC_Settings_API {
 		 * @param object|bool $object  The object (ie, product or order) this email relates to, if any.
 		 * @param WC_Email    $email   WC_Email instance managing the email.
 		 */
+<<<<<<< HEAD
 		$subject = apply_filters( 'woocommerce_email_subject_' . $this->id, $this->format_string( $this->get_option_or_transient( 'subject', $this->get_default_subject() ) ), $this->object, $this );
 		if ( $this->block_email_editor_enabled ) {
 			// Because the new email editor uses rich-text component for subject editing, to be ensure that the subject is always in plain text, we need to strip all tags.
@@ -522,6 +539,9 @@ class WC_Email extends WC_Settings_API {
 			$preheader = $this->personalizer->personalize_transactional_content( $preheader, $this );
 		}
 		return $preheader;
+=======
+		return apply_filters( 'woocommerce_email_subject_' . $this->id, $this->format_string( $this->get_option_or_transient( 'subject', $this->get_default_subject() ) ), $this->object, $this );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -558,7 +578,11 @@ class WC_Email extends WC_Settings_API {
 		 * @param WC_Email $email     WC_Email instance managing the email.
 		 */
 		$recipient  = apply_filters( 'woocommerce_email_recipient_' . $this->id, $this->recipient, $this->object, $this );
+<<<<<<< HEAD
 		$recipients = array_map( 'trim', explode( ',', $recipient ?? '' ) );
+=======
+		$recipients = array_map( 'trim', explode( ',', $recipient ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$recipients = array_filter( $recipients, 'is_email' );
 		return implode( ', ', $recipients );
 	}
@@ -569,6 +593,10 @@ class WC_Email extends WC_Settings_API {
 	 * @return string
 	 */
 	public function get_cc_recipient() {
+<<<<<<< HEAD
+=======
+		$cc = $this->cc;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Filter the Cc recipient for the email.
 		 *
@@ -577,8 +605,13 @@ class WC_Email extends WC_Settings_API {
 		 * @param object   $object The object (ie, product or order) this email relates to, if any.
 		 * @param WC_Email $email  WC_Email instance managing the email.
 		 */
+<<<<<<< HEAD
 		$cc  = apply_filters( 'woocommerce_email_cc_recipient_' . $this->id, $this->cc, $this->object, $this );
 		$ccs = array_map( 'trim', explode( ',', $cc ?? '' ) );
+=======
+		$cc  = apply_filters( 'woocommerce_email_cc_recipient_' . $this->id, $cc, $this->object, $this );
+		$ccs = array_map( 'trim', explode( ',', $cc ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$ccs = array_filter( $ccs, 'is_email' );
 		$ccs = array_map( 'sanitize_email', $ccs );
 		return implode( ', ', $ccs );
@@ -590,16 +623,29 @@ class WC_Email extends WC_Settings_API {
 	 * @return string
 	 */
 	public function get_bcc_recipient() {
+<<<<<<< HEAD
+=======
+		$bcc = $this->bcc;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Filter the Bcc recipient for the email.
 		 *
 		 * @since 9.8.0
+<<<<<<< HEAD
 		 * @param string   $bcc    Bcc recipient.
 		 * @param object   $object The object (ie, product or order) this email relates to, if any.
 		 * @param WC_Email $email  WC_Email instance managing the email.
 		 */
 		$bcc  = apply_filters( 'woocommerce_email_bcc_recipient_' . $this->id, $this->bcc, $this->object, $this );
 		$bccs = array_map( 'trim', explode( ',', $bcc ?? '' ) );
+=======
+		 * @param string   $bcc    CC recipient.
+		 * @param object   $object The object (ie, product or order) this email relates to, if any.
+		 * @param WC_Email $email  WC_Email instance managing the email.
+		 */
+		$bcc  = apply_filters( 'woocommerce_email_bcc_recipient_' . $this->id, $bcc, $this->object, $this );
+		$bccs = array_map( 'trim', explode( ',', $bcc ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$bccs = array_filter( $bccs, 'is_email' );
 		$bccs = array_map( 'sanitize_email', $bccs );
 		return implode( ', ', $bccs );
@@ -668,6 +714,7 @@ class WC_Email extends WC_Settings_API {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Get block editor email template content.
 	 *
 	 * @return string
@@ -685,6 +732,8 @@ class WC_Email extends WC_Settings_API {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get email content type.
 	 *
 	 * @param string $default_content_type Default wp_mail() content type.
@@ -780,12 +829,15 @@ class WC_Email extends WC_Settings_API {
 	public function get_content() {
 		$this->sending = true;
 
+<<<<<<< HEAD
 		$block_email_content = $this->get_block_email_html_content();
 		if ( $block_email_content ) {
 			$this->email_type = 'plain' === $this->email_type ? 'html' : $this->email_type;
 			return $block_email_content;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( 'plain' === $this->get_email_type() ) {
 			$email_content = wordwrap( preg_replace( $this->plain_search, $this->plain_replace, wp_strip_all_tags( $this->get_content_plain() ) ), 70 );
 		} else {
@@ -834,11 +886,15 @@ class WC_Email extends WC_Settings_API {
 
 					$dom_document = $css_inliner->getDomDocument();
 
+<<<<<<< HEAD
 					// When the email is rendered in the block editor, we don't want to remove the elements with display: none.
 					// The main reason is using preview text in the email body which is hidden by default.
 					if ( ! $this->block_email_editor_enabled ) {
 						HtmlPruner::fromDomDocument( $dom_document )->removeElementsWithDisplayNone();
 					}
+=======
+					HtmlPruner::fromDomDocument( $dom_document )->removeElementsWithDisplayNone();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$content = CssToAttributeConverter::fromDomDocument( $dom_document )
 						->convertCssToVisualAttributes()
 						->render();
@@ -970,10 +1026,17 @@ class WC_Email extends WC_Settings_API {
 		 *
 		 * @since 5.6.0
 		 * @param bool     $return Whether the email was sent successfully.
+<<<<<<< HEAD
 		 * @param string   $id     Email ID.
 		 * @param WC_Email $this   WC_Email instance.
 		 */
 		do_action( 'woocommerce_email_sent', $return, (string) $this->id, $this );
+=======
+		 * @param int      $id     Email ID.
+		 * @param WC_Email $this   WC_Email instance.
+		 */
+		do_action( 'woocommerce_email_sent', $return, $this->id, $this );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return $return;
 	}
@@ -1267,7 +1330,11 @@ class WC_Email extends WC_Settings_API {
 		// Do admin actions.
 		$this->admin_actions();
 		?>
+<<<<<<< HEAD
 		<?php wc_back_header( $this->get_title(), __( 'Return to emails', 'woocommerce' ), admin_url( 'admin.php?page=wc-settings&tab=email' ) ); ?>
+=======
+		<h2><?php echo esc_html( $this->get_title() ); ?> <?php wc_back_link( __( 'Return to emails', 'woocommerce' ), admin_url( 'admin.php?page=wc-settings&tab=email' ) ); ?></h2>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		<?php echo wpautop( wp_kses_post( $this->get_description() ) ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 
@@ -1472,6 +1539,7 @@ class WC_Email extends WC_Settings_API {
 
 		return $option;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Gerenerates the HTML content for the email from a block based email.
@@ -1488,4 +1556,6 @@ class WC_Email extends WC_Settings_API {
 		$renderer = wc_get_container()->get( BlockEmailRenderer::class );
 		return $renderer->maybe_render_block_email( $this );
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

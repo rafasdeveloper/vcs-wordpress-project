@@ -233,6 +233,7 @@ if ( ! function_exists( 'is_order_received_page' ) ) {
 	}
 }
 
+<<<<<<< HEAD
 if ( ! function_exists( 'is_payment_methods_page' ) ) {
 
 	/**
@@ -249,6 +250,8 @@ if ( ! function_exists( 'is_payment_methods_page' ) ) {
 	}
 }
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 if ( ! function_exists( 'is_add_payment_method_page' ) ) {
 
 	/**
@@ -350,12 +353,16 @@ if ( ! function_exists( 'meta_is_product_attribute' ) ) {
 		if ( $product && method_exists( $product, 'get_variation_attributes' ) ) {
 			$variation_attributes = $product->get_variation_attributes();
 			$attributes           = $product->get_attributes();
+<<<<<<< HEAD
 
 			return (
 				in_array( $name, array_keys( $attributes ), true ) &&
 				isset( $variation_attributes[ $attributes[ $name ]['name'] ] ) &&
 				in_array( $value, $variation_attributes[ $attributes[ $name ]['name'] ], true )
 			);
+=======
+			return ( in_array( $name, array_keys( $attributes ), true ) && in_array( $value, $variation_attributes[ $attributes[ $name ]['name'] ], true ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		} else {
 			return false;
 		}
@@ -500,7 +507,11 @@ function wc_is_file_valid_csv( $file, $check_path = true ) {
 	 */
 	$check_import_file_path = apply_filters( 'woocommerce_csv_importer_check_import_file_path', true, $file );
 
+<<<<<<< HEAD
 	if ( $check_path && $check_import_file_path && false !== stripos( $file, 'file://' ) ) {
+=======
+	if ( $check_path && $check_import_file_path && false !== stripos( $file, '://' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return false;
 	}
 
@@ -531,12 +542,26 @@ function wc_is_file_valid_csv( $file, $check_path = true ) {
  * Check if the current theme is a block theme.
  *
  * @since 6.0.0
+<<<<<<< HEAD
  * @deprecated 9.9.0 Use wp_is_block_theme() instead.
  * @return bool
  */
 function wc_current_theme_is_fse_theme() {
 	wc_deprecated_function( __FUNCTION__, '9.9.0', 'wp_is_block_theme' );
 	return wp_is_block_theme();
+=======
+ * @return bool
+ */
+function wc_current_theme_is_fse_theme() {
+	if ( function_exists( 'wp_is_block_theme' ) ) {
+		return (bool) wp_is_block_theme();
+	}
+	if ( function_exists( 'gutenberg_is_fse_theme' ) ) {
+		return (bool) gutenberg_is_fse_theme();
+	}
+
+	return false;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /**
@@ -546,7 +571,11 @@ function wc_current_theme_is_fse_theme() {
  * @return bool
  */
 function wc_current_theme_supports_woocommerce_or_fse() {
+<<<<<<< HEAD
 	return (bool) current_theme_supports( 'woocommerce' ) || wp_is_block_theme();
+=======
+	return (bool) current_theme_supports( 'woocommerce' ) || wc_current_theme_is_fse_theme();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /**
@@ -560,7 +589,11 @@ function wc_current_theme_supports_woocommerce_or_fse() {
  * @return string
  */
 function wc_wp_theme_get_element_class_name( $element ) {
+<<<<<<< HEAD
 	if ( wp_is_block_theme() && function_exists( 'wp_theme_get_element_class_name' ) ) {
+=======
+	if ( wc_current_theme_is_fse_theme() && function_exists( 'wp_theme_get_element_class_name' ) ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return wp_theme_get_element_class_name( $element );
 	}
 
@@ -581,7 +614,11 @@ function wc_wp_theme_get_element_class_name( $element ) {
  */
 function wc_block_theme_has_styles_for_element( $element ) {
 	if (
+<<<<<<< HEAD
 		! wp_is_block_theme() ||
+=======
+		! wc_current_theme_is_fse_theme() ||
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		wc_wp_theme_get_element_class_name( $element ) === ''
 	) {
 		return false;

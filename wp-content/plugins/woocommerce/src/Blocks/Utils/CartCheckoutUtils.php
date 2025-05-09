@@ -6,6 +6,7 @@ namespace Automattic\WooCommerce\Blocks\Utils;
  */
 class CartCheckoutUtils {
 	/**
+<<<<<<< HEAD
 	 * Caches if we're on the cart page.
 	 *
 	 * @var bool
@@ -77,6 +78,26 @@ class CartCheckoutUtils {
 			self::$is_checkout_page = self::is_page_type( 'checkout' );
 		}
 		return true === self::$is_checkout_page;
+=======
+	 * Returns true if:
+	 * - The cart page is being viewed.
+	 * - The page contains a cart block, cart shortcode or classic shortcode block with the cart attribute.
+	 *
+	 * @return bool
+	 */
+	public static function is_cart_page() {
+		global $post;
+
+		$page_id      = wc_get_page_id( 'cart' );
+		$is_cart_page = $page_id && is_page( $page_id );
+
+		if ( $is_cart_page ) {
+			return true;
+		}
+
+		// Check page contents for block/shortcode.
+		return is_a( $post, 'WP_Post' ) && ( wc_post_content_has_shortcode( 'woocommerce_cart' ) || self::has_block_variation( 'woocommerce/classic-shortcode', 'shortcode', 'cart', $post->post_content ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -100,12 +121,39 @@ class CartCheckoutUtils {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Returns true if:
+	 * - The checkout page is being viewed.
+	 * - The page contains a checkout block, checkout shortcode or classic shortcode block with the checkout attribute.
+	 *
+	 * @return bool
+	 */
+	public static function is_checkout_page() {
+		global $post;
+
+		$page_id          = wc_get_page_id( 'checkout' );
+		$is_checkout_page = $page_id && is_page( $page_id );
+
+		if ( $is_checkout_page ) {
+			return true;
+		}
+
+		// Check page contents for block/shortcode.
+		return is_a( $post, 'WP_Post' ) && ( wc_post_content_has_shortcode( 'woocommerce_checkout' ) || self::has_block_variation( 'woocommerce/classic-shortcode', 'shortcode', 'checkout', $post->post_content ) );
+	}
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Check if the post content contains a block with a specific attribute value.
 	 *
 	 * @param string $block_id The block ID to check for.
 	 * @param string $attribute The attribute to check.
 	 * @param string $value The value to check for.
+<<<<<<< HEAD
 	 * @param string $post_content The post content to check.
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return boolean
 	 */
 	public static function has_block_variation( $block_id, $attribute, $value, $post_content ) {
@@ -117,6 +165,7 @@ class CartCheckoutUtils {
 			$blocks = (array) parse_blocks( $post_content );
 
 			foreach ( $blocks as $block ) {
+<<<<<<< HEAD
 				$block_name = $block['blockName'] ?? '';
 
 				if ( $block_name !== $block_id ) {
@@ -128,6 +177,12 @@ class CartCheckoutUtils {
 				}
 
 				// `Cart` is default for `woocommerce/classic-shortcode` so it will be empty in the block attributes.
+=======
+				if ( isset( $block['attrs'][ $attribute ] ) && $value === $block['attrs'][ $attribute ] ) {
+					return true;
+				}
+				// Cart is default so it will be empty.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				if ( 'woocommerce/classic-shortcode' === $block_id && 'shortcode' === $attribute && 'cart' === $value && ! isset( $block['attrs']['shortcode'] ) ) {
 					return true;
 				}
@@ -143,7 +198,11 @@ class CartCheckoutUtils {
 	 * @return bool true if the WC cart page is using the Cart block.
 	 */
 	public static function is_cart_block_default() {
+<<<<<<< HEAD
 		if ( wp_is_block_theme() ) {
+=======
+		if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Ignore the pages and check the templates.
 			$templates_from_db = BlockTemplateUtils::get_block_templates_from_db( array( 'cart' ), 'wp_template' );
 			foreach ( $templates_from_db as $template ) {
@@ -162,7 +221,11 @@ class CartCheckoutUtils {
 	 * @return bool true if the WC checkout page is using the Checkout block.
 	 */
 	public static function is_checkout_block_default() {
+<<<<<<< HEAD
 		if ( wp_is_block_theme() ) {
+=======
+		if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Ignore the pages and check the templates.
 			$templates_from_db = BlockTemplateUtils::get_block_templates_from_db( array( 'checkout' ), 'wp_template' );
 			foreach ( $templates_from_db as $template ) {
@@ -307,7 +370,11 @@ class CartCheckoutUtils {
 
 		$block = str_replace( 'woocommerce/', '', $block );
 
+<<<<<<< HEAD
 		if ( wp_is_block_theme() ) {
+=======
+		if ( wc_current_theme_is_fse_theme() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$templates_from_db = BlockTemplateUtils::get_block_templates_from_db( array( 'page-' . $block ) );
 			foreach ( $templates_from_db as $template ) {
 				if ( ! has_block( 'woocommerce/page-content-wrapper', $template->content ) ) {
@@ -363,12 +430,21 @@ class CartCheckoutUtils {
 	/**
 	 * Removes accents from an array of values, sorts by the values, then returns the original array values sorted.
 	 *
+<<<<<<< HEAD
 	 * @param array $sort_array Array of values to sort.
 	 * @return array Sorted array.
 	 */
 	protected static function deep_sort_with_accents( $sort_array ) {
 		if ( ! is_array( $sort_array ) || empty( $sort_array ) ) {
 			return $sort_array;
+=======
+	 * @param array $array Array of values to sort.
+	 * @return array Sorted array.
+	 */
+	protected static function deep_sort_with_accents( $array ) {
+		if ( ! is_array( $array ) || empty( $array ) ) {
+			return $array;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		$array_without_accents = array_map(
@@ -377,11 +453,19 @@ class CartCheckoutUtils {
 					? self::deep_sort_with_accents( $value )
 					: remove_accents( wc_strtolower( html_entity_decode( $value ) ) );
 			},
+<<<<<<< HEAD
 			$sort_array
 		);
 
 		asort( $array_without_accents );
 		return array_replace( $array_without_accents, $sort_array );
+=======
+			$array
+		);
+
+		asort( $array_without_accents );
+		return array_replace( $array_without_accents, $array );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -453,6 +537,7 @@ class CartCheckoutUtils {
 			}
 		}
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Check if the cart page is defined.
@@ -462,4 +547,6 @@ class CartCheckoutUtils {
 	public static function has_cart_page() {
 		return wc_get_page_permalink( 'cart', -1 ) !== -1;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

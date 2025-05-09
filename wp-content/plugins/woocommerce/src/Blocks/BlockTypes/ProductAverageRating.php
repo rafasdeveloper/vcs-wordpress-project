@@ -25,6 +25,40 @@ class ProductAverageRating extends AbstractBlock {
 	protected $api_version = '3';
 
 	/**
+<<<<<<< HEAD
+=======
+	 * Get block supports. Shared with the frontend.
+	 * IMPORTANT: If you change anything here, make sure to update the JS file too.
+	 *
+	 * @return array
+	 */
+	protected function get_block_type_supports() {
+		return array(
+			'color'                  =>
+				array(
+					'text'                            => true,
+					'background'                      => true,
+					'__experimentalSkipSerialization' => true,
+				),
+			'spacing'                =>
+				array(
+					'margin'                          => true,
+					'padding'                         => true,
+					'__experimentalSkipSerialization' => true,
+				),
+			'typography'             =>
+				array(
+					'fontSize'                        => true,
+					'__experimentalFontWeight'        => true,
+					'__experimentalSkipSerialization' => true,
+				),
+			'__experimentalSelector' => '.wc-block-components-product-average-rating',
+		);
+	}
+
+
+	/**
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Overwrite parent method to prevent script registration.
 	 *
 	 * It is necessary to register and enqueues assets during the render

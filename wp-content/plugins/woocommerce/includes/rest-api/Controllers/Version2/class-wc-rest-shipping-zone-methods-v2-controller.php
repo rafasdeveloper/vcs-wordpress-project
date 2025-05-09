@@ -352,7 +352,11 @@ class WC_REST_Shipping_Zone_Methods_V2_Controller extends WC_REST_Shipping_Zones
 		$method = array(
 			'id'                 => $item->instance_id,
 			'instance_id'        => $item->instance_id,
+<<<<<<< HEAD
 			'title'              => $item->instance_settings['title'] ?? $item->method_title,
+=======
+			'title'              => $item->instance_settings['title'],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'order'              => $item->method_order,
 			'enabled'            => ( 'yes' === $item->enabled ),
 			'method_id'          => $item->id,

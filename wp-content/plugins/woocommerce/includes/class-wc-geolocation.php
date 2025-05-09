@@ -89,9 +89,13 @@ class WC_Geolocation {
 			$value = preg_replace( '/([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\:.*|\[([^]]+)\].*/', '$1$2', $value );
 			return (string) rest_is_ip_address( $value );
 		} elseif ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+<<<<<<< HEAD
 			// Make sure we always only send through the first IP in the list which should always be the client IP.
 			$value = trim( current( preg_split( '/,/', sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) ) ) );
 			return (string) rest_is_ip_address( $value );
+=======
+			return sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return '';
 	}

@@ -1,8 +1,11 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * MiniCartCartButtonBlock class.
  */
@@ -13,6 +16,7 @@ class MiniCartCartButtonBlock extends AbstractInnerBlock {
 	 * @var string
 	 */
 	protected $block_name = 'mini-cart-cart-button-block';
+<<<<<<< HEAD
 
 	/**
 	 * Render experimental iAPI block markup.
@@ -54,4 +58,6 @@ class MiniCartCartButtonBlock extends AbstractInnerBlock {
 
 		return $content;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

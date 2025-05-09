@@ -1,5 +1,6 @@
 {
 	"name": "woocommerce/product-results-count",
+<<<<<<< HEAD
 	"title": "Product Results Count",
 	"description": "Display the number of products on the archive page or search result page.",
 	"category": "woocommerce",
@@ -8,6 +9,16 @@
 		"interactivity": {
 			"clientNavigation": true
 		},
+=======
+	"version": "1.0.0",
+	"title": "Product Results Count",
+	"description": "Display the number of products on the archive page or search result page.",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+	"supports": {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"color": {
 			"text": true,
 			"background": false
@@ -17,8 +28,18 @@
 		}
 	},
 	"attributes": {},
+<<<<<<< HEAD
 	"usesContext": [ "queryId" ],
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
+=======
+	"usesContext": [
+		"queryId"
+	],
+	"textdomain": "woocommerce",
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json"
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

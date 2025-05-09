@@ -4,11 +4,16 @@ declare( strict_types = 1 );
 
 namespace Automattic\WooCommerce\Admin\Features\Blueprint;
 
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCCoreProfilerOptions;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCPaymentGateways;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsAccount;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsAdvanced;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsEmails;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsGeneral;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsTax;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsIntegrations;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsProducts;
@@ -17,6 +22,21 @@ use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsSh
 use Automattic\WooCommerce\Admin\PageController;
 use Automattic\WooCommerce\Blueprint\Exporters\HasAlias;
 use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
+=======
+use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsIntegrations;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsProducts;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsSiteVisibility;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCShipping;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCTaskOptions;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCTaxRates;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Importers\ImportSetWCPaymentGateways;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Importers\ImportSetWCShipping;
+use Automattic\WooCommerce\Admin\Features\Blueprint\Importers\ImportSetWCTaxRates;
+use Automattic\WooCommerce\Admin\PageController;
+use Automattic\WooCommerce\Blueprint\Exporters\HasAlias;
+use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
+use Automattic\WooCommerce\Blueprint\StepProcessor;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blueprint\UseWPFunctions;
 
 /**
@@ -27,7 +47,10 @@ use Automattic\WooCommerce\Blueprint\UseWPFunctions;
 class Init {
 	use UseWPFunctions;
 
+<<<<<<< HEAD
 	const INSTALLED_WP_ORG_PLUGINS_TRANSIENT = 'woocommerce_blueprint_installed_wp_org_plugins';
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Array of initialized exporters.
 	 *
@@ -50,9 +73,12 @@ class Init {
 		);
 
 		add_filter( 'wooblueprint_exporters', array( $this, 'add_woo_exporters' ) );
+<<<<<<< HEAD
 
 		add_action( 'upgrader_process_complete', array( $this, 'clear_installed_wp_org_plugins_transient' ), 10, 2 );
 		add_action( 'deleted_plugin', array( $this, 'clear_installed_wp_org_plugins_transient' ), 10, 2 );
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -73,8 +99,13 @@ class Init {
 		$classnames = array(
 			ExportWCSettingsGeneral::class,
 			ExportWCSettingsProducts::class,
+<<<<<<< HEAD
 			ExportWCSettingsTax::class,
 			ExportWCSettingsShipping::class,
+=======
+			ExportWCTaxRates::class,
+			ExportWCShipping::class,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			ExportWCPaymentGateways::class,
 			ExportWCSettingsAccount::class,
 			ExportWCSettingsEmails::class,
@@ -107,6 +138,7 @@ class Init {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Get plugins for export group.
 	 *
 	 * @return array|array[] $plugins
@@ -175,6 +207,8 @@ class Init {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Return step groups for JS.
 	 *
 	 * This is used to populate exportable items on the blueprint settings page.
@@ -182,10 +216,21 @@ class Init {
 	 * @return array
 	 */
 	public function get_step_groups_for_js() {
+<<<<<<< HEAD
 		return array(
 			array(
 				'id'          => 'settings',
 				'description' => __( 'Includes all the items featured in WooCommerce | Settings.', 'woocommerce' ),
+=======
+		$all_plugins    = $this->wp_get_plugins();
+		$active_plugins = array_intersect_key( $all_plugins, array_flip( get_option( 'active_plugins', array() ) ) );
+		$active_theme   = $this->wp_get_theme();
+
+		return array(
+			array(
+				'id'          => 'settings',
+				'description' => __( 'It includes all the items featured in WooCommerce | Settings.', 'woocommerce' ),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'label'       => __( 'WooCommerce Settings', 'woocommerce' ),
 				'icon'        => 'settings',
 				'items'       => array_map(
@@ -194,7 +239,10 @@ class Init {
 							'id'          => $exporter instanceof HasAlias ? $exporter->get_alias() : $exporter->get_step_name(),
 							'label'       => $exporter->get_label(),
 							'description' => $exporter->get_description(),
+<<<<<<< HEAD
 							'checked'     => true,
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						);
 					},
 					$this->get_woo_exporters()
@@ -202,6 +250,7 @@ class Init {
 			),
 			array(
 				'id'          => 'plugins',
+<<<<<<< HEAD
 				'description' => __( 'Includes all the installed plugins.', 'woocommerce' ),
 				'label'       => __( 'Plugins', 'woocommerce' ),
 				'icon'        => 'plugins',
@@ -213,6 +262,33 @@ class Init {
 				'label'       => __( 'Themes', 'woocommerce' ),
 				'icon'        => 'layout',
 				'items'       => $this->get_themes_for_export_group(),
+=======
+				'description' => __( 'It includes all the installed plugins and extensions.', 'woocommerce' ),
+				'label'       => __( 'Plugins and extensions', 'woocommerce' ),
+				'icon'        => 'plugins',
+				'items'       => array_map(
+					function ( $key, $plugin ) {
+						return array(
+							'id'    => $key,
+							'label' => $plugin['Name'],
+						);
+					},
+					array_keys( $active_plugins ),
+					$active_plugins
+				),
+			),
+			array(
+				'id'          => 'themes',
+				'description' => __( 'It includes all the installed themes.', 'woocommerce' ),
+				'label'       => __( 'Themes', 'woocommerce' ),
+				'icon'        => 'brush',
+				'items'       => array(
+					array(
+						'id'    => $active_theme->get_stylesheet(),
+						'label' => $active_theme->get( 'Name' ),
+					),
+				),
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 		);
 	}
@@ -229,15 +305,30 @@ class Init {
 			return $settings;
 		}
 
+<<<<<<< HEAD
 		if ( 'woocommerce_page_wc-settings-advanced-blueprint' === PageController::get_instance()->get_current_screen_id() ) {
 			// Used on the settings page.
 			// wcSettings.admin.blueprint_step_groups.
 			$settings['blueprint_step_groups']         = $this->get_step_groups_for_js();
+=======
+		$screen_id     = PageController::get_instance()->get_current_screen_id();
+		$advanced_page = strpos( $screen_id, 'woocommerce_page_wc-settings-advanced' ) !== false;
+		if ( 'woocommerce_page_wc-admin' === $screen_id || $advanced_page ) {
+			// Add upload nonce to global JS settings. The value can be accessed at wcSettings.admin.blueprint_upload_nonce.
+			$settings['blueprint_upload_nonce'] = wp_create_nonce( 'blueprint_upload_nonce' );
+		}
+
+		if ( $advanced_page ) {
+			// Used on the settings page.
+			// wcSettings.admin.blueprint_step_groups.
+			$settings['blueprint_step_groups'] = $this->get_step_groups_for_js();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$settings['blueprint_max_step_size_bytes'] = RestApi::MAX_FILE_SIZE;
 		}
 
 		return $settings;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Get all installed WordPress.org plugins.
@@ -313,4 +404,6 @@ class Init {
 		set_transient( self::INSTALLED_WP_ORG_PLUGINS_TRANSIENT, $wp_org_plugins );
 		return $wp_org_plugins;
 	}
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

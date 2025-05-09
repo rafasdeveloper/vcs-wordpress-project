@@ -1,5 +1,6 @@
 <?php
 /**
+<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -7,6 +8,15 @@
 
 declare(strict_types = 1);
 namespace Automattic\WooCommerce\EmailEditor\Engine;
+=======
+ * This file is part of the MailPoet Email Editor package.
+ *
+ * @package MailPoet\EmailEditor
+ */
+
+declare(strict_types = 1);
+namespace MailPoet\EmailEditor\Engine;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 use WP_Post;
 use WP_Theme_JSON;
@@ -15,7 +25,11 @@ use WP_Theme_JSON;
  * This class is responsible for managing and accessing theme data aka email styles created by users.
  */
 class User_Theme {
+<<<<<<< HEAD
 	private const USER_THEME_POST_NAME = 'wp-global-styles-woocommerce-email';
+=======
+	private const USER_THEME_POST_NAME = 'wp-global-styles-mailpoet-email';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	private const INITIAL_THEME_DATA   = array(
 		'version'                     => 3,
 		'isGlobalStylesUserThemeJSON' => true,

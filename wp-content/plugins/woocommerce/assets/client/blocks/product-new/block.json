@@ -2,6 +2,7 @@
 	"name": "woocommerce/product-new",
 	"title": "Newest Products",
 	"category": "woocommerce",
+<<<<<<< HEAD
 	"keywords": [ "WooCommerce" ],
 	"description": "Display a grid of your newest products.",
 	"supports": {
@@ -9,6 +10,17 @@
 			"clientNavigation": false
 		},
 		"align": [ "wide", "full" ],
+=======
+	"keywords": [
+		"WooCommerce"
+	],
+	"description": "Display a grid of your newest products.",
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"html": false,
 		"inserter": false
 	},

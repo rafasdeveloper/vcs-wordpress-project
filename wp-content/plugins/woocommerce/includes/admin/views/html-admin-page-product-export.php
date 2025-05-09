@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 wp_enqueue_script( 'wc-product-export' );
 
 $exporter = new WC_Product_CSV_Exporter();
+<<<<<<< HEAD
 
 $product_ids_to_export    = array();
 $is_exporting_product_ids = false;
@@ -23,10 +24,13 @@ if ( ! empty( $_GET['product_ids'] ) ) {
 	$product_ids_to_export    = array_filter( array_map( 'absint', $ids_raw ) );
 	$is_exporting_product_ids = ! empty( $product_ids_to_export ) ? true : false;
 }
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 <div class="wrap woocommerce">
 	<h1><?php esc_html_e( 'Export Products', 'woocommerce' ); ?></h1>
 
+<<<<<<< HEAD
 	<?php
 	if ( $is_exporting_product_ids ) {
 		$clear_url = remove_query_arg( 'product_ids' );
@@ -70,6 +74,14 @@ if ( ! empty( $_GET['product_ids'] ) ) {
 					}
 					?>
 				</p>
+=======
+	<div class="woocommerce-exporter-wrapper">
+		<form class="woocommerce-exporter">
+			<header>
+				<span class="spinner is-active"></span>
+				<h2><?php esc_html_e( 'Export products to a CSV file', 'woocommerce' ); ?></h2>
+				<p><?php esc_html_e( 'This tool allows you to generate and download a CSV file containing a list of all products.', 'woocommerce' ); ?></p>
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			</header>
 			<section>
 				<table class="form-table woocommerce-exporter-options">
@@ -90,7 +102,10 @@ if ( ! empty( $_GET['product_ids'] ) ) {
 								</select>
 							</td>
 						</tr>
+<<<<<<< HEAD
 						<?php if ( ! $is_exporting_product_ids ) : ?>
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						<tr>
 							<th scope="row">
 								<label for="woocommerce-exporter-types"><?php esc_html_e( 'Which product types should be exported?', 'woocommerce' ); ?></label>
@@ -125,7 +140,10 @@ if ( ! empty( $_GET['product_ids'] ) ) {
 								</select>
 							</td>
 						</tr>
+<<<<<<< HEAD
 						<?php endif; ?>
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						<tr>
 							<th scope="row">
 								<label for="woocommerce-exporter-meta"><?php esc_html_e( 'Export custom meta?', 'woocommerce' ); ?></label>

@@ -4,6 +4,10 @@ declare( strict_types = 1);
 
 namespace Automattic\WooCommerce\Admin\Features\Blueprint\Exporters;
 
+<<<<<<< HEAD
+=======
+use Automattic\WooCommerce\Admin\Features\Blueprint\Steps\SetWCPaymentGateways;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
 use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
 use Automattic\WooCommerce\Blueprint\Steps\Step;
@@ -82,6 +86,7 @@ class ExportWCPaymentGateways implements StepExporter {
 	 * @return string
 	 */
 	public function get_description() {
+<<<<<<< HEAD
 		return __( 'Includes all settings in WooCommerce | Settings | Payments.', 'woocommerce' );
 	}
 
@@ -93,5 +98,8 @@ class ExportWCPaymentGateways implements StepExporter {
 	 */
 	public function check_step_capabilities(): bool {
 		return current_user_can( 'manage_woocommerce' );
+=======
+		return __( 'It includes all settings in WooCommerce | Settings | Payments.', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

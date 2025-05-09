@@ -1,6 +1,9 @@
 <?php
+<<<<<<< HEAD
 declare(strict_types=1);
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
 use Automattic\WooCommerce\Blocks\Package;
@@ -13,8 +16,11 @@ use Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils;
 use Automattic\WooCommerce\Blocks\Utils\Utils;
 use Automattic\WooCommerce\Blocks\Utils\MiniCartUtils;
 use Automattic\WooCommerce\Blocks\Utils\BlockHooksTrait;
+<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Blocks\Utils\BlocksSharedState;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Mini-Cart class.
@@ -23,7 +29,10 @@ use Automattic\WooCommerce\Blocks\Utils\BlocksSharedState;
  */
 class MiniCart extends AbstractBlock {
 	use BlockHooksTrait;
+<<<<<<< HEAD
 	use BlocksSharedState;
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Block name.
@@ -147,7 +156,11 @@ class MiniCart extends AbstractBlock {
 	 * @return array|string
 	 */
 	protected function get_block_type_script( $key = null ) {
+<<<<<<< HEAD
 		if ( is_cart() || is_checkout() || Features::is_enabled( 'experimental-iapi-mini-cart' ) ) {
+=======
+		if ( is_cart() || is_checkout() ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return;
 		}
 
@@ -204,7 +217,11 @@ class MiniCart extends AbstractBlock {
 
 		if (
 			current_user_can( 'edit_theme_options' ) &&
+<<<<<<< HEAD
 			( wp_is_block_theme() || current_theme_supports( 'block-template-parts' ) )
+=======
+			( wc_current_theme_is_fse_theme() || current_theme_supports( 'block-template-parts' ) )
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		) {
 			$theme_slug = BlockTemplateUtils::theme_has_template_part( 'mini-cart' ) ? wp_get_theme()->get_stylesheet() : BlockTemplateUtils::PLUGIN_SLUG;
 
@@ -251,10 +268,13 @@ class MiniCart extends AbstractBlock {
 	 * Prints the variable containing information about the scripts to lazy load.
 	 */
 	public function print_lazy_load_scripts() {
+<<<<<<< HEAD
 		if ( Features::is_enabled( 'experimental-iapi-mini-cart' ) ) {
 			return;
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$script_data = $this->asset_api->get_script_data( 'assets/client/blocks/mini-cart-component-frontend.js' );
 
 		$num_dependencies = is_countable( $script_data['dependencies'] ) ? count( $script_data['dependencies'] ) : 0;
@@ -402,9 +422,15 @@ class MiniCart extends AbstractBlock {
 		if ( isset( $attributes['hasHiddenPrice'] ) && false !== $attributes['hasHiddenPrice'] ) {
 			return;
 		}
+<<<<<<< HEAD
 		$price_color = isset( $attributes['priceColor']['color'] ) ? $attributes['priceColor']['color'] : '';
 
 		return '<span class="wc-block-mini-cart__amount" style="color:' . esc_attr( $price_color ) . '"></span>' . $this->get_include_tax_label_markup( $attributes );
+=======
+		$price_color = array_key_exists( 'priceColor', $attributes ) ? $attributes['priceColor']['color'] : '';
+
+		return '<span class="wc-block-mini-cart__amount" style="color:' . esc_attr( $price_color ) . ' "></span>' . $this->get_include_tax_label_markup( $attributes );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -418,13 +444,21 @@ class MiniCart extends AbstractBlock {
 		if ( empty( $this->tax_label ) ) {
 			return '';
 		}
+<<<<<<< HEAD
 		$price_color = isset( $attributes['priceColor']['color'] ) ? $attributes['priceColor']['color'] : '';
+=======
+		$price_color = array_key_exists( 'priceColor', $attributes ) ? $attributes['priceColor']['color'] : '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return '<small class="wc-block-mini-cart__tax-label" style="color:' . esc_attr( $price_color ) . ' " hidden>' . esc_html( $this->tax_label ) . '</small>';
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Render the Mini-Cart block.
+=======
+	 * Append frontend scripts when rendering the Mini-Cart block.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @param array    $attributes Block attributes.
 	 * @param string   $content    Block content.
@@ -432,6 +466,7 @@ class MiniCart extends AbstractBlock {
 	 * @return string Rendered block type output.
 	 */
 	protected function render( $attributes, $content, $block ) {
+<<<<<<< HEAD
 		if ( Features::is_enabled( 'experimental-iapi-mini-cart' ) ) {
 			return $this->render_experimental_iapi_mini_cart( $attributes, $content, $block );
 		}
@@ -554,6 +589,11 @@ class MiniCart extends AbstractBlock {
 		return $template_part_contents;
 	}
 
+=======
+		return $content . $this->get_markup( MiniCartUtils::migrate_attributes_to_color_panel( $attributes ) );
+	}
+
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Render the markup for the Mini-Cart block.
 	 *
@@ -572,8 +612,13 @@ class MiniCart extends AbstractBlock {
 		$wrapper_classes = sprintf( 'wc-block-mini-cart wp-block-woocommerce-mini-cart %s', $classes_styles['classes'] );
 		$wrapper_styles  = $classes_styles['styles'];
 
+<<<<<<< HEAD
 		$icon_color          = isset( $attributes['iconColor']['color'] ) ? esc_attr( $attributes['iconColor']['color'] ) : 'currentColor';
 		$product_count_color = isset( $attributes['productCountColor']['color'] ) ? esc_attr( $attributes['productCountColor']['color'] ) : '';
+=======
+		$icon_color          = array_key_exists( 'iconColor', $attributes ) ? esc_attr( $attributes['iconColor']['color'] ) : 'currentColor';
+		$product_count_color = array_key_exists( 'productCountColor', $attributes ) ? esc_attr( $attributes['productCountColor']['color'] ) : '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$styles              = $product_count_color ? 'background:' . $product_count_color : '';
 		$icon                = MiniCartUtils::get_svg_icon( $attributes['miniCartIcon'] ?? '', $icon_color );
 
@@ -596,7 +641,32 @@ class MiniCart extends AbstractBlock {
 			</div>';
 		}
 
+<<<<<<< HEAD
 		$template_part_contents = $this->get_template_part_contents();
+=======
+		$template_part_contents = '';
+
+		// Determine if we need to load the template part from the DB, the theme or WooCommerce in that order.
+		$templates_from_db = BlockTemplateUtils::get_block_templates_from_db( array( 'mini-cart' ), 'wp_template_part' );
+		if ( is_countable( $templates_from_db ) && count( $templates_from_db ) > 0 ) {
+			$template_slug_to_load = $templates_from_db[0]->theme;
+		} else {
+			$theme_has_mini_cart   = BlockTemplateUtils::theme_has_template_part( 'mini-cart' );
+			$template_slug_to_load = $theme_has_mini_cart ? get_stylesheet() : BlockTemplateUtils::PLUGIN_SLUG;
+		}
+		$template_part = get_block_template( $template_slug_to_load . '//mini-cart', 'wp_template_part' );
+
+		if ( $template_part && ! empty( $template_part->content ) ) {
+			$template_part_contents = do_blocks( $template_part->content );
+		}
+
+		if ( '' === $template_part_contents ) {
+			$template_part_contents = do_blocks(
+				// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+				file_get_contents( Package::get_path() . 'templates/' . BlockTemplateUtils::DIRECTORY_NAMES['TEMPLATE_PARTS'] . '/mini-cart.html' )
+			);
+		}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return '<div class="' . esc_attr( $wrapper_classes ) . '" style="' . esc_attr( $wrapper_styles ) . '">
 			<button class="wc-block-mini-cart__button" aria-label="' . __( 'Cart', 'woocommerce' ) . '">' . $button_html . '</button>

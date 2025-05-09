@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks;
@@ -11,6 +12,14 @@ use Automattic\WooCommerce\Internal\Admin\Suggestions\PaymentsExtensionSuggestio
 use WC_Gateway_BACS;
 use WC_Gateway_Cheque;
 use WC_Gateway_COD;
+=======
+
+namespace Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks;
+
+use Automattic\WooCommerce\Admin\Features\Features;
+use Automattic\WooCommerce\Admin\Features\OnboardingTasks\Task;
+use Automattic\WooCommerce\Utilities\FeaturesUtil;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Payments Task
@@ -39,7 +48,11 @@ class Payments extends Task {
 	 * @return string
 	 */
 	public function get_title() {
+<<<<<<< HEAD
 		return __( 'Set up payments', 'woocommerce' );
+=======
+		return __( 'Get paid', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -60,7 +73,11 @@ class Payments extends Task {
 	 * @return string
 	 */
 	public function get_time() {
+<<<<<<< HEAD
 		return __( '5 minutes', 'woocommerce' );
+=======
+		return __( '2 minutes', 'woocommerce' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -69,6 +86,7 @@ class Payments extends Task {
 	 * @return bool
 	 */
 	public function is_complete() {
+<<<<<<< HEAD
 		if ( null === $this->is_complete_result ) {
 			if ( $this->is_woopayments_active() ) {
 				// If WooPayments is active, check if it is fully onboarded with a live account.
@@ -77,6 +95,10 @@ class Payments extends Task {
 				// If WooPayments is not active, check if there are any enabled gateways.
 				$this->is_complete_result = self::has_gateways();
 			}
+=======
+		if ( $this->is_complete_result === null ) {
+			$this->is_complete_result = self::has_gateways();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $this->is_complete_result;
@@ -88,8 +110,19 @@ class Payments extends Task {
 	 * @return bool
 	 */
 	public function can_view() {
+<<<<<<< HEAD
 		// The task is always visible.
 		return true;
+=======
+		// If the React-based Payments settings page is enabled, the task is always visible.
+		if ( FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-settings' ) ) {
+			return true;
+		}
+
+		// The task is visible if WooPayments is not supported in the current store location country.
+		// Otherwise, the WooPayments task will be shown.
+		return Features::is_enabled( 'payment-gateway-suggestions' ) && ! WooCommercePayments::is_supported();
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -98,10 +131,17 @@ class Payments extends Task {
 	 * @return bool
 	 */
 	public static function has_gateways() {
+<<<<<<< HEAD
 		$gateways         = WC()->payment_gateways()->payment_gateways;
 		$enabled_gateways = array_filter(
 			$gateways,
 			function ( $gateway ) {
+=======
+		$gateways         = WC()->payment_gateways->get_available_payment_gateways();
+		$enabled_gateways = array_filter(
+			$gateways,
+			function( $gateway ) {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				return 'yes' === $gateway->enabled;
 			}
 		);
@@ -112,11 +152,16 @@ class Payments extends Task {
 	/**
 	 * The task action URL.
 	 *
+<<<<<<< HEAD
 	 * Empty string means the JS logic will handle the task linking.
+=======
+	 * Empty string means the task linking will be handled by the JS logic.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @return string
 	 */
 	public function get_action_url() {
+<<<<<<< HEAD
 		// Link to the Payments settings page.
 		return admin_url( 'admin.php?page=wc-settings&tab=checkout&from=' . SettingsPaymentsService::FROM_PAYMENTS_TASK );
 	}
@@ -419,5 +464,14 @@ class Payments extends Task {
 		}
 
 		return null;
+=======
+		// If the React-based Payments settings page is enabled, we want the task to link to the Payments Settings page.
+		if ( FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-settings' ) ) {
+			return admin_url( 'admin.php?page=wc-settings&tab=checkout' );
+		}
+
+		// Otherwise, we want the task behavior to remain unchanged (link to the Payments task page).
+		return '';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

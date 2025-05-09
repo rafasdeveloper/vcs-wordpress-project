@@ -3,12 +3,18 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\Admin\Settings;
 
+<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Admin\Settings\PaymentsProviders\WooPayments\WooPaymentsService;
 use Automattic\WooCommerce\Internal\Logging\SafeGlobalFunctionProxy;
 use Throwable;
 use WC_Gateway_BACS;
 use WC_Gateway_Cheque;
 use WC_Gateway_COD;
+=======
+use Automattic\WooCommerce\Internal\Features\FeaturesController;
+use Automattic\WooCommerce\Utilities\FeaturesUtil;
+use Exception;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 /**
@@ -18,8 +24,11 @@ defined( 'ABSPATH' ) || exit;
  */
 class PaymentsController {
 
+<<<<<<< HEAD
 	const TRANSIENT_HAS_PROVIDERS_WITH_INCENTIVE_KEY = 'woocommerce_admin_settings_payments_has_providers_with_incentive';
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * The payment service.
 	 *
@@ -31,12 +40,33 @@ class PaymentsController {
 	 * Register hooks.
 	 */
 	public function register() {
+<<<<<<< HEAD
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
 		add_filter( 'admin_body_class', array( $this, 'add_body_classes' ), 20 );
 		add_filter( 'woocommerce_admin_shared_settings', array( $this, 'preload_settings' ) );
 		add_filter( 'woocommerce_admin_allowed_promo_notes', array( $this, 'add_allowed_promo_notes' ) );
 		add_filter( 'woocommerce_get_sections_checkout', array( $this, 'handle_sections' ), 20 );
 		add_action( 'woocommerce_admin_payments_extension_suggestion_incentive_dismissed', array( $this, 'handle_incentive_dismissed' ) );
+=======
+		// Because we gate the hooking based on a feature flag,
+		// we need to delay the registration until the 'woocommerce_init' hook.
+		// Otherwise, we end up in an infinite loop.
+		add_action( 'woocommerce_init', array( $this, 'delayed_register' ) );
+	}
+
+	/**
+	 * Delayed hook registration.
+	 */
+	public function delayed_register() {
+		// Don't do anything if the feature is not enabled.
+		if ( ! FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-settings' ) ) {
+			return;
+		}
+
+		add_action( 'admin_menu', array( $this, 'add_menu' ) );
+		add_filter( 'woocommerce_admin_shared_settings', array( $this, 'preload_settings' ) );
+		add_filter( 'woocommerce_admin_allowed_promo_notes', array( $this, 'add_allowed_promo_notes' ) );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -56,18 +86,29 @@ class PaymentsController {
 	public function add_menu() {
 		global $menu;
 
+<<<<<<< HEAD
 		// When the WooPayments account is onboarded, WooPayments will own the Payments menu item since it is the native Woo payments solution.
 		if ( $this->is_woopayments_account_onboarded() ) {
 			return;
 		} else {
 			// Otherwise, remove the Payments menu item linking to the Connect page to avoid Payments menu item duplication.
 			remove_menu_page( 'wc-admin&path=/payments/connect' );
+=======
+		// The WooPayments plugin must not be active.
+		// When active, WooPayments will own the Payments menu item since it is the native Woo payments solution.
+		if ( $this->is_woopayments_active() ) {
+			return;
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		$menu_title = esc_html__( 'Payments', 'woocommerce' );
 		$menu_icon  = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4NTIiIGhlaWdodD0iNjg0Ij48cGF0aCBmaWxsPSIjYTJhYWIyIiBkPSJNODIgODZ2NTEyaDY4NFY4NlptMCA1OThjLTQ4IDAtODQtMzgtODQtODZWODZDLTIgMzggMzQgMCA4MiAwaDY4NGM0OCAwIDg0IDM4IDg0IDg2djUxMmMwIDQ4LTM2IDg2LTg0IDg2em0zODQtNTU2djQ0aDg2djg0SDM4MnY0NGgxMjhjMjQgMCA0MiAxOCA0MiA0MnYxMjhjMCAyNC0xOCA0Mi00MiA0MmgtNDR2NDRoLTg0di00NGgtODZ2LTg0aDE3MHYtNDRIMzM4Yy0yNCAwLTQyLTE4LTQyLTQyVjIxNGMwLTI0IDE4LTQyIDQyLTQyaDQ0di00NHoiLz48L3N2Zz4=';
 		// Link to the Payments settings page.
+<<<<<<< HEAD
 		$menu_path = 'admin.php?page=wc-settings&tab=checkout&from=' . Payments::FROM_PAYMENTS_MENU_ITEM;
+=======
+		$menu_path = 'admin.php?page=wc-settings&tab=checkout';
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		add_menu_page(
 			$menu_title,
@@ -79,11 +120,19 @@ class PaymentsController {
 			56, // Position after WooCommerce Product menu item.
 		);
 
+<<<<<<< HEAD
 		// If there are providers with an active incentive, add a notice badge to the Payments menu item.
 		if ( $this->store_has_providers_with_incentive() ) {
 			$badge = ' <span class="wcpay-menu-badge awaiting-mod count-1"><span class="plugin-count">1</span></span>';
 			foreach ( $menu as $index => $menu_item ) {
 				// Only add the badge markup if not already present, and the menu item is the Payments menu item.
+=======
+		// If there are providers with active incentive, add a notice badge to the Payments menu item.
+		if ( $this->store_has_providers_with_incentive() ) {
+			$badge = ' <span class="wcpay-menu-badge awaiting-mod count-1"><span class="plugin-count">1</span></span>';
+			foreach ( $menu as $index => $menu_item ) {
+				// Only add the badge markup if not already present and the menu item is the Payments menu item.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				if ( 0 === strpos( $menu_item[0], $menu_title )
 					&& $menu_path === $menu_item[2]
 					&& false === strpos( $menu_item[0], $badge ) ) {
@@ -98,6 +147,7 @@ class PaymentsController {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Adds body classes when in the Payments Settings admin area.
 	 *
 	 * @param string $classes The existing body classes for the admin area.
@@ -120,6 +170,8 @@ class PaymentsController {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Preload settings to make them available to the Payments settings page frontend logic.
 	 *
 	 * Added keys will be available in the window.wcSettings.admin object.
@@ -128,17 +180,24 @@ class PaymentsController {
 	 *
 	 * @return array Settings array with additional settings added.
 	 */
+<<<<<<< HEAD
 	public function preload_settings( $settings = array() ) {
+=======
+	public function preload_settings( array $settings ): array {
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// We only preload settings in the WP admin.
 		if ( ! is_admin() ) {
 			return $settings;
 		}
 
+<<<<<<< HEAD
 		// Reset the received value if the type is invalid.
 		if ( ! is_array( $settings ) ) {
 			$settings = array();
 		}
 
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Add the business location country to the settings.
 		if ( ! isset( $settings[ Payments::PAYMENTS_NOX_PROFILE_KEY ] ) ) {
 			$settings[ Payments::PAYMENTS_NOX_PROFILE_KEY ] = array();
@@ -155,6 +214,7 @@ class PaymentsController {
 	 *
 	 * @return array The updated list of allowed promo note IDs.
 	 */
+<<<<<<< HEAD
 	public function add_allowed_promo_notes( $promo_notes = array() ): array {
 		// Reset the value if the type is invalid.
 		if ( ! is_array( $promo_notes ) ) {
@@ -173,6 +233,13 @@ class PaymentsController {
 				)
 			);
 
+=======
+	public function add_allowed_promo_notes( array $promo_notes = array() ): array {
+		try {
+			$providers = $this->payments->get_payment_providers( $this->payments->get_country() );
+		} catch ( Exception $e ) {
+			// In case of an error, bail.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $promo_notes;
 		}
 
@@ -187,6 +254,7 @@ class PaymentsController {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Alter the Payments tab sections under certain conditions.
 	 *
 	 * @param array $sections The payments/checkout tab sections.
@@ -225,6 +293,8 @@ class PaymentsController {
 	}
 
 	/**
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Check if the store has any enabled gateways (including offline payment methods).
 	 *
 	 * @return bool True if the store has any enabled gateways, false otherwise.
@@ -247,6 +317,7 @@ class PaymentsController {
 	 * @return bool True if the store has providers with an active incentive.
 	 */
 	private function store_has_providers_with_incentive(): bool {
+<<<<<<< HEAD
 		// First, try to use the transient value.
 		$transient = get_transient( self::TRANSIENT_HAS_PROVIDERS_WITH_INCENTIVE_KEY );
 		if ( false !== $transient ) {
@@ -370,5 +441,38 @@ class PaymentsController {
 		}
 
 		return filter_var( $account_data['data']['details_submitted'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE ) ?? false;
+=======
+		try {
+			$providers = $this->payments->get_payment_providers( $this->payments->get_country() );
+		} catch ( Exception $e ) {
+			// In case of an error, just return false.
+			return false;
+		}
+
+		// Go through the providers and check if any of them have a "prominently" visible incentive (i.e., modal or banner).
+		foreach ( $providers as $provider ) {
+			// We check to see if the incentive was dismissed in the banner context.
+			// In case an incentive uses the modal surface also (like the WooPayments Switch incentive),
+			// we rely on the fact that the modal falls back to the banner, once dismissed.
+			if ( ! empty( $provider['_incentive'] ) &&
+				( empty( $provider['_incentive']['_dismissals'] ) ||
+					! in_array( 'wc_settings_payments__banner', $provider['_incentive']['_dismissals'], true )
+				)
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if the WooPayments plugin is active.
+	 *
+	 * @return boolean
+	 */
+	private function is_woopayments_active(): bool {
+		return class_exists( '\WC_Payments' );
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

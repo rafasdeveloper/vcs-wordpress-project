@@ -109,7 +109,11 @@ abstract class WC_Settings_API {
 	/**
 	 * Get a fields type. Defaults to "text" if not set.
 	 *
+<<<<<<< HEAD
 	 * @param  array $field Field array.
+=======
+	 * @param  array $field Field key.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return string
 	 */
 	public function get_field_type( $field ) {
@@ -119,7 +123,11 @@ abstract class WC_Settings_API {
 	/**
 	 * Get a fields default value. Defaults to "" if not set.
 	 *
+<<<<<<< HEAD
 	 * @param  array $field Field array.
+=======
+	 * @param  array $field Field key.
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return string
 	 */
 	public function get_field_default( $field ) {

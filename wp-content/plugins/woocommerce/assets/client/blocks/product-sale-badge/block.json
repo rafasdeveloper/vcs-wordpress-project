@@ -1,20 +1,28 @@
 {
 	"name": "woocommerce/product-sale-badge",
+<<<<<<< HEAD
+=======
+	"version": "1.0.0",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "On-Sale Badge",
 	"description": "Displays an on-sale badge if the product is on-sale.",
 	"category": "woocommerce-product-elements",
 	"attributes": {
 		"productId": { "type": "number", "default": 0 },
 		"isDescendentOfQueryLoop": { "type": "boolean", "default": false },
+<<<<<<< HEAD
 		"isDescendentOfSingleProductBlock": {
 			"type": "boolean",
 			"default": false
 		},
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"isDescendentOfSingleProductTemplate": {
 			"type": "boolean",
 			"default": false
 		}
 	},
+<<<<<<< HEAD
 	"supports": {
 		"interactivity": {
 			"clientNavigation": true
@@ -55,10 +63,15 @@
 		"core/post-template",
 		"woocommerce/product-gallery"
 	],
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"usesContext": [ "query", "queryId", "postId" ],
 	"keywords": [ "WooCommerce" ],
 	"textdomain": "woocommerce",
 	"apiVersion": 3,
+<<<<<<< HEAD
 	"example": {},
+=======
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }

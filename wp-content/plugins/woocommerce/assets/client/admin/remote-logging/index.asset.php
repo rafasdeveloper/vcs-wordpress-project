@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 <?php return array('dependencies' => array('wc-settings', 'wc-tracks', 'wp-hooks'), 'version' => 'ce414084e6b119013259');
+=======
+<?php return array('dependencies' => array('wc-settings', 'wc-tracks', 'wp-hooks'), 'version' => '6f5c542236c0dce59f44');
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
