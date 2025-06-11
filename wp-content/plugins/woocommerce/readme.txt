@@ -1,10 +1,10 @@
 === WooCommerce ===
 Contributors: automattic, woocommerce, mikejolley, jameskoster, claudiosanches, rodrigosprimo, peterfabian1000, vedjain, jamosova, obliviousharmony, konamiman, sadowski, wpmuguru, royho, barryhughes-1, claudiulodro, tiagonoronha, ryelle, levinmedia, aljullu, nerrad, joshuawold, assassinateur, haszari, mppfeiffer, nielslange, opr18, ralucastn, tjcafferkey, danielwrobert, patriciahillebrandt, albarin, dinhtungdu, imanish003, karolmanijak, sunyatasattva, alexandrelara, gigitux, danieldudzic, samueljseay, alexflorisca, opr18, tarunvijwani, pauloarromba, saadtarhi, bor0, kloon, coreymckrill, jorgeatorres, leifsinger, neosinner
 Tags: online store, ecommerce, shop, shopping cart, sell online
-Requires at least: 6.6
+Requires at least: 6.7
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 9.8.2
+Stable tag: 9.8.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -169,12 +169,12 @@ WooCommerce comes with some sample data you can use to see how products look; im
 
 == Changelog ==
 
-= 9.8.3 2025-04-30 =
+= 9.9.3 2025-06-09 =
 
 **WooCommerce**
 
-* Fix - Add static cache and queue search to prevent duplicate scheduling of the wc_delete_related_product_transients_async action in wc_delete_product_transients(). [#57592](https://github.com/woocommerce/woocommerce/pull/57592)
-* Fix - Don't run postcode validation for hidden postcodes. [#57594](https://github.com/woocommerce/woocommerce/pull/57594)
+* Fix - Remove order status validation for order count cache [#58586](https://github.com/woocommerce/woocommerce/pull/58586)
+* Fix - Revert "unsupported_theme_title_filter" Id parameter typing. [#58574](https://github.com/woocommerce/woocommerce/pull/58574)
 
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce/trunk/changelog.txt).
