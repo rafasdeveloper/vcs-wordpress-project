@@ -32,16 +32,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Ai1wm_Database_Sqlite extends Ai1wm_Database {
 
 	/**
-	 * Check whether table has auto increment attribute
-	 *
-	 * @param  string  $table_name Table name
-	 * @return boolean
-	 */
-	public function has_auto_increment( $table_name ) {
-		return stripos( $this->get_create_table( $table_name ), 'AUTOINCREMENT' ) !== false;
-	}
-
-	/**
 	 * Get views
 	 *
 	 * @return array
@@ -369,7 +359,7 @@ class Ai1wm_Database_Sqlite extends Ai1wm_Database {
 	/**
 	 * Use SQLite transactions
 	 *
-	 * @return boolean
+	 * @return bolean
 	 */
 	protected function use_transactions() {
 		return false;

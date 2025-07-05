@@ -119,23 +119,20 @@ class Ai1wm_Database_Utility {
 
 		switch ( $type ) {
 			case 's':
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ':' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ':' ) {
 					return '';
 				}
 
 				$pos++;
 				$len_end = strpos( $data, ':', $pos );
 				if ( $len_end === false ) {
-					$pos--;
 					return '';
 				}
 
 				$str_length = (int) substr( $data, $pos, $len_end - $pos );
 
 				$pos = $len_end + 1;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '"' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '"' ) {
 					return '';
 				}
 
@@ -143,14 +140,12 @@ class Ai1wm_Database_Utility {
 				$str = substr( $data, $pos, $str_length );
 
 				$pos += $str_length;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '"' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '"' ) {
 					return '';
 				}
 
 				$pos++;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ';' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ';' ) {
 					return '';
 				}
 
@@ -177,15 +172,13 @@ class Ai1wm_Database_Utility {
 			case 'i':
 			case 'd':
 			case 'b':
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ':' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ':' ) {
 					return '';
 				}
 
 				$pos++;
 				$end = strpos( $data, ';', $pos );
 				if ( $end === false ) {
-					$pos--;
 					return '';
 				}
 
@@ -195,8 +188,7 @@ class Ai1wm_Database_Utility {
 				return $type . ':' . $value . ';';
 
 			case 'N':
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ';' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ';' ) {
 					return '';
 				}
 
@@ -205,23 +197,20 @@ class Ai1wm_Database_Utility {
 				return 'N;';
 
 			case 'a':
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ':' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ':' ) {
 					return '';
 				}
 
 				$pos++;
 				$len_end = strpos( $data, ':', $pos );
 				if ( $len_end === false ) {
-					$pos--;
 					return '';
 				}
 
 				$array_length = (int) substr( $data, $pos, $len_end - $pos );
 
 				$pos = $len_end + 1;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '{' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '{' ) {
 					return '';
 				}
 
@@ -230,15 +219,13 @@ class Ai1wm_Database_Utility {
 				for ( $i = 0; $i < $array_length * 2; $i++ ) {
 					$element = self::parse_serialized_values( $data, $pos, $search, $replace );
 					if ( $element === '' ) {
-						$pos--;
 						return '';
 					}
 
 					$result .= $element;
 				}
 
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '}' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '}' ) {
 					return '';
 				}
 
@@ -248,23 +235,20 @@ class Ai1wm_Database_Utility {
 				return $result;
 
 			case 'O':
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ':' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ':' ) {
 					return '';
 				}
 
 				$pos++;
 				$class_len_end = strpos( $data, ':', $pos );
 				if ( $class_len_end === false ) {
-					$pos--;
 					return '';
 				}
 
 				$class_length = (int) substr( $data, $pos, $class_len_end - $pos );
 
 				$pos = $class_len_end + 1;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '"' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '"' ) {
 					return '';
 				}
 
@@ -272,29 +256,25 @@ class Ai1wm_Database_Utility {
 				$class_name = substr( $data, $pos, $class_length );
 
 				$pos += $class_length;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '"' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '"' ) {
 					return '';
 				}
 
 				$pos++;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ':' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ':' ) {
 					return '';
 				}
 
 				$pos++;
 				$prop_len_end = strpos( $data, ':', $pos );
 				if ( $prop_len_end === false ) {
-					$pos--;
 					return '';
 				}
 
 				$prop_count = (int) substr( $data, $pos, $prop_len_end - $pos );
 
 				$pos = $prop_len_end + 1;
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '{' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '{' ) {
 					return '';
 				}
 
@@ -303,15 +283,13 @@ class Ai1wm_Database_Utility {
 				for ( $i = 0; $i < $prop_count * 2; $i++ ) {
 					$element = self::parse_serialized_values( $data, $pos, $search, $replace );
 					if ( $element === '' ) {
-						$pos--;
 						return '';
 					}
 
 					$result .= $element;
 				}
 
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== '}' ) {
-					$pos--;
+				if ( $data[ $pos ] !== '}' ) {
 					return '';
 				}
 
@@ -322,15 +300,13 @@ class Ai1wm_Database_Utility {
 
 			case 'R':
 			case 'r':
-				if ( ! isset( $data[ $pos ] ) || $data[ $pos ] !== ':' ) {
-					$pos--;
+				if ( $data[ $pos ] !== ':' ) {
 					return '';
 				}
 
 				$pos++;
 				$end = strpos( $data, ';', $pos );
 				if ( $end === false ) {
-					$pos--;
 					return '';
 				}
 
@@ -340,7 +316,6 @@ class Ai1wm_Database_Utility {
 				return $type . ':' . $ref . ';';
 
 			default:
-				$pos--;
 				return '';
 		}
 	}
