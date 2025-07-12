@@ -9,6 +9,7 @@
 .htaccess
 .maintenance
 
+wp-config.php
 sitemap.xml
 sitemap.xml.gz
 wp-content/uploads/
