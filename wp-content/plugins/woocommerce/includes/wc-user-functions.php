@@ -398,13 +398,8 @@ add_action( 'woocommerce_order_status_completed', 'wc_paying_customer' );
  * Checks if a user (by email or ID or both) has bought an item.
  *
  * @param string $customer_email Customer email to check.
-<<<<<<< HEAD
  * @param int    $user_id        User ID to check.
  * @param int    $product_id     Product ID to check.
-=======
- * @param int    $user_id User ID to check.
- * @param int    $product_id Product ID to check.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * @return bool
  */
 function wc_customer_bought_product( $customer_email, $user_id, $product_id ) {
@@ -429,7 +424,6 @@ function wc_customer_bought_product( $customer_email, $user_id, $product_id ) {
 	 */
 	$use_lookup_tables = apply_filters( 'woocommerce_customer_bought_product_use_lookup_tables', false, $customer_email, $user_id, $product_id );
 
-<<<<<<< HEAD
 	if ( $use_lookup_tables ) {
 		// Lookup tables get refreshed along with the `woocommerce_reports` transient version (due to async processing).
 		// With high orders placement rate, this caching here will be short-lived (suboptimal for BFCM/Christmas and busy stores in general).
@@ -451,21 +445,6 @@ function wc_customer_bought_product( $customer_email, $user_id, $product_id ) {
 
 	if ( isset( $cache_value['value'], $cache_value['version'] ) && $cache_value['version'] === $cache_version ) {
 		$result = $cache_value['value'];
-=======
-	$transient_name = 'wc_customer_bought_product_' . md5( $customer_email . $user_id . $use_lookup_tables );
-
-	if ( $use_lookup_tables ) {
-		// Lookup tables get refreshed along with the `woocommerce_reports` transient version.
-		$transient_version = WC_Cache_Helper::get_transient_version( 'woocommerce_reports' );
-	} else {
-		$transient_version = WC_Cache_Helper::get_transient_version( 'orders' );
-	}
-
-	$transient_value = get_transient( $transient_name );
-
-	if ( isset( $transient_value['value'], $transient_value['version'] ) && $transient_value['version'] === $transient_version ) {
-		$result = $transient_value['value'];
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	} else {
 		$customer_data = array( $user_id );
 
@@ -550,11 +529,7 @@ SELECT DISTINCT im.meta_value FROM {$wpdb->posts} AS p
 INNER JOIN {$wpdb->postmeta} AS pm ON p.ID = pm.post_id
 INNER JOIN {$wpdb->prefix}woocommerce_order_items AS i ON p.ID = i.order_id
 INNER JOIN {$wpdb->prefix}woocommerce_order_itemmeta AS im ON i.order_item_id = im.order_item_id
-<<<<<<< HEAD
 WHERE p.post_status IN ( 'wc-" . implode( "','wc-", $statuses ) . "' ) AND p.post_type = 'shop_order'
-=======
-WHERE p.post_status IN ( 'wc-" . implode( "','wc-", $statuses ) . "' )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 AND pm.meta_key IN ( '_billing_email', '_customer_user' )
 AND im.meta_key IN ( '_product_id', '_variation_id' )
 AND im.meta_value != 0
@@ -565,7 +540,6 @@ AND pm.meta_value IN ( '" . implode( "','", $customer_data ) . "' )
 		}
 		$result = array_map( 'absint', $result );
 
-<<<<<<< HEAD
 		wp_cache_set(
 			$cache_key,
 			array(
@@ -575,14 +549,6 @@ AND pm.meta_value IN ( '" . implode( "','", $customer_data ) . "' )
 			$cache_group,
 			MONTH_IN_SECONDS
 		);
-=======
-		$transient_value = array(
-			'version' => $transient_version,
-			'value'   => $result,
-		);
-
-		set_transient( $transient_name, $transient_value, DAY_IN_SECONDS * 30 );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 	return in_array( absint( $product_id ), $result, true );
 }
@@ -1048,22 +1014,6 @@ function wc_get_customer_last_order( $customer_id ) {
 }
 
 /**
-<<<<<<< HEAD
-=======
- * Add support for searching by display_name.
- *
- * @since 3.2.0
- * @param array $search_columns Column names.
- * @return array
- */
-function wc_user_search_columns( $search_columns ) {
-	$search_columns[] = 'display_name';
-	return $search_columns;
-}
-add_filter( 'user_search_columns', 'wc_user_search_columns' );
-
-/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * When a user is deleted in WordPress, delete corresponding WooCommerce data.
  *
  * @param int $user_id User ID being deleted.

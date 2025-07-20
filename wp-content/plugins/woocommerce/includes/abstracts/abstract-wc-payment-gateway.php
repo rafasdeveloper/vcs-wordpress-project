@@ -10,10 +10,7 @@
  */
 
 use Automattic\Jetpack\Constants;
-<<<<<<< HEAD
 use Automattic\WooCommerce\Enums\PaymentGatewayFeature;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Utilities\HtmlSanitizer;
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -165,11 +162,7 @@ abstract class WC_Payment_Gateway extends WC_Settings_API {
 			return $this->tokens;
 		}
 
-<<<<<<< HEAD
 		if ( is_user_logged_in() && $this->supports( PaymentGatewayFeature::TOKENIZATION ) ) {
-=======
-		if ( is_user_logged_in() && $this->supports( 'tokenization' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$this->tokens = WC_Payment_Tokens::get_customer_tokens( get_current_user_id(), $this->id );
 		}
 
@@ -214,30 +207,16 @@ abstract class WC_Payment_Gateway extends WC_Settings_API {
 	 * Output the gateway settings screen.
 	 */
 	public function admin_options() {
-<<<<<<< HEAD
-=======
-		$is_reactify_enabled      = FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-settings' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$offline_payment_gateways = array( WC_Gateway_BACS::ID, WC_Gateway_Cheque::ID, WC_Gateway_COD::ID );
 		$is_offline_gateway       = in_array( $this->id, $offline_payment_gateways, true );
 
 		$return_url = admin_url( 'admin.php?page=wc-settings&tab=checkout' );
-<<<<<<< HEAD
 		if ( $is_offline_gateway ) {
 			$return_url = add_query_arg( 'section', 'offline', $return_url );
 		}
 
 		wc_back_header( $this->get_method_title(), __( 'Return to payments', 'woocommerce' ), $return_url );
 
-=======
-		if ( $is_reactify_enabled && $is_offline_gateway ) {
-			$return_url = add_query_arg( 'section', 'offline', $return_url );
-		}
-
-		echo '<h2>' . esc_html( $this->get_method_title() );
-		wc_back_link( __( 'Return to payments', 'woocommerce' ), $return_url );
-		echo '</h2>';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		echo wp_kses_post( wpautop( $this->get_method_description() ) );
 		parent::admin_options();
 	}
@@ -498,11 +477,7 @@ abstract class WC_Payment_Gateway extends WC_Settings_API {
 			echo wpautop( wptexturize( $description ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
-<<<<<<< HEAD
 		if ( $this->supports( PaymentGatewayFeature::DEFAULT_CREDIT_CARD_FORM ) ) {
-=======
-		if ( $this->supports( 'default_credit_card_form' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$this->credit_card_form(); // Deprecated, will be removed in a future version.
 		}
 	}
@@ -539,11 +514,7 @@ abstract class WC_Payment_Gateway extends WC_Settings_API {
 	 * @return bool If false, the automatic refund button is hidden in the UI.
 	 */
 	public function can_refund_order( $order ) {
-<<<<<<< HEAD
 		return $order && $this->supports( PaymentGatewayFeature::REFUNDS );
-=======
-		return $order && $this->supports( 'refunds' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 <?php return array('dependencies' => array('react', 'react-dom', 'react-jsx-runtime', 'wc-blocks-components', 'wc-blocks-data-store', 'wc-blocks-registry', 'wc-settings', 'wc-types', 'wp-compose', 'wp-data', 'wp-deprecated', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-is-shallow-equal', 'wp-notices', 'wp-polyfill', 'wp-primitives', 'wp-warning'), 'version' => 'b5d9fdc0ac0e63717d39');
-=======
-<?php return array('dependencies' => array('react', 'react-dom', 'react-jsx-runtime', 'wc-blocks-components', 'wc-blocks-data-store', 'wc-blocks-registry', 'wc-settings', 'wc-types', 'wp-compose', 'wp-data', 'wp-deprecated', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-is-shallow-equal', 'wp-polyfill', 'wp-primitives', 'wp-warning'), 'version' => '7d996fbd6397a164da6a');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

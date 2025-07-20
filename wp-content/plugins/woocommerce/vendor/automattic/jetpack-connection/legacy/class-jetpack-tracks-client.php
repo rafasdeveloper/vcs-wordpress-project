@@ -80,11 +80,7 @@ class Jetpack_Tracks_Client {
 			return $event;
 		}
 
-<<<<<<< HEAD
 		$pixel = $event->build_pixel_url();
-=======
-		$pixel = $event->build_pixel_url( $event );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! $pixel ) {
 			return new WP_Error( 'invalid_pixel', 'cannot generate tracks pixel for given input', 400 );

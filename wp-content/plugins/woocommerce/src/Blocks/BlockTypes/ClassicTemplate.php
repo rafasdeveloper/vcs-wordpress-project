@@ -50,7 +50,6 @@ class ClassicTemplate extends AbstractDynamicBlock {
 	protected function enqueue_data( array $attributes = [] ) {
 		parent::enqueue_data( $attributes );
 
-<<<<<<< HEAD
 		// Indicate to interactivity powered components that this block is on the page
 		// and needs refresh to update data.
 		wp_interactivity_config(
@@ -59,11 +58,6 @@ class ClassicTemplate extends AbstractDynamicBlock {
 				'needsRefreshForInteractivityAPI' => true,
 			]
 		);
-=======
-		// Indicate to interactivity powered components that this block is on the page,
-		// and needs refresh to update data.
-		$this->asset_data_registry->add( 'needsRefreshForInteractivityAPI', true );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

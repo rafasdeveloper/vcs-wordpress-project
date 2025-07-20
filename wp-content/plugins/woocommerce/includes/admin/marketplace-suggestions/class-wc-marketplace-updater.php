@@ -43,7 +43,6 @@ class WC_Marketplace_Updater {
 
 		$data['updated'] = time();
 
-<<<<<<< HEAD
 		$request_data = array();
 
 		$allow_tracking = 'yes' === get_option( 'woocommerce_allow_tracking', 'no' );
@@ -58,9 +57,6 @@ class WC_Marketplace_Updater {
 			$url = add_query_arg( $request_data, $url );
 		}
 
-=======
-		$url     = 'https://woocommerce.com/wp-json/wccom/marketplace-suggestions/1.0/suggestions.json';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$request = wp_safe_remote_get(
 			$url,
 			array(
@@ -97,7 +93,6 @@ class WC_Marketplace_Updater {
 		WC()->queue()->cancel_all( 'woocommerce_update_marketplace_suggestions' );
 		WC()->queue()->schedule_single( time() + DAY_IN_SECONDS, 'woocommerce_update_marketplace_suggestions' );
 	}
-<<<<<<< HEAD
 
 	/**
 	 * Add additional data to the request for personalized suggestions.
@@ -110,8 +105,6 @@ class WC_Marketplace_Updater {
 
 		return $request_params;
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 WC_Marketplace_Updater::load();

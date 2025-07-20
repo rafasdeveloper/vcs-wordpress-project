@@ -10,11 +10,7 @@
 	width: 25em;
 }
 
-<<<<<<< HEAD
 #createuser .form-field [type="checkbox"] {
-=======
-#createuser .form-field [type=checkbox] {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	width: 1rem;
 }
 

@@ -1,10 +1,7 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Utils\BlocksSharedState;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 
 /**
@@ -12,13 +9,10 @@ use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
  */
 class ProductPrice extends AbstractBlock {
 
-<<<<<<< HEAD
 	use EnableBlockJsonAssetsTrait;
 	use BlocksSharedState;
 
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -34,33 +28,6 @@ class ProductPrice extends AbstractBlock {
 	protected $api_version = '3';
 
 	/**
-<<<<<<< HEAD
-=======
-	 * Get block supports. Shared with the frontend.
-	 * IMPORTANT: If you change anything here, make sure to update the JS file too.
-	 *
-	 * @return array
-	 */
-	protected function get_block_type_supports() {
-		return array(
-			'color'                  =>
-			array(
-				'text'       => true,
-				'background' => true,
-				'link'       => false,
-			),
-			'typography'             =>
-			array(
-				'fontSize'                 => true,
-				'__experimentalFontWeight' => true,
-				'__experimentalFontStyle'  => true,
-			),
-			'__experimentalSelector' => '.wp-block-woocommerce-product-price .wc-block-components-product-price',
-		);
-	}
-
-	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the frontend style handle for this block type.
 	 *
 	 * @return null
@@ -108,7 +75,6 @@ class ProductPrice extends AbstractBlock {
 			$styles_and_classes            = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes );
 			$text_align_styles_and_classes = StyleAttributesUtils::get_text_align_class_and_style( $attributes );
 
-<<<<<<< HEAD
 			$is_descendant_of_product_collection       = isset( $block->context['query']['isProductCollectionBlock'] );
 			$is_descendant_of_grouped_product_selector = isset( $block->context['isDescendantOfGroupedProductSelector'] );
 			$is_interactive                            = ! $is_descendant_of_product_collection && ! $is_descendant_of_grouped_product_selector && $product->is_type( 'variable' );
@@ -131,15 +97,6 @@ class ProductPrice extends AbstractBlock {
 				esc_attr( $styles_and_classes['classes'] ),
 				esc_attr( $styles_and_classes['styles'] ?? '' ),
 				$watch_attribute,
-=======
-			return sprintf(
-				'<div class="wp-block-woocommerce-product-price"><div class="wc-block-components-product-price wc-block-grid__product-price %1$s %2$s" style="%3$s">
-					%4$s
-				</div></div>',
-				esc_attr( $text_align_styles_and_classes['class'] ?? '' ),
-				esc_attr( $styles_and_classes['classes'] ),
-				esc_attr( $styles_and_classes['styles'] ?? '' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$product->get_price_html()
 			);
 		}

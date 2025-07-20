@@ -74,11 +74,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	 * Order items will be stored here, sometimes before they persist in the DB.
 	 *
 	 * @since 3.0.0
-<<<<<<< HEAD
 	 * @var array<string, array<int, \WC_Order_Item>>
-=======
-	 * @var array
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	protected $items = array();
 
@@ -86,11 +82,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	 * Order items that need deleting are stored here.
 	 *
 	 * @since 3.0.0
-<<<<<<< HEAD
 	 * @var array<\WC_Order_Item>
-=======
-	 * @var array
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	protected $items_to_delete = array();
 
@@ -950,11 +942,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	protected function get_values_for_total( $field ) {
 		$items = array_map(
 			function ( $item ) use ( $field ) {
-<<<<<<< HEAD
 				return wc_add_number_precision( (float) $item[ $field ], false );
-=======
-				return wc_add_number_precision( $item[ $field ], false );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			},
 			array_values( $this->get_items() )
 		);
@@ -1289,11 +1277,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 			$code   = wc_format_coupon_code( $raw_coupon );
 			$coupon = new WC_Coupon( $code );
 
-<<<<<<< HEAD
 			if ( ! wc_is_same_coupon( $coupon->get_code(), $code ) ) {
-=======
-			if ( $coupon->get_code() !== $code ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				return new WP_Error( 'invalid_coupon', __( 'Invalid coupon code', 'woocommerce' ) );
 			}
 		} else {
@@ -1303,7 +1287,6 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 		// Check to make sure coupon is not already applied.
 		$applied_coupons = $this->get_items( 'coupon' );
 		foreach ( $applied_coupons as $applied_coupon ) {
-<<<<<<< HEAD
 			if ( wc_is_same_coupon( $applied_coupon->get_code(), $coupon->get_code() ) ) {
 				return new WP_Error(
 					'invalid_coupon',
@@ -1313,10 +1296,6 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 						esc_html( $coupon->get_code() )
 					)
 				);
-=======
-			if ( $applied_coupon->get_code() === $coupon->get_code() ) {
-				return new WP_Error( 'invalid_coupon', __( 'Coupon code already applied!', 'woocommerce' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 
@@ -1398,11 +1377,7 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 
 		// Remove the coupon line.
 		foreach ( $coupons as $item_id => $coupon ) {
-<<<<<<< HEAD
 			if ( wc_is_same_coupon( $coupon->get_code(), $code ) ) {
-=======
-			if ( $coupon->get_code() === $code ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$this->remove_item( $item_id );
 				$coupon_object = new WC_Coupon( $code );
 				$coupon_object->decrease_usage_count( $this->get_user_id() );
@@ -2489,7 +2464,6 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Returns true if the order contains items that need shipping.
 	 *
 	 * @since 9.9.0
@@ -2520,8 +2494,6 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Returns true if the order contains a free product.
 	 *
 	 * @since 2.5.0
@@ -2598,12 +2570,6 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 	 * @return float The calculated value.
 	 */
 	protected function calculate_cogs_total_value_core(): float {
-<<<<<<< HEAD
-=======
-		if ( ! $this->has_cogs() || ! $this->cogs_is_enabled( __METHOD__ ) ) {
-			return 0;
-		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$value = 0;
 		foreach ( array_keys( $this->item_types_to_group ) as $item_type ) {

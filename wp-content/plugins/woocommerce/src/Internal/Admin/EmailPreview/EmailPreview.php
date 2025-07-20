@@ -7,22 +7,15 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\Admin\EmailPreview;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\EmailEditor\WooContentProcessor;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use Throwable;
-=======
-use Automattic\WooCommerce\Utilities\FeaturesUtil;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Email;
 use WC_Order;
 use WC_Product;
 use WC_Product_Variation;
 use WP_User;
-<<<<<<< HEAD
 use WC_Order_Item_Shipping;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 
@@ -38,11 +31,8 @@ class EmailPreview {
 		'WC_Email_Customer_Reset_Password',
 	);
 
-<<<<<<< HEAD
 	const TRANSIENT_PREVIEW_EMAIL_IMPROVEMENTS = 'woocommerce_preview_email_improvements';
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * All fields IDs that can customize email styles in Settings.
 	 *
@@ -193,7 +183,6 @@ class EmailPreview {
 
 		if ( in_array( $email_type, self::USER_OBJECT_EMAILS, true ) ) {
 			$object                  = new WP_User( 0 );
-<<<<<<< HEAD
 			$object->user_email      = 'user_preview@example.com';
 			$object->user_login      = 'user_preview';
 			$object->first_name      = 'John';
@@ -213,10 +202,6 @@ class EmailPreview {
 				$this->email->user_id = 0;
 			}
 
-=======
-			$this->email->user_email = 'user_preview@example.com';
-			$this->email->user_login = 'user_preview';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$this->email->set_object( $object );
 		} else {
 			$object = $this->get_dummy_order();
@@ -244,7 +229,6 @@ class EmailPreview {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Get the email object.
 	 *
 	 * @return WC_Email
@@ -254,8 +238,6 @@ class EmailPreview {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the preview email content.
 	 *
 	 * @return string
@@ -325,11 +307,7 @@ class EmailPreview {
 		}
 
 		if ( 'plain' === $this->email->get_email_type() ) {
-<<<<<<< HEAD
 			$content  = '<pre style="word-wrap: break-word; white-space: pre-wrap; text-align: ' . ( is_rtl() ? 'right' : 'left' ) . ';">';
-=======
-			$content  = '<pre style="word-wrap: break-word; white-space: pre-wrap;">';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$content .= $this->email->get_content_plain();
 			$content .= '</pre>';
 		} else {
@@ -366,7 +344,6 @@ class EmailPreview {
 		$order->set_shipping_total( 5 );
 		$order->set_total( 65 );
 		$order->set_payment_method_title( __( 'Direct bank transfer', 'woocommerce' ) );
-<<<<<<< HEAD
 		$order->set_transaction_id( '999999999' );
 		$order->set_customer_note( __( "This is a customer note. Customers can add a note to their order on checkout.\n\nIt can be multiple lines. If there's no note, this section is hidden.", 'woocommerce' ) );
 
@@ -380,9 +357,6 @@ class EmailPreview {
 			)
 		);
 		$order->add_item( $shipping_item );
-=======
-		$order->set_customer_note( __( "This is a customer note. Customers can add a note to their order on checkout.\n\nIt can be multiple lines. If there’s no note, this section is hidden.", 'woocommerce' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$address = $this->get_dummy_address();
 		$order->set_billing_address( $address );
@@ -481,11 +455,7 @@ class EmailPreview {
 	/**
 	 * Get the placeholders for the email preview.
 	 *
-<<<<<<< HEAD
 	 * @param mixed $email_object The object to render email with. Can be WC_Order, WP_User, etc.
-=======
-	 * @param WC_Order|WP_User $email_object The object to render email with.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return array
 	 */
 	private function get_placeholders( $email_object ) {
@@ -500,7 +470,6 @@ class EmailPreview {
 		/**
 		 * Placeholders for email preview.
 		 *
-<<<<<<< HEAD
 		 * @param array  $placeholders Placeholders for email subject.
 		 * @param string $email_type   The email type to preview.
 		 * @param mixed  $email_object The object to render email with. @since 9.9.0
@@ -508,24 +477,12 @@ class EmailPreview {
 		 * @since 9.6.0
 		 */
 		return apply_filters( 'woocommerce_email_preview_placeholders', $placeholders, $this->email_type, $email_object );
-=======
-		 * @param WC_Order $placeholders Placeholders for email subject.
-		 * @param string   $email_type The email type to preview.
-		 *
-		 * @since 9.6.0
-		 */
-		return apply_filters( 'woocommerce_email_preview_placeholders', $placeholders, $this->email_type );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Set up filters for email preview.
 	 */
-<<<<<<< HEAD
 	public function set_up_filters() {
-=======
-	private function set_up_filters() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Always show shipping address in the preview email.
 		add_filter( 'woocommerce_order_needs_shipping_address', array( $this, 'enable_shipping_address' ) );
 		// Email templates fetch product from the database to show additional information, which are not
@@ -533,11 +490,6 @@ class EmailPreview {
 		add_filter( 'woocommerce_order_item_product', array( $this, 'get_dummy_product_when_not_set' ), 10, 1 );
 		// Enable email preview mode - this way transient values are fetched for live preview.
 		add_filter( 'woocommerce_is_email_preview', array( $this, 'enable_preview_mode' ) );
-<<<<<<< HEAD
-=======
-		// Get shipping method without needing to save it in the order.
-		add_filter( 'woocommerce_order_shipping_method', array( $this, 'get_shipping_method' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Use placeholder image included in WooCommerce files.
 		add_filter( 'woocommerce_order_item_thumbnail', array( $this, 'get_placeholder_image' ) );
 	}
@@ -545,34 +497,14 @@ class EmailPreview {
 	/**
 	 * Clean up filters after email preview.
 	 */
-<<<<<<< HEAD
 	public function clean_up_filters() {
 		remove_filter( 'woocommerce_order_needs_shipping_address', array( $this, 'enable_shipping_address' ) );
 		remove_filter( 'woocommerce_order_item_product', array( $this, 'get_dummy_product_when_not_set' ), 10 );
 		remove_filter( 'woocommerce_is_email_preview', array( $this, 'enable_preview_mode' ) );
-=======
-	private function clean_up_filters() {
-		remove_filter( 'woocommerce_order_needs_shipping_address', array( $this, 'enable_shipping_address' ) );
-		remove_filter( 'woocommerce_order_item_product', array( $this, 'get_dummy_product_when_not_set' ), 10 );
-		remove_filter( 'woocommerce_is_email_preview', array( $this, 'enable_preview_mode' ) );
-		remove_filter( 'woocommerce_order_shipping_method', array( $this, 'get_shipping_method' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		remove_filter( 'woocommerce_order_item_thumbnail', array( $this, 'get_placeholder_image' ) );
 	}
 
 	/**
-<<<<<<< HEAD
-=======
-	 * Get the shipping method for the preview email.
-	 *
-	 * @return string
-	 */
-	public function get_shipping_method() {
-		return __( 'Flat rate', 'woocommerce' );
-	}
-
-	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Enable shipping address in the preview email. Not using __return_true so
 	 * we don't accidentally remove the same filter used by other plugin or theme.
 	 *
@@ -598,7 +530,6 @@ class EmailPreview {
 	 * @return string
 	 */
 	public function get_placeholder_image() {
-<<<<<<< HEAD
 		return '<img src="' . WC()->plugin_url() . '/assets/images/placeholder.webp" width="48" height="48" alt="" />';
 	}
 
@@ -652,8 +583,5 @@ class EmailPreview {
 		}
 
 		return $message;
-=======
-		return '<img src="' . WC()->plugin_url() . '/assets/images/placeholder.png" width="48" height="48" alt="" />';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

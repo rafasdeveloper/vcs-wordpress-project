@@ -9,19 +9,13 @@
  * @version 2.1.0
  */
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Enums\ProductStatus;
 use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\Utilities\DiscountsUtil;
 use Automattic\WooCommerce\Utilities\NumberUtil;
-<<<<<<< HEAD
 use Automattic\WooCommerce\Utilities\ShippingUtil;
 use Automattic\WooCommerce\StoreApi\Utilities\LocalPickupUtils;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 
@@ -35,7 +29,6 @@ require_once WC_ABSPATH . 'includes/class-wc-cart-session.php';
 class WC_Cart extends WC_Legacy_Cart {
 
 	/**
-<<<<<<< HEAD
 	 * Cart context, used to determine if the cart is being used in a StoreAPI or shortcode context. This should only
 	 * be used internally.
 	 *
@@ -44,8 +37,6 @@ class WC_Cart extends WC_Legacy_Cart {
 	public $cart_context = 'shortcode';
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Contains an array of cart items.
 	 *
 	 * @var array
@@ -1212,7 +1203,6 @@ class WC_Cart extends WC_Legacy_Cart {
 					$message         = apply_filters( 'woocommerce_cart_product_cannot_add_another_message', $message, $product_data );
 					$wp_button_class = wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '';
 
-<<<<<<< HEAD
 					if ( ! CartCheckoutUtils::has_cart_page() ) {
 						$message = sprintf( '%s', esc_html( $message ) );
 					} else {
@@ -1220,9 +1210,6 @@ class WC_Cart extends WC_Legacy_Cart {
 					}
 
 					throw new Exception( $message );
-=======
-					throw new Exception( sprintf( '%s <a href="%s" class="button wc-forward%s">%s</a>', $message, esc_url( wc_get_cart_url() ), esc_attr( $wp_button_class ), __( 'View cart', 'woocommerce' ) ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 
@@ -1283,24 +1270,17 @@ class WC_Cart extends WC_Legacy_Cart {
 					$stock_quantity_in_cart = $products_qty_in_cart[ $product_data->get_stock_managed_by_id() ];
 					$wp_button_class        = wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '';
 
-<<<<<<< HEAD
 					$message = CartCheckoutUtils::has_cart_page() ? sprintf(
-=======
-					$message = sprintf(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						'%s <a href="%s" class="button wc-forward%s">%s</a>',
 						/* translators: 1: quantity in stock 2: current quantity */
 						sprintf( __( 'You cannot add that amount to the cart &mdash; we have %1$s in stock and you already have %2$s in your cart.', 'woocommerce' ), wc_format_stock_quantity_for_display( $stock_quantity, $product_data ), wc_format_stock_quantity_for_display( $stock_quantity_in_cart, $product_data ) ),
 						esc_url( wc_get_cart_url() ),
 						esc_attr( $wp_button_class ),
 						__( 'View cart', 'woocommerce' )
-<<<<<<< HEAD
 					) : sprintf(
 						'%s',
 						/* translators: 1: quantity in stock 2: current quantity */
 						sprintf( __( 'You cannot add that amount to the cart &mdash; we have %1$s in stock and you already have %2$s in your cart.', 'woocommerce' ), wc_format_stock_quantity_for_display( $stock_quantity, $product_data ), wc_format_stock_quantity_for_display( $stock_quantity_in_cart, $product_data ) )
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					);
 
 					/**
@@ -1532,11 +1512,7 @@ class WC_Cart extends WC_Legacy_Cart {
 			}
 		}
 
-<<<<<<< HEAD
 		$this->set_shipping_total( array_sum( array_filter( $shipping_costs ) ) );
-=======
-		$this->set_shipping_total( array_sum( $shipping_costs ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->set_shipping_tax( array_sum( $merged_taxes ) );
 		$this->set_shipping_taxes( $merged_taxes );
 
@@ -1551,19 +1527,7 @@ class WC_Cart extends WC_Legacy_Cart {
 	 * @return array
 	 */
 	protected function get_chosen_shipping_methods( $calculated_shipping_packages = array() ) {
-<<<<<<< HEAD
 		return ShippingUtil::get_selected_shipping_rates_from_packages( $calculated_shipping_packages );
-=======
-		$chosen_methods = array();
-		// Get chosen methods for each package to get our totals.
-		foreach ( $calculated_shipping_packages as $key => $package ) {
-			$chosen_method = wc_get_chosen_shipping_method_for_package( $key, $package );
-			if ( $chosen_method ) {
-				$chosen_methods[ $key ] = $package['rates'][ $chosen_method ];
-			}
-		}
-		return $chosen_methods;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -1670,7 +1634,6 @@ class WC_Cart extends WC_Legacy_Cart {
 		}
 
 		if ( 'yes' === get_option( 'woocommerce_shipping_cost_requires_address' ) ) {
-<<<<<<< HEAD
 			if ( 'shortcode' === $this->cart_context ) {
 				$country = $this->get_customer()->get_shipping_country();
 				if ( ! $country ) {
@@ -1720,12 +1683,6 @@ class WC_Cart extends WC_Legacy_Cart {
 				if ( ! $customer instanceof \WC_Customer || ! $customer->has_full_shipping_address() ) {
 					return false;
 				}
-=======
-			$customer = $this->get_customer();
-
-			if ( ! $customer instanceof \WC_Customer || ! $customer->has_full_shipping_address() ) {
-				return false;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 
@@ -1853,7 +1810,6 @@ class WC_Cart extends WC_Legacy_Cart {
 	 * @return bool
 	 */
 	public function has_discount( $coupon_code = '' ) {
-<<<<<<< HEAD
 		$applied_coupons = $this->get_applied_coupons();
 
 		if ( ! $coupon_code ) {
@@ -1870,9 +1826,6 @@ class WC_Cart extends WC_Legacy_Cart {
 		}
 
 		return false;
-=======
-		return $coupon_code ? in_array( wc_format_coupon_code( $coupon_code ), $this->applied_coupons, true ) : count( $this->applied_coupons ) > 0;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -1894,11 +1847,7 @@ class WC_Cart extends WC_Legacy_Cart {
 		$the_coupon = new WC_Coupon( $coupon_code );
 
 		// Prevent adding coupons by post ID.
-<<<<<<< HEAD
 		if ( ! wc_is_same_coupon( $the_coupon->get_code(), $coupon_code ) ) {
-=======
-		if ( $the_coupon->get_code() !== $coupon_code ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$the_coupon->set_code( $coupon_code );
 			$the_coupon->add_coupon_message( WC_Coupon::E_WC_COUPON_NOT_EXIST );
 			return false;
@@ -1965,15 +1914,12 @@ class WC_Cart extends WC_Legacy_Cart {
 
 		$the_coupon->add_coupon_message( WC_Coupon::WC_COUPON_SUCCESS );
 
-<<<<<<< HEAD
 		/**
 		 * Action ran after a coupon is applied.
 		 *
 		 * @since 2.0.0
 		 * @param string $coupon_code The coupon code that was applied.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		do_action( 'woocommerce_applied_coupon', $coupon_code );
 
 		return true;
@@ -2009,7 +1955,6 @@ class WC_Cart extends WC_Legacy_Cart {
 	 */
 	public function get_coupon_discount_amount( $code, $ex_tax = true ) {
 		$totals          = $this->get_coupon_discount_totals();
-<<<<<<< HEAD
 		$discount_amount = 0;
 		foreach ( $totals as $key => $value ) {
 			if ( wc_is_same_coupon( $key, $code ) ) {
@@ -2017,9 +1962,6 @@ class WC_Cart extends WC_Legacy_Cart {
 				break;
 			}
 		}
-=======
-		$discount_amount = isset( $totals[ $code ] ) ? $totals[ $code ] : 0;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! $ex_tax ) {
 			$discount_amount += $this->get_coupon_discount_tax_amount( $code );
@@ -2035,7 +1977,6 @@ class WC_Cart extends WC_Legacy_Cart {
 	 * @return float discount amount
 	 */
 	public function get_coupon_discount_tax_amount( $code ) {
-<<<<<<< HEAD
 		$totals     = $this->get_coupon_discount_tax_totals();
 		$tax_amount = 0;
 		foreach ( $totals as $key => $value ) {
@@ -2045,10 +1986,6 @@ class WC_Cart extends WC_Legacy_Cart {
 			}
 		}
 		return wc_cart_round_discount( $tax_amount, wc_get_price_decimals() );
-=======
-		$totals = $this->get_coupon_discount_tax_totals();
-		return wc_cart_round_discount( isset( $totals[ $code ] ) ? $totals[ $code ] : 0, wc_get_price_decimals() );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -2071,7 +2008,6 @@ class WC_Cart extends WC_Legacy_Cart {
 	 */
 	public function remove_coupon( $coupon_code ) {
 		$coupon_code = wc_format_coupon_code( $coupon_code );
-<<<<<<< HEAD
 
 		// Find the coupon in applied coupons using case-insensitive comparison.
 		foreach ( $this->get_applied_coupons() as $key => $applied_coupon ) {
@@ -2079,12 +2015,6 @@ class WC_Cart extends WC_Legacy_Cart {
 				unset( $this->applied_coupons[ $key ] );
 				break;
 			}
-=======
-		$position    = array_search( $coupon_code, array_map( 'wc_format_coupon_code', $this->get_applied_coupons() ), true );
-
-		if ( false !== $position ) {
-			unset( $this->applied_coupons[ $position ] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		WC()->session->set( 'refresh_totals', true );

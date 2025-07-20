@@ -45,7 +45,6 @@ jQuery( function( $ ) {
 			$tabs_wrapper.find( '#' + $tab.attr( 'href' ).split( '#' )[1] ).show();
 		} )
 		.on( 'keydown', '.wc-tabs li a, ul.tabs li a', function( e ) {
-<<<<<<< HEAD
 			var isRTL     = document.documentElement.dir === 'rtl';
 			var direction = e.key;
 			var next      = isRTL ? 'ArrowLeft' : 'ArrowRight';
@@ -59,27 +58,12 @@ jQuery( function( $ ) {
 				return;
 			}
 
-=======
-			var direction = e.key;
-			var next      = 'ArrowRight';
-			var prev      = 'ArrowLeft';
-			var home	  = 'Home';
-			var end		  = 'End';
-
-			if ( ! [ next, prev, end, home ].includes( direction ) ) {
-				return;
-			}
-
-			e.preventDefault();
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			var $tab          = $( this );
 			var $tabs_wrapper = $tab.closest( '.wc-tabs-wrapper, .woocommerce-tabs' );
 			var $tabsList     = $tabs_wrapper.find( '.wc-tabs, ul.tabs' );
 			var $tabs         = $tabsList.find( 'a[role="tab"]' );
 			var endIndex	  = $tabs.length - 1;
 			var tabIndex      = $tabs.index( $tab );
-<<<<<<< HEAD
 			var targetIndex   = direction === prev || direction === up ? tabIndex - 1 : tabIndex + 1;
 			var orientation   = 'horizontal';
 
@@ -125,37 +109,6 @@ jQuery( function( $ ) {
 
 			$tabs.eq( targetIndex ).focus();
 		} )
-=======
-			var targetIndex   = direction === prev ? tabIndex - 1 : tabIndex + 1;
-			
-			if ( ( direction === prev && tabIndex === 0 ) || direction === end ) {
-				targetIndex = endIndex;
-			} else if ( ( next === direction && tabIndex === endIndex ) || direction === home ) {
-				targetIndex = 0;
-			}
-			
-			$tabs.eq( targetIndex ).focus();
-		} )
-		.on( 'focusout', '.wc-tabs li a, ul.tabs li a, #respond p.stars a', function() {
-			if ( ! productGalleryElement.data( 'flexslider' ) ) {
-				// Don't do anything if gallery does not exist.
-				return;
-			}
-			setTimeout( function () {
-				var $activeElement = $( document.activeElement );
-				var sliderKeyupBlockers = [ '.stars', '.tabs', '.wc-tabs'];
-				var $closestBlocker = $activeElement.closest( sliderKeyupBlockers.join( ', ' ) );
-		
-				if ( $closestBlocker.length ) {
-					// Prevent keyup events from being triggered on the flexslider when the focus is on the stars or tabs.
-					productGalleryElement.data('flexslider').animating = true;
-					return;
-				}
-		
-				productGalleryElement.data('flexslider').animating = false;
-			}, 0);
-		} )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Review link
 		.on( 'click', 'a.woocommerce-review-link', function() {
 			$( '.reviews_tab a' ).trigger( 'click' );
@@ -163,19 +116,11 @@ jQuery( function( $ ) {
 		} )
 		// Star ratings for comments
 		.on( 'init', '#rating', function() {
-<<<<<<< HEAD
 			$( this )
 				.hide()
 				.before(
 					'<p class="stars">\
 						<span role="group" aria-labelledby="comment-form-rating-label">\
-=======
-			$( '#rating' )
-				.hide()
-				.before(
-					'<p class="stars">\
-						<span role="group" aria-labeledby="comment-form-rating-label">\
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							<a role="radio" tabindex="0" aria-checked="false" class="star-1" href="#">' +
 								wc_single_product_params.i18n_rating_options[0] + 
 							'</a>\
@@ -224,15 +169,11 @@ jQuery( function( $ ) {
 				return false;
 			}
 		} )
-<<<<<<< HEAD
 		/**
 		 * Handle keyup events for tabs, tabs li a, and respond p.stars a.
 		 * The stopPropagation is used to prevent the keyup event from being triggered on the flexslider.
 		 */
 		.on( 'keyup', '.wc-tabs li a, ul.tabs li a, #respond p.stars a', function( e ) {
-=======
-		.on( 'keydown', '#respond p.stars a', function( e ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			var direction = e.key;
 			var next = [ 'ArrowRight', 'ArrowDown' ];
 			var prev = [ 'ArrowLeft', 'ArrowUp' ];
@@ -243,10 +184,7 @@ jQuery( function( $ ) {
 			}
 			
 			e.preventDefault();
-<<<<<<< HEAD
 			e.stopPropagation();
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			if ( next.includes( direction ) ) {
 				$( this ).next().focus().click();

@@ -35,11 +35,8 @@ use Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\Registe
 use Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\Synchronize as Download_Directories_Sync;
 use Automattic\WooCommerce\Internal\Utilities\DatabaseUtil;
 use Automattic\WooCommerce\Utilities\StringUtil;
-<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Options as BlockOptions;
 use Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Update file paths for 2.0
@@ -2607,7 +2604,6 @@ function wc_update_770_remove_multichannel_marketing_feature_options() {
 }
 
 /**
-<<<<<<< HEAD
  * Set a flag to indicate whether the blockified Product Grid Block should be used as a template.
  */
 function wc_update_790_blockified_product_grid_block() {
@@ -2615,8 +2611,6 @@ function wc_update_790_blockified_product_grid_block() {
 }
 
 /**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Migrate transaction data which was being incorrectly stored in the postmeta table to HPOS tables.
  *
  * @return bool Whether there are pending migration records.
@@ -2664,7 +2658,6 @@ LIMIT 250
 }
 
 /**
-<<<<<<< HEAD
  * Rename the checkout template to page-checkout.
  */
 function wc_update_830_rename_checkout_template() {
@@ -2703,8 +2696,6 @@ function wc_update_830_rename_cart_template() {
 }
 
 /**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Remove the transient data for recommended marketing extensions.
  *
  * This is removed because it is not used anymore.
@@ -2796,11 +2787,7 @@ function wc_update_910_add_launch_your_store_tour_option() {
  * Add woocommerce_hooked_blocks_version option for existing stores that are using a theme that supports the Block Hooks API
  */
 function wc_update_920_add_wc_hooked_blocks_version_option() {
-<<<<<<< HEAD
 	if ( ! wp_is_block_theme() && ! current_theme_supports( 'block-template-parts' ) ) {
-=======
-	if ( ! wc_current_theme_is_fse_theme() && ! current_theme_supports( 'block-template-parts' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return;
 	}
 
@@ -2986,7 +2973,6 @@ function wc_update_940_remove_help_panel_highlight_shown() {
 }
 
 /**
-<<<<<<< HEAD
  * Set multisite customer visibility option for existing sites.
  *
  * If WooCommerce is updated from an earlier version to 10.0.0, and if it is a multisite network,
@@ -3014,8 +3000,6 @@ function wc_update_1000_multisite_visibility_setting(): void {
 }
 
 /**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Autoloads woocommerce_allow_tracking option.
  */
 function wc_update_950_tracking_option_autoload() {
@@ -3043,7 +3027,6 @@ function wc_update_961_migrate_default_email_base_color() {
 function wc_update_980_remove_order_attribution_install_banner_dismissed_option() {
 	delete_option( 'woocommerce_order_attribution_install_banner_dismissed' );
 }
-<<<<<<< HEAD
 
 /**
  * One-time force enable the new Payments Settings page feature for all stores.
@@ -3086,5 +3069,3 @@ function wc_update_990_remove_email_notes() {
 function wc_update_1000_remove_patterns_toolkit_transient() {
 	delete_transient( 'ptk_patterns' );
 }
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

@@ -149,11 +149,7 @@ class CheckoutSchema extends AbstractSchema {
 				'context'     => [ 'view', 'edit' ],
 				// Validation may be based on cart contents which is not available here; this returns all enabled
 				// gateways. Further validation occurs during the request.
-<<<<<<< HEAD
 				'enum'        => array_merge( [ '' ], array_values( WC()->payment_gateways->get_payment_gateway_ids() ) ),
-=======
-				'enum'        => array_values( WC()->payment_gateways->get_payment_gateway_ids() ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			],
 			'create_account'    => [
 				'description' => __( 'Whether to create a new user account as part of order processing.', 'woocommerce' ),
@@ -247,13 +243,8 @@ class CheckoutSchema extends AbstractSchema {
 			'shipping_address'   => (object) $this->shipping_address_schema->get_item_response( $order ),
 			'payment_method'     => $order->get_payment_method(),
 			'payment_result'     => $payment_result,
-<<<<<<< HEAD
 			'additional_fields'  => (object) $this->get_additional_fields_response( $order ),
 			'__experimentalCart' => $cart ? (object) $this->cart_schema->get_item_response( $cart ) : null,
-=======
-			'additional_fields'  => $this->get_additional_fields_response( $order ),
-			'__experimentalCart' => $cart ? $this->cart_schema->get_item_response( $cart ) : null,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			self::EXTENDING_KEY  => $this->get_extended_data( self::IDENTIFIER ),
 		];
 	}
@@ -306,11 +297,7 @@ class CheckoutSchema extends AbstractSchema {
 			}
 		}
 
-<<<<<<< HEAD
 		return (object) $fields;
-=======
-		return $fields;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -339,11 +326,7 @@ class CheckoutSchema extends AbstractSchema {
 				'description' => $field['label'],
 				'type'        => 'string',
 				'context'     => [ 'view', 'edit' ],
-<<<<<<< HEAD
 				'required'    => $this->additional_fields_controller->is_conditional_field( $field ) ? false : true === $field['required'],
-=======
-				'required'    => $this->additional_fields_controller->is_conditional_field( $field ) ? false : $field['required'],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			];
 
 			if ( 'select' === $field['type'] ) {
@@ -353,11 +336,7 @@ class CheckoutSchema extends AbstractSchema {
 					},
 					$field['options']
 				);
-<<<<<<< HEAD
 				if ( true !== $field['required'] || $this->additional_fields_controller->is_conditional_field( $field ) ) {
-=======
-				if ( true !== $field['required'] ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$field_schema['enum'][] = '';
 				}
 			}
@@ -385,11 +364,7 @@ class CheckoutSchema extends AbstractSchema {
 		return array_reduce(
 			array_keys( $additional_fields_schema ),
 			function ( $carry, $key ) use ( $additional_fields_schema ) {
-<<<<<<< HEAD
 				return $carry || true === $additional_fields_schema[ $key ]['required'];
-=======
-				return $carry || $additional_fields_schema[ $key ]['required'];
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			},
 			false
 		);
@@ -447,11 +422,7 @@ class CheckoutSchema extends AbstractSchema {
 
 		// on POST, loop over the schema instead of the fields. This is to ensure missing fields are validated.
 		foreach ( $additional_field_schema as $key => $schema ) {
-<<<<<<< HEAD
 			if ( ! isset( $fields[ $key ] ) && true !== $schema['required'] ) {
-=======
-			if ( ! isset( $fields[ $key ] ) && ! $schema['required'] ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				// Optional fields can go missing.
 				continue;
 			}

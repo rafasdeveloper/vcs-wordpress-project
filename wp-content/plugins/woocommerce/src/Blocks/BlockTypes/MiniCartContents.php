@@ -1,10 +1,7 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 
 /**
@@ -59,7 +56,6 @@ class MiniCartContents extends AbstractBlock {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Render experimental iAPI powered Mini-Cart Contents block.
 	 *
 	 * @param array    $attributes Block attributes.
@@ -88,8 +84,6 @@ class MiniCartContents extends AbstractBlock {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Render the markup for the Mini-Cart Contents block.
 	 *
 	 * @param array    $attributes Block attributes.
@@ -104,13 +98,10 @@ class MiniCartContents extends AbstractBlock {
 			return '';
 		}
 
-<<<<<<< HEAD
 		if ( Features::is_enabled( 'experimental-iapi-mini-cart' ) ) {
 			return $this->render_experimental_iapi_mini_cart_contents( $attributes, $content, $block );
 		}
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $content;
 	}
 
@@ -164,11 +155,7 @@ class MiniCartContents extends AbstractBlock {
 
 			$properties = array_filter(
 				$style['properties'],
-<<<<<<< HEAD
 				function ( $property ) {
-=======
-				function( $property ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					return $property['value'];
 				}
 			);
@@ -211,8 +198,4 @@ class MiniCartContents extends AbstractBlock {
 
 		return $block_types;
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

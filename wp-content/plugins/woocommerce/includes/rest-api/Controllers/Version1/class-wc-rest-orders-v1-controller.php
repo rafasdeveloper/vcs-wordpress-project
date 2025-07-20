@@ -10,10 +10,7 @@
  * @since    3.0.0
  */
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Utilities\Users;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Enums\OrderStatus;
 use Automattic\WooCommerce\Enums\ProductTaxStatus;
 use Automattic\WooCommerce\Utilities\{ ArrayUtil, NumberUtil, StringUtil };
@@ -456,11 +453,8 @@ class WC_REST_Orders_V1_Controller extends WC_REST_Posts_Controller {
 	/**
 	 * Prepare a single order for create.
 	 *
-<<<<<<< HEAD
 	 * @throws WC_REST_Exception If the customer ID is invalid.
 	 *
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @param  WP_REST_Request $request Request object.
 	 * @return WP_Error|WC_Order $data Object.
 	 */
@@ -470,7 +464,6 @@ class WC_REST_Orders_V1_Controller extends WC_REST_Posts_Controller {
 		$schema    = $this->get_item_schema();
 		$data_keys = array_keys( array_filter( $schema['properties'], array( $this, 'filter_writable_props' ) ) );
 
-<<<<<<< HEAD
 		if ( ! is_null( $request['customer_id'] ) && 0 !== $request['customer_id'] ) {
 			if ( is_wp_error( Users::get_user_in_current_site( $request['customer_id'] ) ) ) {
 				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
@@ -483,8 +476,6 @@ class WC_REST_Orders_V1_Controller extends WC_REST_Posts_Controller {
 			}
 		}
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Handle all writable props
 		foreach ( $data_keys as $key ) {
 			$value = $request[ $key ];
@@ -559,19 +550,6 @@ class WC_REST_Orders_V1_Controller extends WC_REST_Posts_Controller {
 	 */
 	protected function create_order( $request ) {
 		try {
-<<<<<<< HEAD
-=======
-			// Make sure customer exists.
-			if ( ! is_null( $request['customer_id'] ) && 0 !== $request['customer_id'] && false === get_user_by( 'id', $request['customer_id'] ) ) {
-				throw new WC_REST_Exception( 'woocommerce_rest_invalid_customer_id',__( 'Customer ID is invalid.', 'woocommerce' ), 400 );
-			}
-
-			// Make sure customer is part of blog.
-			if ( is_multisite() && ! is_user_member_of_blog( $request['customer_id'] ) ) {
-				add_user_to_blog( get_current_blog_id(), $request['customer_id'], 'customer' );
-			}
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$order = $this->prepare_item_for_database( $request );
 			$order->set_created_via( 'rest-api' );
 			$order->set_prices_include_tax( 'yes' === get_option( 'woocommerce_prices_include_tax' ) );

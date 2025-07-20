@@ -162,7 +162,6 @@ function wc_delete_product_transients( $post_id = 0 ) {
 			// The cache exists ONLY on the current request to prevent searching the DB for every product.
 			static $scheduled = array();
 			$cache_key        = (int) $post_id;
-<<<<<<< HEAD
 			$queue            = WC()->queue();
 
 			if ( ! isset( $scheduled[ $cache_key ] ) ) {
@@ -172,21 +171,6 @@ function wc_delete_product_transients( $post_id = 0 ) {
 					'wc_delete_related_product_transients_group'
 				);
 				$scheduled[ $cache_key ] = null !== $existing;
-=======
-
-			if ( ! isset( $scheduled[ $cache_key ] ) ) {
-				$queue                   = WC()->queue();
-				$existing                = $queue->search(
-					array(
-						'hook'     => 'wc_delete_related_product_transients_async',
-						'args'     => array( 'post_id' => $post_id ),
-						'status'   => 'pending',
-						'group'    => 'wc_delete_related_product_transients_group',
-						'per_page' => 1,
-					)
-				);
-				$scheduled[ $cache_key ] = ! empty( $existing );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			if ( ! $scheduled[ $cache_key ] ) {
@@ -434,11 +418,7 @@ add_action( 'template_redirect', 'wc_product_canonical_redirect', 5 );
  * @return string
  */
 function wc_placeholder_img_src( $size = 'woocommerce_thumbnail' ) {
-<<<<<<< HEAD
 	$src               = WC()->plugin_url() . '/assets/images/placeholder.webp';
-=======
-	$src               = WC()->plugin_url() . '/assets/images/placeholder.png';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	$placeholder_image = get_option( 'woocommerce_placeholder_image', 0 );
 
 	if ( ! empty( $placeholder_image ) ) {
@@ -530,11 +510,7 @@ function wc_get_formatted_variation( $variation, $flat = false, $include_names =
 
 	$list_type = $include_names ? 'dl' : 'ul';
 
-<<<<<<< HEAD
 	if ( is_array( $variation_attributes ) && ! empty( $variation_attributes ) ) {
-=======
-	if ( is_array( $variation_attributes ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! $flat ) {
 			$return = '<' . $list_type . ' class="variation">';
@@ -1136,7 +1112,6 @@ function wc_get_product_backorder_options() {
  * @return array
  */
 function wc_get_related_products( $product_id, $limit = 5, $exclude_ids = array(), $related_by = array() ) {
-<<<<<<< HEAD
 	// Log an error if the limit is not an integer since this is what we expect.
 	// However this is not a problem and we can continue.
 	if ( ! is_int( $limit ) ) {
@@ -1156,8 +1131,6 @@ function wc_get_related_products( $product_id, $limit = 5, $exclude_ids = array(
 	if ( null === $limit ) {
 		return array();
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	$product_id     = absint( $product_id );
 	$limit          = $limit >= -1 ? $limit : 5;
@@ -1208,11 +1181,8 @@ function wc_get_related_products( $product_id, $limit = 5, $exclude_ids = array(
 		)
 	);
 
-<<<<<<< HEAD
 	$related_posts = is_array( $related_posts ) ? $related_posts : array();
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	if ( apply_filters( 'woocommerce_product_related_posts_shuffle', true ) ) {
 		shuffle( $related_posts );
 	}

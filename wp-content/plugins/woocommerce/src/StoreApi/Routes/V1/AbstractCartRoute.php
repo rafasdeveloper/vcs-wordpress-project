@@ -12,13 +12,8 @@ use Automattic\WooCommerce\StoreApi\Schemas\V1\CartSchema;
 use Automattic\WooCommerce\StoreApi\SessionHandler;
 use Automattic\WooCommerce\StoreApi\Utilities\CartController;
 use Automattic\WooCommerce\StoreApi\Utilities\DraftOrderTrait;
-<<<<<<< HEAD
 use Automattic\WooCommerce\StoreApi\Utilities\OrderController;
 use Automattic\WooCommerce\StoreApi\Utilities\CartTokenUtils;
-=======
-use Automattic\WooCommerce\StoreApi\Utilities\JsonWebToken;
-use Automattic\WooCommerce\StoreApi\Utilities\OrderController;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Abstract Cart Route
@@ -202,43 +197,7 @@ abstract class AbstractCartRoute extends AbstractRoute {
 			return null;
 		}
 
-<<<<<<< HEAD
 		return CartTokenUtils::get_cart_token( (string) wc()->session->get_customer_id() );
-=======
-		return JsonWebToken::create(
-			[
-				'user_id' => wc()->session->get_customer_id(),
-				'exp'     => $this->get_cart_token_expiration(),
-				'iss'     => $this->namespace,
-			],
-			$this->get_cart_token_secret()
-		);
-	}
-
-	/**
-	 * Gets the secret for the cart token using wp_salt.
-	 *
-	 * @return string
-	 */
-	protected function get_cart_token_secret() {
-		return '@' . wp_salt();
-	}
-
-	/**
-	 * Gets the expiration of the cart token. Defaults to 48h.
-	 *
-	 * @return int
-	 */
-	protected function get_cart_token_expiration() {
-		/**
-		 * Filters the session expiration.
-		 *
-		 * @since 8.7.0
-		 *
-		 * @param int $expiration Expiration in seconds.
-		 */
-		return time() + intval( apply_filters( 'wc_session_expiration', DAY_IN_SECONDS * 2 ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -249,11 +208,7 @@ abstract class AbstractCartRoute extends AbstractRoute {
 	 */
 	protected function has_cart_token( \WP_REST_Request $request ) {
 		if ( is_null( $this->has_cart_token ) ) {
-<<<<<<< HEAD
 			$this->has_cart_token = CartTokenUtils::validate_cart_token( $request->get_header( 'Cart-Token' ) ?? '' );
-=======
-			$this->has_cart_token = JsonWebToken::validate( $request->get_header( 'Cart-Token' ) ?? '', $this->get_cart_token_secret() );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return $this->has_cart_token;
 	}

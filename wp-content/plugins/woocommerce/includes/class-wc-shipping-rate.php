@@ -8,11 +8,8 @@
  * @since   2.6.0
  */
 
-<<<<<<< HEAD
 declare( strict_types=1 );
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Enums\ProductTaxStatus;
@@ -20,23 +17,13 @@ use Automattic\WooCommerce\Enums\ProductTaxStatus;
 /**
  * Shipping rate class.
  */
-<<<<<<< HEAD
 class WC_Shipping_Rate implements JsonSerializable {
-=======
-class WC_Shipping_Rate {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Stores data for this rate.
 	 *
-<<<<<<< HEAD
 	 * @since 9.2.0 Added description and delivery_time.
 	 * @var array
-=======
-	 * @since 3.2.0
-	 * @since 9.2.0 Added description and delivery_time.
-	 * @var   array
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	protected $data = array(
 		'id'            => '',
@@ -53,12 +40,7 @@ class WC_Shipping_Rate {
 	/**
 	 * Stores meta data for this rate.
 	 *
-<<<<<<< HEAD
 	 * @var array
-=======
-	 * @since 2.6.0
-	 * @var   array
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	protected $meta_data = array();
 
@@ -88,41 +70,24 @@ class WC_Shipping_Rate {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Magic method to support direct access to data prop.
 	 *
-=======
-	 * Magic methods to support direct access to props.
-	 *
-	 * @since 3.2.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @param string $key Key.
 	 * @return bool
 	 */
 	public function __isset( $key ) {
-<<<<<<< HEAD
-=======
-		if ( 'meta_data' === $key ) {
-			wc_doing_it_wrong( __FUNCTION__, __( 'Use `array_key_exists` to check for meta_data on WC_Shipping_Rate to get the correct result.', 'woocommerce' ), '6.0' );
-		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return isset( $this->data[ $key ] );
 	}
 
 	/**
 	 * Magic methods to support direct access to props.
 	 *
-<<<<<<< HEAD
-=======
-	 * @since 3.2.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @param string $key Key.
 	 * @return mixed
 	 */
 	public function __get( $key ) {
 		if ( is_callable( array( $this, "get_{$key}" ) ) ) {
 			return $this->{"get_{$key}"}();
-<<<<<<< HEAD
 		}
 
 		if ( isset( $this->data[ $key ] ) ) {
@@ -130,13 +95,6 @@ class WC_Shipping_Rate {
 		}
 
 		return '';
-=======
-		} elseif ( isset( $this->data[ $key ] ) ) {
-			return $this->data[ $key ];
-		} else {
-			return '';
-		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -155,7 +113,6 @@ class WC_Shipping_Rate {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * When converted to JSON.
 	 *
 	 * @return object|array
@@ -169,8 +126,6 @@ class WC_Shipping_Rate {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Set ID for the rate. This is usually a combination of the method and instance IDs.
 	 *
 	 * @since 3.2.0
@@ -270,7 +225,6 @@ class WC_Shipping_Rate {
 	 * @return string
 	 */
 	public function get_id() {
-<<<<<<< HEAD
 		/**
 		 * Filter the shipping rate ID.
 		 *
@@ -278,8 +232,6 @@ class WC_Shipping_Rate {
 		 * @param string $id The shipping rate ID.
 		 * @param WC_Shipping_Rate $this The shipping rate object.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_shipping_rate_id', $this->data['id'], $this );
 	}
 
@@ -290,7 +242,6 @@ class WC_Shipping_Rate {
 	 * @return string
 	 */
 	public function get_method_id() {
-<<<<<<< HEAD
 		/**
 		 * Filter the shipping method ID.
 		 *
@@ -298,8 +249,6 @@ class WC_Shipping_Rate {
 		 * @param string $method_id The shipping method ID.
 		 * @param WC_Shipping_Rate $this The shipping rate object.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_shipping_rate_method_id', $this->data['method_id'], $this );
 	}
 
@@ -310,7 +259,6 @@ class WC_Shipping_Rate {
 	 * @return int
 	 */
 	public function get_instance_id() {
-<<<<<<< HEAD
 		/**
 		 * Filter the shipping rate instance ID.
 		 *
@@ -318,8 +266,6 @@ class WC_Shipping_Rate {
 		 * @param int $instance_id The shipping rate instance ID.
 		 * @param WC_Shipping_Rate $this The shipping rate object.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_shipping_rate_instance_id', $this->data['instance_id'], $this );
 	}
 
@@ -329,7 +275,6 @@ class WC_Shipping_Rate {
 	 * @return string
 	 */
 	public function get_label() {
-<<<<<<< HEAD
 		/**
 		 * Filter the shipping rate label.
 		 *
@@ -337,8 +282,6 @@ class WC_Shipping_Rate {
 		 * @param string $label The shipping rate label.
 		 * @param WC_Shipping_Rate $this The shipping rate object.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_shipping_rate_label', $this->data['label'], $this );
 	}
 
@@ -349,7 +292,6 @@ class WC_Shipping_Rate {
 	 * @return string
 	 */
 	public function get_cost() {
-<<<<<<< HEAD
 		/**
 		 * Filter the shipping rate cost.
 		 *
@@ -357,8 +299,6 @@ class WC_Shipping_Rate {
 		 * @param string $cost The shipping rate cost.
 		 * @param WC_Shipping_Rate $this The shipping rate object.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_shipping_rate_cost', $this->data['cost'], $this );
 	}
 
@@ -369,7 +309,6 @@ class WC_Shipping_Rate {
 	 * @return array
 	 */
 	public function get_taxes() {
-<<<<<<< HEAD
 		/**
 		 * Filter the shipping rate taxes.
 		 *
@@ -377,8 +316,6 @@ class WC_Shipping_Rate {
 		 * @param array $taxes The shipping rate taxes.
 		 * @param WC_Shipping_Rate $this The shipping rate object.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_shipping_rate_taxes', $this->data['taxes'], $this );
 	}
 
@@ -388,7 +325,6 @@ class WC_Shipping_Rate {
 	 * @return float
 	 */
 	public function get_shipping_tax() {
-<<<<<<< HEAD
 		$taxes = $this->get_taxes();
 
 		/**
@@ -401,12 +337,6 @@ class WC_Shipping_Rate {
 		return apply_filters( 'woocommerce_get_shipping_tax', count( $taxes ) > 0 && ! WC()->customer->get_is_vat_exempt() ? (float) array_sum( $taxes ) : 0.0, $this );
 	}
 
-=======
-		return apply_filters( 'woocommerce_get_shipping_tax', count( $this->taxes ) > 0 && ! WC()->customer->get_is_vat_exempt() ? (float) array_sum( $this->taxes ) : 0.0, $this );
-	}
-
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Get tax status.
 	 *

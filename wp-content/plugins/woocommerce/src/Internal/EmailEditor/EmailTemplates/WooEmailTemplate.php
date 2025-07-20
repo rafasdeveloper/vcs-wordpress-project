@@ -6,13 +6,10 @@ namespace Automattic\WooCommerce\Internal\EmailEditor\EmailTemplates;
  * Basic template for WooCommerce transactional emails used in the email editor.
  */
 class WooEmailTemplate {
-<<<<<<< HEAD
 	/**
 	 * The template slug.
 	 */
 	public const TEMPLATE_SLUG = 'wooemailtemplate';
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Get the template slug.
@@ -20,11 +17,7 @@ class WooEmailTemplate {
 	 * @return string Template identifier.
 	 */
 	public function get_slug(): string {
-<<<<<<< HEAD
 		return self::TEMPLATE_SLUG;
-=======
-		return 'wooemailtemplate';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -62,11 +55,7 @@ class WooEmailTemplate {
 
 <!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--10);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--20)"><!-- wp:paragraph {"align":"center","fontSize":"small","style":{"border":{"top":{"color":"var:preset|color|cyan-bluish-gray","width":"1px","style":"solid"},"right":[],"bottom":[],"left":[]},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}},"color":{"text":"#787c82"},"elements":{"link":{"color":{"text":"#787c82"}}}}} -->
-<<<<<<< HEAD
 <p class="has-text-align-center has-text-color has-link-color has-small-font-size" style="border-top-color:var(--wp--preset--color--cyan-bluish-gray);border-top-style:solid;border-top-width:1px;color:#787c82;padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">You received this email because you shopped at <!--[woocommerce/site-title]--></p>
-=======
-<p class="has-text-align-center has-text-color has-link-color has-small-font-size" style="border-top-color:var(--wp--preset--color--cyan-bluish-gray);border-top-style:solid;border-top-width:1px;color:#787c82;padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">You received this email because you shopped on <!--[woocommerce/site-title]--></p>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 		';

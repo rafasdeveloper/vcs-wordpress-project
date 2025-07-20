@@ -3,12 +3,9 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\Admin\Settings;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\API\OnboardingPlugins;
 use WP_REST_Request;
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 defined( 'ABSPATH' ) || exit;
 /**
  * Payments settings utilities class.
@@ -253,7 +250,6 @@ class Utils {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Trim the .php file extension from a path.
 	 *
 	 * @param string $path The path to trim.
@@ -269,15 +265,12 @@ class Utils {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Truncate a text to a target character length while preserving whole words.
 	 *
 	 * We take a greedy approach: if some characters of a word fit in the target length, the whole word is included.
 	 * This means we might exceed the target length by a few characters.
 	 * The append string length is not included in the character count.
 	 *
-<<<<<<< HEAD
 	 * @param string $text          The text to truncate.
 	 *                              It will not be sanitized, stripped of HTML tags, or modified in any way before truncation.
 	 * @param int    $target_length The target character length of the truncated text.
@@ -286,16 +279,6 @@ class Utils {
 	 * @return string The truncated text.
 	 */
 	public static function truncate_with_words( string $text, int $target_length, string $append = '' ): string {
-=======
-	 * @param string      $text          The text to truncate.
-	 *                                   It will not be sanitized, stripped of HTML tags, or modified in any way before truncation.
-	 * @param int         $target_length The target character length of the truncated text.
-	 * @param string|null $append        Optional. The string to append to the truncated text, if there is any truncation.
-	 *
-	 * @return string The truncated text.
-	 */
-	public static function truncate_with_words( string $text, int $target_length, string $append = null ): string {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// First, deal with locale that doesn't have words separated by spaces, but instead deals with characters.
 		// Borrowed from wp_trim_words().
 		if ( str_starts_with( wp_get_word_count_type(), 'characters' ) && preg_match( '/^utf\-?8$/i', get_option( 'blog_charset' ) ) ) {
@@ -309,11 +292,7 @@ class Utils {
 
 			$words_array = array_slice( $words_array[0], 0, $target_length );
 			$truncated   = implode( '', $words_array );
-<<<<<<< HEAD
 			if ( $append ) {
-=======
-			if ( null !== $append ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$truncated .= $append;
 			}
 
@@ -346,7 +325,6 @@ class Utils {
 
 		return $truncated;
 	}
-<<<<<<< HEAD
 
 	/**
 	 * Retrieves a URL to relative path inside WooCommerce admin Payments settings with
@@ -485,6 +463,4 @@ class Utils {
 
 		return $result;
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

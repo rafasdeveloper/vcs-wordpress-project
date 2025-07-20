@@ -8,18 +8,12 @@
  * @version 2.3.0
  */
 
-<<<<<<< HEAD
 declare( strict_types = 1 );
 
 use Automattic\Jetpack\Constants;
 use Automattic\WooCommerce\Blocks\Package;
 use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFields;
 use Automattic\WooCommerce\Enums\ProductType;
-=======
-use Automattic\Jetpack\Constants;
-use Automattic\WooCommerce\Blocks\Package;
-use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFields;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
 defined( 'ABSPATH' ) || exit;
@@ -41,11 +35,7 @@ class WC_Emails {
 	 *
 	 * @var WC_Emails
 	 */
-<<<<<<< HEAD
 	protected static $instance = null;
-=======
-	protected static $_instance = null;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Background emailer class.
@@ -64,17 +54,10 @@ class WC_Emails {
 	 * @return WC_Emails Main instance
 	 */
 	public static function instance() {
-<<<<<<< HEAD
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
 		return self::$instance;
-=======
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-		return self::$_instance;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -99,15 +82,12 @@ class WC_Emails {
 	 * Hook in all transactional emails.
 	 */
 	public static function init_transactional_emails() {
-<<<<<<< HEAD
 		/**
 		 * Filter the actions that trigger transactional emails.
 		 *
 		 * @since 3.0.0
 		 * @param array $email_actions Array of actions that trigger transactional emails.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$email_actions = apply_filters(
 			'woocommerce_email_actions',
 			array(
@@ -137,15 +117,12 @@ class WC_Emails {
 			)
 		);
 
-<<<<<<< HEAD
 		/**
 		 * Filter whether to defer transactional emails.
 		 *
 		 * @since 3.0.0
 		 * @param bool $defer Whether to defer transactional emails.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( apply_filters( 'woocommerce_defer_transactional_emails', false ) ) {
 			self::$background_emailer = new WC_Background_Emailer();
 
@@ -187,7 +164,6 @@ class WC_Emails {
 	 * @param array  $args Email args (default: []).
 	 */
 	public static function send_queued_transactional_email( $filter = '', $args = array() ) {
-<<<<<<< HEAD
 		/**
 		 * Filter whether to allow sending queued transactional emails.
 		 *
@@ -196,8 +172,6 @@ class WC_Emails {
 		 * @param string $filter Filter name.
 		 * @param array  $args Email args.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( apply_filters( 'woocommerce_allow_send_queued_transactional_email', true, $filter, $args ) ) {
 			self::instance(); // Init self so emails exist.
 
@@ -244,11 +218,7 @@ class WC_Emails {
 				)
 			);
 			if ( Constants::is_true( 'WP_DEBUG' ) ) {
-<<<<<<< HEAD
 				trigger_error( esc_html( $error ), E_USER_WARNING ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-=======
-				trigger_error( $error, E_USER_WARNING ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped, WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 	}
@@ -279,16 +249,12 @@ class WC_Emails {
 		// Hook for replacing {site_title} in email-footer.
 		add_filter( 'woocommerce_email_footer_text', array( $this, 'replace_placeholders' ) );
 
-<<<<<<< HEAD
 		/**
 		 * Action hook for email classes to hook into.
 		 *
 		 * @since 3.0.0
 		 * @param WC_Emails $this The WC_Emails instance.
 		 */
-=======
-		// Let 3rd parties unhook the above via this hook.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		do_action( 'woocommerce_email', $this );
 	}
 
@@ -301,10 +267,7 @@ class WC_Emails {
 
 		$this->emails['WC_Email_New_Order']                 = include __DIR__ . '/emails/class-wc-email-new-order.php';
 		$this->emails['WC_Email_Cancelled_Order']           = include __DIR__ . '/emails/class-wc-email-cancelled-order.php';
-<<<<<<< HEAD
 		$this->emails['WC_Email_Customer_Cancelled_Order']  = include __DIR__ . '/emails/class-wc-email-customer-cancelled-order.php';
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->emails['WC_Email_Failed_Order']              = include __DIR__ . '/emails/class-wc-email-failed-order.php';
 		$this->emails['WC_Email_Customer_Failed_Order']     = include __DIR__ . '/emails/class-wc-email-customer-failed-order.php';
 		$this->emails['WC_Email_Customer_On_Hold_Order']    = include __DIR__ . '/emails/class-wc-email-customer-on-hold-order.php';
@@ -316,7 +279,6 @@ class WC_Emails {
 		$this->emails['WC_Email_Customer_Reset_Password']   = include __DIR__ . '/emails/class-wc-email-customer-reset-password.php';
 		$this->emails['WC_Email_Customer_New_Account']      = include __DIR__ . '/emails/class-wc-email-customer-new-account.php';
 
-<<<<<<< HEAD
 		if ( FeaturesUtil::feature_is_enabled( 'point_of_sale' ) ) {
 			$this->emails['WC_Email_Customer_POS_Completed_Order'] = include __DIR__ . '/emails/class-wc-email-customer-pos-completed-order.php';
 			$this->emails['WC_Email_Customer_POS_Refunded_Order']  = include __DIR__ . '/emails/class-wc-email-customer-pos-refunded-order.php';
@@ -328,8 +290,6 @@ class WC_Emails {
 		 * @since 3.0.0
 		 * @param array $emails Email classes.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->emails = apply_filters( 'woocommerce_email_classes', $this->emails );
 	}
 
@@ -366,7 +326,6 @@ class WC_Emails {
 	 * @param mixed $email_heading Heading for the email.
 	 */
 	public function email_header( $email_heading ) {
-<<<<<<< HEAD
 		wc_get_template(
 			'emails/email-header.php',
 			array(
@@ -374,9 +333,6 @@ class WC_Emails {
 				'store_name'    => get_bloginfo( 'name', 'display' ),
 			)
 		);
-=======
-		wc_get_template( 'emails/email-header.php', array( 'email_heading' => $email_heading ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -390,35 +346,12 @@ class WC_Emails {
 	 * Replace placeholder text in strings.
 	 *
 	 * @since  3.7.0
-<<<<<<< HEAD
 	 * @param  string $text Email footer text.
 	 * @return string       Email footer text with any replacements done.
 	 */
 	public function replace_placeholders( $text ) {
 		$domain = wp_parse_url( home_url(), PHP_URL_HOST );
 
-=======
-	 * @param  string $string Email footer text.
-	 * @return string         Email footer text with any replacements done.
-	 */
-	public function replace_placeholders( $string ) {
-		$domain = wp_parse_url( home_url(), PHP_URL_HOST );
-
-		if ( FeaturesUtil::feature_is_enabled( 'email_improvements' ) ) {
-			$string = str_replace(
-				array(
-					'{store_address}',
-					'{store_email}',
-				),
-				array(
-					$this->get_store_address(),
-					$this->get_from_address(),
-				),
-				$string
-			);
-		}
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return str_replace(
 			array(
 				'{site_title}',
@@ -426,11 +359,8 @@ class WC_Emails {
 				'{site_url}',
 				'{woocommerce}',
 				'{WooCommerce}',
-<<<<<<< HEAD
 				'{store_address}',
 				'{store_email}',
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 			array(
 				$this->get_blogname(),
@@ -438,15 +368,10 @@ class WC_Emails {
 				$domain,
 				'<a href="https://woocommerce.com">WooCommerce</a>',
 				'<a href="https://woocommerce.com">WooCommerce</a>',
-<<<<<<< HEAD
 				$this->get_store_address(),
 				$this->get_from_address(),
 			),
 			$text
-=======
-			),
-			$string
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 	}
 
@@ -455,21 +380,12 @@ class WC_Emails {
 	 *
 	 * @since  3.3.0
 	 * @deprecated 3.7.0
-<<<<<<< HEAD
 	 * @param  string $text Email footer text.
 	 * @return string       Email footer text with any replacements done.
 	 */
 	public function email_footer_replace_site_title( $text ) {
 		wc_deprecated_function( 'WC_Emails::email_footer_replace_site_title', '3.7.0', 'WC_Emails::replace_placeholders' );
 		return $this->replace_placeholders( $text );
-=======
-	 * @param  string $string Email footer text.
-	 * @return string         Email footer text with any replacements done.
-	 */
-	public function email_footer_replace_site_title( $string ) {
-		wc_deprecated_function( 'WC_Emails::email_footer_replace_site_title', '3.7.0', 'WC_Emails::replace_placeholders' );
-		return $this->replace_placeholders( $string );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -477,7 +393,6 @@ class WC_Emails {
 	 *
 	 * @param string $email_heading Heading text.
 	 * @param string $message       Email message.
-<<<<<<< HEAD
 	 * @param bool   $deprecated    Deprecated.
 	 *
 	 * @return string
@@ -509,26 +424,6 @@ class WC_Emails {
 		do_action( 'woocommerce_email_footer', null );
 
 		return ob_get_clean();
-=======
-	 * @param bool   $plain_text    Set true to send as plain text. Default to false.
-	 *
-	 * @return string
-	 */
-	public function wrap_message( $email_heading, $message, $plain_text = false ) {
-		// Buffer.
-		ob_start();
-
-		do_action( 'woocommerce_email_header', $email_heading, null );
-
-		echo wpautop( wptexturize( $message ) ); // WPCS: XSS ok.
-
-		do_action( 'woocommerce_email_footer', null );
-
-		// Get contents.
-		$message = ob_get_clean();
-
-		return $message;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -542,10 +437,6 @@ class WC_Emails {
 	 * @return bool
 	 */
 	public function send( $to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = '' ) {
-<<<<<<< HEAD
-=======
-		// Send.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$email = new WC_Email();
 		return $email->send( $to, $subject, $message, $headers, $attachments );
 	}
@@ -576,16 +467,8 @@ class WC_Emails {
 		if ( ! $customer_id ) {
 			return;
 		}
-<<<<<<< HEAD
 		$email = $this->emails['WC_Email_Customer_New_Account'];
 		$email->trigger( $customer_id, $new_customer_data['user_pass'] ?? '', $password_generated );
-=======
-
-		$user_pass = ! empty( $new_customer_data['user_pass'] ) ? $new_customer_data['user_pass'] : '';
-
-		$email = $this->emails['WC_Email_Customer_New_Account'];
-		$email->trigger( $customer_id, $user_pass, $password_generated );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -637,7 +520,6 @@ class WC_Emails {
 		}
 
 		$downloads = $order->get_downloadable_items();
-<<<<<<< HEAD
 
 		/**
 		 * Filter the columns of the order downloads table.
@@ -648,20 +530,13 @@ class WC_Emails {
 		 * @param WC_Order $order  Order object.
 		 */
 		$columns = apply_filters(
-=======
-		$columns   = apply_filters(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'woocommerce_email_downloads_columns',
 			array(
 				'download-product' => __( 'Product', 'woocommerce' ),
 				'download-expires' => __( 'Expires', 'woocommerce' ),
 				'download-file'    => __( 'Download', 'woocommerce' ),
-<<<<<<< HEAD
 			),
 			$order
-=======
-			)
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		if ( $plain_text ) {
@@ -699,7 +574,6 @@ class WC_Emails {
 	 * @param bool     $plain_text    If is plain text email.
 	 */
 	public function order_meta( $order, $sent_to_admin = false, $plain_text = false ) {
-<<<<<<< HEAD
 		/**
 		 * Filter the order meta fields.
 		 *
@@ -708,19 +582,14 @@ class WC_Emails {
 		 * @param bool     $sent_to_admin If sent to admin.
 		 * @param WC_Order $order         Order instance.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$fields = apply_filters( 'woocommerce_email_order_meta_fields', array(), $sent_to_admin, $order );
 
 		/**
 		 * Deprecated woocommerce_email_order_meta_keys filter.
 		 *
 		 * @since 2.3.0
-<<<<<<< HEAD
 		 * @param array    $fields        Array of meta fields.
 		 * @param bool     $sent_to_admin If sent to admin.
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 */
 		$_fields = apply_filters( 'woocommerce_email_order_meta_keys', array(), $sent_to_admin );
 
@@ -742,25 +611,15 @@ class WC_Emails {
 			if ( $plain_text ) {
 
 				foreach ( $fields as $field ) {
-<<<<<<< HEAD
 					if ( isset( $field['label'], $field['value'] ) && $field['value'] ) {
 						echo wp_kses_post( $field['label'] . ': ' . $field['value'] ) . "\n"; // WPCS: XSS ok.
-=======
-					if ( isset( $field['label'] ) && isset( $field['value'] ) && $field['value'] ) {
-						echo $field['label'] . ': ' . $field['value'] . "\n"; // WPCS: XSS ok.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					}
 				}
 			} else {
 
 				foreach ( $fields as $field ) {
-<<<<<<< HEAD
 					if ( isset( $field['label'], $field['value'] ) && $field['value'] ) {
 						echo '<p><strong>' . wp_kses_post( $field['label'] ) . ':</strong> ' . wp_kses_post( $field['value'] ) . '</p>'; // WPCS: XSS ok.
-=======
-					if ( isset( $field['label'] ) && isset( $field['value'] ) && $field['value'] ) {
-						echo '<p><strong>' . $field['label'] . ':</strong> ' . $field['value'] . '</p>'; // WPCS: XSS ok.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					}
 				}
 			}
@@ -791,7 +650,6 @@ class WC_Emails {
 			return;
 		}
 
-<<<<<<< HEAD
 		/**
 		 * Filter the customer details fields.
 		 *
@@ -800,8 +658,6 @@ class WC_Emails {
 		 * @param bool     $sent_to_admin If sent to admin.
 		 * @param WC_Order $order         Order instance.
 		 */
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$fields = array_filter( apply_filters( 'woocommerce_email_customer_details_fields', array(), $sent_to_admin, $order ), array( $this, 'customer_detail_field_is_valid' ) );
 
 		if ( ! empty( $fields ) ) {
@@ -923,11 +779,7 @@ class WC_Emails {
 	 *
 	 * @return string
 	 */
-<<<<<<< HEAD
 	public function get_store_address() {
-=======
-	private function get_store_address() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_filter(
 			'woocommerce_formatted_address_force_country_display',
 			array( $this, 'get_store_address_force_country_display' ),
@@ -984,7 +836,6 @@ class WC_Emails {
 			return;
 		}
 
-<<<<<<< HEAD
 		// If this is a variation but stock is managed at the parent level, use the parent product for the notification.
 		if ( $product->is_type( 'variation' ) && 'parent' === $product->get_manage_stock() ) {
 			$parent_product = wc_get_product( $product->get_parent_id() );
@@ -993,8 +844,6 @@ class WC_Emails {
 			}
 		}
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$subject = sprintf( '[%s] %s', $this->get_blogname(), __( 'Product low in stock', 'woocommerce' ) );
 		$message = sprintf(
 			/* translators: 1: product name 2: items in stock */
@@ -1004,7 +853,6 @@ class WC_Emails {
 		);
 
 		wp_mail(
-<<<<<<< HEAD
 			/**
 			 * Filter the recipient of the low stock notification email.
 			 *
@@ -1049,12 +897,6 @@ class WC_Emails {
 			 * @param WC_Product $product Product instance.
 			 * @param null $null Unused.
 			 */
-=======
-			apply_filters( 'woocommerce_email_recipient_low_stock', get_option( 'woocommerce_stock_email_recipient' ), $product, null ),
-			apply_filters( 'woocommerce_email_subject_low_stock', $subject, $product, null ),
-			apply_filters( 'woocommerce_email_content_low_stock', $message, $product ),
-			apply_filters( 'woocommerce_email_headers', '', 'low_stock', $product, null ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			apply_filters( 'woocommerce_email_attachments', array(), 'low_stock', $product, null )
 		);
 	}
@@ -1080,7 +922,6 @@ class WC_Emails {
 			return;
 		}
 
-<<<<<<< HEAD
 		// If this is a variation but stock is managed at the parent level, use the parent product for the notification.
 		if ( $product->is_type( ProductType::VARIATION ) && 'parent' === $product->get_manage_stock() ) {
 			$parent_product = wc_get_product( $product->get_parent_id() );
@@ -1089,14 +930,11 @@ class WC_Emails {
 			}
 		}
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$subject = sprintf( '[%s] %s', $this->get_blogname(), __( 'Product out of stock', 'woocommerce' ) );
 		/* translators: %s: product name */
 		$message = sprintf( __( '%s is out of stock.', 'woocommerce' ), html_entity_decode( wp_strip_all_tags( $product->get_formatted_name() ), ENT_QUOTES, get_bloginfo( 'charset' ) ) );
 
 		wp_mail(
-<<<<<<< HEAD
 			/**
 			 * Filter the recipient of the no stock notification email.
 			 *
@@ -1141,12 +979,6 @@ class WC_Emails {
 			 * @param WC_Product $product Product instance.
 			 * @param null $null Unused.
 			 */
-=======
-			apply_filters( 'woocommerce_email_recipient_no_stock', get_option( 'woocommerce_stock_email_recipient' ), $product, null ),
-			apply_filters( 'woocommerce_email_subject_no_stock', $subject, $product, null ),
-			apply_filters( 'woocommerce_email_content_no_stock', $message, $product ),
-			apply_filters( 'woocommerce_email_headers', '', 'no_stock', $product, null ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			apply_filters( 'woocommerce_email_attachments', array(), 'no_stock', $product, null )
 		);
 	}
@@ -1176,7 +1008,6 @@ class WC_Emails {
 			return;
 		}
 
-<<<<<<< HEAD
 		$stock_before         = $args['quantity'] + $args['product']->get_stock_quantity();
 		$backordered_quantity = $args['quantity'] - max( 0, $stock_before );
 
@@ -1229,17 +1060,6 @@ class WC_Emails {
 			 * @param array $args Arguments.
 			 * @param null $null Unused.
 			 */
-=======
-		$subject = sprintf( '[%s] %s', $this->get_blogname(), __( 'Product backorder', 'woocommerce' ) );
-		/* translators: 1: product quantity 2: product name 3: order number */
-		$message = sprintf( __( '%1$s units of %2$s have been backordered in order #%3$s.', 'woocommerce' ), $args['quantity'], html_entity_decode( wp_strip_all_tags( $args['product']->get_formatted_name() ), ENT_QUOTES, get_bloginfo( 'charset' ) ), $order->get_order_number() );
-
-		wp_mail(
-			apply_filters( 'woocommerce_email_recipient_backorder', get_option( 'woocommerce_stock_email_recipient' ), $args, null ),
-			apply_filters( 'woocommerce_email_subject_backorder', $subject, $args, null ),
-			apply_filters( 'woocommerce_email_content_backorder', $message, $args ),
-			apply_filters( 'woocommerce_email_headers', '', 'backorder', $args, null ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			apply_filters( 'woocommerce_email_attachments', array(), 'backorder', $args, null )
 		);
 	}

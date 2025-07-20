@@ -5,11 +5,7 @@
  * Important: For internal use only by the Automattic\WooCommerce\Internal\Brands package.
  *
  * @package WooCommerce\Admin
-<<<<<<< HEAD
  * @version x.x.x
-=======
- * @version 9.4.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 declare( strict_types = 1);
@@ -66,11 +62,7 @@ class WC_Brands_Admin {
 			}
 		);
 
-<<<<<<< HEAD
 		// Hiding setting for future deprecation. Only users who have touched these settings should see it.
-=======
-		// Hiding setting for future depreciation. Only users who have touched this settings should see it.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$setting_value = get_option( 'wc_brands_show_description' );
 		if ( is_string( $setting_value ) ) {
 
@@ -151,10 +143,7 @@ class WC_Brands_Admin {
 		global $post;
 		// Brands.
 		?>
-<<<<<<< HEAD
 		<div class="options_group"><div class="hr-section hr-section-coupon_restrictions"><?php echo esc_html__( 'And', 'woocommerce' ); ?></div>
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		<p class="form-field"><label for="product_brands"><?php esc_html_e( 'Product brands', 'woocommerce' ); ?></label>
 			<select id="product_brands" name="product_brands[]" style="width: 50%;"  class="wc-enhanced-select" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Any brand', 'woocommerce' ); ?>">
 				<?php
@@ -199,12 +188,9 @@ class WC_Brands_Admin {
 			</select>
 			<?php
 				echo wc_help_tip( esc_html__( 'Product must not be associated with these brands for the coupon to remain valid or, for "Product Discounts", products associated with these brands will not be discounted.', 'woocommerce' ) );
-<<<<<<< HEAD
 			?>
 		</div>
 		<?php
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -489,17 +475,10 @@ class WC_Brands_Admin {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Brand taxonomy description.
 	 */
 	public function taxonomy_description() {
 		echo wp_kses_post( wpautop( __( 'Brands can be added and managed from this screen. You can optionally upload a brand image to display in brand widgets and on brand archives', 'woocommerce' ) ) );
-=======
-	 * Description for brand page.
-	 */
-	public function taxonomy_description() {
-		echo wp_kses_post( wpautop( __( 'Brands be added and managed from this screen. You can optionally upload a brand image to display in brand widgets and on brand archives', 'woocommerce' ) ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -658,17 +637,10 @@ class WC_Brands_Admin {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Save permalink settings.
 	 *
 	 * We need to save the options ourselves;
 	 * settings api does not trigger save for the permalink page.
-=======
-	 * Save permalnks settings.
-	 *
-	 * We need to save the options ourselves;
-	 * settings api does not trigger save for the permalinks page.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function save_permalink_settings() {
 		if ( ! is_admin() ) {

@@ -5,11 +5,8 @@
  * @package WooCommerce\Gateways
  */
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Enums\PaymentGatewayFeature;
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -29,11 +26,7 @@ class WC_Payment_Gateway_CC extends WC_Payment_Gateway {
 	 * @since 2.6.0
 	 */
 	public function payment_fields() {
-<<<<<<< HEAD
 		if ( $this->supports( PaymentGatewayFeature::TOKENIZATION ) && is_checkout() ) {
-=======
-		if ( $this->supports( 'tokenization' ) && is_checkout() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$this->tokenization_script();
 			$this->saved_payment_methods();
 			$this->form();
@@ -53,11 +46,7 @@ class WC_Payment_Gateway_CC extends WC_Payment_Gateway {
 	 * @return string
 	 */
 	public function field_name( $name ) {
-<<<<<<< HEAD
 		return $this->supports( PaymentGatewayFeature::TOKENIZATION ) ? '' : ' name="' . esc_attr( $this->id . '-' . $name ) . '" ';
-=======
-		return $this->supports( 'tokenization' ) ? '' : ' name="' . esc_attr( $this->id . '-' . $name ) . '" ';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -86,11 +75,7 @@ class WC_Payment_Gateway_CC extends WC_Payment_Gateway {
 			</p>',
 		);
 
-<<<<<<< HEAD
 		if ( ! $this->supports( PaymentGatewayFeature::CREDIT_CARD_FORM_CVC_ON_SAVED_METHOD ) ) {
-=======
-		if ( ! $this->supports( 'credit_card_form_cvc_on_saved_method' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$default_fields['card-cvc-field'] = $cvc_field;
 		}
 
@@ -109,11 +94,7 @@ class WC_Payment_Gateway_CC extends WC_Payment_Gateway {
 		</fieldset>
 		<?php
 
-<<<<<<< HEAD
 		if ( $this->supports( PaymentGatewayFeature::CREDIT_CARD_FORM_CVC_ON_SAVED_METHOD ) ) {
-=======
-		if ( $this->supports( 'credit_card_form_cvc_on_saved_method' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			echo '<fieldset>' . $cvc_field . '</fieldset>'; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
 		}
 	}

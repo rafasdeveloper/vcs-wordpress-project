@@ -191,11 +191,7 @@ class SSO {
 			Helpers::delete_connection_for_user( $current_user->ID );
 			wp_logout();
 			wp_safe_redirect( wp_login_url() );
-<<<<<<< HEAD
 			exit( 0 );
-=======
-			exit;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -495,11 +491,7 @@ class SSO {
 
 				$tracking->record_user_event( 'sso_login_redirect_success' );
 				wp_safe_redirect( $sso_url );
-<<<<<<< HEAD
 				exit( 0 );
-=======
-				exit;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		} elseif ( Helpers::display_sso_form_for_action( $action ) ) {
 
@@ -517,11 +509,7 @@ class SSO {
 				$sso_url = $this->get_sso_url_or_die( $reauth );
 				$tracking->record_user_event( 'sso_login_redirect_bypass_success' );
 				wp_safe_redirect( $sso_url );
-<<<<<<< HEAD
 				exit( 0 );
-=======
-				exit;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			$this->display_sso_login_form();
@@ -634,11 +622,7 @@ class SSO {
 
 					<?php if ( $display_name && $gravatar ) : ?>
 					<a rel="nofollow" class="jetpack-sso-wrap__reauth" href="<?php echo esc_url( $this->build_sso_button_url( array( 'force_reauth' => '1' ) ) ); ?>">
-<<<<<<< HEAD
 						<?php esc_html_e( 'Log in with another WordPress.com account', 'jetpack-connection' ); ?>
-=======
-						<?php esc_html_e( 'Log in as a different WordPress.com user', 'jetpack-connection' ); ?>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					</a>
 				<?php else : ?>
 					<p>
@@ -985,11 +969,7 @@ class SSO {
 						admin_url()
 					)
 				);
-<<<<<<< HEAD
 				exit( 0 );
-=======
-				exit;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			add_filter( 'allowed_redirect_hosts', array( Helpers::class, 'allowed_redirect_hosts' ) );
@@ -997,11 +977,7 @@ class SSO {
 			/** This filter is documented in core/src/wp-login.php */
 				apply_filters( 'login_redirect', $redirect_to, $_request_redirect_to, $user )
 			);
-<<<<<<< HEAD
 			exit( 0 );
-=======
-			exit;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		add_filter( 'jetpack_sso_default_to_sso_login', '__return_false' );
@@ -1231,11 +1207,7 @@ class SSO {
 
 		add_filter( 'allowed_redirect_hosts', array( Helpers::class, 'allowed_redirect_hosts' ) );
 		wp_safe_redirect( $connect_url );
-<<<<<<< HEAD
 		exit( 0 );
-=======
-		exit;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

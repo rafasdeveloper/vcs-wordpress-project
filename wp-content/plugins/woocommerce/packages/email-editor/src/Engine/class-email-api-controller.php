@@ -1,6 +1,5 @@
 <?php
 /**
-<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -12,19 +11,6 @@ namespace Automattic\WooCommerce\EmailEditor\Engine;
 use Automattic\WooCommerce\EmailEditor\Engine\PersonalizationTags\Personalization_Tag;
 use Automattic\WooCommerce\EmailEditor\Engine\PersonalizationTags\Personalization_Tags_Registry;
 use Automattic\WooCommerce\EmailEditor\Validator\Builder;
-=======
- * This file is part of the MailPoet plugin.
- *
- * @package MailPoet\EmailEditor
- */
-
-declare(strict_types = 1);
-namespace MailPoet\EmailEditor\Engine;
-
-use MailPoet\EmailEditor\Engine\PersonalizationTags\Personalization_Tag;
-use MailPoet\EmailEditor\Engine\PersonalizationTags\Personalization_Tags_Registry;
-use MailPoet\EmailEditor\Validator\Builder;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_Post;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -70,18 +56,11 @@ class Email_Api_Controller {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Sends preview email.
 	 *
 	 * @param WP_REST_Request $request Route request parameters.
 	 * @return WP_REST_Response
 	 * @phpstan-param WP_REST_Request<array{_locale: string, email: string, postId: int}> $request
-=======
-	 * Sends preview email
-	 *
-	 * @param WP_REST_Request $request route request.
-	 * @return WP_REST_Response
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function send_preview_email_data( WP_REST_Request $request ): WP_REST_Response {
 		/**
@@ -90,19 +69,12 @@ class Email_Api_Controller {
 		 * [_locale] => user
 		 * [email] => Provided email address
 		 * [postId] => POST_ID
-<<<<<<< HEAD
 		 *
 		 * @var array{_locale: string, email: string, postId: int} $data
 		 */
 		$data = $request->get_params();
 		try {
 			$result = apply_filters( 'woocommerce_email_editor_send_preview_email', $data );
-=======
-		 */
-		$data = $request->get_params();
-		try {
-			$result = apply_filters( 'mailpoet_email_editor_send_preview_email', $data );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return new WP_REST_Response(
 				array(
 					'success' => (bool) $result,

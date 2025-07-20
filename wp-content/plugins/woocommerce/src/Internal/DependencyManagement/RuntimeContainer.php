@@ -125,10 +125,7 @@ class RuntimeContainer {
 		return $instance;
 	}
 
-<<<<<<< HEAD
 	// phpcs:disable Squiz.Commenting.FunctionCommentThrowTag.WrongNumber
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Get an instance of a class using reflection.
 	 * This method recursively calls 'get_core' (which in turn calls this method) for each of the arguments
@@ -143,7 +140,6 @@ class RuntimeContainer {
 	 */
 	private function instantiate_class_using_reflection( string $class_name, array &$resolve_chain ): object {
 		$ref_class = new \ReflectionClass( $class_name );
-<<<<<<< HEAD
 
 		// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped
 
@@ -161,9 +157,6 @@ class RuntimeContainer {
 		}
 
 		$instance = $ref_class->newInstance();
-=======
-		$instance  = $ref_class->newInstance();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! $ref_class->hasMethod( 'init' ) ) {
 			return $instance;
 		}
@@ -173,11 +166,6 @@ class RuntimeContainer {
 			return $instance;
 		}
 
-<<<<<<< HEAD
-=======
-		// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$init_args          = $init_method->getParameters();
 		$init_arg_instances = array_map(
 			function ( \ReflectionParameter $arg ) use ( $class_name, &$resolve_chain ) {
@@ -202,20 +190,14 @@ class RuntimeContainer {
 
 		return $instance;
 	}
-<<<<<<< HEAD
 	// phpcs:enable Squiz.Commenting.FunctionCommentThrowTag.WrongNumber
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Tells if the 'get' method can be used to resolve a given class.
 	 *
-<<<<<<< HEAD
 	 * Note that 'get' can throw an exception even if this method returns true,
 	 * for example for classes that are in the correct namespace but don't have a public constructor.
 	 *
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @param string $class_name The class name.
 	 * @return bool True if the class with the supplied name can be resolved with 'get'.
 	 */
@@ -234,32 +216,4 @@ class RuntimeContainer {
 	protected function is_class_allowed( string $class_name ): bool {
 		return StringUtil::starts_with( $class_name, self::WOOCOMMERCE_NAMESPACE, false );
 	}
-<<<<<<< HEAD
-=======
-
-	/**
-	 * Tells if this class should be used as the core WooCommerce dependency injection container (or if the old ExtendedContainer should be used instead).
-	 *
-	 * By default, this returns true, to have it return false you can:
-	 *
-	 * 1. Define the WOOCOMMERCE_USE_OLD_DI_CONTAINER constant with a value of true; or
-	 * 2. Hook on the 'woocommerce_use_old_di_container' filter and have it return false (it receives the value of WOOCOMMERCE_USE_OLD_DI_CONTAINER, or false if the constant doesn't exist).
-	 *
-	 * @return bool True if this class should be used as the core WooCommerce dependency injection container, false if ExtendedContainer should be used instead.
-	 */
-	public static function should_use(): bool {
-		$should_use = ! defined( 'WOOCOMMERCE_USE_OLD_DI_CONTAINER' ) || true !== WOOCOMMERCE_USE_OLD_DI_CONTAINER;
-
-		/**
-		 * Hook to decide if the old ExtendedContainer class (instead of RuntimeContainer) should be used as the underlying WooCommerce dependency injection container.
-		 *
-		 * NOTE: This hook will be removed in WooCommerce 9.5.
-		 *
-		 * @param bool $should_use Value of the WOOCOMMERCE_USE_OLD_DI_CONTAINER constant, false if the constant doesn't exist.
-		 *
-		 * @since 9.5.0
-		 */
-		return apply_filters( 'woocommerce_use_old_di_container', $should_use );
-	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

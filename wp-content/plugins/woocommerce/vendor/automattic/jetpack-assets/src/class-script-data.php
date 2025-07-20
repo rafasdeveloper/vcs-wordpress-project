@@ -8,11 +8,8 @@
 namespace Automattic\Jetpack\Assets;
 
 use Automattic\Jetpack\Assets;
-<<<<<<< HEAD
 use Automattic\Jetpack\Status;
 use Automattic\Jetpack\Status\Host;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class script data
@@ -113,38 +110,22 @@ class Script_Data {
 
 		$data = array(
 			'site' => array(
-<<<<<<< HEAD
 				'admin_url'         => esc_url_raw( admin_url() ),
 				'date_format'       => get_option( 'date_format' ),
 				'icon'              => self::get_site_icon(),
 				'is_multisite'      => is_multisite(),
 				'is_wpcom_platform' => ( new Host() )->is_wpcom_platform(),
 				'plan'              => array(
-=======
-				'admin_url'    => esc_url_raw( admin_url() ),
-				'date_format'  => get_option( 'date_format' ),
-				'icon'         => self::get_site_icon(),
-				'is_multisite' => is_multisite(),
-				'plan'         => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					// The properties here should be updated by the consumer package/plugin.
 					// It includes properties like 'product_slug', 'features', etc.
 					'product_slug' => '',
 				),
-<<<<<<< HEAD
 				'rest_nonce'        => wp_create_nonce( 'wp_rest' ),
 				'rest_root'         => esc_url_raw( rest_url() ),
 				'suffix'            => ( new Status() )->get_site_suffix(),
 				'title'             => self::get_site_title(),
 				'wp_version'        => $wp_version,
 				'wpcom'             => array(
-=======
-				'rest_nonce'   => wp_create_nonce( 'wp_rest' ),
-				'rest_root'    => esc_url_raw( rest_url() ),
-				'title'        => self::get_site_title(),
-				'wp_version'   => $wp_version,
-				'wpcom'        => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					// This should contain the connected site details like blog_id, is_atomic etc.
 					'blog_id' => 0,
 				),
@@ -238,13 +219,10 @@ class Script_Data {
 		return array(
 			'display_name' => $current_user->display_name,
 			'id'           => $current_user->ID,
-<<<<<<< HEAD
 			'capabilities' => array(
 				'manage_options' => current_user_can( 'manage_options' ),
 				'manage_modules' => current_user_can( 'jetpack_manage_modules' ),
 			),
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 	}
 }

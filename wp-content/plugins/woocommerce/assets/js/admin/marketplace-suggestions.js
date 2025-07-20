@@ -349,7 +349,6 @@
 		function displaySuggestions( marketplaceSuggestionsApiData ) {
 			var usedSuggestionsContexts = [];
 
-<<<<<<< HEAD
 			// Extract recommendations count from the first element if it exists
 			var recommendationsCount = 5; // default fallback
 			if (
@@ -364,8 +363,6 @@
 				}
 			}
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// iterate over all suggestions containers, rendering promos
 			$( '.marketplace-suggestions-container' ).each( function() {
 				// determine the context / placement we're populating
@@ -374,13 +371,8 @@
 				// find promotions that target this context
 				var promos = getRelevantPromotions( marketplaceSuggestionsApiData, context );
 
-<<<<<<< HEAD
 				// shuffle/randomly select suggestions to display based on API count
 				var suggestionsToDisplay = _.sample( promos, recommendationsCount );
-=======
-				// shuffle/randomly select five suggestions to display
-				var suggestionsToDisplay = _.sample( promos, 5 );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				// render the promo content
 				for ( var i in suggestionsToDisplay ) {

@@ -1,9 +1,5 @@
 {
 	"name": "woocommerce/product-image",
-<<<<<<< HEAD
-=======
-	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Product Image",
 	"description": "Display the main product image.",
 	"category": "woocommerce-product-elements",
@@ -23,7 +19,6 @@
 		"scale": { "type": "string", "default": "cover" },
 		"aspectRatio": { "type": "string" }
 	},
-<<<<<<< HEAD
 	"supports": {
 		"interactivity": {
 			"clientNavigation": true
@@ -54,9 +49,6 @@
 		"core/post-template"
 	],
 	"usesContext": [ "imageId", "postId", "query", "queryId" ],
-=======
-	"usesContext": [ "query", "queryId", "postId" ],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"keywords": [ "WooCommerce" ],
 	"textdomain": "woocommerce",
 	"apiVersion": 3,

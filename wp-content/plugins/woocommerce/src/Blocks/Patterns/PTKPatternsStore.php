@@ -11,12 +11,8 @@ use WP_Upgrader;
  * @internal
  */
 class PTKPatternsStore {
-<<<<<<< HEAD
 	const OPTION_NAME                             = 'ptk_patterns';
 	const LAST_FETCH_PATTERNS_REQUEST_OPTION_NAME = 'last_fetch_patterns_request';
-=======
-	const TRANSIENT_NAME = 'ptk_patterns';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	const CATEGORY_MAPPING = array(
 		'testimonials' => 'reviews',
@@ -92,7 +88,6 @@ class PTKPatternsStore {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Check if the last request was more than one day ago.
 	 *
 	 * @param int $last_request The last request time.
@@ -104,37 +99,23 @@ class PTKPatternsStore {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Schedule an action if it's not already pending.
 	 *
 	 * @param string $action The action name to schedule.
 	 * @return void
 	 */
 	private function schedule_action_if_not_pending( $action ) {
-<<<<<<< HEAD
 		$last_request = get_option( self::LAST_FETCH_PATTERNS_REQUEST_OPTION_NAME );
-=======
-		$last_request = get_transient( 'last_fetch_patterns_request' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// The most efficient way to check for an existing action is to use `as_has_scheduled_action`, but in unusual
 		// cases where another plugin has loaded a very old version of Action Scheduler, it may not be available to us.
 
 		$has_scheduled_action = function_exists( 'as_has_scheduled_action' ) ? 'as_has_scheduled_action' : 'as_next_scheduled_action';
-<<<<<<< HEAD
 		if ( call_user_func( $has_scheduled_action, $action ) || ( is_numeric( $last_request ) && ! $this->is_older_than_one_day( $last_request ) ) ) {
-=======
-		if ( call_user_func( $has_scheduled_action, $action ) || false !== $last_request ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return;
 		}
 
 		as_schedule_single_action( time(), $action );
-<<<<<<< HEAD
 		update_option( self::LAST_FETCH_PATTERNS_REQUEST_OPTION_NAME, time(), false );
-=======
-		set_transient( 'last_fetch_patterns_request', time(), HOUR_IN_SECONDS );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -143,17 +124,10 @@ class PTKPatternsStore {
 	 * @return array
 	 */
 	public function get_patterns() {
-<<<<<<< HEAD
 		$patterns = get_option( self::OPTION_NAME );
 
 		// Only if the transient is not set, we schedule fetching the patterns from the PTK.
 		if ( false === $patterns || ! $this->ptk_client->is_valid_schema( $patterns ) ) {
-=======
-		$patterns = get_transient( self::TRANSIENT_NAME );
-
-		// Only if the transient is not set, we schedule fetching the patterns from the PTK.
-		if ( false === $patterns ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$this->schedule_fetch_patterns();
 			return array();
 		}
@@ -214,12 +188,8 @@ class PTKPatternsStore {
 	 * @return void
 	 */
 	public function flush_cached_patterns() {
-<<<<<<< HEAD
 		delete_option( self::OPTION_NAME );
 		delete_option( self::LAST_FETCH_PATTERNS_REQUEST_OPTION_NAME );
-=======
-		delete_transient( self::TRANSIENT_NAME );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -252,10 +222,7 @@ class PTKPatternsStore {
 				),
 			)
 		);
-<<<<<<< HEAD
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( is_wp_error( $patterns ) ) {
 			wc_get_logger()->warning(
 				sprintf(
@@ -270,11 +237,7 @@ class PTKPatternsStore {
 		$patterns = $this->filter_patterns( $patterns );
 		$patterns = $this->map_categories( $patterns );
 
-<<<<<<< HEAD
 		update_option( self::OPTION_NAME, $patterns, false );
-=======
-		set_transient( self::TRANSIENT_NAME, $patterns );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

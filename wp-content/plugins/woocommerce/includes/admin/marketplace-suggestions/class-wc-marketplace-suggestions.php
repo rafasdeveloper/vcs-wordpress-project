@@ -31,10 +31,6 @@ class WC_Marketplace_Suggestions {
 		add_action( 'wp_ajax_woocommerce_add_dismissed_marketplace_suggestion', array( __CLASS__, 'post_add_dismissed_suggestion_handler' ) );
 
 		// Register hooks for rendering suggestions container markup.
-<<<<<<< HEAD
-=======
-		add_action( 'wc_marketplace_suggestions_products_empty_state', array( __CLASS__, 'render_products_list_empty_state' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'wc_marketplace_suggestions_orders_empty_state', array( __CLASS__, 'render_orders_list_empty_state' ) );
 	}
 
@@ -113,18 +109,6 @@ class WC_Marketplace_Suggestions {
 	}
 
 	/**
-<<<<<<< HEAD
-=======
-	 * Render suggestions containers in products list empty state.
-	 */
-	public static function render_products_list_empty_state() {
-		self::render_suggestions_container( 'products-list-empty-header' );
-		self::render_suggestions_container( 'products-list-empty-body' );
-		self::render_suggestions_container( 'products-list-empty-footer' );
-	}
-
-	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Render suggestions containers in orders list empty state.
 	 */
 	public static function render_orders_list_empty_state() {

@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Automattic\WooCommerce\Internal\EmailEditor;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\EmailEditor\Email_Editor_Container;
 use Automattic\WooCommerce\EmailEditor\Engine\Dependency_Check;
 use Automattic\WooCommerce\Internal\Admin\EmailPreview\EmailPreview;
@@ -18,12 +17,6 @@ use Automattic\WooCommerce\EmailEditor\Engine\Logger\Email_Editor_Logger;
 use Automattic\WooCommerce\EmailEditor\Engine\Logger\Email_Editor_Logger_Interface;
 use Throwable;
 use WP_Post;
-=======
-use MailPoet\EmailEditor\EmailEditorContainer;
-use MailPoet\EmailEditor\Engine\Dependency_Check;
-use Automattic\WooCommerce\Internal\EmailEditor\EmailPatterns\PatternsController;
-use Automattic\WooCommerce\Internal\EmailEditor\EmailTemplates\TemplatesController;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 
@@ -48,7 +41,6 @@ class Integration {
 	private Dependency_Check $dependency_check;
 
 	/**
-<<<<<<< HEAD
 	 * The template API controller instance.
 	 *
 	 * @var TemplateApiController
@@ -67,12 +59,6 @@ class Integration {
 	 */
 	public function __construct() {
 		$editor_container       = Email_Editor_Container::container();
-=======
-	 * Constructor.
-	 */
-	public function __construct() {
-		$editor_container       = EmailEditorContainer::container();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->dependency_check = $editor_container->get( Dependency_Check::class );
 	}
 
@@ -87,30 +73,21 @@ class Integration {
 			return;
 		}
 
-<<<<<<< HEAD
 		add_action( 'woocommerce_init', array( $this, 'initialize' ) );
-=======
-		add_action( 'init', array( $this, 'initialize' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Initialize the integration.
 	 */
 	public function initialize() {
-<<<<<<< HEAD
 		$this->init_logger();
 		$this->init_hooks();
 		$this->extend_post_api();
 		$this->extend_template_post_api();
-=======
-		$this->init_hooks();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->register_hooks();
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Initialize the logger.
 	 */
 	public function init_logger() {
@@ -122,8 +99,6 @@ class Integration {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Initialize hooks for required classes.
 	 */
 	public function init_hooks() {
@@ -131,22 +106,17 @@ class Integration {
 		$container->get( PatternsController::class );
 		$container->get( TemplatesController::class );
 		$container->get( PersonalizationTagManager::class );
-<<<<<<< HEAD
 		$container->get( BlockEmailRenderer::class );
 		$container->get( WCTransactionalEmails::class );
 		$this->editor_page_renderer    = $container->get( PageRenderer::class );
 		$this->template_api_controller = $container->get( TemplateApiController::class );
 		$this->email_api_controller    = $container->get( EmailApiController::class );
-=======
-		$this->editor_page_renderer = $container->get( PageRenderer::class );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
 	 * Register hooks for the integration.
 	 */
 	public function register_hooks() {
-<<<<<<< HEAD
 		add_filter( 'woocommerce_email_editor_post_types', array( $this, 'add_email_post_type' ) );
 		add_filter( 'woocommerce_is_email_editor_page', array( $this, 'is_editor_page' ), 10, 1 );
 		add_filter( 'replace_editor', array( $this, 'replace_editor' ), 10, 2 );
@@ -154,11 +124,6 @@ class Integration {
 		add_filter( 'woocommerce_email_editor_send_preview_email_rendered_data', array( $this, 'update_send_preview_email_rendered_data' ) );
 		add_filter( 'woocommerce_email_editor_send_preview_email_personalizer_context', array( $this, 'update_send_preview_email_personalizer_context' ) );
 		add_filter( 'woocommerce_email_editor_preview_post_template_html', array( $this, 'update_preview_post_template_html_data' ), 100, 1 );
-=======
-		add_filter( 'mailpoet_email_editor_post_types', array( $this, 'add_email_post_type' ) );
-		add_filter( 'mailpoet_is_email_editor_page', array( $this, 'is_editor_page' ), 10, 1 );
-		add_filter( 'replace_editor', array( $this, 'replace_editor' ), 10, 2 );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -171,7 +136,6 @@ class Integration {
 		$post_types[] = array(
 			'name' => self::EMAIL_POST_TYPE,
 			'args' => array(
-<<<<<<< HEAD
 				'labels'   => array(
 					'name'          => __( 'Emails', 'woocommerce' ),
 					'singular_name' => __( 'Email', 'woocommerce' ),
@@ -189,23 +153,6 @@ class Integration {
 					),
 					'excerpt',
 				),
-=======
-				'labels'       => array(
-					'name'          => __( 'Woo Emails', 'woocommerce' ),
-					'singular_name' => __( 'Woo Email', 'woocommerce' ),
-					'add_new_item'  => __( 'Add New Woo Email', 'woocommerce' ),
-					'edit_item'     => __( 'Edit Woo Email', 'woocommerce' ),
-					'new_item'      => __( 'New Woo Email', 'woocommerce' ),
-					'view_item'     => __( 'View Woo Email', 'woocommerce' ),
-					'search_items'  => __( 'Search Woo Emails', 'woocommerce' ),
-				),
-				'rewrite'      => array( 'slug' => self::EMAIL_POST_TYPE ),
-				'supports'     => array( 'title', 'editor' ),
-				'public'       => true,
-				'show_ui'      => true,  // Showing in the admin UI is temporary, it will be removed in the future.
-				'show_in_menu' => true,
-				'show_in_rest' => true,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 		);
 		return $post_types;
@@ -246,7 +193,6 @@ class Integration {
 		}
 		return $replace;
 	}
-<<<<<<< HEAD
 
 	/**
 	 * Delete the email template associated with the email editor post when the post is permanently deleted.
@@ -401,6 +347,4 @@ class Integration {
 			)
 		);
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

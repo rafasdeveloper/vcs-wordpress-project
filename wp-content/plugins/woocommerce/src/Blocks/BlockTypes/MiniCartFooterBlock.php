@@ -1,11 +1,8 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * MiniCartFooterBlock class.
  */
@@ -16,7 +13,6 @@ class MiniCartFooterBlock extends AbstractInnerBlock {
 	 * @var string
 	 */
 	protected $block_name = 'mini-cart-footer-block';
-<<<<<<< HEAD
 
 	/**
 	 * Render experimental iAPI powered Mini-Cart Footer block.
@@ -113,6 +109,4 @@ class MiniCartFooterBlock extends AbstractInnerBlock {
 
 		return $content;
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

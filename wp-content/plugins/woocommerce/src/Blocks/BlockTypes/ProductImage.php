@@ -1,10 +1,7 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Utils\ProductGalleryUtils;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 
 /**
@@ -27,36 +24,6 @@ class ProductImage extends AbstractBlock {
 	protected $api_version = '3';
 
 	/**
-<<<<<<< HEAD
-=======
-	 * Get block supports. Shared with the frontend.
-	 * IMPORTANT: If you change anything here, make sure to update the JS file too.
-	 *
-	 * @return array
-	 */
-	protected function get_block_type_supports() {
-		return array(
-			'__experimentalBorder'   =>
-			array(
-				'radius'                          => true,
-				'__experimentalSkipSerialization' => true,
-			),
-			'typography'             =>
-			array(
-				'fontSize'                        => true,
-				'__experimentalSkipSerialization' => true,
-			),
-			'spacing'                =>
-			array(
-				'margin'                          => true,
-				'__experimentalSkipSerialization' => true,
-			),
-			'__experimentalSelector' => '.wc-block-components-product-image',
-		);
-	}
-
-	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * It is necessary to register and enqueues assets during the render phase because we want to load assets only if the block has the content.
 	 */
 	protected function register_block_type_assets() {
@@ -79,22 +46,12 @@ class ProductImage extends AbstractBlock {
 	private function parse_attributes( $attributes ) {
 		// These should match what's set in JS `registerBlockType`.
 		$defaults = array(
-<<<<<<< HEAD
 			'showProductLink'                  => true,
 			'imageSizing'                      => 'single',
 			'productId'                        => 'number',
 			'isDescendentOfQueryLoop'          => 'false',
 			'isDescendentOfSingleProductBlock' => 'false',
 			'scale'                            => 'cover',
-=======
-			'showProductLink'         => true,
-			'showSaleBadge'           => true,
-			'saleBadgeAlign'          => 'right',
-			'imageSizing'             => 'single',
-			'productId'               => 'number',
-			'isDescendentOfQueryLoop' => 'false',
-			'scale'                   => 'cover',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		return wp_parse_args( $attributes, $defaults );
@@ -108,7 +65,6 @@ class ProductImage extends AbstractBlock {
 	 * @return string
 	 */
 	private function render_on_sale_badge( $product, $attributes ) {
-<<<<<<< HEAD
 		if (
 			! $product->is_on_sale()
 			|| ! isset( $attributes['showSaleBadge'] )
@@ -132,28 +88,6 @@ class ProductImage extends AbstractBlock {
 		);
 
 		return $block->render();
-=======
-		if ( ! $product->is_on_sale() || false === $attributes['showSaleBadge'] ) {
-			return '';
-		}
-
-		$font_size = StyleAttributesUtils::get_font_size_class_and_style( $attributes );
-
-		$on_sale_badge = sprintf(
-			'
-		<div class="wc-block-components-product-sale-badge wc-block-components-product-sale-badge--align-%s wc-block-grid__product-onsale %s" style="%s">
-			<span aria-hidden="true">%s</span>
-			<span class="screen-reader-text">%s</span>
-		</div>
-	',
-			esc_attr( $attributes['saleBadgeAlign'] ),
-			isset( $font_size['class'] ) ? esc_attr( $font_size['class'] ) : '',
-			isset( $font_size['style'] ) ? esc_attr( $font_size['style'] ) : '',
-			esc_html__( 'Sale', 'woocommerce' ),
-			esc_html__( 'Product on sale', 'woocommerce' )
-		);
-		return $on_sale_badge;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -163,7 +97,6 @@ class ProductImage extends AbstractBlock {
 	 * @param string      $on_sale_badge Return value from $render_image.
 	 * @param string      $product_image Return value from $render_on_sale_badge.
 	 * @param array       $attributes    Attributes.
-<<<<<<< HEAD
 	 * @param string      $inner_blocks_content Rendered HTML of inner blocks.
 	 * @return string
 	 */
@@ -191,44 +124,15 @@ class ProductImage extends AbstractBlock {
 		);
 	}
 
-=======
-	 * @return string
-	 */
-	private function render_anchor( $product, $on_sale_badge, $product_image, $attributes ) {
-		$product_permalink = $product->get_permalink();
-
-		$is_link        = true === $attributes['showProductLink'];
-		$pointer_events = $is_link ? '' : 'pointer-events: none;';
-		$directive      = $is_link ? 'data-wp-on--click="woocommerce/product-collection::actions.viewProduct"' : '';
-
-		return sprintf(
-			'<a href="%1$s" style="%2$s" %3$s>%4$s %5$s</a>',
-			$product_permalink,
-			$pointer_events,
-			$directive,
-			$on_sale_badge,
-			$product_image
-		);
-	}
-
-
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Render Image.
 	 *
 	 * @param \WC_Product $product Product object.
 	 * @param array       $attributes Parsed attributes.
-<<<<<<< HEAD
 	 * @param int|null    $image_id Optional image ID from context.
 	 * @return string
 	 */
 	private function render_image( $product, $attributes, $image_id = null ) {
-=======
-	 * @return string
-	 */
-	private function render_image( $product, $attributes ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$image_size = 'single' === $attributes['imageSizing'] ? 'woocommerce_single' : 'woocommerce_thumbnail';
 
 		$image_style = 'max-width:none;';
@@ -241,16 +145,12 @@ class ProductImage extends AbstractBlock {
 		if ( ! empty( $attributes['scale'] ) ) {
 			$image_style .= sprintf( 'object-fit:%s;', $attributes['scale'] );
 		}
-<<<<<<< HEAD
 
 		// Keep this aspect ratio for backward compatibility.
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! empty( $attributes['aspectRatio'] ) ) {
 			$image_style .= sprintf( 'aspect-ratio:%s;', $attributes['aspectRatio'] );
 		}
 
-<<<<<<< HEAD
 		if ( ! empty( $attributes['style']['dimensions']['aspectRatio'] ) ) {
 			$image_style .= sprintf( 'aspect-ratio:%s;', $attributes['style']['dimensions']['aspectRatio'] );
 		}
@@ -282,25 +182,6 @@ class ProductImage extends AbstractBlock {
 		);
 
 		return $provided_image_id_is_valid ? wp_get_attachment_image( $image_id, $image_size, false, $attr ) : $product->get_image( $image_size, $attr );
-=======
-		$image_id = $product->get_image_id();
-		$alt_text = '';
-		$title    = '';
-		if ( $image_id ) {
-			$alt_text = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-			$title    = get_the_title( $image_id );
-		}
-
-		return $product->get_image(
-			$image_size,
-			array(
-				'alt'         => empty( $alt_text ) ? $product->get_title() : $alt_text,
-				'data-testid' => 'product-image',
-				'style'       => $image_style,
-				'title'       => $title,
-			)
-		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -311,16 +192,9 @@ class ProductImage extends AbstractBlock {
 	 *                           not in the post content on editor load.
 	 */
 	protected function enqueue_data( array $attributes = [] ) {
-<<<<<<< HEAD
 		$this->asset_data_registry->add( 'isBlockTheme', wp_is_block_theme() );
 	}
 
-=======
-		$this->asset_data_registry->add( 'isBlockThemeEnabled', wc_current_theme_is_fse_theme() );
-	}
-
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Include and render the block
 	 *
@@ -330,25 +204,11 @@ class ProductImage extends AbstractBlock {
 	 * @return string Rendered block type output.
 	 */
 	protected function render( $attributes, $content, $block ) {
-<<<<<<< HEAD
 		$parsed_attributes  = $this->parse_attributes( $attributes );
 		$classes_and_styles = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes, array(), array( 'extra_classes' ) );
 		$post_id            = isset( $block->context['postId'] ) ? $block->context['postId'] : '';
 		$image_id           = isset( $block->context['imageId'] ) ? (int) $block->context['imageId'] : null;
 		$product            = wc_get_product( $post_id );
-=======
-		if ( ! empty( $content ) ) {
-			parent::register_block_type_assets();
-			$this->register_chunk_translations( [ $this->block_name ] );
-			return $content;
-		}
-		$parsed_attributes = $this->parse_attributes( $attributes );
-
-		$classes_and_styles = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes, array(), array( 'extra_classes' ) );
-
-		$post_id = isset( $block->context['postId'] ) ? $block->context['postId'] : '';
-		$product = wc_get_product( $post_id );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$classes = implode(
 			' ',
@@ -368,7 +228,6 @@ class ProductImage extends AbstractBlock {
 		);
 
 		if ( $product ) {
-<<<<<<< HEAD
 			$inner_content = $this->render_anchor(
 				$product,
 				$this->render_on_sale_badge( $product, $parsed_attributes ),
@@ -385,21 +244,5 @@ class ProductImage extends AbstractBlock {
 		}
 
 		return '';
-=======
-			return sprintf(
-				'<div %1$s>
-					%2$s
-				</div>',
-				$wrapper_attributes,
-				$this->render_anchor(
-					$product,
-					$this->render_on_sale_badge( $product, $parsed_attributes ),
-					$this->render_image( $product, $parsed_attributes ),
-					$parsed_attributes
-				)
-			);
-
-		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

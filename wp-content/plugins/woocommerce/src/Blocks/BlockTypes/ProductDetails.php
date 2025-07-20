@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 <?php declare( strict_types = 1 );
 
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
 use WP_Block;
-=======
-<?php
-namespace Automattic\WooCommerce\Blocks\BlockTypes;
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_HTML_Tag_Processor;
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 
@@ -24,7 +18,6 @@ class ProductDetails extends AbstractBlock {
 	protected $block_name = 'product-details';
 
 	/**
-<<<<<<< HEAD
 	 * Initialize the block type.
 	 *
 	 * @return void
@@ -56,30 +49,6 @@ class ProductDetails extends AbstractBlock {
 	 * @return array|string|null
 	 */
 	protected function get_block_type_script( $key = null ) {
-=======
-	 * It isn't necessary register block assets because it is a server side block.
-	 */
-	protected function register_block_type_assets() {
-
-		// Register block styles.
-		register_block_style(
-			'woocommerce/product-details',
-			array(
-				'name'       => 'classic',
-				'label'      => __( 'Classic', 'woocommerce' ),
-				'is_default' => true,
-			)
-		);
-
-		register_block_style(
-			'woocommerce/product-details',
-			array(
-				'name'  => 'minimal',
-				'label' => __( 'Minimal', 'woocommerce' ),
-			)
-		);
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return null;
 	}
 
@@ -93,7 +62,6 @@ class ProductDetails extends AbstractBlock {
 	 * @return string Rendered block output.
 	 */
 	protected function render( $attributes, $content, $block ) {
-<<<<<<< HEAD
 		if ( empty( $block->parsed_block['innerBlocks'] ) ) {
 			return $this->render_legacy_block( $attributes, $content, $block );
 		}
@@ -444,8 +412,6 @@ class ProductDetails extends AbstractBlock {
 			return $content;
 		}
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$hide_tab_title = isset( $attributes['hideTabTitle'] ) ? $attributes['hideTabTitle'] : false;
 
 		if ( $hide_tab_title ) {

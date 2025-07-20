@@ -8,16 +8,11 @@
  * @version 3.4.0
  */
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Caches\OrderCountCache;
 use Automattic\WooCommerce\Enums\OrderStatus;
 use Automattic\WooCommerce\Enums\OrderInternalStatus;
 use Automattic\WooCommerce\Enums\PaymentGatewayFeature;
 use Automattic\WooCommerce\Internal\CostOfGoodsSold\CostOfGoodsSoldController;
-=======
-use Automattic\WooCommerce\Enums\OrderStatus;
-use Automattic\WooCommerce\Enums\OrderInternalStatus;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\DataStores\Orders\DataSynchronizer;
 use Automattic\WooCommerce\Internal\Utilities\Users;
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -395,20 +390,14 @@ function wc_processing_order_count() {
  */
 function wc_orders_count( $status, string $type = '' ) {
 	$count           = 0;
-<<<<<<< HEAD
 	$legacy_statuses = array(
 		OrderStatus::DRAFT,
 		OrderStatus::TRASH,
 	);
-=======
-	$legacy_statuses = array( OrderStatus::DRAFT, OrderStatus::TRASH );
-	$valid_statuses  = array_merge( array_keys( wc_get_order_statuses() ), $legacy_statuses );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	$status          = ( ! in_array( $status, $legacy_statuses, true ) && 0 !== strpos( $status, 'wc-' ) ) ? 'wc-' . $status : $status;
 	$valid_types     = wc_get_order_types( 'order-count' );
 	$type            = trim( $type );
 
-<<<<<<< HEAD
 	try {
 		$types_for_count   = $type ? array( $type ) : $valid_types;
 		$order_count_cache = new OrderCountCache();
@@ -427,31 +416,6 @@ function wc_orders_count( $status, string $type = '' ) {
 	} catch ( Exception $e ) {
 		return 0;
 	}
-=======
-	if ( ! in_array( $status, $valid_statuses, true ) || ( $type && ! in_array( $type, $valid_types, true ) ) ) {
-		return 0;
-	}
-
-	$cache_key    = WC_Cache_Helper::get_cache_prefix( 'orders' ) . $status . $type;
-	$cached_count = wp_cache_get( $cache_key, 'counts' );
-
-	if ( false !== $cached_count ) {
-		return $cached_count;
-	}
-
-	$types_for_count = $type ? array( $type ) : $valid_types;
-
-	foreach ( $types_for_count as $type ) {
-		$data_store = WC_Data_Store::load( 'shop_order' === $type ? 'order' : $type );
-		if ( $data_store ) {
-			$count += $data_store->get_order_count( $status );
-		}
-	}
-
-	wp_cache_set( $cache_key, $count, 'counts' );
-
-	return $count;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /**
@@ -739,7 +703,6 @@ function wc_create_refund( $args = array() ) {
 			 * @param int  $order_id The order id.
 			 * @param int  $refund_id The refund id.
 			 */
-<<<<<<< HEAD
 			if ( (bool) apply_filters(
 				'woocommerce_order_is_partially_refunded',
 				( $remaining_refund_amount - $args['amount'] ) > 0 ||
@@ -747,9 +710,6 @@ function wc_create_refund( $args = array() ) {
 				$order->get_id(),
 				$refund->get_id()
 			) ) {
-=======
-			if ( (bool) apply_filters( 'woocommerce_order_is_partially_refunded', ( $remaining_refund_amount - $args['amount'] ) > 0 || ( $order->has_free_item() && ( $remaining_refund_items - $refund_item_count ) > 0 ), $order->get_id(), $refund->get_id() ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				do_action( 'woocommerce_order_partially_refunded', $order->get_id(), $refund->get_id() );
 			} else {
 				do_action( 'woocommerce_order_fully_refunded', $order->get_id(), $refund->get_id() );
@@ -772,12 +732,9 @@ function wc_create_refund( $args = array() ) {
 		}
 
 		$order->set_date_modified( time() );
-<<<<<<< HEAD
 		if ( wc_get_container()->get( CostOfGoodsSoldController::class )->feature_is_enabled() && $order->has_cogs() ) {
 			$order->calculate_cogs_total_value();
 		}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$order->save();
 
 		do_action( 'woocommerce_refund_created', $refund->get_id(), $args );
@@ -818,11 +775,7 @@ function wc_refund_payment( $order, $amount, $reason = '' ) {
 			throw new Exception( __( 'The payment gateway for this order does not exist.', 'woocommerce' ) );
 		}
 
-<<<<<<< HEAD
 		if ( ! $gateway->supports( PaymentGatewayFeature::REFUNDS ) ) {
-=======
-		if ( ! $gateway->supports( 'refunds' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			throw new Exception( __( 'The payment gateway for this order does not support automatic refunds.', 'woocommerce' ) );
 		}
 

@@ -14,15 +14,7 @@ use Exception;
 /**
  * Base class for REST API controllers defined inside the 'src' directory.
  *
-<<<<<<< HEAD
  * The following must be added at the end of the 'init_hooks' method in the 'WooCommerce' class,
-=======
- * Besides implementing the abstract methods, derived classes must be registered in the dependency injection
- * container with the 'share_with_implements_tags' method inside a service provider that inherits from
- * 'AbstractInterfaceServiceProvider'. This ensures that 'register_routes' is invoked.
- *
- * Also, the following must be added at the end of the 'init_hooks' method in the 'WooCommerce' class,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * otherwise the routes won't be registered:
  * $container->get( <full class name>::class )->register();
  *

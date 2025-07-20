@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "woocommerce/product-reviews",
@@ -61,23 +60,3 @@
 	"usesContext": [ "postId", "postType" ],
 	"viewScriptModule": "woocommerce/product-reviews"
 }
-=======
-	"name": "woocommerce/product-reviews",
-	"version": "1.0.0",
-	"icon": "admin-comments",
-	"title": "Product Reviews",
-	"description": "A block that shows the reviews for a product.",
-	"category": "woocommerce-product-elements",
-	"keywords": [
-		"WooCommerce"
-	],
-	"supports": {},
-	"attributes": {},
-	"usesContext": [
-		"postId"
-	],
-	"textdomain": "woocommerce",
-	"apiVersion": 3,
-	"$schema": "https://schemas.wp.org/trunk/block.json"
-}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

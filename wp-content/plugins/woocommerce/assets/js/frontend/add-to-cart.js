@@ -17,10 +17,7 @@ jQuery( function( $ ) {
 		$( document.body )
 			.on( 'click', '.add_to_cart_button:not(.wc-interactive)', { addToCartHandler: this }, this.onAddToCart )
 			.on( 'click', '.remove_from_cart_button', { addToCartHandler: this }, this.onRemoveFromCart )
-<<<<<<< HEAD
 			.on( 'keydown', '.remove_from_cart_button', this.onKeydownRemoveFromCart )
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			.on( 'added_to_cart', { addToCartHandler: this }, this.onAddedToCart )
 			.on( 'removed_from_cart', { addToCartHandler: this }, this.onRemovedFromCart )
 			.on( 'ajax_request_not_sent.adding_to_cart', this.updateButton );
@@ -174,7 +171,6 @@ jQuery( function( $ ) {
 	};
 
 	/**
-<<<<<<< HEAD
 	 * Handle when pressing the Space key on the remove item link.
 	 * This is necessary because the link got the role="button" attribute
 	 * and needs to act like a button.
@@ -187,8 +183,6 @@ jQuery( function( $ ) {
 	};
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Update cart page elements after add to cart events.
 	 */
 	AddToCartHandler.prototype.updateButton = function( e, fragments, cart_hash, $button ) {

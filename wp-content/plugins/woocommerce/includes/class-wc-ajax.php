@@ -14,11 +14,8 @@ use Automattic\WooCommerce\Internal\CostOfGoodsSold\CostOfGoodsSoldController;
 use Automattic\WooCommerce\Internal\Orders\CouponsController;
 use Automattic\WooCommerce\Internal\Orders\TaxesController;
 use Automattic\WooCommerce\Internal\Admin\Orders\MetaBoxes\CustomMetaBox;
-<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Utilities\Users;
 use Automattic\WooCommerce\Proxies\LegacyProxy;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\ArrayUtil;
 use Automattic\WooCommerce\Utilities\NumberUtil;
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -52,7 +49,6 @@ class WC_AJAX {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Set the 'wc-ajax' argument in $wp_query.
 	 */
 	private static function set_wc_ajax_argument_in_query() {
@@ -74,13 +70,6 @@ class WC_AJAX {
 		// phpcs:disable
 		self::set_wc_ajax_argument_in_query();
 		if ( ! empty( $wp_query->get( 'wc-ajax' ) ) ) {
-=======
-	 * Set WC AJAX constant and headers.
-	 */
-	public static function define_ajax() {
-		// phpcs:disable
-		if ( ! empty( $_GET['wc-ajax'] ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			wc_maybe_define_constant( 'DOING_AJAX', true );
 			wc_maybe_define_constant( 'WC_DOING_AJAX', true );
 			if ( ! WP_DEBUG || ( WP_DEBUG && ! WP_DEBUG_DISPLAY ) ) {
@@ -117,13 +106,7 @@ class WC_AJAX {
 		global $wp_query;
 
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-<<<<<<< HEAD
 		self::set_wc_ajax_argument_in_query();
-=======
-		if ( ! empty( $_GET['wc-ajax'] ) ) {
-			$wp_query->set( 'wc-ajax', sanitize_text_field( wp_unslash( $_GET['wc-ajax'] ) ) );
-		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$action = $wp_query->get( 'wc-ajax' );
 
@@ -189,10 +172,7 @@ class WC_AJAX {
 			'load_order_items',
 			'add_order_note',
 			'delete_order_note',
-<<<<<<< HEAD
 			'json_search_order_metakeys',
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'json_search_products',
 			'json_search_products_and_variations',
 			'json_search_downloadable_products_and_variations',
@@ -219,10 +199,7 @@ class WC_AJAX {
 			'shipping_zone_methods_save_settings',
 			'shipping_classes_save_changes',
 			'toggle_gateway_enabled',
-<<<<<<< HEAD
 			'load_status_widget',
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		foreach ( $ajax_events as $ajax_event ) {
@@ -237,11 +214,7 @@ class WC_AJAX {
 		foreach ( $ajax_private_events as $ajax_event ) {
 			add_action(
 				'wp_ajax_woocommerce_' . $ajax_event,
-<<<<<<< HEAD
 				function () use ( $ajax_event ) {
-=======
-				function() use ( $ajax_event ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					call_user_func( array( __CLASS__, $ajax_event ) );
 				}
 			);
@@ -255,12 +228,8 @@ class WC_AJAX {
 		foreach ( $ajax_heartbeat_callbacks as $ajax_callback ) {
 			add_filter(
 				'heartbeat_received',
-<<<<<<< HEAD
 				// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 				function ( $response, $data ) use ( $ajax_callback ) {
-=======
-				function( $response, $data ) use ( $ajax_callback ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					return call_user_func_array( array( __CLASS__, $ajax_callback ), func_get_args() );
 				},
 				11,
@@ -786,11 +755,7 @@ class WC_AJAX {
 					if ( ! $attribute ) {
 						continue;
 					}
-<<<<<<< HEAD
 					++$i;
-=======
-					$i++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$metabox_class = array();
 
 					if ( $attribute->is_taxonomy() ) {
@@ -1001,13 +966,8 @@ class WC_AJAX {
 					$inserted_id = wc_downloadable_file_permission( $download_id, $product->get_id(), $order, $download_data['quantity'], $download_data['order_item'] );
 					if ( $inserted_id ) {
 						$download = new WC_Customer_Download( $inserted_id );
-<<<<<<< HEAD
 						++$loop;
 						++$file_counter;
-=======
-						$loop ++;
-						$file_counter ++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 						if ( $file->get_name() ) {
 							$file_count = $file->get_name();
@@ -1027,7 +987,6 @@ class WC_AJAX {
 	 * Get customer details via ajax.
 	 */
 	public static function get_customer_details() {
-<<<<<<< HEAD
 		$legacy_proxy = wc_get_container()->get( LegacyProxy::class );
 		$legacy_proxy->call_function( 'check_ajax_referer', 'get-customer-details', 'security' );
 
@@ -1042,15 +1001,6 @@ class WC_AJAX {
 			wp_die( -1 );
 		}
 
-=======
-		check_ajax_referer( 'get-customer-details', 'security' );
-
-		if ( ! current_user_can( 'edit_shop_orders' ) || ! isset( $_POST['user_id'] ) ) {
-			wp_die( -1 );
-		}
-
-		$user_id  = absint( $_POST['user_id'] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$customer = new WC_Customer( $user_id );
 
 		if ( has_filter( 'woocommerce_found_customer_details' ) ) {
@@ -1164,11 +1114,8 @@ class WC_AJAX {
 
 			$data = get_post_meta( $order_id );
 
-<<<<<<< HEAD
 			$order = wc_get_order( $order_id );
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Get HTML to return.
 			ob_start();
 			include __DIR__ . '/admin/meta-boxes/views/html-order-items.php';
@@ -1817,21 +1764,14 @@ class WC_AJAX {
 	public static function json_search_customers() {
 		ob_start();
 
-<<<<<<< HEAD
 		$legacy_proxy = wc_get_container()->get( LegacyProxy::class );
 		$legacy_proxy->call_function( 'check_ajax_referer', 'search-customers', 'security' );
-=======
-		check_ajax_referer( 'search-customers', 'security' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! current_user_can( 'edit_shop_orders' ) ) {
 			wp_die( -1 );
 		}
 
-<<<<<<< HEAD
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$term  = isset( $_GET['term'] ) ? (string) wc_clean( wp_unslash( $_GET['term'] ) ) : '';
 		$limit = 0;
 
@@ -1844,14 +1784,9 @@ class WC_AJAX {
 		if ( is_numeric( $term ) ) {
 			$customer = new WC_Customer( intval( $term ) );
 
-<<<<<<< HEAD
 			// Only add existing/valid users. In a multisite context, they must be visible to the current user (in
 			// general, this means that they must have been added to the current site).
 			if ( 0 !== $customer->get_id() && ! is_wp_error( Users::get_user_in_current_site( $customer->get_id() ) ) ) {
-=======
-			// Customer does not exists.
-			if ( 0 !== $customer->get_id() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$ids = array( $customer->get_id() );
 			}
 		}
@@ -1865,24 +1800,17 @@ class WC_AJAX {
 			if ( 3 > strlen( $term ) ) {
 				$limit = 20;
 			}
-<<<<<<< HEAD
 
 			// Multisite note: via its dependency on WP_User_Query, WC_Customer_Data_Store::search_customers() will only
 			// look for users who have already been added to the current blog.
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$ids = $data_store->search_customers( $term, $limit );
 		}
 
 		$found_customers = array();
 
-<<<<<<< HEAD
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_GET['exclude'] ) ) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-=======
-		if ( ! empty( $_GET['exclude'] ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$ids = array_diff( $ids, array_map( 'absint', (array) wp_unslash( $_GET['exclude'] ) ) );
 		}
 
@@ -2003,11 +1931,7 @@ class WC_AJAX {
 						$item_exists = count(
 							array_filter(
 								$terms_map[ $ancestor ]->children,
-<<<<<<< HEAD
 								function ( $term ) use ( $current_child ) {
-=======
-								function( $term ) use ( $current_child ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 									return $term->term_id === $current_child->term_id;
 								}
 							)
@@ -2022,11 +1946,7 @@ class WC_AJAX {
 		}
 		$parent_terms = array_filter(
 			array_values( $terms_map ),
-<<<<<<< HEAD
 			function ( $term ) {
-=======
-			function( $term ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				return 0 === $term->parent;
 			}
 		);
@@ -2125,10 +2045,7 @@ class WC_AJAX {
 		wp_send_json( apply_filters( 'woocommerce_json_search_found_product_categories', $found_product_categories, $search_text ) );
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Ajax request handling for page searching.
 	 */
@@ -2226,15 +2143,9 @@ class WC_AJAX {
 				continue;
 			}
 			if ( $nextid === $id ) {
-<<<<<<< HEAD
 				++$index;
 			}
 			++$index;
-=======
-				$index ++;
-			}
-			$index ++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$menu_orders[ $id ] = $index;
 
 			if ( $wpdb->update( $wpdb->posts, array( 'menu_order' => $index ), array( 'ID' => $id ) ) ) {
@@ -3763,7 +3674,6 @@ class WC_AJAX {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * AJAX handler for asynchronously loading the status widget content.
 	 */
 	public static function load_status_widget() {
@@ -3783,8 +3693,6 @@ class WC_AJAX {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Reimplementation of WP core's `wp_ajax_add_meta` method to support order custom meta updates with custom tables.
 	 */
 	private static function order_add_meta() {
@@ -3796,16 +3704,11 @@ class WC_AJAX {
 	 *
 	 * @return void
 	 */
-<<<<<<< HEAD
 	private static function order_delete_meta(): void {
-=======
-	private static function order_delete_meta() : void {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		wc_get_container()->get( CustomMetaBox::class )->delete_meta_ajax();
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Hooked into `wp_ajax_woocommerce_json_search_order_metakeys` to return the list of unique meta keys for the
 	 * edit order screen custom fields metabox.
 	 *
@@ -3816,8 +3719,6 @@ class WC_AJAX {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Hooked to 'heartbeat_received' on the edit order page to refresh the lock on an order being edited by the current user.
 	 *
 	 * @param array $response The heartbeat response to be sent.

@@ -8,10 +8,7 @@
 use Automattic\Jetpack\Constants;
 use Automattic\WooCommerce\Admin\PluginsHelper;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
-<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Notes\Note;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,11 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The main entry-point for all things related to the Helper.
  */
 class WC_Helper {
-<<<<<<< HEAD
 	const NOTE_NAME = 'wccom-api-failed';
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * A log object returned by wc_get_logger().
 	 *
@@ -35,11 +29,8 @@ class WC_Helper {
 	 */
 	public static $log;
 
-<<<<<<< HEAD
 	private const CACHE_KEY_CONNECTION_DATA = '_woocommerce_helper_connection_data';
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Get an absolute path to the requested helper view.
 	 *
@@ -66,7 +57,6 @@ class WC_Helper {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Remove all notes signaling an error with the WCCOM API, when the request was successful.
 	 */
 	protected static function remove_api_error_notice() {
@@ -132,8 +122,6 @@ class WC_Helper {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the source page for the connect URL (wc-admin or wc-addons/extensions)
 	 *
 	 * @return string
@@ -150,17 +138,11 @@ class WC_Helper {
 		include_once __DIR__ . '/class-wc-helper-options.php';
 		include_once __DIR__ . '/class-wc-helper-api.php';
 		include_once __DIR__ . '/class-wc-woo-update-manager-plugin.php';
-<<<<<<< HEAD
 		include_once __DIR__ . '/class-wc-woo-helper-connection.php';
 		include_once __DIR__ . '/class-wc-helper-updater.php';
 		include_once __DIR__ . '/class-wc-plugin-api-updater.php';
 		include_once __DIR__ . '/class-wc-helper-compat.php';
 		include_once __DIR__ . '/class-wc-helper-sanitization.php';
-=======
-		include_once __DIR__ . '/class-wc-helper-updater.php';
-		include_once __DIR__ . '/class-wc-plugin-api-updater.php';
-		include_once __DIR__ . '/class-wc-helper-compat.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		include_once __DIR__ . '/class-wc-helper-admin.php';
 		include_once __DIR__ . '/class-wc-helper-subscriptions-api.php';
 		include_once __DIR__ . '/class-wc-helper-orders-api.php';
@@ -1014,11 +996,7 @@ class WC_Helper {
 			wp_die( 'Something went wrong' );
 		}
 
-<<<<<<< HEAD
 		self::update_auth_option( $access_token['access_token'], $access_token['access_token_secret'], $access_token['site_id'], home_url() );
-=======
-		self::update_auth_option( $access_token['access_token'], $access_token['access_token_secret'], $access_token['site_id'] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Fires when the Helper connection process has completed successfully.
@@ -1110,11 +1088,8 @@ class WC_Helper {
 
 	/**
 	 * Flush helper authentication cache.
-<<<<<<< HEAD
 	 *
 	 * @throws Exception If there is an error refreshing subscriptions.
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public static function refresh_helper_subscriptions() {
 		/**
@@ -1200,15 +1175,6 @@ class WC_Helper {
 			throw new Exception( $body['message'] ?? __( 'Unknown error', 'woocommerce' ) );
 		}
 
-<<<<<<< HEAD
-=======
-		// Attempt to activate this plugin.
-		$local = self::_get_local_from_product_id( $product_id );
-		if ( $local && 'plugin' === $local['_type'] && current_user_can( 'activate_plugins' ) && ! is_plugin_active( $local['_filename'] ) ) {
-			activate_plugin( $local['_filename'] );
-		}
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		self::_flush_subscriptions_cache();
 		self::_flush_updates_cache();
 
@@ -1216,7 +1182,6 @@ class WC_Helper {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Activate a plugin for a product key.
 	 *
 	 * @throws Exception When the subscription is not found.
@@ -1248,8 +1213,6 @@ class WC_Helper {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Deactivate a product subscription.
 	 */
 	private static function helper_subscription_deactivate() {
@@ -1540,17 +1503,11 @@ class WC_Helper {
 	 */
 	private static function _get_subscriptions_from_product_id( $product_id, $single = true ) {
 		$subscriptions = wp_list_filter( self::get_subscriptions(), array( 'product_id' => $product_id ) );
-<<<<<<< HEAD
 
 		if ( ! empty( $subscriptions ) ) {
 			return $single ? array_shift( $subscriptions ) : $subscriptions;
 		}
 
-=======
-		if ( ! empty( $subscriptions ) ) {
-			return $single ? array_shift( $subscriptions ) : $subscriptions;
-		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return false;
 	}
 
@@ -1725,11 +1682,8 @@ class WC_Helper {
 	 * Get rules for displaying notice regarding marketplace product usage.
 	 *
 	 * @return array
-<<<<<<< HEAD
 	 *
 	 * phpcs:ignore Squiz.Commenting.FunctionCommentThrowTag.Missing -- As we wrap the throw in a try/catch.
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public static function get_product_usage_notice_rules() {
 		$cache_key = '_woocommerce_helper_product_usage_notice_rules';
@@ -1738,7 +1692,6 @@ class WC_Helper {
 			return $data;
 		}
 
-<<<<<<< HEAD
 		try {
 			$request = WC_Helper_API::get(
 				'product-usage-notice-rules',
@@ -1784,29 +1737,6 @@ class WC_Helper {
 		}
 
 		return array();
-=======
-		$request = WC_Helper_API::get(
-			'product-usage-notice-rules',
-			array(
-				'authenticated' => false,
-				'timeout'       => 2,
-			)
-		);
-
-		// Retry in 15 minutes for non-200 response.
-		if ( wp_remote_retrieve_response_code( $request ) !== 200 ) {
-			set_transient( $cache_key, array(), 15 * MINUTE_IN_SECONDS );
-			return array();
-		}
-
-		$data = json_decode( wp_remote_retrieve_body( $request ), true );
-		if ( empty( $data ) || ! is_array( $data ) ) {
-			$data = array();
-		}
-
-		set_transient( $cache_key, $data, 1 * HOUR_IN_SECONDS );
-		return $data;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -1833,7 +1763,6 @@ class WC_Helper {
 		return isset( $data['success'] ) && true === $data['success'];
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Get cached connection data
 	 *
@@ -1884,18 +1813,13 @@ class WC_Helper {
 
 		return $connection_data;
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Get the connected user's subscriptions.
 	 *
 	 * @return array
-<<<<<<< HEAD
 	 *
 	 * phpcs:ignore Squiz.Commenting.FunctionCommentThrowTag.Missing -- As we wrap the throw in a try/catch.
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public static function get_subscriptions() {
 		$cache_key = '_woocommerce_helper_subscriptions';
@@ -1904,7 +1828,6 @@ class WC_Helper {
 			return $data;
 		}
 
-<<<<<<< HEAD
 		try {
 			$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$source      = '';
@@ -1967,45 +1890,6 @@ class WC_Helper {
 		}
 
 		return array();
-=======
-		$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$source      = '';
-		if ( stripos( $request_uri, 'wc-addons' ) ) :
-			$source = 'my-subscriptions';
-		elseif ( stripos( $request_uri, 'plugins.php' ) ) :
-			$source = 'plugins';
-		elseif ( stripos( $request_uri, 'wc-admin' ) ) :
-			$source = 'inbox-notes';
-		elseif ( stripos( $request_uri, 'admin-ajax.php' ) ) :
-			$source = 'heartbeat-api';
-		elseif ( stripos( $request_uri, 'installer' ) ) :
-			$source = 'wccom-site-installer';
-		elseif ( defined( 'WP_CLI' ) && WP_CLI ) :
-			$source = 'wc-cli';
-		endif;
-
-		// Obtain the connected user info.
-		$request = WC_Helper_API::get(
-			'subscriptions',
-			array(
-				'authenticated' => true,
-				'query_string'  => '' !== $source ? esc_url( '?source=' . $source ) : '',
-			)
-		);
-
-		if ( wp_remote_retrieve_response_code( $request ) !== 200 ) {
-			set_transient( $cache_key, array(), 15 * MINUTE_IN_SECONDS );
-			return array();
-		}
-
-		$data = json_decode( wp_remote_retrieve_body( $request ), true );
-		if ( empty( $data ) || ! is_array( $data ) ) {
-			$data = array();
-		}
-
-		set_transient( $cache_key, $data, 1 * HOUR_IN_SECONDS );
-		return $data;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -2602,7 +2486,6 @@ class WC_Helper {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Flush connection data cache.
 	 */
 	public static function flush_connection_data_cache() {
@@ -2610,8 +2493,6 @@ class WC_Helper {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Flush auth cache.
 	 */
 	public static function _flush_authentication_cache() {
@@ -2716,10 +2597,7 @@ class WC_Helper {
 		self::_flush_subscriptions_cache();
 		self::_flush_updates_cache();
 		self::flush_product_usage_notice_rules_cache();
-<<<<<<< HEAD
 		self::flush_connection_data_cache();
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -2776,11 +2654,7 @@ class WC_Helper {
 			return new WP_Error( 'connect-with-password-invalid-response', $message );
 		}
 
-<<<<<<< HEAD
 		self::update_auth_option( $access_data['access_token'], $access_data['access_token_secret'], $access_data['site_id'], home_url() );
-=======
-		self::update_auth_option( $access_data['access_token'], $access_data['access_token_secret'], $access_data['site_id'] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -2789,28 +2663,18 @@ class WC_Helper {
 	 * @param string $access_token The access token.
 	 * @param string $access_token_secret The secret access token.
 	 * @param int    $site_id The site id returned by the API.
-<<<<<<< HEAD
 	 * @param string $home_url Home url of the site.
 	 *
 	 * @return void
 	 */
 	public static function update_auth_option( string $access_token, string $access_token_secret, int $site_id, string $home_url ): void {
-=======
-	 *
-	 * @return void
-	 */
-	public static function update_auth_option( string $access_token, string $access_token_secret, int $site_id ): void {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		WC_Helper_Options::update(
 			'auth',
 			array(
 				'access_token'        => $access_token,
 				'access_token_secret' => $access_token_secret,
 				'site_id'             => $site_id,
-<<<<<<< HEAD
 				'url'                 => $home_url,
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'user_id'             => get_current_user_id(),
 				'updated'             => time(),
 			)
@@ -2953,7 +2817,6 @@ class WC_Helper {
 
 		return $subscription;
 	}
-<<<<<<< HEAD
 
 	/**
 	 * Gets a user-friendly error message based on the HTTP response code.
@@ -2971,8 +2834,6 @@ class WC_Helper {
 		// translators: %d: HTTP status code.
 		return sprintf( __( 'WooCommerce.com API returned HTTP status code %d.', 'woocommerce' ), $code );
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 WC_Helper::load();

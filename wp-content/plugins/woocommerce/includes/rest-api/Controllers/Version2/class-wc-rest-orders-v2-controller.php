@@ -11,10 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Enums\OrderStatus;
-<<<<<<< HEAD
 use Automattic\WooCommerce\Internal\Utilities\Users;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\Utilities\ArrayUtil;
 use Automattic\WooCommerce\Utilities\OrderUtil;
@@ -256,13 +253,8 @@ class WC_REST_Orders_V2_Controller extends WC_REST_CRUD_Controller {
 			foreach ( $data['taxes']['total'] as $tax_rate_id => $tax ) {
 				$taxes[] = array(
 					'id'       => $tax_rate_id,
-<<<<<<< HEAD
 					'total'    => wc_format_decimal( $tax, $this->request['dp'] ),
 					'subtotal' => isset( $data['taxes']['subtotal'][ $tax_rate_id ] ) ? wc_format_decimal( $data['taxes']['subtotal'][ $tax_rate_id ], $this->request['dp'] ) : '',
-=======
-					'total'    => $tax,
-					'subtotal' => isset( $data['taxes']['subtotal'][ $tax_rate_id ] ) ? $data['taxes']['subtotal'][ $tax_rate_id ] : '',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				);
 			}
 			$data['taxes'] = $taxes;
@@ -807,13 +799,8 @@ class WC_REST_Orders_V2_Controller extends WC_REST_CRUD_Controller {
 			WC()->payment_gateways();
 
 			if ( ! is_null( $request['customer_id'] ) && 0 !== $request['customer_id'] ) {
-<<<<<<< HEAD
 				// The customer must exist, and in a multisite context must be visible to the current user.
 				if ( is_wp_error( Users::get_user_in_current_site( $request['customer_id'] ) ) ) {
-=======
-				// Make sure customer exists.
-				if ( false === get_user_by( 'id', $request['customer_id'] ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					throw new WC_REST_Exception( 'woocommerce_rest_invalid_customer_id', __( 'Customer ID is invalid.', 'woocommerce' ), 400 );
 				}
 

@@ -48,11 +48,7 @@ if ( ! class_exists( 'WC_Email_Cancelled_Order', false ) ) :
 
 			// Must be after parent's constructor which sets `email_improvements_enabled` property.
 			$this->description = $this->email_improvements_enabled
-<<<<<<< HEAD
 				? __( 'Receive an email notification when an order that was processing or on hold gets cancelled', 'woocommerce' )
-=======
-				? __( 'Select who should be notified if an order that was previously processing or on-hold gets cancelled.', 'woocommerce' )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				: __( 'Cancelled order emails are sent to chosen recipient(s) when orders have been marked cancelled (if they were previously processing or on-hold).', 'woocommerce' );
 
 			// Other settings.
@@ -147,7 +143,6 @@ if ( ! class_exists( 'WC_Email_Cancelled_Order', false ) ) :
 		}
 
 		/**
-<<<<<<< HEAD
 		 * Get block editor email template content.
 		 *
 		 * @return string
@@ -165,8 +160,6 @@ if ( ! class_exists( 'WC_Email_Cancelled_Order', false ) ) :
 		}
 
 		/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Default content to show below main email content.
 		 *
 		 * @since 3.7.0

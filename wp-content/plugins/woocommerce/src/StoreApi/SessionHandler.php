@@ -1,17 +1,10 @@
 <?php
-<<<<<<< HEAD
 declare(strict_types=1);
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 namespace Automattic\WooCommerce\StoreApi;
 
 use Automattic\Jetpack\Constants;
-<<<<<<< HEAD
 use Automattic\WooCommerce\StoreApi\Utilities\CartTokenUtils;
-=======
-use Automattic\WooCommerce\StoreApi\Utilities\JsonWebToken;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Session;
 
 defined( 'ABSPATH' ) || exit;
@@ -61,17 +54,10 @@ final class SessionHandler extends WC_Session {
 	 * Process the token header to load the correct session.
 	 */
 	protected function init_session_from_token() {
-<<<<<<< HEAD
 		$payload = CartTokenUtils::get_cart_token_payload( $this->token );
 
 		$this->_customer_id       = $payload['user_id'];
 		$this->session_expiration = $payload['exp'];
-=======
-		$payload = JsonWebToken::get_parts( $this->token )->payload;
-
-		$this->_customer_id       = $payload->user_id;
-		$this->session_expiration = $payload->exp;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->_data              = (array) $this->get_session( $this->_customer_id, array() );
 	}
 
@@ -79,19 +65,11 @@ final class SessionHandler extends WC_Session {
 	 * Returns the session.
 	 *
 	 * @param string $customer_id Customer ID.
-<<<<<<< HEAD
 	 * @param mixed  $default_value Default session value.
 	 *
 	 * @return string|array|bool
 	 */
 	public function get_session( $customer_id, $default_value = false ) {
-=======
-	 * @param mixed  $default Default session value.
-	 *
-	 * @return string|array|bool
-	 */
-	public function get_session( $customer_id, $default = false ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		global $wpdb;
 
 		// This mimics behaviour from default WC_Session_Handler class. There will be no sessions retrieved while WP setup is due.
@@ -101,22 +79,14 @@ final class SessionHandler extends WC_Session {
 
 		$value = $wpdb->get_var(
 			$wpdb->prepare(
-<<<<<<< HEAD
 				'SELECT session_value FROM %i WHERE session_key = %s',
 				$this->table,
-=======
-				"SELECT session_value FROM $this->table WHERE session_key = %s", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$customer_id
 			)
 		);
 
 		if ( is_null( $value ) ) {
-<<<<<<< HEAD
 			$value = $default_value;
-=======
-			$value = $default;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return maybe_unserialize( $value );
@@ -132,12 +102,8 @@ final class SessionHandler extends WC_Session {
 
 			$wpdb->query(
 				$wpdb->prepare(
-<<<<<<< HEAD
 					'INSERT INTO %i (`session_key`, `session_value`, `session_expiry`) VALUES (%s, %s, %d) ON DUPLICATE KEY UPDATE `session_value` = VALUES(`session_value`), `session_expiry` = VALUES(`session_expiry`)',
 					$this->table,
-=======
-					"INSERT INTO $this->table (`session_key`, `session_value`, `session_expiry`) VALUES (%s, %s, %d) ON DUPLICATE KEY UPDATE `session_value` = VALUES(`session_value`), `session_expiry` = VALUES(`session_expiry`)", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$this->_customer_id,
 					maybe_serialize( $this->_data ),
 					$this->session_expiration

@@ -1,6 +1,5 @@
 <?php
 /**
-<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -8,15 +7,6 @@
 
 declare(strict_types = 1);
 namespace Automattic\WooCommerce\EmailEditor\Engine;
-=======
- * This file is part of the MailPoet plugin.
- *
- * @package MailPoet\EmailEditor
- */
-
-declare(strict_types = 1);
-namespace MailPoet\EmailEditor\Engine;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class managing the settings for the email editor.
@@ -26,7 +16,6 @@ class Settings_Controller {
 	const ALLOWED_BLOCK_TYPES = array(
 		'core/button',
 		'core/buttons',
-<<<<<<< HEAD
 		'core/column',
 		'core/columns',
 		'core/group',
@@ -39,17 +28,6 @@ class Settings_Controller {
 		'core/spacer',
 		'core/social-link',
 		'core/social-links',
-=======
-		'core/paragraph',
-		'core/heading',
-		'core/column',
-		'core/columns',
-		'core/image',
-		'core/list',
-		'core/list-item',
-		'core/group',
-		'core/spacer',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	);
 
 	const DEFAULT_SETTINGS = array(
@@ -103,13 +81,10 @@ class Settings_Controller {
 			array( 'css' => $shares_content_styles ),
 		);
 
-<<<<<<< HEAD
 		$settings['autosaveInterval'] = 60;
 		// Disable code editing in the email editor. We manipulate HTML in renderer so it doesn't make sense to have it enabled.
 		$settings['codeEditingEnabled'] = false;
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$settings['__experimentalFeatures'] = $theme_settings;
 		// Controls which alignment options are available for blocks.
 		$settings['supportsLayout']              = true; // Allow using default layouts.
@@ -139,12 +114,8 @@ class Settings_Controller {
 	 *     padding: array{bottom: string, left: string, right: string, top: string}
 	 *   },
 	 *   color: array{
-<<<<<<< HEAD
 	 *     background: string,
 	 *     text: string
-=======
-	 *     background: string
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *   },
 	 *   typography: array{
 	 *     fontFamily: string

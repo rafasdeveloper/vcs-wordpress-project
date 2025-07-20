@@ -8,10 +8,6 @@ use Exception;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
-<<<<<<< HEAD
-=======
-use Automattic\WooCommerce\Internal\Admin\WCPayPromotion\Init as WCPayPromotion;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Controller for the REST endpoints to service the Payments settings page.
@@ -45,11 +41,7 @@ class PaymentsRestController extends RestApiControllerBase {
 	 * @return string
 	 */
 	protected function get_rest_api_namespace(): string {
-<<<<<<< HEAD
 		return 'wc-admin-settings-payments';
-=======
-		return 'wc-admin';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -60,21 +52,6 @@ class PaymentsRestController extends RestApiControllerBase {
 	public function register_routes( bool $override = false ) {
 		register_rest_route(
 			$this->route_namespace,
-<<<<<<< HEAD
-=======
-			'/' . $this->rest_base . '/woopay-eligibility',
-			array(
-				array(
-					'methods'             => \WP_REST_Server::READABLE,
-					'callback'            => fn( $request ) => $this->run( $request, 'get_woopay_eligibility' ),
-					'permission_callback' => fn( $request ) => $this->check_permissions( $request ),
-				),
-			),
-			$override
-		);
-		register_rest_route(
-			$this->route_namespace,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'/' . $this->rest_base . '/country',
 			array(
 				array(
@@ -100,21 +77,13 @@ class PaymentsRestController extends RestApiControllerBase {
 			'/' . $this->rest_base . '/providers',
 			array(
 				array(
-<<<<<<< HEAD
 					'methods'             => \WP_REST_Server::CREATABLE,
-=======
-					'methods'             => \WP_REST_Server::READABLE,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'callback'            => fn( $request ) => $this->run( $request, 'get_providers' ),
 					'validation_callback' => 'rest_validate_request_arg',
 					'permission_callback' => fn( $request ) => $this->check_permissions( $request ),
 					'args'                => array(
 						'location' => array(
-<<<<<<< HEAD
 							'description'       => esc_html__( 'ISO3166 alpha-2 country code. Defaults to WooCommerce\'s base location country.', 'woocommerce' ),
-=======
-							'description'       => __( 'ISO3166 alpha-2 country code. Defaults to WooCommerce\'s base location country.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'type'              => 'string',
 							'pattern'           => '[a-zA-Z]{2}', // Two alpha characters.
 							'required'          => false,
@@ -136,11 +105,7 @@ class PaymentsRestController extends RestApiControllerBase {
 					'permission_callback' => fn( $request ) => $this->check_permissions( $request ),
 					'args'                => array(
 						'order_map' => array(
-<<<<<<< HEAD
 							'description'       => esc_html__( 'A map of provider ID to integer values representing the sort order.', 'woocommerce' ),
-=======
-							'description'       => __( 'A map of provider ID to integer values representing the sort order.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'type'              => 'object',
 							'required'          => true,
 							'validate_callback' => fn( $value ) => $this->check_providers_order_map_arg( $value ),
@@ -184,18 +149,12 @@ class PaymentsRestController extends RestApiControllerBase {
 					'callback'            => fn( $request ) => $this->run( $request, 'dismiss_payment_extension_suggestion_incentive' ),
 					'permission_callback' => fn( $request ) => $this->check_permissions( $request ),
 					'args'                => array(
-<<<<<<< HEAD
 						'context'      => array(
 							'description'       => esc_html__( 'The context ID for which to dismiss the incentive. If not provided, will dismiss the incentive for all contexts.', 'woocommerce' ),
-=======
-						'context' => array(
-							'description'       => __( 'The context ID for which to dismiss the incentive. If not provided, will dismiss the incentive for all contexts.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'type'              => 'string',
 							'required'          => false,
 							'sanitize_callback' => 'sanitize_key',
 						),
-<<<<<<< HEAD
 						'do_not_track' => array(
 							'description'       => esc_html__( 'If true, the incentive dismissal will be ignored by tracking.', 'woocommerce' ),
 							'type'              => 'boolean',
@@ -203,8 +162,6 @@ class PaymentsRestController extends RestApiControllerBase {
 							'default'           => false,
 							'sanitize_callback' => 'rest_sanitize_boolean',
 						),
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					),
 				),
 			),
@@ -252,21 +209,13 @@ class PaymentsRestController extends RestApiControllerBase {
 		$offline_payment_providers = array_values(
 			array_filter(
 				$providers,
-<<<<<<< HEAD
 				fn( $provider ) => PaymentsProviders::TYPE_OFFLINE_PM === $provider['_type']
-=======
-				fn( $provider ) => PaymentProviders::TYPE_OFFLINE_PM === $provider['_type']
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		);
 		$providers                 = array_values(
 			array_filter(
 				$providers,
-<<<<<<< HEAD
 				fn( $provider ) => PaymentsProviders::TYPE_OFFLINE_PM !== $provider['_type']
-=======
-				fn( $provider ) => PaymentProviders::TYPE_OFFLINE_PM !== $provider['_type']
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		);
 
@@ -359,16 +308,10 @@ class PaymentsRestController extends RestApiControllerBase {
 		$suggestion_id = $request->get_param( 'suggestion_id' );
 		$incentive_id  = $request->get_param( 'incentive_id' );
 		$context       = $request->get_param( 'context' ) ?? 'all';
-<<<<<<< HEAD
 		$do_not_track  = $request->get_param( 'do_not_track' ) ?? false;
 
 		try {
 			$result = $this->payments->dismiss_extension_suggestion_incentive( $suggestion_id, $incentive_id, $context, $do_not_track );
-=======
-
-		try {
-			$result = $this->payments->dismiss_extension_suggestion_incentive( $suggestion_id, $incentive_id, $context );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		} catch ( Exception $e ) {
 			return new WP_Error( 'woocommerce_rest_payment_extension_suggestion_incentive_error', $e->getMessage(), array( 'status' => 400 ) );
 		}
@@ -471,13 +414,8 @@ class PaymentsRestController extends RestApiControllerBase {
 				return new WP_Error( 'rest_invalid_param', esc_html__( 'The ordering argument must be an object with provider IDs as keys and numeric values as values.', 'woocommerce' ), array( 'status' => 400 ) );
 			}
 
-<<<<<<< HEAD
 			if ( $this->sanitize_provider_id( $provider_id ) !== $provider_id ) {
 				return new WP_Error( 'rest_invalid_param', esc_html__( 'The provider ID must be a string with only ASCII letters, digits, underscores, and dashes.', 'woocommerce' ), array( 'status' => 400 ) );
-=======
-			if ( sanitize_key( $provider_id ) !== $provider_id ) {
-				return new WP_Error( 'rest_invalid_param', esc_html__( 'The provider ID must be a valid string.', 'woocommerce' ), array( 'status' => 400 ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			if ( false === filter_var( $order, FILTER_VALIDATE_INT ) ) {
@@ -498,11 +436,7 @@ class PaymentsRestController extends RestApiControllerBase {
 	private function sanitize_providers_order_arg( array $value ): array {
 		// Sanitize the ordering object to ensure that the order values are integers and the provider IDs are safe strings.
 		foreach ( $value as $provider_id => $order ) {
-<<<<<<< HEAD
 			$id           = $this->sanitize_provider_id( $provider_id );
-=======
-			$id           = sanitize_key( $provider_id );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$value[ $id ] = intval( $order );
 		}
 
@@ -510,7 +444,6 @@ class PaymentsRestController extends RestApiControllerBase {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Sanitize a provider ID.
 	 *
 	 * This method ensures that the provider ID is a safe string by removing any unwanted characters.
@@ -536,8 +469,6 @@ class PaymentsRestController extends RestApiControllerBase {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Prepare the response for the GET payment providers request.
 	 *
 	 * @param array $response The response to prepare.
@@ -547,12 +478,8 @@ class PaymentsRestController extends RestApiControllerBase {
 	private function prepare_payment_providers_response( array $response ): array {
 		$response = $this->prepare_payment_providers_response_recursive( $response, $this->get_schema_for_get_payment_providers() );
 
-<<<<<<< HEAD
 		$response['providers']   = $this->add_provider_links( $response['providers'] );
 		$response['suggestions'] = $this->add_suggestion_links( $response['suggestions'] );
-=======
-		$response['providers'] = $this->add_provider_links( $response['providers'] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return $response;
 	}
@@ -612,11 +539,7 @@ class PaymentsRestController extends RestApiControllerBase {
 
 			// If this is a suggestion, add dedicated links.
 			if ( ! empty( $provider['_type'] ) &&
-<<<<<<< HEAD
 				PaymentsProviders::TYPE_SUGGESTION === $provider['_type'] &&
-=======
-				PaymentProviders::TYPE_SUGGESTION === $provider['_type'] &&
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				! empty( $provider['_suggestion_id'] )
 			) {
 				$providers[ $key ]['_links']['attach'] = array(
@@ -643,7 +566,6 @@ class PaymentsRestController extends RestApiControllerBase {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Add links to suggestions list items.
 	 *
 	 * @param array $suggestions The suggestions list.
@@ -672,8 +594,6 @@ class PaymentsRestController extends RestApiControllerBase {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the schema for the GET payment providers request.
 	 *
 	 * @return array[]
@@ -791,11 +711,7 @@ class PaymentsRestController extends RestApiControllerBase {
 					'readonly'    => true,
 				),
 				'supports'       => array(
-<<<<<<< HEAD
 					'description' => esc_html__( 'Supported features for this provider.', 'woocommerce' ),
-=======
-					'description' => __( 'Supported features for this provider.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'type'        => 'array',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
@@ -811,7 +727,6 @@ class PaymentsRestController extends RestApiControllerBase {
 					'properties'  => array(
 						'_type'  => array(
 							'type'        => 'string',
-<<<<<<< HEAD
 							'enum'        => array(
 								PaymentsProviders::EXTENSION_TYPE_WPORG,
 								PaymentsProviders::EXTENSION_TYPE_MU_PLUGIN,
@@ -819,20 +734,12 @@ class PaymentsRestController extends RestApiControllerBase {
 								PaymentsProviders::EXTENSION_TYPE_UNKNOWN,
 							),
 							'description' => esc_html__( 'The type of the containing entity. Generally this is a regular plugin but it can also be a non-standard entity like a theme or a must-user plugin.', 'woocommerce' ),
-=======
-							'enum'        => array( PaymentProviders::EXTENSION_TYPE_WPORG ),
-							'description' => esc_html__( 'The type of the plugin.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
 						'slug'   => array(
 							'type'        => 'string',
-<<<<<<< HEAD
 							'description' => esc_html__( 'The slug of the containing entity.', 'woocommerce' ),
-=======
-							'description' => esc_html__( 'The slug of the plugin.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
@@ -845,19 +752,11 @@ class PaymentsRestController extends RestApiControllerBase {
 						'status' => array(
 							'type'        => 'string',
 							'enum'        => array(
-<<<<<<< HEAD
 								PaymentsProviders::EXTENSION_NOT_INSTALLED,
 								PaymentsProviders::EXTENSION_INSTALLED,
 								PaymentsProviders::EXTENSION_ACTIVE,
 							),
 							'description' => esc_html__( 'The status of the containing entity.', 'woocommerce' ),
-=======
-								PaymentProviders::EXTENSION_NOT_INSTALLED,
-								PaymentProviders::EXTENSION_INSTALLED,
-								PaymentProviders::EXTENSION_ACTIVE,
-							),
-							'description' => esc_html__( 'The status of the plugin.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
@@ -875,11 +774,7 @@ class PaymentsRestController extends RestApiControllerBase {
 				),
 				'links'          => array(
 					'type'        => 'array',
-<<<<<<< HEAD
 					'description' => esc_html__( 'Links for the provider.', 'woocommerce' ),
-=======
-					'description' => __( 'Links for the provider.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 					'items'       => array(
@@ -967,49 +862,22 @@ class PaymentsRestController extends RestApiControllerBase {
 					'type'        => 'object',
 					'description' => esc_html__( 'Onboarding-related details for the provider.', 'woocommerce' ),
 					'properties'  => array(
-<<<<<<< HEAD
 						'type'                        => array(
 							'type'        => 'string',
 							'description' => esc_html__( 'The type of onboarding process the provider supports.', 'woocommerce' ),
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
 						),
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						'state'                       => array(
 							'type'        => 'object',
 							'description' => esc_html__( 'The state of the onboarding process.', 'woocommerce' ),
 							'context'     => array( 'view', 'edit' ),
-<<<<<<< HEAD
-=======
-							'properties'  => array(
-								'started'   => array(
-									'type'        => 'boolean',
-									'description' => esc_html__( 'Whether the onboarding process has been started.', 'woocommerce' ),
-									'context'     => array( 'view', 'edit' ),
-									'readonly'    => true,
-								),
-								'completed' => array(
-									'type'        => 'boolean',
-									'description' => esc_html__( 'Whether the onboarding process has been completed.', 'woocommerce' ),
-									'context'     => array( 'view', 'edit' ),
-									'readonly'    => true,
-								),
-								'test_mode' => array(
-									'type'        => 'boolean',
-									'description' => esc_html__( 'Whether the onboarding process happens in test mode (aka sandbox or test-drive).', 'woocommerce' ),
-									'context'     => array( 'view', 'edit' ),
-									'readonly'    => true,
-								),
-							),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						),
 						'_links'                      => array(
 							'type'       => 'object',
 							'context'    => array( 'view', 'edit' ),
 							'readonly'   => true,
 							'properties' => array(
-<<<<<<< HEAD
 								'preload' => array(
 									'type'        => 'object',
 									'description' => esc_html__( 'The onboarding preload link for the payment gateway.', 'woocommerce' ),
@@ -1024,8 +892,6 @@ class PaymentsRestController extends RestApiControllerBase {
 										),
 									),
 								),
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 								'onboard' => array(
 									'type'        => 'object',
 									'description' => esc_html__( 'The start/continue onboarding link for the payment gateway.', 'woocommerce' ),
@@ -1118,113 +984,7 @@ class PaymentsRestController extends RestApiControllerBase {
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-<<<<<<< HEAD
 				'_incentive'     => $this->get_schema_for_incentive(),
-=======
-				'_incentive'     => array(
-					'type'        => 'object',
-					'description' => esc_html__( 'The active incentive for the provider.', 'woocommerce' ),
-					'context'     => array( 'view', 'edit' ),
-					'readonly'    => true,
-					'properties'  => array(
-						'id'                => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The incentive unique ID. This ID needs to be used for incentive dismissals.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'promo_id'          => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The incentive promo ID. This ID need to be fed into the onboarding flow.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'title'             => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The incentive title. It can contain stylistic HTML.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'description'       => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The incentive description. It can contain stylistic HTML.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'short_description' => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The short description of the incentive. It can contain stylistic HTML.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'cta_label'         => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The call to action label for the incentive.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'tc_url'            => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The URL to the terms and conditions for the incentive.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'badge'             => array(
-							'type'        => 'string',
-							'description' => esc_html__( 'The badge label for the incentive.', 'woocommerce' ),
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-						),
-						'_dismissals'       => array(
-							'type'        => 'array',
-							'description' => esc_html__( 'The dismissals list for the incentive. The `all` entry means the incentive was dismissed for all contexts.', 'woocommerce' ),
-							'uniqueItems' => true,
-							'context'     => array( 'view', 'edit' ),
-							'readonly'    => true,
-							'items'       => array(
-								'type'        => 'string',
-								'description' => esc_html__( 'Context ID in which the incentive was dismissed.', 'woocommerce' ),
-								'readonly'    => true,
-							),
-						),
-						'_links'            => array(
-							'type'       => 'object',
-							'context'    => array( 'view', 'edit' ),
-							'readonly'   => true,
-							'properties' => array(
-								'dismiss' => array(
-									'type'        => 'object',
-									'description' => esc_html__( 'The link to dismiss the incentive.', 'woocommerce' ),
-									'context'     => array( 'view', 'edit' ),
-									'readonly'    => true,
-									'properties'  => array(
-										'href' => array(
-											'type'        => 'string',
-											'description' => esc_html__( 'The URL to dismiss the incentive.', 'woocommerce' ),
-											'context'     => array( 'view', 'edit' ),
-											'readonly'    => true,
-										),
-									),
-								),
-								'onboard' => array(
-									'type'        => 'object',
-									'description' => esc_html__( 'The start/continue onboarding link for the payment gateway.', 'woocommerce' ),
-									'context'     => array( 'view', 'edit' ),
-									'readonly'    => true,
-									'properties'  => array(
-										'href' => array(
-											'type'        => 'string',
-											'description' => esc_html__( 'The URL to start/continue onboarding for the payment gateway.', 'woocommerce' ),
-											'context'     => array( 'view', 'edit' ),
-											'readonly'    => true,
-										),
-									),
-								),
-							),
-						),
-					),
-				),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'_links'         => array(
 					'type'       => 'object',
 					'context'    => array( 'view', 'edit' ),
@@ -1313,11 +1073,7 @@ class PaymentsRestController extends RestApiControllerBase {
 					'properties' => array(
 						'_type'  => array(
 							'type'        => 'string',
-<<<<<<< HEAD
 							'enum'        => array( PaymentsProviders::EXTENSION_TYPE_WPORG ),
-=======
-							'enum'        => array( PaymentProviders::EXTENSION_TYPE_WPORG ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'description' => esc_html__( 'The type of the plugin.', 'woocommerce' ),
 							'context'     => array( 'view', 'edit' ),
 							'readonly'    => true,
@@ -1331,15 +1087,9 @@ class PaymentsRestController extends RestApiControllerBase {
 						'status' => array(
 							'type'        => 'string',
 							'enum'        => array(
-<<<<<<< HEAD
 								PaymentsProviders::EXTENSION_NOT_INSTALLED,
 								PaymentsProviders::EXTENSION_INSTALLED,
 								PaymentsProviders::EXTENSION_ACTIVE,
-=======
-								PaymentProviders::EXTENSION_NOT_INSTALLED,
-								PaymentProviders::EXTENSION_INSTALLED,
-								PaymentProviders::EXTENSION_ACTIVE,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							),
 							'description' => esc_html__( 'The status of the plugin.', 'woocommerce' ),
 							'context'     => array( 'view', 'edit' ),
@@ -1379,10 +1129,7 @@ class PaymentsRestController extends RestApiControllerBase {
 						),
 					),
 				),
-<<<<<<< HEAD
 				'_incentive'  => $this->get_schema_for_incentive(),
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'tags'        => array(
 					'description' => esc_html__( 'The tags associated with the suggestion.', 'woocommerce' ),
 					'type'        => 'array',
@@ -1401,7 +1148,6 @@ class PaymentsRestController extends RestApiControllerBase {
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
 				),
-<<<<<<< HEAD
 				'_links'      => array(
 					'type'       => 'object',
 					'context'    => array( 'view', 'edit' ),
@@ -1437,14 +1183,11 @@ class PaymentsRestController extends RestApiControllerBase {
 						),
 					),
 				),
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 		);
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Get the schema for an incentive.
 	 *
 	 * @return array The incentive schema.
@@ -1562,17 +1305,6 @@ class PaymentsRestController extends RestApiControllerBase {
 					),
 				),
 			),
-=======
-	 * Get WooPay eligibility status.
-	 *
-	 * @return array The WooPay eligibility status.
-	 */
-	protected function get_woopay_eligibility() {
-		return rest_ensure_response(
-			array(
-				'is_eligible' => WCPayPromotion::is_woopay_eligible(),
-			)
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 	}
 }

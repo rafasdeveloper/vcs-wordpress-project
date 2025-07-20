@@ -1,6 +1,5 @@
 <?php
 /**
-<<<<<<< HEAD
  * This file is part of the WooCommerce Email Editor package.
  *
  * @package Automattic\WooCommerce\EmailEditor
@@ -14,21 +13,6 @@ namespace Automattic\WooCommerce\EmailEditor\Engine\Renderer;
 use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Content_Renderer;
 use Automattic\WooCommerce\EmailEditor\Engine\Templates\Templates;
 use Automattic\WooCommerce\EmailEditor\Engine\Theme_Controller;
-=======
- * This file is part of the MailPoet Email Editor package.
- *
- * @package MailPoet\EmailEditor
- */
-
-declare(strict_types = 1);
-namespace MailPoet\EmailEditor\Engine\Renderer;
-
-// require_once __DIR__ . '/../../../vendor/autoload.php'; // wrong vendor path. TODO: need to fix this
-
-use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Content_Renderer;
-use MailPoet\EmailEditor\Engine\Templates\Templates;
-use MailPoet\EmailEditor\Engine\Theme_Controller;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Soundasleep\Html2Text;
 use WP_Style_Engine;
 
@@ -128,11 +112,7 @@ class Renderer {
 		);
 		$template_styles  .= '.email_layout_wrapper { box-sizing: border-box;}';
 		$template_styles  .= file_get_contents( __DIR__ . '/' . self::TEMPLATE_STYLES_FILE );
-<<<<<<< HEAD
 		$template_styles   = '<style>' . wp_strip_all_tags( (string) apply_filters( 'woocommerce_email_renderer_styles', $template_styles, $post ) ) . '</style>';
-=======
-		$template_styles   = '<style>' . wp_strip_all_tags( (string) apply_filters( 'mailpoet_email_renderer_styles', $template_styles, $post ) ) . '</style>';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$rendered_template = $this->inline_css_styles( $template_styles . $rendered_template );
 
 		// This is a workaround to support link :hover in some clients. Ideally we would remove the ability to set :hover
@@ -165,11 +145,7 @@ class Renderer {
 	 */
 	private function render_text_version( $template ) {
 		$template = ( mb_detect_encoding( $template, 'UTF-8', true ) ) ? $template : mb_convert_encoding( $template, 'UTF-8', mb_list_encodings() );
-<<<<<<< HEAD
 		$result   = Html2Text::convert( (string) $template );
-=======
-		$result   = Html2Text::convert( $template );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! $result ) {
 			return '';
 		}

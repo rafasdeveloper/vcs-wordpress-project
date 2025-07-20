@@ -12,11 +12,7 @@
  *
  * @see https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates\Emails\Plain
-<<<<<<< HEAD
  * @version 10.0.0
-=======
- * @version 9.8.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
@@ -46,11 +42,7 @@ if ( $email_improvements_enabled ) {
 }
 
 // Only send the set new password link if the user hasn't set their password during sign-up.
-<<<<<<< HEAD
 if ( $password_generated && $set_password_url ) {
-=======
-if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated && $set_password_url ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/* translators: URL follows */
 	echo esc_html__( 'To set your password, visit the following address: ', 'woocommerce' ) . "\n\n";
 	echo esc_html( $set_password_url ) . "\n\n";

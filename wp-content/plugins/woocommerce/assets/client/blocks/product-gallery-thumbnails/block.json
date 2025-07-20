@@ -2,15 +2,10 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "woocommerce/product-gallery-thumbnails",
-<<<<<<< HEAD
-=======
-	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Thumbnails",
 	"description": "Display the Thumbnails of a product.",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],
-<<<<<<< HEAD
 	"usesContext": [ "postId" ],
 	"textdomain": "woocommerce",
 	"ancestor": [ "woocommerce/product-gallery" ],
@@ -22,31 +17,13 @@
 		"aspectRatio": {
 			"type": "string",
 			"default": "1"
-=======
-	"usesContext": [ "postId", "cropImages" ],
-	"textdomain": "woocommerce",
-	"ancestor": [ "woocommerce/product-gallery" ],
-	"attributes": {
-		"numberOfThumbnails": {
-			"type": "number",
-			"default": 3
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	},
 	"supports": {
 		"spacing": {
-<<<<<<< HEAD
 			"margin": true
 		},
 		"interactivity": true
 	},
 	"editorStyle": "file:../woocommerce/product-gallery-thumbnails-editor.css"
-=======
-			"margin": true,
-			"__experimentalDefaultControls": {
-				"margin": true
-			}
-		}
-	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

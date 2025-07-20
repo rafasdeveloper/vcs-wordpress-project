@@ -84,10 +84,6 @@ class DefaultFreeExtensions {
 						self::get_plugin( 'woocommerce-shipping' ),
 						self::get_plugin( 'jetpack' ),
 						self::get_plugin( 'pinterest-for-woocommerce' ),
-<<<<<<< HEAD
-=======
-						self::get_plugin( 'kliken-ads-pixel-for-meta' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						self::get_plugin( 'mailpoet' ),
 						self::get_plugin( 'klaviyo' ),
 						self::get_plugin( 'google-listings-and-ads' ),
@@ -174,19 +170,7 @@ class DefaultFreeExtensions {
 				'description'     => __( 'Get your products in front of Pinners searching for ideas and things to buy.', 'woocommerce' ),
 				'image_url'       => plugins_url( '/assets/images/onboarding/pinterest.png', WC_PLUGIN_FILE ),
 				'manage_url'      => 'admin.php?page=wc-admin&path=%2Fpinterest%2Flanding',
-<<<<<<< HEAD
 				'is_visible'      => true,
-=======
-				'is_visible'      => array(
-					array(
-						'type'        => 'option',
-						'option_name' => 'woocommerce_remote_variant_assignment',
-						'value'       => array( 1, 60 ), // 50% segment
-						'default'     => false,
-						'operation'   => 'range',
-					),
-				),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'is_built_by_wc'  => true,
 				'min_php_version' => '7.3',
 			),
@@ -206,41 +190,19 @@ class DefaultFreeExtensions {
 					array(
 						'type'        => 'option',
 						'option_name' => 'woocommerce_remote_variant_assignment',
-<<<<<<< HEAD
 						'value'       => array( 1, 60 ), // 50% segment with klaviyo
-=======
-						'value'       => array( 1, 84 ), // 70% segment with klaviyo
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						'default'     => false,
 						'operation'   => 'range',
 					),
 				),
 				'is_built_by_wc' => true,
 			),
-<<<<<<< HEAD
 			'kliken-ads-pixel-for-meta'     => array(
 				'name'        => __( 'Meta Ads & Pixel for WooCommerce', 'woocommerce' ),
 				'description' => __( 'Sync your store catalog, set up pixel tracking, and run targeted ad campaigns.', 'woocommerce' ),
 				'image_url'   => plugins_url( '/assets/images/onboarding/kliken.svg', WC_PLUGIN_FILE ),
 				'manage_url'  => 'admin.php?page=kliken-ads-pixel-for-meta',
 				'is_visible'  => false,
-=======
-			// Shared 50% segment with pinterest-for-woocommerce.
-			'kliken-ads-pixel-for-meta'     => array(
-				'name'        => __( 'Meta Ads & Pixel for WooCommerce', 'woocommerce' ),
-				'description' => __( 'Sync your store catalog, set up pixel tracking, and run targeted ad campaigns.', 'woocommerce' ),
-				'image_url'   => plugins_url( '/assets/images/onboarding/kliken-ads-pixel-for-meta.svg', WC_PLUGIN_FILE ),
-				'manage_url'  => 'admin.php?page=kliken-ads-pixel-for-meta',
-				'is_visible'  => array(
-					array(
-						'type'        => 'option',
-						'option_name' => 'woocommerce_remote_variant_assignment',
-						'value'       => array( 61, 120 ), // 50% segment
-						'default'     => false,
-						'operation'   => 'range',
-					),
-				),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 			'mailchimp-for-woocommerce'     => array(
 				'name'           => __( 'Mailchimp', 'woocommerce' ),
@@ -258,11 +220,7 @@ class DefaultFreeExtensions {
 					array(
 						'type'        => 'option',
 						'option_name' => 'woocommerce_remote_variant_assignment',
-<<<<<<< HEAD
 						'value'       => array( 61, 120 ), // 50% segment with mailpoet
-=======
-						'value'       => array( 85, 120 ), // 30% segment with mailpoet
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						'default'     => false,
 						'operation'   => 'range',
 					),
@@ -539,28 +497,16 @@ class DefaultFreeExtensions {
 				'requires_jpc'     => true,
 			),
 			'woocommerce-shipping'      => array(
-<<<<<<< HEAD
 				'label'            => __( 'Save on shipping with WooCommerce Shipping', 'woocommerce' ),
 				'image_url'        => self::get_woo_logo(),
 				'description'      => __( 'Print discounted USPS, UPS, and DHL labels', 'woocommerce' ),
-=======
-				'label'            => __( 'Print shipping labels with WooCommerce Shipping', 'woocommerce' ),
-				'image_url'        => self::get_woo_logo(),
-				'description'      => __( 'Print USPS, UPS, and DHL labels directly from your dashboard and save on shipping.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'learn_more_link'  => 'https://woocommerce.com/woocommerce-shipping?utm_source=storeprofiler&utm_medium=product&utm_campaign=freefeatures',
 				'install_priority' => 3,
 			),
 			'jetpack'                   => array(
-<<<<<<< HEAD
 				'label'            => __( 'Protect your store and your shoppers with Jetpack', 'woocommerce' ),
 				'image_url'        => plugins_url( '/assets/images/core-profiler/logo-jetpack.svg', WC_PLUGIN_FILE ),
 				'description'      => __( 'Keep your store online with full security and backups', 'woocommerce' ),
-=======
-				'label'            => __( 'Boost content creation with Jetpack AI Assistant', 'woocommerce' ),
-				'image_url'        => plugins_url( '/assets/images/core-profiler/logo-jetpack.svg', WC_PLUGIN_FILE ),
-				'description'      => __( 'Save time on content creation — unlock high-quality blog posts and pages using AI.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'learn_more_link'  => 'https://woocommerce.com/products/jetpack?utm_source=storeprofiler&utm_medium=product&utm_campaign=freefeatures',
 				'install_priority' => 8,
 				'requires_jpc'     => true,
@@ -574,11 +520,7 @@ class DefaultFreeExtensions {
 			),
 			'kliken-ads-pixel-for-meta' => array(
 				'label'            => __( 'Grow your business with Facebook and Instagram', 'woocommerce' ),
-<<<<<<< HEAD
 				'image_url'        => plugins_url( '/assets/images/core-profiler/logo-kliken.svg', WC_PLUGIN_FILE ),
-=======
-				'image_url'        => plugins_url( '/assets/images/core-profiler/kliken-ads-pixel-for-meta.svg', WC_PLUGIN_FILE ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'description'      => __( 'Sync your store catalog, set up pixel tracking, and run targeted ad campaigns.', 'woocommerce' ),
 				'learn_more_link'  => 'https://woocommerce.com/products/meta-ads-and-pixel?utm_source=storeprofiler&utm_medium=product&utm_campaign=freefeatures',
 				'install_priority' => 2,

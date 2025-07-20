@@ -28,7 +28,6 @@ class CartController {
 	 * Makes the cart and sessions available to a route by loading them from core.
 	 */
 	public function load_cart() {
-<<<<<<< HEAD
 		if ( ! did_action( 'woocommerce_load_cart_from_session' ) ) {
 			// Initialize the cart.
 			wc_load_cart();
@@ -37,17 +36,6 @@ class CartController {
 		// Load cart from session.
 		$cart               = $this->get_cart_instance();
 		$cart->cart_context = 'store-api';
-=======
-		if ( did_action( 'woocommerce_load_cart_from_session' ) ) {
-			return;
-		}
-
-		// Initialize the cart.
-		wc_load_cart();
-
-		// Load cart from session.
-		$cart = $this->get_cart_instance();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$cart->get_cart();
 	}
 
@@ -124,7 +112,6 @@ class CartController {
 			$request['cart_item_data']
 		);
 
-<<<<<<< HEAD
 		$quantity_limits = new QuantityLimits();
 
 		// If quantity was not passed, it should default to the minimum allowed quantity.
@@ -133,11 +120,6 @@ class CartController {
 		}
 
 		$this->validate_add_to_cart( $product, $request );
-=======
-		$this->validate_add_to_cart( $product, $request );
-
-		$quantity_limits  = new QuantityLimits();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$existing_cart_id = $cart->find_product_in_cart( $cart_id );
 
 		if ( $existing_cart_id ) {
@@ -145,15 +127,11 @@ class CartController {
 			$quantity_validation = $quantity_limits->validate_cart_item_quantity( $request['quantity'] + $cart_item['quantity'], $cart_item );
 
 			if ( is_wp_error( $quantity_validation ) ) {
-<<<<<<< HEAD
 				throw new RouteException(
 					esc_html( $quantity_validation->get_error_code() ),
 					esc_html( $quantity_validation->get_error_message() ),
 					400
 				);
-=======
-				throw new RouteException( $quantity_validation->get_error_code(), $quantity_validation->get_error_message(), 400 );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 
 			$cart->set_quantity( $existing_cart_id, $request['quantity'] + $cart->cart_contents[ $existing_cart_id ]['quantity'], true );
@@ -287,7 +265,6 @@ class CartController {
 			$this->throw_default_product_exception( $product );
 		}
 
-<<<<<<< HEAD
 		if ( floatval( $request['quantity'] ) <= 0 ) {
 			throw new RouteException(
 				'woocommerce_rest_product_invalid_quantity',
@@ -300,8 +277,6 @@ class CartController {
 			);
 		}
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! $product->is_in_stock() ) {
 			throw new RouteException(
 				'woocommerce_rest_product_out_of_stock',
@@ -526,11 +501,7 @@ class CartController {
 		remove_action( 'woocommerce_check_cart_items', array( $cart, 'check_cart_coupons' ), 1 );
 
 		// Before running actions, store notices.
-<<<<<<< HEAD
 		$previous_notices = WC()->session->get( 'wc_notices' );
-=======
-		$previous_notices = WC()->session->get( 'wc_notices', array() );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Fires when cart items are being validated.
@@ -872,11 +843,7 @@ class CartController {
 		$cart = $this->get_cart_instance();
 		return [
 			'line_items' => $cart->get_cart_hash(),
-<<<<<<< HEAD
 			'shipping'   => md5( wp_json_encode( [ $cart->get_shipping_methods(), wc()->session->get( 'chosen_shipping_methods' ) ] ) ),
-=======
-			'shipping'   => md5( wp_json_encode( $cart->shipping_methods ) ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'fees'       => md5( wp_json_encode( $cart->get_fees() ) ),
 			'coupons'    => md5( wp_json_encode( $cart->get_applied_coupons() ) ),
 			'taxes'      => md5( wp_json_encode( $cart->get_taxes() ) ),
@@ -1018,11 +985,7 @@ class CartController {
 		$applied_coupons = $this->get_cart_coupons();
 		$coupon          = new \WC_Coupon( $coupon_code );
 
-<<<<<<< HEAD
 		if ( ! wc_is_same_coupon( $coupon->get_code(), $coupon_code ) ) {
-=======
-		if ( $coupon->get_code() !== $coupon_code ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			throw new RouteException(
 				'woocommerce_rest_cart_coupon_error',
 				sprintf(
@@ -1040,11 +1003,7 @@ class CartController {
 				sprintf(
 					/* translators: %s coupon code */
 					esc_html__( 'Coupon code "%s" has already been applied.', 'woocommerce' ),
-<<<<<<< HEAD
 					esc_html( $coupon->get_code() )
-=======
-					esc_html( $coupon_code )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				),
 				400
 			);
@@ -1092,11 +1051,7 @@ class CartController {
 					sprintf(
 						/* translators: %s: coupon code */
 						esc_html__( '"%s" has already been applied and cannot be used in conjunction with other coupons.', 'woocommerce' ),
-<<<<<<< HEAD
 						esc_html( $individual_use_coupon->get_code() )
-=======
-						esc_html( $code )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					),
 					400
 				);
@@ -1206,15 +1161,11 @@ class CartController {
 		if ( ! $product || ProductStatus::TRASH === $product->get_status() ) {
 			throw new RouteException(
 				'woocommerce_rest_cart_invalid_product',
-<<<<<<< HEAD
 				sprintf(
 					/* translators: %s: product ID */
 					esc_html__( 'Product with ID "%s" was not found and cannot be added to the cart.', 'woocommerce' ),
 					esc_html( $request['id'] )
 				),
-=======
-				__( 'This product cannot be added to the cart.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				400
 			);
 		}

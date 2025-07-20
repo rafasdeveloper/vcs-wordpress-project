@@ -15,11 +15,7 @@ use Jetpack_Options;
  * Disable direct access.
  */
 if ( ! defined( 'ABSPATH' ) ) {
-<<<<<<< HEAD
 	exit( 0 );
-=======
-	exit;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /**

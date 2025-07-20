@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 
 declare( strict_types = 1 );
 
@@ -8,14 +7,6 @@ namespace Automattic\WooCommerce\Blocks\BlockTypes;
 use Automattic\WooCommerce\Blocks\BlockTypes\ProductCollection\Utils as ProductCollectionUtils;
 use Automattic\WooCommerce\Internal\ProductFilters\FilterDataProvider;
 use Automattic\WooCommerce\Internal\ProductFilters\QueryClauses;
-=======
-namespace Automattic\WooCommerce\Blocks\BlockTypes;
-
-use Automattic\WooCommerce\Blocks\BlockTypes\ProductCollection\Utils as ProductCollectionUtils;
-use Automattic\WooCommerce\Blocks\QueryFilters;
-use Automattic\WooCommerce\Blocks\Package;
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Product Filter: Rating Block
@@ -89,17 +80,10 @@ final class ProductFilterRating extends AbstractBlock {
 
 		foreach ( $active_ratings as $rating ) {
 			$items[] = array(
-<<<<<<< HEAD
 				'type'        => 'rating',
 				'value'       => $rating,
 				/* translators: %s is referring to rating value. Example: Rated 4 out of 5. */
 				'activeLabel' => sprintf( __( 'Rating: Rated %d out of 5', 'woocommerce' ), $rating ),
-=======
-				'type'  => 'rating',
-				'value' => $rating,
-				/* translators: %s is referring to rating value. Example: Rated 4 out of 5. */
-				'label' => sprintf( __( 'Rating: Rated %d out of 5', 'woocommerce' ), $rating ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 
@@ -120,11 +104,6 @@ final class ProductFilterRating extends AbstractBlock {
 			return '';
 		}
 
-<<<<<<< HEAD
-=======
-		wp_enqueue_script_module( $this->get_full_block_name() );
-
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$min_rating    = $attributes['minRating'] ?? 0;
 		$rating_counts = $this->get_rating_counts( $block );
 		// User selected minimum rating to display.
@@ -139,49 +118,28 @@ final class ProductFilterRating extends AbstractBlock {
 		$selected_rating        = array_filter( explode( ',', $rating_query ) );
 
 		$filter_options = array_map(
-<<<<<<< HEAD
 			function ( $rating ) use ( $selected_rating ) {
 				$value = (string) $rating['rating'];
 
 				$aria_label = sprintf(
 					/* translators: %1$d is referring to rating value. Example: Rated 4 out of 5. */
 					__( 'Rated %1$d out of 5', 'woocommerce' ),
-=======
-			function ( $rating ) use ( $selected_rating, $attributes ) {
-				$value       = (string) $rating['rating'];
-				$count_label = $attributes['showCounts'] ? "({$rating['count']})" : '';
-
-				$aria_label = sprintf(
-					/* translators: %s is referring to rating value. Example: Rated 4 out of 5. */
-					__( 'Rated %s out of 5', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$value,
 				);
 
 				return array(
-<<<<<<< HEAD
 					'label'     => $this->render_rating_label( (int) $value ),
 					'ariaLabel' => $aria_label,
 					'value'     => $value,
 					'selected'  => in_array( $value, $selected_rating, true ),
 					'count'     => $rating['count'],
 					'type'      => 'rating',
-=======
-					'id'        => 'rating-' . $value,
-					'selected'  => in_array( $value, $selected_rating, true ),
-					'label'     => $this->render_rating_label( (int) $value, $count_label ),
-					'ariaLabel' => $aria_label,
-					'value'     => $value,
-					'type'      => 'rating',
-					'data'      => $rating,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				);
 			},
 			$rating_counts_with_min
 		);
 
 		$filter_context = array(
-<<<<<<< HEAD
 			'items'      => $filter_options,
 			'showCounts' => $attributes['showCounts'] ?? false,
 			'groupLabel' => __( 'Rating', 'woocommerce' ),
@@ -198,31 +156,11 @@ final class ProductFilterRating extends AbstractBlock {
 				),
 				JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
 			),
-=======
-			'items'  => $filter_options,
-			'parent' => $this->get_full_block_name(),
-		);
-
-		$wrapper_attributes = array(
-			'data-wp-interactive'  => $this->get_full_block_name(),
-			'data-wp-context'      => wp_json_encode(
-				array(
-					'hasFilterOptions'    => ! empty( $filter_options ),
-					/* translators: {{labe}} is the rating filter item label. */
-					'activeLabelTemplate' => __( 'Rating: {{label}}', 'woocommerce' ),
-				),
-				JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
-			),
-			'data-wp-bind--hidden' => '!context.hasFilterOptions',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		if ( empty( $filter_options ) ) {
 			$wrapper_attributes['hidden'] = true;
-<<<<<<< HEAD
 			$wrapper_attributes['class']  = 'wc-block-product-filter--hidden';
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return sprintf(
@@ -242,20 +180,11 @@ final class ProductFilterRating extends AbstractBlock {
 	/**
 	 * Render the rating label.
 	 *
-<<<<<<< HEAD
 	 * @param int $rating The rating to render.
 	 * @return string|false
 	 */
 	private function render_rating_label( $rating ) {
 		$view_box_width = $rating * 24;
-=======
-	 * @param int    $rating The rating to render.
-	 * @param string $count_label The count label to render.
-	 * @return string|false
-	 */
-	private function render_rating_label( $rating, $count_label ) {
-		$width = $rating * 20;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$rating_label = sprintf(
 			/* translators: %1$d is referring to rating value. Example: Rated 4 out of 5. */
@@ -265,7 +194,6 @@ final class ProductFilterRating extends AbstractBlock {
 
 		ob_start();
 		?>
-<<<<<<< HEAD
 			<svg
 				width="<?php echo esc_attr( $view_box_width ); ?>"
 				height="24"
@@ -284,17 +212,6 @@ final class ProductFilterRating extends AbstractBlock {
 				}
 				?>
 			</svg>
-=======
-		<div class="wc-block-components-product-rating">
-			<div class="wc-block-components-product-rating__stars" role="img" aria-label="<?php echo esc_attr( $rating_label ); ?>">
-				<span style="width: <?php echo esc_attr( $width ); ?>%" aria-hidden="true">
-				</span>
-			</div>
-			<span class="wc-block-components-product-rating-count">
-				<?php echo esc_html( $count_label ); ?>
-			</span>
-		</div>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		<?php
 		return ob_get_clean();
 	}
@@ -305,10 +222,6 @@ final class ProductFilterRating extends AbstractBlock {
 	 * @param WP_Block $block Block instance.
 	 */
 	private function get_rating_counts( $block ) {
-<<<<<<< HEAD
-=======
-		$filters    = Package::container()->get( QueryFilters::class );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$query_vars = ProductCollectionUtils::get_query_vars( $block, 1 );
 
 		if ( ! empty( $query_vars['tax_query'] ) ) {
@@ -323,23 +236,14 @@ final class ProductFilterRating extends AbstractBlock {
 			);
 		}
 
-<<<<<<< HEAD
 		$container = wc_get_container();
 		$counts    = $container->get( FilterDataProvider::class )->with( $container->get( QueryClauses::class ) )->get_rating_counts( $query_vars );
 		$data      = array();
-=======
-		$counts = $filters->get_rating_counts( $query_vars );
-		$data   = array();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $counts as $key => $value ) {
 			$data[] = array(
 				'rating' => $key,
-<<<<<<< HEAD
 				'count'  => intval( $value ),
-=======
-				'count'  => $value,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 
@@ -347,7 +251,6 @@ final class ProductFilterRating extends AbstractBlock {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Disable the editor style handle for this block type.
 	 *
 	 * @return null
@@ -360,12 +263,6 @@ final class ProductFilterRating extends AbstractBlock {
 	 * Disable the script handle for this block type. We use block.json to load the script.
 	 *
 	 * @param string|null $key The key of the script to get.
-=======
-	 * Disable the block type script, this uses script modules.
-	 *
-	 * @param string|null $key The key.
-	 *
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return null
 	 */
 	protected function get_block_type_script( $key = null ) {

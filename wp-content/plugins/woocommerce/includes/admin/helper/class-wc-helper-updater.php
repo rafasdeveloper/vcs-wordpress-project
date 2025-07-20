@@ -409,13 +409,9 @@ class WC_Helper_Updater {
 		$payload = array();
 
 		// Scan subscriptions.
-<<<<<<< HEAD
 		$subscriptions = WC_Helper::get_subscriptions();
 
 		foreach ( $subscriptions as $subscription ) {
-=======
-		foreach ( WC_Helper::get_subscriptions() as $subscription ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$payload[ $subscription['product_id'] ] = array(
 				'product_id' => $subscription['product_id'],
 				'file_id'    => '',
@@ -449,13 +445,9 @@ class WC_Helper_Updater {
 		$payload = array();
 
 		// Scan subscriptions.
-<<<<<<< HEAD
 		$subscriptions = WC_Helper::get_subscriptions();
 
 		foreach ( $subscriptions as $subscription ) {
-=======
-		foreach ( WC_Helper::get_subscriptions() as $subscription ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$payload[ $subscription['product_id'] ] = array(
 				'product_id' => $subscription['product_id'],
 				'file_id'    => '',

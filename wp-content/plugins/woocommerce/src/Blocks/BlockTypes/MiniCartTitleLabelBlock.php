@@ -1,11 +1,8 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Admin\Features\Features;
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * MiniCartTitleLabelBlock class.
  */
@@ -16,7 +13,6 @@ class MiniCartTitleLabelBlock extends AbstractInnerBlock {
 	 * @var string
 	 */
 	protected $block_name = 'mini-cart-title-label-block';
-<<<<<<< HEAD
 
 	/**
 	 * Render the block.
@@ -52,6 +48,4 @@ class MiniCartTitleLabelBlock extends AbstractInnerBlock {
 		<?php
 		return ob_get_clean();
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

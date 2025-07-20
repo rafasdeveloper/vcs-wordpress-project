@@ -13,11 +13,7 @@ namespace Automattic\Jetpack\Admin_UI;
  */
 class Admin_Menu {
 
-<<<<<<< HEAD
 	const PACKAGE_VERSION = '0.5.9';
-=======
-	const PACKAGE_VERSION = '0.5.1';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Whether this class has been initialized
@@ -178,7 +174,6 @@ class Admin_Menu {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Removes an already added submenu
 	 *
 	 * @param string $menu_slug   The slug of the submenu to remove.
@@ -199,8 +194,6 @@ class Admin_Menu {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Gets the slug for the first item under the Jetpack top level menu
 	 *
 	 * @return string|null

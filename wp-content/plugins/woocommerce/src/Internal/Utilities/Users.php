@@ -2,12 +2,9 @@
 
 namespace Automattic\WooCommerce\Internal\Utilities;
 
-<<<<<<< HEAD
 use Automattic\WooCommerce\Proxies\LegacyProxy;
 use WP_Error, WP_User;
 
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Helper functions for working with users.
  */
@@ -33,7 +30,6 @@ class Users {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Get a user from a valid user ID, but only if the active user is able to see them.
 	 *
 	 * In a multisite context, that may mean that they both must be members of the current blog, or else the active
@@ -75,8 +71,6 @@ class Users {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Check if the email is valid.
 	 *
 	 * @param int    $order_id Order ID.

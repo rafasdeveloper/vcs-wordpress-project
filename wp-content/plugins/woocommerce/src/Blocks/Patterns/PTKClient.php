@@ -15,7 +15,6 @@ class PTKClient {
 	const PATTERNS_TOOLKIT_URL = 'https://public-api.wordpress.com/rest/v1/ptk/patterns/';
 
 	/**
-<<<<<<< HEAD
 	 * The schema for the patterns toolkit.
 	 *
 	 * @var array
@@ -77,8 +76,6 @@ class PTKClient {
 	}
 
 	/**
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Fetch the WooCommerce patterns from the Patterns Toolkit (PTK) API.
 	 *
 	 * @param array $options Options for fetching patterns.
@@ -121,13 +118,9 @@ class PTKClient {
 
 		$decoded_body = json_decode( $body, true );
 
-<<<<<<< HEAD
 		$is_pattern_payload_valid = $this->is_valid_schema( $decoded_body );
 
 		if ( ! $is_pattern_payload_valid ) {
-=======
-		if ( ! is_array( $decoded_body ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return new WP_Error(
 				'patterns_toolkit_api_error',
 				__( 'Wrong response received from the Patterns Toolkit API: try again later.', 'woocommerce' )
@@ -136,7 +129,6 @@ class PTKClient {
 
 		return $decoded_body;
 	}
-<<<<<<< HEAD
 
 	/**
 	 * Validate the patterns toolkit patterns.
@@ -149,6 +141,4 @@ class PTKClient {
 
 		return ! is_wp_error( $is_pattern_payload_valid );
 	}
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

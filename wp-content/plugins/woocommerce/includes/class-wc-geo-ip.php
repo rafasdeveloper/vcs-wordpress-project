@@ -855,11 +855,7 @@ class WC_Geo_IP {
 		'Tunisia',
 		'Tonga',
 		'Timor-Leste',
-<<<<<<< HEAD
 		'Türkiye',
-=======
-		'Turkey',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'Trinidad and Tobago',
 		'Tuvalu',
 		'Taiwan',

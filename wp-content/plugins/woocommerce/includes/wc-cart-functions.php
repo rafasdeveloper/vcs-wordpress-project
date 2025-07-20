@@ -9,10 +9,7 @@
  */
 
 use Automattic\Jetpack\Constants;
-<<<<<<< HEAD
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Enums\OrderStatus;
 use Automattic\WooCommerce\Enums\ProductType;
 use Automattic\WooCommerce\StoreApi\Utilities\LocalPickupUtils;
@@ -46,34 +43,6 @@ function wc_empty_cart() {
 }
 
 /**
-<<<<<<< HEAD
-=======
- * Load the persistent cart.
- *
- * @param string  $user_login User login.
- * @param WP_User $user       User data.
- * @deprecated 2.3
- */
-function wc_load_persistent_cart( $user_login, $user ) {
-	if ( ! $user || ! apply_filters( 'woocommerce_persistent_cart_enabled', true ) ) {
-		return;
-	}
-
-	$saved_cart = get_user_meta( $user->ID, '_woocommerce_persistent_cart_' . get_current_blog_id(), true );
-
-	if ( ! $saved_cart ) {
-		return;
-	}
-
-	$cart = WC()->session->cart;
-
-	if ( empty( $cart ) || ! is_array( $cart ) || 0 === count( $cart ) ) {
-		WC()->session->cart = $saved_cart['cart'];
-	}
-}
-
-/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Retrieves unvalidated referer from '_wp_http_referer' or HTTP referer.
  *
  * Do not use for redirects, use {@see wp_get_referer()} instead.
@@ -133,11 +102,8 @@ function wc_add_to_cart_message( $products, $show_qty = false, $return = false )
 	if ( 'yes' === get_option( 'woocommerce_cart_redirect_after_add' ) ) {
 		$return_to = apply_filters( 'woocommerce_continue_shopping_redirect', wc_get_raw_referer() ? wp_validate_redirect( wc_get_raw_referer(), false ) : wc_get_page_permalink( 'shop' ) );
 		$message   = sprintf( '%s <a href="%s" class="button wc-forward%s">%s</a>', esc_html( $added_text ), esc_url( $return_to ), esc_attr( $wp_button_class ), esc_html__( 'Continue shopping', 'woocommerce' ) );
-<<<<<<< HEAD
 	} elseif ( ! CartCheckoutUtils::has_cart_page() ) {
 		$message = sprintf( '%s', esc_html( $added_text ) );
-=======
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	} else {
 		$message = sprintf( '%s <a href="%s" class="button wc-forward%s">%s</a>', esc_html( $added_text ), esc_url( wc_get_cart_url() ), esc_attr( $wp_button_class ), esc_html__( 'View cart', 'woocommerce' ) );
 	}
@@ -327,12 +293,8 @@ function wc_cart_totals_coupon_html( $coupon ) {
 	}
 
 	$discount_amount_html = apply_filters( 'woocommerce_coupon_discount_amount_html', $discount_amount_html, $coupon );
-<<<<<<< HEAD
 	// translators: %s: coupon code.
 	$coupon_html = $discount_amount_html . ' <a role="button" aria-label="' . esc_attr( sprintf( __( 'Remove %s coupon', 'woocommerce' ), $coupon->get_code() ) ) . '" href="' . esc_url( add_query_arg( 'remove_coupon', rawurlencode( $coupon->get_code() ), Constants::is_defined( 'WOOCOMMERCE_CHECKOUT' ) ? wc_get_checkout_url() : wc_get_cart_url() ) ) . '" class="woocommerce-remove-coupon" data-coupon="' . esc_attr( $coupon->get_code() ) . '">' . __( '[Remove]', 'woocommerce' ) . '</a>';
-=======
-	$coupon_html          = $discount_amount_html . ' <a href="' . esc_url( add_query_arg( 'remove_coupon', rawurlencode( $coupon->get_code() ), Constants::is_defined( 'WOOCOMMERCE_CHECKOUT' ) ? wc_get_checkout_url() : wc_get_cart_url() ) ) . '" class="woocommerce-remove-coupon" data-coupon="' . esc_attr( $coupon->get_code() ) . '">' . __( '[Remove]', 'woocommerce' ) . '</a>';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	echo wp_kses( apply_filters( 'woocommerce_cart_totals_coupon_html', $coupon_html, $coupon, $discount_amount_html ), array_replace_recursive( wp_kses_allowed_html( 'post' ), array( 'a' => array( 'data-coupon' => true ) ) ) ); // phpcs:ignore PHPCompatibility.PHP.NewFunctions.array_replace_recursiveFound
 }
@@ -509,7 +471,6 @@ function wc_get_chosen_shipping_method_for_package( $key, $package ) {
  * @return string
  */
 function wc_get_default_shipping_method_for_package( $key, $package, $chosen_method ) {
-<<<<<<< HEAD
 	$rate_keys               = array_keys( $package['rates'] );
 	$local_pickup_method_ids = LocalPickupUtils::get_local_pickup_method_ids();
 
@@ -528,11 +489,6 @@ function wc_get_default_shipping_method_for_package( $key, $package, $chosen_met
 			}
 		}
 	}
-=======
-	$chosen_method_id     = current( explode( ':', $chosen_method ) );
-	$rate_keys            = array_keys( $package['rates'] );
-	$chosen_method_exists = in_array( $chosen_method, $rate_keys, true );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * If the customer has selected local pickup, keep it selected if it's still in the package. We don't want to auto
@@ -540,17 +496,9 @@ function wc_get_default_shipping_method_for_package( $key, $package, $chosen_met
 	 *
 	 * This is important for block-based checkout where there is an explicit toggle between shipping and pickup.
 	 */
-<<<<<<< HEAD
 	$chosen_method_id       = current( explode( ':', $chosen_method ) );
 	$chosen_method_exists   = in_array( $chosen_method, $rate_keys, true );
 	$is_local_pickup_chosen = in_array( $chosen_method_id, $local_pickup_method_ids, true );
-=======
-	$local_pickup_method_ids = LocalPickupUtils::get_local_pickup_method_ids();
-	$is_local_pickup_chosen  = in_array( $chosen_method_id, $local_pickup_method_ids, true );
-
-	// Default to the first method in the package. This can be sorted in the backend by the merchant.
-	$default = current( $rate_keys );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	// Default to local pickup if its chosen already.
 	if ( $chosen_method_exists && $is_local_pickup_chosen ) {

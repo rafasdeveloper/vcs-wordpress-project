@@ -376,11 +376,7 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 				array(
 					'title'         => __( 'Show Suggestions', 'woocommerce' ),
 					'desc'          => __( 'Display suggestions within WooCommerce', 'woocommerce' ),
-<<<<<<< HEAD
 					'desc_tip'      => esc_html__( 'Leave this box unchecked if you do not want to pull suggested extensions from WooCommerce.com.', 'woocommerce' ),
-=======
-					'desc_tip'      => esc_html__( 'Leave this box unchecked if you do not want to pull suggested extensions from WooCommerce.com. You will see a static list of extensions instead.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'id'            => 'woocommerce_show_marketplace_suggestions',
 					'type'          => 'checkbox',
 					'checkboxgroup' => 'start',
@@ -452,13 +448,6 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 		$settings =
 			array(
 				array(
-<<<<<<< HEAD
-=======
-					'title' => '',
-					'type'  => 'title',
-				),
-				array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'id'   => 'wc_settings_blueprint_slotfill',
 					'type' => 'slotfill_placeholder',
 				),
@@ -498,15 +487,11 @@ class WC_Settings_Advanced extends WC_Settings_Page {
 	 * Output the settings.
 	 */
 	public function output() {
-<<<<<<< HEAD
 		global $current_section, $hide_save_button;
 
 		if ( 'blueprint' === $current_section ) {
 			$hide_save_button = true;
 		}
-=======
-		global $current_section;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( 'webhooks' === $current_section ) {
 			WC_Admin_Webhooks::page_output();
