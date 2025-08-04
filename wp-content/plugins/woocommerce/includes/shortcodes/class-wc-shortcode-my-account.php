@@ -317,7 +317,6 @@ class WC_Shortcode_My_Account {
 			return false;
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Redefining user_login ensures we return the right case in the email.
 		$user_login = $user_data->user_login;
 

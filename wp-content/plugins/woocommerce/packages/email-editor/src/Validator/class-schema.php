@@ -7,7 +7,6 @@
 
 declare( strict_types = 1 );
 namespace MailPoet\EmailEditor\Validator;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 use function wp_json_encode;
 use function rest_get_allowed_schema_keywords;

@@ -83,7 +83,6 @@ class ProductAttributeTemplate extends AbstractTemplate {
 	public function update_taxonomy_template_hierarchy( $templates ) {
 		$queried_object = get_queried_object();
 		if ( taxonomy_is_product_attribute( $queried_object->taxonomy ) && wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			array_splice( $templates, count( $templates ) - 1, 0, self::SLUG );
 		}
 

@@ -92,7 +92,6 @@ class Init {
 				'Automattic\WooCommerce\Admin\API\AI\Images',
 				'Automattic\WooCommerce\Admin\API\AI\Patterns',
 				'Automattic\WooCommerce\Admin\API\AI\Product',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 

@@ -32,7 +32,6 @@ class WC_Admin_Importers {
 		add_action( 'admin_menu', array( $this, 'add_to_menus' ) );
 		add_action( 'admin_init', array( $this, 'register_importers' ) );
 		add_action( 'admin_head', array( $this, 'hide_from_menus' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_action( 'wp_ajax_woocommerce_do_ajax_product_import', array( $this, 'do_ajax_product_import' ) );
 		add_action( 'in_admin_footer', array( $this, 'track_importer_exporter_view' ) );
@@ -82,7 +81,6 @@ class WC_Admin_Importers {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Register importer scripts.
 	 */
 	public function admin_scripts() {

@@ -390,7 +390,6 @@ function wc_set_term_order( $term_id, $index, $taxonomy, $recursive = false ) {
  * @param object $taxonomy                    Taxonomy.
  * @param bool   $callback                    Callback.
  * @param bool   $terms_are_term_taxonomy_ids If terms are from term_taxonomy_id column.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 function _wc_term_recount( $terms, $taxonomy, $callback = true, $terms_are_term_taxonomy_ids = true ) {
 	global $wpdb;
@@ -411,7 +410,6 @@ function _wc_term_recount( $terms, $taxonomy, $callback = true, $terms_are_term_
 	// Standard callback.
 	if ( $callback ) {
 		_update_post_term_count( $terms, $taxonomy );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	$exclude_term_ids            = array();
@@ -422,7 +420,6 @@ function _wc_term_recount( $terms, $taxonomy, $callback = true, $terms_are_term_
 	}
 
 	if ( 'yes' === get_option( 'woocommerce_hide_out_of_stock_items' ) && $product_visibility_term_ids[ ProductStockStatus::OUT_OF_STOCK ] ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$exclude_term_ids[] = $product_visibility_term_ids[ ProductStockStatus::OUT_OF_STOCK ];
 	}
 
@@ -436,7 +433,6 @@ function _wc_term_recount( $terms, $taxonomy, $callback = true, $terms_are_term_
 			AND p.post_status = 'publish'
 			AND p.post_type = 'product'
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		",
 	);
 
@@ -476,7 +472,6 @@ function _wc_term_recount( $terms, $taxonomy, $callback = true, $terms_are_term_
 
 	// Count the terms.
 	foreach ( $terms as $term_id ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$terms_to_count = array( absint( $term_id ) );
 
 		if ( is_taxonomy_hierarchical( $taxonomy->name ) ) {
@@ -532,7 +527,6 @@ function wc_change_term_counts( $terms, $taxonomies ) {
 	}
 
 	if ( ! isset( $taxonomies[0] ) || ! in_array( $taxonomies[0], apply_filters( 'woocommerce_change_term_counts', array( 'product_cat', 'product_tag' ) ), true ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $terms;
 	}
 
@@ -549,14 +543,12 @@ function wc_change_term_counts( $terms, $taxonomies ) {
 			if ( '' !== $term_counts[ $term->term_id ] ) {
 				$term->count = absint( $term_counts[ $term->term_id ] );
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
 	// Update transient.
 	if ( $term_counts !== $o_term_counts ) {
 		set_transient( 'wc_term_counts', $term_counts, DAY_IN_SECONDS * 30 );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	return $terms;
@@ -615,7 +607,6 @@ function wc_get_product_visibility_term_ids() {
 		return array();
 	}
 	return array_map(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		'absint',
 		wp_parse_args(
 			wp_list_pluck(
@@ -653,7 +644,6 @@ function wc_recount_all_terms() {
 	$product_cats = get_terms(
 		'product_cat',
 		array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'hide_empty' => false,
 			'fields'     => 'id=>parent',
 		)
@@ -662,13 +652,11 @@ function wc_recount_all_terms() {
 	$product_tags = get_terms(
 		'product_tag',
 		array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'hide_empty' => false,
 			'fields'     => 'id=>parent',
 		)
 	);
 	_wc_term_recount( $product_tags, get_taxonomy( 'product_tag' ), true, false );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 /**

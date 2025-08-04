@@ -31,7 +31,6 @@ class Brands {
 		include_once WC_ABSPATH . 'includes/wc-brands-functions.php';
 
 		if ( wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			include_once WC_ABSPATH . 'includes/blocks/class-wc-brands-block-templates.php';
 			include_once WC_ABSPATH . 'includes/blocks/class-wc-brands-block-template-utils-duplicated.php';
 		}

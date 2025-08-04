@@ -32,7 +32,6 @@ class Init {
 					}
 				);
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -74,7 +73,6 @@ class Init {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Enqueue styles needed for the rich text editor.
 	 */
 	public function enqueue_styles() {

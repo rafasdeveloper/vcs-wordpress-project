@@ -156,7 +156,6 @@ class WooSubscriptionsNotes {
 
 		if ( $this->is_connected() ) {
 			$subscriptions = \WC_Helper::get_subscriptions();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			foreach ( (array) $subscriptions as $subscription ) {
 				if ( in_array( $site_id, $subscription['connections'], true ) ) {
@@ -396,7 +395,6 @@ class WooSubscriptionsNotes {
 		$this->prune_inactive_subscription_notes();
 
 		$subscriptions      = \WC_Helper::get_subscriptions();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$active_product_ids = $this->get_subscription_active_product_ids();
 
 		foreach ( (array) $subscriptions as $subscription ) {

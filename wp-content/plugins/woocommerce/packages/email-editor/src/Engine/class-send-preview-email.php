@@ -3,7 +3,6 @@
  * This file is part of the MailPoet Email Editor package.
  *
  * @package MailPoet\EmailEditor
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 declare( strict_types = 1 );
@@ -11,7 +10,6 @@ declare( strict_types = 1 );
 namespace MailPoet\EmailEditor\Engine;
 
 use MailPoet\EmailEditor\Engine\Renderer\Renderer;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class Send_Preview_Email
@@ -20,7 +18,6 @@ use MailPoet\EmailEditor\Engine\Renderer\Renderer;
  * It is part of the email editor integrations utilities.
  *
  * @package MailPoet\EmailEditor\Integrations\Utils
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class Send_Preview_Email {
 
@@ -96,7 +93,6 @@ class Send_Preview_Email {
 			$language
 		);
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->set_personalize_content( $rendered_data['html'] );
 	}
 
@@ -116,7 +112,6 @@ class Send_Preview_Email {
 				'is_user_preview' => true,
 			)
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->personalizer->personalize_content( $content );
 	}
 

@@ -41,7 +41,6 @@ class PatternRegistry {
 	 * @return void
 	 */
 	public function register_block_pattern( $source, $pattern_data, $dictionary ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( empty( $pattern_data['slug'] ) ) {
 			_doing_it_wrong(
 				'register_block_patterns',
@@ -180,7 +179,6 @@ class PatternRegistry {
 			if ( ! $pattern_data['content'] ) {
 				return;
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		$category_labels = $this->get_category_labels();
@@ -222,7 +220,6 @@ class PatternRegistry {
 
 		return null;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Convert a kebab-case string to capital case.

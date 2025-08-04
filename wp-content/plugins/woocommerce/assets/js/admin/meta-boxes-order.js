@@ -1,6 +1,5 @@
 // eslint-disable-next-line max-len
 /*global woocommerce_admin_meta_boxes, woocommerce_admin, accounting, woocommerce_admin_meta_boxes_order, wcSetClipboard, wcClearClipboard */
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 jQuery( function ( $ ) {
 
 	// Stand-in wcTracks.recordEvent in case tracks is not available (for any reason).
@@ -421,7 +420,6 @@ jQuery( function ( $ ) {
 				if ( 0 < unit_total_tax ) {
 					$line_total_tax.val(
 						parseFloat( accounting.formatNumber( unit_total_tax * qty, precision, '' ) )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							.toString()
 							.replace( '.', woocommerce_admin.mon_decimal_point )
 					);
@@ -430,7 +428,6 @@ jQuery( function ( $ ) {
 				if ( 0 < unit_subtotal_tax ) {
 					$line_subtotal_tax.val(
 						parseFloat( accounting.formatNumber( unit_subtotal_tax * qty, precision, '' ) )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							.toString()
 							.replace( '.', woocommerce_admin.mon_decimal_point )
 					);
@@ -1121,7 +1118,6 @@ jQuery( function ( $ ) {
 
 						$refund_line_total_tax.val(
 							parseFloat( accounting.formatNumber( unit_total_tax * refund_qty, precision, '' ) )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 								.toString()
 								.replace( '.', woocommerce_admin.mon_decimal_point )
 						).trigger( 'change' );
@@ -1572,7 +1568,6 @@ jQuery( function ( $ ) {
 	 */
 	var wc_meta_boxes_order_custom_meta = {
 		init: function() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			if ( ! $('#order_custom').length ) {
 				return;
 			}
@@ -1595,7 +1590,6 @@ jQuery( function ( $ ) {
 					settings.data.action   = 'woocommerce_order_delete_meta';
 					return settings;
 				}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			});
 		}
 	};
@@ -1605,5 +1599,4 @@ jQuery( function ( $ ) {
 	wc_meta_boxes_order_notes.init();
 	wc_meta_boxes_order_downloads.init();
 	wc_meta_boxes_order_custom_meta.init();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 });

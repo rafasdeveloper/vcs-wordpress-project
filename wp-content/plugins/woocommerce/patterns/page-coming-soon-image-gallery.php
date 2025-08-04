@@ -8,7 +8,6 @@
  */
 
 use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blocks\Templates\ComingSoonTemplate;
 
 $fonts               = ComingSoonTemplate::get_font_families();
@@ -28,7 +27,6 @@ $featured_image_urls = array(
 	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-10.jpg' ),
 	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-11.jpg' ),
 	PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/gallery-12.jpg' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 );
 ?>
 

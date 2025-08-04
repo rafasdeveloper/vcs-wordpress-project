@@ -8,7 +8,6 @@ namespace Automattic\WooCommerce\Internal\Admin\RemoteFreeExtensions;
 defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Admin\PluginsHelper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Admin\RemoteSpecs\RuleProcessors\RuleEvaluator;
 
 /**
@@ -60,7 +59,6 @@ class EvaluateExtension {
 	 */
 	public static function evaluate_bundles( $specs, $allowed_bundles = array() ) {
 		$bundles = array();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $specs as $spec ) {
 			$spec              = (object) $spec;
@@ -83,7 +81,6 @@ class EvaluateExtension {
 				}
 			}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$bundles[] = $bundle;
 		}
 

@@ -22,7 +22,6 @@ class EmailColors {
 	 * @return array Array of default email colors.
 	 */
 	public static function get_default_colors() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$base_color_default        = '#720eec';
 		$bg_color_default          = '#f7f7f7';
 		$body_bg_color_default     = '#ffffff';
@@ -30,7 +29,6 @@ class EmailColors {
 		$footer_text_color_default = '#3c3c3c';
 
 		if ( FeaturesUtil::feature_is_enabled( 'email_improvements' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$base_color_default        = '#8526ff';
 			$bg_color_default          = '#ffffff';
 			$body_bg_color_default     = '#ffffff';
@@ -41,7 +39,6 @@ class EmailColors {
 				&& wc_current_theme_is_fse_theme() 
 				&& function_exists( 'wp_get_global_styles' ) 
 			) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$global_styles             = wp_get_global_styles( array(), array( 'transforms' => array( 'resolve-variables' ) ) );
 				$base_color_global         = ! empty( $global_styles['elements']['button']['color']['background'] )
 					? sanitize_hex_color( $global_styles['elements']['button']['color']['background'] ) : '';

@@ -10,7 +10,6 @@ use Automattic\WooCommerce\Internal\Admin\EmailPreview\EmailPreview;
 use Automattic\WooCommerce\Internal\Email\EmailColors;
 use Automattic\WooCommerce\Internal\Email\EmailFont;
 use Automattic\WooCommerce\Internal\Email\EmailStyleSync;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Features\FeaturesController;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
@@ -33,7 +32,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 		$this->label = __( 'Emails', 'woocommerce' );
 
 		add_action( 'woocommerce_admin_field_email_notification', array( $this, 'email_notification_setting' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'woocommerce_admin_field_email_preview', array( $this, 'email_preview' ) );
 		add_action( 'woocommerce_admin_field_email_image_url', array( $this, 'email_image_url' ) );
 		add_action( 'woocommerce_admin_field_email_font_family', array( $this, 'email_font_family' ) );
@@ -42,7 +40,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 		if ( FeaturesUtil::feature_is_enabled( 'email_improvements' ) ) {
 			add_filter( 'woocommerce_admin_settings_sanitize_option_woocommerce_email_header_image', array( $this, 'sanitize_email_header_image' ), 10, 3 );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_filter( 'woocommerce_tracks_event_properties', array( $this, 'append_feature_email_improvements_to_tracks' ) );
 		add_action( FeaturesController::FEATURE_ENABLED_CHANGED_ACTION, array( $this, 'track_email_improvements_feature_change' ), 10, 2 );
 		parent::__construct();
@@ -99,7 +96,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 		/* translators: %s: Available placeholders for use */
 		$footer_text_description = __( 'The text to appear in the footer of all WooCommerce emails.', 'woocommerce' ) . ' ' . sprintf( __( 'Available placeholders: %s', 'woocommerce' ), '{site_title} {site_url}' );
 		$footer_text_default     = '{site_title} &mdash; Built with {WooCommerce}';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// These defaults should be chosen by the same logic as the other color option properties.
 		list(
@@ -281,20 +277,17 @@ class WC_Settings_Emails extends WC_Settings_Page {
 		$body_text_color_setting_in_palette   = $reorder_colors ? $body_text_color_setting : null;
 		$footer_text_color_setting_in_palette = $reorder_colors ? $footer_text_color_setting : null;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$settings =
 			array(
 				array(
 					'title' => __( 'Email notifications', 'woocommerce' ),
 					/* translators: %s: help description with link to WP Mail logging and support page. */
 					'desc'  => sprintf( __( 'Email notifications sent from WooCommerce are listed below. Click on an email to configure it.<br>%s', 'woocommerce' ), $desc_help_text ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'type'  => 'title',
 					'id'    => 'email_notification_settings',
 				),
 
 				array( 'type' => 'email_notification' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				array(
 					'type' => 'sectionend',
@@ -306,7 +299,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 					'id'   => 'email_recipient_options',
 				),
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				array(
 					'title' => __( 'Email sender options', 'woocommerce' ),
 					'type'  => 'title',
@@ -339,7 +331,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 					'desc_tip'          => true,
 				),
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				array(
 					'type' => 'sectionend',
 					'id'   => 'email_options',
@@ -433,7 +424,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 					'id'   => 'email_merchant_notes',
 				),
 			);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Remove empty elements that depend on the email_improvements feature flag.
 		$settings = array_filter( $settings );
@@ -447,7 +437,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 	public function get_custom_fonts() {
 		$custom_fonts = array();
 		if ( wc_current_theme_is_fse_theme() && class_exists( 'WP_Font_Face_Resolver' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$theme_fonts = WP_Font_Face_Resolver::get_fonts_from_theme_json();
 			if ( count( $theme_fonts ) > 0 ) {
 				foreach ( $theme_fonts as $font ) {
@@ -632,7 +621,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Creates the React mount point for the email preview.
 	 */
 	public function email_preview() {
@@ -821,7 +809,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 	public function email_color_palette( $value ) {
 		$default_colors = EmailColors::get_default_colors();
 		$auto_sync = get_option( EmailStyleSync::AUTO_SYNC_OPTION, 'no' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		?>
 		<hr class="wc-settings-email-color-palette-separator" />
@@ -839,14 +826,12 @@ class WC_Settings_Emails extends WC_Settings_Page {
 				id="woocommerce_email_auto_sync_with_theme"
 				value="<?php echo esc_attr( $auto_sync ); ?>"
 			/>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		</div>
 		<table class="form-table">
 		<?php
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Append email improvements prop to Tracks globally.
 	 *
 	 * @param array $event_properties Event properties array.
@@ -883,7 +868,6 @@ class WC_Settings_Emails extends WC_Settings_Page {
 			}
 		}
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 return new WC_Settings_Emails();

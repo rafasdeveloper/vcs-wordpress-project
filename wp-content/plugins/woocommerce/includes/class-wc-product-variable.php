@@ -301,7 +301,6 @@ class WC_Product_Variable extends WC_Product {
 	/**
 	 * Get an array of available variations for the current product.
 	 *
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @param string $return Optional. The format to return the results in. Can be 'array' to return an array of variation data or 'objects' for the product objects. Default 'array'.
 	 *
 	 * @return array[]|WC_Product_Variation[]
@@ -309,7 +308,6 @@ class WC_Product_Variable extends WC_Product {
 	public function get_available_variations( $return = 'array' ) {
 		$variation_ids        = $this->get_children();
 		$available_variations = array();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( is_callable( '_prime_post_caches' ) ) {
 			_prime_post_caches( $variation_ids );
@@ -325,7 +323,6 @@ class WC_Product_Variable extends WC_Product {
 			}
 
 			// Filter 'woocommerce_hide_invisible_variations' to optionally hide invisible variations (disabled variations and variations with empty price).
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			if ( apply_filters( 'woocommerce_hide_invisible_variations', true, $this->get_id(), $variation ) && ! $variation->variation_is_visible() ) {
 				continue;
 			}
@@ -345,7 +342,6 @@ class WC_Product_Variable extends WC_Product {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Check if a given variation is currently available.
 	 *
 	 * @param WC_Product_Variation $variation Variation to check.
@@ -359,7 +355,6 @@ class WC_Product_Variable extends WC_Product {
 		}
 
 		// Filter 'woocommerce_hide_invisible_variations' to optionally hide invisible variations (disabled variations and variations with empty price).
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( apply_filters( 'woocommerce_hide_invisible_variations', true, $this->get_id(), $variation ) && ! $variation->variation_is_visible() ) {
 			return false;
 		}

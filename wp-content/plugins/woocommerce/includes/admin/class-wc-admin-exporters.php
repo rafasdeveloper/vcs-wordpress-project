@@ -4,7 +4,6 @@
  *
  * @package     WooCommerce\Admin
  * @version     3.1.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 use Automattic\Jetpack\Constants;
@@ -36,7 +35,6 @@ class WC_Admin_Exporters {
 
 		add_action( 'admin_menu', array( $this, 'add_to_menus' ) );
 		add_action( 'admin_head', array( $this, 'hide_from_menus' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_action( 'admin_init', array( $this, 'download_export_file' ) );
 		add_action( 'wp_ajax_woocommerce_do_ajax_product_export', array( $this, 'do_ajax_product_export' ) );
@@ -86,7 +84,6 @@ class WC_Admin_Exporters {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Enqueue scripts.
 	 */
 	public function admin_scripts() {
@@ -161,7 +158,6 @@ class WC_Admin_Exporters {
 			$exporter->set_product_category_to_export( wp_unslash( array_values( $_POST['export_category'] ) ) ); // WPCS: input var ok, sanitization ok.
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! empty( $_POST['filename'] ) ) { // WPCS: input var ok.
 			$exporter->set_filename( wp_unslash( $_POST['filename'] ) ); // WPCS: input var ok, sanitization ok.
 		}

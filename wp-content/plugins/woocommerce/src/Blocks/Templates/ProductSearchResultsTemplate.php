@@ -69,7 +69,6 @@ class ProductSearchResultsTemplate extends AbstractTemplate {
 	 */
 	public function update_search_template_hierarchy( $templates ) {
 		if ( ( is_search() && is_post_type_archive( 'product' ) ) && wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			array_unshift( $templates, self::SLUG );
 		}
 		return $templates;

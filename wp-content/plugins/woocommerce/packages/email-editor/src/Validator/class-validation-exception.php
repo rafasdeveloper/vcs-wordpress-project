@@ -9,7 +9,6 @@ declare( strict_types = 1 );
 namespace MailPoet\EmailEditor\Validator;
 
 use MailPoet\EmailEditor\UnexpectedValueException;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_Error;
 
 /**

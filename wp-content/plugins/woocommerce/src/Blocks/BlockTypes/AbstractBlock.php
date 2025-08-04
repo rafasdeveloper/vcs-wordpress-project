@@ -227,7 +227,6 @@ abstract class AbstractBlock {
 			'style'           => $this->get_block_type_style(),
 		];
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( isset( $this->api_version ) ) {
 			$block_settings['api_version'] = intval( $this->api_version );
 		}
@@ -264,7 +263,6 @@ abstract class AbstractBlock {
 			);
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Prefer to register with metadata if the path is set in the block's class.
 		if ( ! empty( $metadata_path ) ) {
 			register_block_type_from_metadata(

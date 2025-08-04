@@ -5,12 +5,10 @@ namespace Automattic\WooCommerce\Blocks\BlockTypes\Accordion;
 
 use Automattic\WooCommerce\Blocks\BlockTypes\AbstractBlock;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * AccordionHeader class.
  */
 class AccordionHeader extends AbstractBlock {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -37,5 +35,4 @@ class AccordionHeader extends AbstractBlock {
 	protected function get_block_type_script( $key = null ) {
 		return null;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

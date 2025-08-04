@@ -3,13 +3,11 @@
  * This file is part of the MailPoet Email Editor package.
  *
  * @package MailPoet\EmailEditor
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 declare(strict_types = 1);
 
 namespace MailPoet\EmailEditor\Engine\PersonalizationTags;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 use WP_HTML_Tag_Processor;
 use WP_HTML_Text_Replacement;

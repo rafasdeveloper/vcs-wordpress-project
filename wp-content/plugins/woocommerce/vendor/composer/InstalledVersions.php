@@ -27,7 +27,6 @@ use Composer\Semver\VersionParser;
 class InstalledVersions
 {
     /**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
      * @var mixed[]|null
      * @psalm-var array{root: array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}, versions: array<string, array{pretty_version?: string, version?: string, reference?: string|null, type?: string, install_path?: string, aliases?: string[], dev_requirement: bool, replaced?: string[], provided?: string[]}>}|array{}|null
      */
@@ -324,7 +323,6 @@ class InstalledVersions
     }
 
     /**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
      * @return array[]
      * @psalm-return list<array{root: array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}, versions: array<string, array{pretty_version?: string, version?: string, reference?: string|null, type?: string, install_path?: string, aliases?: string[], dev_requirement: bool, replaced?: string[], provided?: string[]}>}>
      */
@@ -339,7 +337,6 @@ class InstalledVersions
 
         if (self::$canGetVendors) {
             $selfDir = strtr(__DIR__, '\\', '/');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
             foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {
                 $vendorDir = strtr($vendorDir, '\\', '/');
                 if (isset(self::$installedByVendor[$vendorDir])) {

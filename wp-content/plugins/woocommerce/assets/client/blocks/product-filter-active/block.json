@@ -13,7 +13,6 @@
 	"ancestor": [
 		"woocommerce/product-filters"
 	],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"supports": {
 		"interactivity": true,
 		"__experimentalBorder": {
@@ -42,5 +41,4 @@
 	"usesContext": [
 		"activeFilters"
 	]
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

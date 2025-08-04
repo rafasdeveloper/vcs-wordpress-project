@@ -8,7 +8,6 @@ namespace Automattic\WooCommerce\Blocks\BlockTypes;
  */
 final class ProductFilterRemovableChips extends AbstractBlock {
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -28,7 +27,6 @@ final class ProductFilterRemovableChips extends AbstractBlock {
 		if (
 			empty( $block->context['filterData'] ) ||
 			empty( $block->context['filterData']['parent'] )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		) {
 			return '';
 		}
@@ -38,7 +36,6 @@ final class ProductFilterRemovableChips extends AbstractBlock {
 		$context      = $block->context['filterData'];
 		$filter_items = $context['items'] ?? array();
 		$parent_block = $context['parent'];
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$style = '';
 
@@ -50,7 +47,6 @@ final class ProductFilterRemovableChips extends AbstractBlock {
 
 		$wrapper_attributes = array(
 			'data-wp-interactive' => $this->get_full_block_name(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'data-wp-key'         => wp_unique_prefixed_id( $this->get_full_block_name() ),
 			'class'               => esc_attr( $classes ),
 			'style'               => esc_attr( $style ),
@@ -76,7 +72,6 @@ final class ProductFilterRemovableChips extends AbstractBlock {
 						>
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" class="wc-block-product-filter-removable-chips__remove-icon" aria-hidden="true" focusable="false"><path d="M12 13.06l3.712 3.713 1.061-1.06L13.061 12l3.712-3.712-1.06-1.06L12 10.938 8.288 7.227l-1.061 1.06L10.939 12l-3.712 3.712 1.06 1.061L12 13.061z"></path></svg>
 							<span class="screen-reader-text" data-wp-text="context.item.removeLabel"></span>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						</button>
 					</li>
 				</template>
@@ -86,7 +81,6 @@ final class ProductFilterRemovableChips extends AbstractBlock {
 					<li class="wc-block-product-filter-removable-chips__item" data-wp-each-child>
 						<span class="wc-block-product-filter-removable-chips__label">
 							<?php echo esc_html( $item['label'] ); ?>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						</span>
 						<button
 							type="button"
@@ -94,7 +88,6 @@ final class ProductFilterRemovableChips extends AbstractBlock {
 							aria-label="<?php echo esc_attr( $remove_label ); ?>"
 							data-wp-on--click="<?php echo esc_attr( $parent_block . '::actions.removeFilter' ); ?>"
 							data-filter-item="<?php echo esc_attr( wp_json_encode( $item, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP ) ); ?>"
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						>
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" class="wc-block-product-filter-removable-chips__remove-icon" aria-hidden="true" focusable="false"><path d="M12 13.06l3.712 3.713 1.061-1.06L13.061 12l3.712-3.712-1.06-1.06L12 10.938 8.288 7.227l-1.061 1.06L10.939 12l-3.712 3.712 1.06 1.061L12 13.061z"></path></svg>
 							<span class="screen-reader-text"><?php echo esc_html( $remove_label ); ?></span>
@@ -118,5 +111,4 @@ final class ProductFilterRemovableChips extends AbstractBlock {
 	protected function get_block_type_script( $key = null ) {
 		return null;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

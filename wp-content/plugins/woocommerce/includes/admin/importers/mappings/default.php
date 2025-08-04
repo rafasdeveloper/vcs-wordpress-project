@@ -5,7 +5,6 @@
  * @package WooCommerce\Admin\Importers
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -81,7 +80,6 @@ function wc_importer_default_english_mappings( $mappings ) {
 		'Position'                                => 'menu_order',
 	);
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	return array_merge( $mappings, $new_mappings );
 }
 add_filter( 'woocommerce_csv_product_import_mapping_default_columns', 'wc_importer_default_english_mappings', 100 );

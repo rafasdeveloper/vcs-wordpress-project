@@ -351,7 +351,6 @@ class CustomerEffortScoreTracks {
 				'action'         => self::PRODUCT_ADD_PUBLISH_ACTION_NAME,
 				'title'          => __(
 					'How easy was it to add a product?',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'woocommerce'
 				),
 				'firstQuestion'  => __(

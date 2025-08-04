@@ -8,7 +8,6 @@
  */
 
 use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blocks\Templates\ComingSoonTemplate;
 
 $fonts                 = ComingSoonTemplate::get_font_families();
@@ -17,7 +16,6 @@ $body_font_family      = $fonts['body'];
 $paragraph_font_family = isset( $fonts['paragraph'] ) ? $fonts['paragraph'] : null;
 
 $default_image = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/green-glass-jars-on-stairs.jpg' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 $site_tagline = get_bloginfo( 'description' );
 

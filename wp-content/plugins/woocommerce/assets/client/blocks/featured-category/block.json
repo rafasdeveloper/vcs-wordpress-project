@@ -12,7 +12,6 @@
 			"wide",
 			"full"
 		],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"html": false,
 		"color": {
 			"background": true,
@@ -107,4 +106,3 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

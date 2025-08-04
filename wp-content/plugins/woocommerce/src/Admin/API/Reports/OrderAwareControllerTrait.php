@@ -95,7 +95,6 @@ trait OrderAwareControllerTrait {
 		// See: https://github.com/woocommerce/woocommerce-admin/issues/5592.
 		$actionable_statuses = get_option( 'woocommerce_actionable_order_statuses', array() );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// See WC_REST_Orders_V2_Controller::get_collection_params() re: any/trash statuses.
 		$registered_statuses = array_merge( array( 'any', 'trash' ), array_keys( self::get_order_status_labels() ) );
 

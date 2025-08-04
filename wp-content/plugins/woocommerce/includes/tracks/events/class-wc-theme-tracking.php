@@ -44,7 +44,6 @@ class WC_Theme_Tracking {
 		if ( function_exists( 'wc_current_theme_is_fse_theme' ) ) {
 			$is_block_theme = wc_current_theme_is_fse_theme();
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$properties = array(
 			'block_theme'   => $is_block_theme,

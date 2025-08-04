@@ -71,7 +71,6 @@ class Init {
 			$style_name,
 			WCAdminAssets::get_url( $style_path_name . '/style', 'css' ),
 			isset( $style_assets['dependencies'] ) ? $style_assets['dependencies'] : array(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			WCAdminAssets::get_file_version( 'css', $style_assets['version'] ),
 		);
 
@@ -102,7 +101,6 @@ class Init {
 			// phpcs:enable WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			wp_enqueue_style( 'wp-gutenberg-edit-site' );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -126,7 +124,6 @@ class Init {
 			$script_name,
 			WCAdminAssets::get_url( $script_path_name . '/index', 'js' ),
 			array_merge( array( 'wp-edit-site' ), $script_assets['dependencies'] ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			WCAdminAssets::get_file_version( 'js', $script_assets['version'] ),
 			true
 		);

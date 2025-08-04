@@ -245,7 +245,6 @@ class WCAdminAssets {
 
 		wp_enqueue_script( WC_ADMIN_APP );
 		wp_enqueue_style( WC_ADMIN_APP );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		wp_enqueue_style( 'wc-material-icons' );
 		wp_enqueue_style( 'wc-onboarding' );
 

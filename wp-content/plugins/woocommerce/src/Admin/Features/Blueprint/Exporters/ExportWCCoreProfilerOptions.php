@@ -65,6 +65,5 @@ class ExportWCCoreProfilerOptions implements StepExporter, HasAlias {
 	 */
 	public function get_description() {
 		return __( 'It includes onboarding configuration options', 'woocommerce' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

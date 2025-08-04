@@ -7,14 +7,12 @@
 
 declare(strict_types=1);
 use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 
 $header  = __( 'Committed to a greener lifestyle', 'woocommerce' );
 $content = __( "Our passion is crafting mindful moments with locally sourced, organic, and sustainable products. We're more than a store; we're your path to a community-driven, eco-friendly lifestyle that embraces premium quality.", 'woocommerce' );
 $button  = __( 'Meet us', 'woocommerce' );
 $image_0 = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/drinkware-liquid-tableware-dishware-bottle-fluid.jpg' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 ?>
 

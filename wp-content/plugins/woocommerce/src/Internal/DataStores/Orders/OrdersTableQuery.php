@@ -60,7 +60,6 @@ class OrdersTableQuery {
 	private $args = array();
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Columns to be selected in the SELECT clause.
 	 *
 	 * @var array
@@ -195,7 +194,6 @@ class OrdersTableQuery {
 		unset( $args['suppress_filters'] );
 
 		$this->args = $args;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// TODO: args to be implemented.
 		unset( $this->args['customer_note'], $this->args['name'] );
@@ -231,7 +229,6 @@ class OrdersTableQuery {
 		 * }
 		 * @param OrdersTableQuery   $query The OrdersTableQuery instance.
 		 * @param string             $sql The OrdersTableQuery instance.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 */
 		$pre_query = apply_filters( 'woocommerce_hpos_pre_query', null, $this, $this->sql );
 		if ( ! $pre_query || ! isset( $pre_query[0] ) || ! is_array( $pre_query[0] ) ) {
@@ -1488,5 +1485,4 @@ class OrdersTableQuery {
 
 		return $result;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

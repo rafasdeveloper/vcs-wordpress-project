@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine\Renderer\ContentRenderer;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 use WP_Block_Parser;
 
@@ -31,6 +30,5 @@ class Blocks_Parser extends WP_Block_Parser {
 	public function parse( $document ) {
 		parent::parse( $document );
 		return apply_filters( 'mailpoet_blocks_renderer_parsed_blocks', $this->output );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

@@ -5,7 +5,6 @@
  * @package WooCommerce\Admin\Importers
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Utilities\FilesystemUtil;
 use Automattic\WooCommerce\Internal\Utilities\URL;
 use Automattic\WooCommerce\Utilities\I18nUtil;
@@ -131,7 +130,6 @@ class WC_Product_CSV_Importer_Controller {
 		}
 
 		if ( ! $is_valid_file ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			throw new \Exception( esc_html__( 'File path provided for import is invalid.', 'woocommerce' ) );
 		}
 
@@ -154,7 +152,6 @@ class WC_Product_CSV_Importer_Controller {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get all the valid filetypes for a CSV file.
 	 *
 	 * @return array
@@ -209,7 +206,6 @@ class WC_Product_CSV_Importer_Controller {
 
 		// Import mappings for CSV data.
 		include_once dirname( __FILE__ ) . '/mappings/mappings.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( $this->map_preferences ) {
 			add_filter( 'woocommerce_csv_product_import_mapped_columns', array( $this, 'auto_map_user_preferences' ), 9999 );
@@ -259,7 +255,6 @@ class WC_Product_CSV_Importer_Controller {
 	 */
 	protected function output_header() {
 		include dirname( __FILE__ ) . '/views/html-csv-import-header.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -267,7 +262,6 @@ class WC_Product_CSV_Importer_Controller {
 	 */
 	protected function output_steps() {
 		include dirname( __FILE__ ) . '/views/html-csv-import-steps.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -275,7 +269,6 @@ class WC_Product_CSV_Importer_Controller {
 	 */
 	protected function output_footer() {
 		include dirname( __FILE__ ) . '/views/html-csv-import-footer.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -359,7 +352,6 @@ class WC_Product_CSV_Importer_Controller {
 		try {
 			$file = wc_clean( wp_unslash( $_POST['file'] ?? '' ) ); // PHPCS: input var ok.
 			self::check_file_path( $file );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			$params = array(
 				'delimiter'          => ! empty( $_POST['delimiter'] ) ? wc_clean( wp_unslash( $_POST['delimiter'] ) ) : ',', // PHPCS: input var ok.
@@ -473,7 +465,6 @@ class WC_Product_CSV_Importer_Controller {
 		$upload_dir = wp_upload_dir();
 
 		include dirname( __FILE__ ) . '/views/html-product-csv-import-form.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -509,7 +500,6 @@ class WC_Product_CSV_Importer_Controller {
 			if ( ! empty( $file_url ) ) {
 				$path = ABSPATH . $file_url;
 				self::check_file_path( $path );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			} else {
 				$csv_import_util = wc_get_container()->get( Automattic\WooCommerce\Internal\Admin\ImportExport\CSVUploadHelper::class );
 				$upload          = $csv_import_util->handle_csv_upload( 'product', 'import', self::get_valid_csv_filetypes() );
@@ -528,7 +518,6 @@ class WC_Product_CSV_Importer_Controller {
 	protected function mapping_form() {
 		check_admin_referer( 'woocommerce-csv-importer' );
 		self::check_file_path( $this->file );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$args = array(
 			'lines'              => 1,
@@ -558,7 +547,6 @@ class WC_Product_CSV_Importer_Controller {
 		}
 
 		include_once dirname( __FILE__ ) . '/views/html-csv-import-mapping.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -569,7 +557,6 @@ class WC_Product_CSV_Importer_Controller {
 		// therefore this page needs to be nonce protected as well.
 		check_admin_referer( 'woocommerce-csv-importer' );
 		self::check_file_path( $this->file );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! empty( $_POST['map_from'] ) && ! empty( $_POST['map_to'] ) ) {
 			$mapping_from = wc_clean( wp_unslash( $_POST['map_from'] ) );
@@ -600,7 +587,6 @@ class WC_Product_CSV_Importer_Controller {
 		wp_enqueue_script( 'wc-product-import' );
 
 		include_once dirname( __FILE__ ) . '/views/html-csv-import-progress.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -617,7 +603,6 @@ class WC_Product_CSV_Importer_Controller {
 		$errors              = array_filter( (array) get_user_option( 'product_import_error_log' ) );
 
 		include_once dirname( __FILE__ ) . '/views/html-csv-import-done.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -647,7 +632,6 @@ class WC_Product_CSV_Importer_Controller {
 		$weight_unit_label    = I18nUtil::get_weight_unit_label( get_option( 'woocommerce_weight_unit', 'kg' ) );
 		$dimension_unit_label = I18nUtil::get_dimensions_unit_label( get_option( 'woocommerce_dimension_unit', 'cm' ) );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/*
 		 * @hooked wc_importer_generic_mappings - 10
 		 * @hooked wc_importer_wordpress_mappings - 10
@@ -701,7 +685,6 @@ class WC_Product_CSV_Importer_Controller {
 					__( 'Button text', 'woocommerce' )    => 'button_text',
 					__( 'Position', 'woocommerce' )       => 'menu_order',
 				),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$raw_headers
 			)
 		);
@@ -903,7 +886,6 @@ class WC_Product_CSV_Importer_Controller {
 			'menu_order'         => __( 'Position', 'woocommerce' ),
 		);
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return apply_filters( 'woocommerce_csv_product_import_mapping_options', $options, $item );
 	}
 }

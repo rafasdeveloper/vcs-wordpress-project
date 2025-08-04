@@ -87,7 +87,6 @@ class AssetDataRegistry {
 			'currentUserId'          => get_current_user_id(),
 			'currentUserIsAdmin'     => current_user_can( 'manage_woocommerce' ),
 			'currentThemeIsFSETheme' => wc_current_theme_is_fse_theme(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'dateFormat'             => wc_date_format(),
 			'homeUrl'                => esc_url( home_url( '/' ) ),
 			'locale'                 => $this->get_locale_data(),

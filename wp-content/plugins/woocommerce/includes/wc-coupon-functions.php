@@ -72,7 +72,6 @@ function wc_coupons_enabled() {
 }
 
 /**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Get coupon code by ID.
  *
  * @since 3.0.0

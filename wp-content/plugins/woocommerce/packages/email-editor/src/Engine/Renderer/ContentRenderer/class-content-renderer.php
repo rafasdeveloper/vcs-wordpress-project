@@ -11,7 +11,6 @@ namespace MailPoet\EmailEditor\Engine\Renderer\ContentRenderer;
 use MailPoet\EmailEditor\Engine\Renderer\Css_Inliner;
 use MailPoet\EmailEditor\Engine\Settings_Controller;
 use MailPoet\EmailEditor\Engine\Theme_Controller;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_Block_Template;
 use WP_Post;
 
@@ -57,7 +56,6 @@ class Content_Renderer {
 	private Css_Inliner $css_inliner;
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Content_Renderer constructor.
 	 *
 	 * @param Process_Manager     $preprocess_manager Preprocess manager.
@@ -91,7 +89,6 @@ class Content_Renderer {
 		add_filter( 'mailpoet_blocks_renderer_parsed_blocks', array( $this, 'preprocess_parsed_blocks' ) );
 
 		do_action( 'mailpoet_blocks_renderer_initialized', $this->blocks_registry );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -117,7 +114,6 @@ class Content_Renderer {
 	 */
 	public function block_parser() {
 		return 'MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Blocks_Parser';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -158,7 +154,6 @@ class Content_Renderer {
 		$_wp_current_template_id      = $template->id;
 		$_wp_current_template_content = $template->content;
 		$GLOBALS['post']              = $post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- I have not found a better way to set the post object for the block renderer.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -170,7 +165,6 @@ class Content_Renderer {
 		remove_filter( 'render_block', array( $this, 'render_block' ) );
 		remove_filter( 'block_parser_class', array( $this, 'block_parser' ) );
 		remove_filter( 'mailpoet_blocks_renderer_parsed_blocks', array( $this, 'preprocess_parsed_blocks' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -238,7 +232,6 @@ class Content_Renderer {
 		 */
 
 		$styles = '<style>' . wp_strip_all_tags( (string) apply_filters( 'mailpoet_email_content_renderer_styles', $styles, $post ) ) . '</style>';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return $this->css_inliner->from_html( $styles . $html )->inline_css()->render();
 	}

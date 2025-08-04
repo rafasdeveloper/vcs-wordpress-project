@@ -24,7 +24,6 @@ defined( 'ABSPATH' ) || exit;
 		<tr>
 			<?php foreach ( $columns as $column_id => $column_name ) : ?>
 				<th class="td text-align-left" scope="col"><?php echo esc_html( $column_name ); ?></th>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			<?php endforeach; ?>
 		</tr>
 	</thead>
@@ -33,7 +32,6 @@ defined( 'ABSPATH' ) || exit;
 		<tr>
 			<?php foreach ( $columns as $column_id => $column_name ) : ?>
 				<td class="td text-align-left">
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					<?php
 					if ( has_action( 'woocommerce_email_downloads_column_' . $column_id ) ) {
 						do_action( 'woocommerce_email_downloads_column_' . $column_id, $download, $plain_text );

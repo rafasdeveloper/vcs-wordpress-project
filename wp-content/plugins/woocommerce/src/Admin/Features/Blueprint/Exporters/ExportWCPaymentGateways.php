@@ -5,7 +5,6 @@ declare( strict_types = 1);
 namespace Automattic\WooCommerce\Admin\Features\Blueprint\Exporters;
 
 use Automattic\WooCommerce\Admin\Features\Blueprint\Steps\SetWCPaymentGateways;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
 use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
 use Automattic\WooCommerce\Blueprint\Steps\Step;
@@ -85,6 +84,5 @@ class ExportWCPaymentGateways implements StepExporter {
 	 */
 	public function get_description() {
 		return __( 'It includes all settings in WooCommerce | Settings | Payments.', 'woocommerce' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

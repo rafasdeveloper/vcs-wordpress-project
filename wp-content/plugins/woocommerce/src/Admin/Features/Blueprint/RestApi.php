@@ -14,7 +14,6 @@ use Automattic\WooCommerce\Blueprint\StepProcessorResult;
 use Automattic\WooCommerce\Blueprint\ZipExportedSchema;
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class RestApi
@@ -37,7 +36,6 @@ class RestApi {
 	protected $namespace = 'wc-admin';
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get maximum allowed file size for blueprint uploads.
 	 *
 	 * @return int Maximum file size in bytes
@@ -68,7 +66,6 @@ class RestApi {
 					'permission_callback' => array( $this, 'check_permission' ),
 					'args'                => array(
 						'steps'         => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'description' => __( 'A list of plugins to install', 'woocommerce' ),
 							'type'        => 'object',
 							'properties'  => array(
@@ -100,7 +97,6 @@ class RestApi {
 							'default'     => false,
 							'required'    => false,
 						),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					),
 				),
 			)
@@ -114,7 +110,6 @@ class RestApi {
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => array( $this, 'import_step' ),
 					'permission_callback' => array( $this, 'check_permission' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'args'                => array(
 						'step_definition' => array(
 							'description' => __( 'The step definition to import', 'woocommerce' ),
@@ -136,7 +131,6 @@ class RestApi {
 	public function check_permission() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
 			return new \WP_Error( 'woocommerce_rest_cannot_view', __( 'Sorry, you cannot list resources.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return true;
 	}
@@ -156,7 +150,6 @@ class RestApi {
 
 		if ( isset( $payload['plugins'] ) ) {
 			$exporter->onBeforeExport(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'installPlugin',
 				function ( ExportInstallPluginSteps $exporter ) use ( $payload ) {
 					$exporter->filter(
@@ -170,7 +163,6 @@ class RestApi {
 
 		if ( isset( $payload['themes'] ) ) {
 			$exporter->onBeforeExport(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'installTheme',
 				function ( ExportInstallThemeSteps $exporter ) use ( $payload ) {
 					$exporter->filter(
@@ -188,14 +180,12 @@ class RestApi {
 			$zip  = new ZipExportedSchema( $data );
 			$data = $zip->zip();
 			$data = site_url( str_replace( ABSPATH, '', $data ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return new \WP_HTTP_Response(
 			array(
 				'data' => $data,
 				'type' => $export_as_zip ? 'zip' : 'json',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)
 		);
 	}
@@ -230,7 +220,6 @@ class RestApi {
 		}
 
 		if ( isset( $steps['themes'] ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$blueprint_steps[] = 'installTheme';
 		}
 
@@ -268,7 +257,6 @@ class RestApi {
 		return $settings;
 	}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Import a single step.
 	 *
@@ -277,7 +265,6 @@ class RestApi {
 	 * @return array
 	 */
 	public function import_step( \WP_REST_Request $request ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Get the raw body size.
 		$body_size = strlen( $request->get_body() );
 		if ( $body_size > $this->get_max_file_size() ) {
@@ -381,7 +368,6 @@ class RestApi {
 		);
 		return $schema;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Get the schema for the import-step endpoint.

@@ -9,7 +9,6 @@ use Automattic\WooCommerce\Blueprint\Util;
 use WC_Admin_Settings;
 use WC_Settings_Page;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Handles getting options from WooCommerce settings pages.
  *
@@ -34,7 +33,6 @@ class SettingOptions {
 			$setting_pages = WC_Admin_Settings::get_settings_pages();
 		}
 		$this->setting_pages = $setting_pages;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -163,6 +161,5 @@ class SettingOptions {
 			$options = array_merge( $options, $section['options'] );
 		}
 		return $options;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

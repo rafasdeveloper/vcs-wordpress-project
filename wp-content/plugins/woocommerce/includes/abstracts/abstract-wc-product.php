@@ -548,7 +548,6 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 */
 	public function get_attributes( $context = 'view' ) {
 		return $this->get_prop( 'attributes', $context );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -1966,7 +1965,6 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 			 * @since 9.8.0
 			 */
 			$html = apply_filters( 'woocommerce_empty_cogs_html', '', $this );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		} else {
 			$html = wc_price( $value ) . $this->get_price_suffix();
 		}
@@ -1981,7 +1979,6 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 		 * @since 9.8.0
 		 */
 		return apply_filters( 'woocommerce_get_cogs_html', $html, $value, $this );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

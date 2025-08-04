@@ -497,7 +497,6 @@ final class QueryFilters {
 
 		foreach ( $query_vars as $key => $value ) {
 			if ( 0 === strpos( $key, 'filter_' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$attribute    = wc_sanitize_taxonomy_name( str_replace( 'filter_', '', $key ) );
 				$taxonomy     = wc_attribute_taxonomy_name( $attribute );
 				$filter_terms = ! empty( $value ) ? explode( ',', wc_clean( wp_unslash( $value ) ) ) : array();

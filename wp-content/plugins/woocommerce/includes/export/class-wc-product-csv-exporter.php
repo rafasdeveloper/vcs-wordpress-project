@@ -9,7 +9,6 @@
 use Automattic\WooCommerce\Enums\ProductStatus;
 use Automattic\WooCommerce\Enums\ProductStockStatus;
 use Automattic\WooCommerce\Enums\ProductType;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\I18nUtil;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,12 +52,10 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 	 * Products belonging to what category should be exported.
 	 *
 	 * @var string
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	protected $product_category_to_export = array();
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Constructor.
 	 */
 	public function __construct() {
@@ -101,7 +98,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Return an array of columns to export.
 	 *
 	 * @since  3.1.0
@@ -159,7 +155,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 				'button_text'        => __( 'Button text', 'woocommerce' ),
 				'menu_order'         => __( 'Position', 'woocommerce' ),
 			)
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 	}
 
@@ -172,7 +167,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 		$args = array(
 			'status'   => array( ProductStatus::PRIVATE, ProductStatus::PUBLISH, ProductStatus::DRAFT, ProductStatus::FUTURE, ProductStatus::PENDING ),
 			'type'     => $this->product_types_to_export,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'limit'    => $this->get_limit(),
 			'page'     => $this->get_page(),
 			'orderby'  => array(
@@ -186,7 +180,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 			$args['category'] = $this->product_category_to_export;
 		}
 		$products = wc_get_products( apply_filters( "woocommerce_product_export_{$this->export_type}_query_args", $args ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$this->total_rows  = $products->total;
 		$this->row_data    = array();
@@ -195,7 +188,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 		foreach ( $products->products as $product ) {
 			// Check if the category is set, this means we need to fetch variations separately as they are not tied to a category.
 			if ( ! empty( $args['category'] ) && $product->is_type( ProductType::VARIABLE ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$variable_products[] = $product->get_id();
 			}
 
@@ -203,7 +195,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 		}
 
 		// If a category was selected we loop through the variations as they are not tied to a category so will be excluded by default.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! empty( $variable_products ) ) {
 			foreach ( $variable_products as $parent_id ) {
 				$products = wc_get_products(
@@ -639,7 +630,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 					$row[ 'downloads:name' . $i ]               = $download->get_name();
 					$row[ 'downloads:url' . $i ]                = $download->get_file();
 					$i++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 		}
@@ -717,7 +707,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 						}
 					}
 					$i++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 		}
@@ -756,7 +745,6 @@ class WC_Product_CSV_Exporter extends WC_CSV_Batch_Exporter {
 					$this->column_names[ $column_key ] = sprintf( __( 'Meta: %s', 'woocommerce' ), $meta->key );
 					$row[ $column_key ]                = $meta_value;
 					$i ++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 		}

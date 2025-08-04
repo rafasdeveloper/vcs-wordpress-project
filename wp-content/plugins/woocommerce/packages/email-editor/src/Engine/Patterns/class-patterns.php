@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine\Patterns;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Register block patterns.

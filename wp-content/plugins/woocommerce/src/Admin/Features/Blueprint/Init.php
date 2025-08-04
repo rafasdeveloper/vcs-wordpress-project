@@ -5,7 +5,6 @@ declare( strict_types = 1 );
 namespace Automattic\WooCommerce\Admin\Features\Blueprint;
 
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCCoreProfilerOptions;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCPaymentGateways;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsAccount;
 use Automattic\WooCommerce\Admin\Features\Blueprint\Exporters\ExportWCSettingsAdvanced;
@@ -24,7 +23,6 @@ use Automattic\WooCommerce\Admin\PageController;
 use Automattic\WooCommerce\Blueprint\Exporters\HasAlias;
 use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
 use Automattic\WooCommerce\Blueprint\StepProcessor;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blueprint\UseWPFunctions;
 
 /**
@@ -35,7 +33,6 @@ use Automattic\WooCommerce\Blueprint\UseWPFunctions;
 class Init {
 	use UseWPFunctions;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Array of initialized exporters.
 	 *
@@ -58,7 +55,6 @@ class Init {
 		);
 
 		add_filter( 'wooblueprint_exporters', array( $this, 'add_woo_exporters' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -81,7 +77,6 @@ class Init {
 			ExportWCSettingsProducts::class,
 			ExportWCTaxRates::class,
 			ExportWCShipping::class,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			ExportWCPaymentGateways::class,
 			ExportWCSettingsAccount::class,
 			ExportWCSettingsEmails::class,
@@ -114,7 +109,6 @@ class Init {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Return step groups for JS.
 	 *
 	 * This is used to populate exportable items on the blueprint settings page.
@@ -130,7 +124,6 @@ class Init {
 			array(
 				'id'          => 'settings',
 				'description' => __( 'It includes all the items featured in WooCommerce | Settings.', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'label'       => __( 'WooCommerce Settings', 'woocommerce' ),
 				'icon'        => 'settings',
 				'items'       => array_map(
@@ -139,7 +132,6 @@ class Init {
 							'id'          => $exporter instanceof HasAlias ? $exporter->get_alias() : $exporter->get_step_name(),
 							'label'       => $exporter->get_label(),
 							'description' => $exporter->get_description(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						);
 					},
 					$this->get_woo_exporters()
@@ -172,7 +164,6 @@ class Init {
 						'label' => $active_theme->get( 'Name' ),
 					),
 				),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			),
 		);
 	}
@@ -200,11 +191,9 @@ class Init {
 			// Used on the settings page.
 			// wcSettings.admin.blueprint_step_groups.
 			$settings['blueprint_step_groups'] = $this->get_step_groups_for_js();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$settings['blueprint_max_step_size_bytes'] = RestApi::MAX_FILE_SIZE;
 		}
 
 		return $settings;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

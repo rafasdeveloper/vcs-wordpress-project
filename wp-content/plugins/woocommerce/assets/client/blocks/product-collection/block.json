@@ -3,7 +3,6 @@
 	"apiVersion": 3,
 	"name": "woocommerce/product-collection",
 	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Product Collection",
 	"description": "Display a collection of products from your store.",
 	"category": "woocommerce",
@@ -71,5 +70,4 @@
 		"__experimentalLayout": true,
 		"interactivity": true
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -9,7 +9,6 @@ declare( strict_types = 1 );
 namespace MailPoet\EmailEditor\Validator\Schema;
 
 use MailPoet\EmailEditor\Validator\Schema;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Represents a schema for a number.

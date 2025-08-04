@@ -6,7 +6,6 @@
 namespace Automattic\WooCommerce\Utilities;
 
 use Automattic\WooCommerce\Caches\OrderCacheController;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Orders\PageController;
 use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
 use Automattic\WooCommerce\Internal\Utilities\COTMigrationUtil;
@@ -210,7 +209,6 @@ final class OrderUtil {
 		$count_per_status = wp_cache_get( $cache_key, 'counts' );
 
 		if ( false === $count_per_status ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			if ( self::custom_orders_table_usage_is_enabled() ) {
 				// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
 				$results = $wpdb->get_results(
@@ -223,7 +221,6 @@ final class OrderUtil {
 				// phpcs:enable
 
 				$count_per_status = array_map( 'absint', array_column( $results, 'count', 'status' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			} else {
 				$count_per_status = (array) wp_count_posts( $order_type );
 			}
@@ -235,7 +232,6 @@ final class OrderUtil {
 			);
 
 			wp_cache_set( $cache_key, $count_per_status, 'counts' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $count_per_status;

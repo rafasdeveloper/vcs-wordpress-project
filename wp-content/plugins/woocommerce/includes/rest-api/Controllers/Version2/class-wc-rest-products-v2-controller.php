@@ -854,7 +854,6 @@ class WC_REST_Products_V2_Controller extends WC_REST_CRUD_Controller {
 				case 'categories':
 					$base_data['categories'] = $this->get_taxonomy_terms( $product );
 					break;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				case 'tags':
 					$base_data['tags'] = $this->get_taxonomy_terms( $product, 'tag' );
 					break;

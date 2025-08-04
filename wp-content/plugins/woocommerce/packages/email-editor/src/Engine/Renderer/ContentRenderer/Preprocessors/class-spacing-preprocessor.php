@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * This preprocessor is responsible for setting default spacing values for blocks.

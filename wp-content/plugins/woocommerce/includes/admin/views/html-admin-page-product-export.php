@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 wp_enqueue_script( 'wc-product-export' );
 
 $exporter = new WC_Product_CSV_Exporter();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 <div class="wrap woocommerce">
 	<h1><?php esc_html_e( 'Export Products', 'woocommerce' ); ?></h1>
@@ -23,7 +22,6 @@ $exporter = new WC_Product_CSV_Exporter();
 				<span class="spinner is-active"></span>
 				<h2><?php esc_html_e( 'Export products to a CSV file', 'woocommerce' ); ?></h2>
 				<p><?php esc_html_e( 'This tool allows you to generate and download a CSV file containing a list of all products.', 'woocommerce' ); ?></p>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			</header>
 			<section>
 				<table class="form-table woocommerce-exporter-options">
@@ -44,7 +42,6 @@ $exporter = new WC_Product_CSV_Exporter();
 								</select>
 							</td>
 						</tr>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						<tr>
 							<th scope="row">
 								<label for="woocommerce-exporter-types"><?php esc_html_e( 'Which product types should be exported?', 'woocommerce' ); ?></label>
@@ -79,7 +76,6 @@ $exporter = new WC_Product_CSV_Exporter();
 								</select>
 							</td>
 						</tr>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						<tr>
 							<th scope="row">
 								<label for="woocommerce-exporter-meta"><?php esc_html_e( 'Export custom meta?', 'woocommerce' ); ?></label>

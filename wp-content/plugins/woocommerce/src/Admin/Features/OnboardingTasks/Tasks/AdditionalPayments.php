@@ -6,7 +6,6 @@ namespace Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks;
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Admin\Features\PaymentGatewaySuggestions\Init;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Payments Task
@@ -78,7 +77,6 @@ class AdditionalPayments extends Payments {
 	public function is_complete() {
 		if ( null === $this->is_complete_result ) {
 			$this->is_complete_result = self::has_enabled_additional_gateways();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $this->is_complete_result;
@@ -99,7 +97,6 @@ class AdditionalPayments extends Payments {
 			return false;
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( null !== $this->can_view_result ) {
 			return $this->can_view_result;
 		}
@@ -127,7 +124,6 @@ class AdditionalPayments extends Payments {
 		// Show task if there are any suggested gateways in additional category.
 		$this->can_view_result = ! empty( self::get_suggestion_gateways( 'category_additional' ) );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->can_view_result;
 	}
 
@@ -222,6 +218,5 @@ class AdditionalPayments extends Payments {
 			}
 		);
 		return $plugin_suggestions;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

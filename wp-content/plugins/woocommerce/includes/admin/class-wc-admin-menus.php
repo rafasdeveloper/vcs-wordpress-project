@@ -8,14 +8,12 @@
 
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Admin\PageController;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Marketplace;
 use Automattic\WooCommerce\Internal\Admin\Orders\COTRedirectionController;
 use Automattic\WooCommerce\Internal\Admin\Orders\PageController as Custom_Orders_PageController;
 use Automattic\WooCommerce\Internal\Admin\Logging\PageController as LoggingPageController;
 use Automattic\WooCommerce\Internal\Admin\Logging\FileV2\{ FileListTable, SearchListTable };
 use Automattic\WooCommerce\Internal\Admin\WCAdminAssets;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 

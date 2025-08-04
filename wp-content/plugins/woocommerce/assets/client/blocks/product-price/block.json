@@ -1,7 +1,6 @@
 {
 	"name": "woocommerce/product-price",
 	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Product Price",
 	"description": "Display the price of a product.",
 	"category": "woocommerce-product-elements",
@@ -24,7 +23,6 @@
 	"apiVersion": 3,
 	"supports": {
 		"html": false
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	},
 	"ancestor": [
 		"woocommerce/all-products",

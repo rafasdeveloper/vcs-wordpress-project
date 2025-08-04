@@ -11,7 +11,6 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -80,4 +79,3 @@ class StoreInfo extends AIEndpoint {
 		);
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

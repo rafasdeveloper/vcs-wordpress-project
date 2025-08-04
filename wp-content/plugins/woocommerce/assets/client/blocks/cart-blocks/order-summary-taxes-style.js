@@ -1,2 +1,1 @@
 "use strict";(self.webpackChunkwebpackWcBlocksStylingJsonp=self.webpackChunkwebpackWcBlocksStylingJsonp||[]).push([[8262],{48604:(e,s,t)=>{t.r(s),t.d(s,{default:()=>n});var c=t(41616),k=t(26897),l=t(12207);const n=(0,c.withFilteredAttributes)(l.A)(k.A)}}]);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

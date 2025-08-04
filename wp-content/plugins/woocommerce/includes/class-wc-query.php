@@ -672,7 +672,6 @@ class WC_Query {
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! $wp_query->is_main_query() || ( ! isset( $_GET['max_price'] ) && ! isset( $_GET['min_price'] ) ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $args;
 		}
 
@@ -933,7 +932,6 @@ class WC_Query {
 			if ( ! empty( $_GET ) ) {
 				foreach ( $_GET as $key => $value ) {
 					if ( 0 === strpos( $key, 'filter_' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						$attribute    = wc_sanitize_taxonomy_name( str_replace( 'filter_', '', $key ) );
 						$taxonomy     = wc_attribute_taxonomy_name( $attribute );
 						$filter_terms = ! empty( $value ) ? explode( ',', wc_clean( wp_unslash( $value ) ) ) : array();

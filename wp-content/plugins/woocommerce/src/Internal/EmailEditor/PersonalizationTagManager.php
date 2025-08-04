@@ -6,7 +6,6 @@ namespace Automattic\WooCommerce\Internal\EmailEditor;
 
 use MailPoet\EmailEditor\Engine\PersonalizationTags\Personalization_Tag;
 use MailPoet\EmailEditor\Engine\PersonalizationTags\Personalization_Tags_Registry;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 
@@ -18,7 +17,6 @@ defined( 'ABSPATH' ) || exit;
 class PersonalizationTagManager {
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Initialize the personalization tag manager.
 	 *
 	 * @internal
@@ -26,7 +24,6 @@ class PersonalizationTagManager {
 	 */
 	final public function init(): void {
 		add_filter( 'mailpoet_email_editor_register_personalization_tags', array( $this, 'register_personalization_tags' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -68,7 +65,6 @@ class PersonalizationTagManager {
 				},
 			)
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $registry;
 	}
 }

@@ -7,7 +7,6 @@
  * @package WooCommerce
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
@@ -37,7 +36,6 @@ if ( ! $tab_exists ) {
 
 $hide_nav = FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-settings' ) &&
 	( 'checkout' === $current_tab && 'offline' === $current_section );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <div class="wrap woocommerce">
@@ -76,7 +74,6 @@ $hide_nav = FeaturesUtil::feature_is_enabled( 'reactify-classic-payments-setting
 			<?php endif; ?>
 			<?php wp_nonce_field( 'woocommerce-settings' ); ?>
 		</p>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	</form>
 	<?php do_action( 'woocommerce_after_settings_' . $current_tab ); ?>
 </div>

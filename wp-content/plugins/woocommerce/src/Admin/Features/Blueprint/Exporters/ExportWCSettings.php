@@ -14,7 +14,6 @@ use Automattic\WooCommerce\Blueprint\UseWPFunctions;
  * Class ExportWCSettingsGeneral
  *
  * This class exports WooCommerce settings and implements the StepExporter and HasAlias interfaces.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  *
  * @package Automattic\WooCommerce\Admin\Features\Blueprint\Exporters
  */
@@ -73,6 +72,5 @@ abstract class ExportWCSettings implements StepExporter, HasAlias {
 	 */
 	public function get_description() {
 		return __( 'It includes all settings in WooCommerce | Settings | General.', 'woocommerce' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

@@ -6,7 +6,6 @@
 namespace Automattic\WooCommerce\Admin;
 
 use Automattic\WooCommerce\Internal\Admin\Loader;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Gateway_BACS;
 use WC_Gateway_Cheque;
 use WC_Gateway_COD;
@@ -253,7 +252,6 @@ class PageController {
 	 * @return string Current screen ID.
 	 */
 	public function get_current_screen_id() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$current_screen = get_current_screen();
 		if ( ! $current_screen ) {
 			// Filter documentation below.
@@ -592,5 +590,4 @@ class PageController {
 	public static function is_embed_page() {
 		return wc_admin_is_connected_page();
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

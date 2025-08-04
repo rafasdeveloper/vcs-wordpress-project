@@ -1,7 +1,6 @@
 {
 	"name": "woocommerce/product-image-gallery",
 	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Product Image Gallery",
 	"icon": "gallery",
 	"description": "Display a product's images.",
@@ -22,4 +21,3 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

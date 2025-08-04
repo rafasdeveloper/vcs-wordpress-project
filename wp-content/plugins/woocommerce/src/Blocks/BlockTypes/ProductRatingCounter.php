@@ -52,7 +52,6 @@ class ProductRatingCounter extends AbstractBlock {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the block's attributes.
 	 *
 	 * @param array $attributes Block attributes. Default empty array.

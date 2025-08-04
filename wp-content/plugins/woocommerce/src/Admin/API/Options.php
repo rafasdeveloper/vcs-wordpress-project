@@ -5,7 +5,6 @@
  * Handles requests to get and update options in the wp_options table.
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Admin\API;
 
 defined( 'ABSPATH' ) || exit;
@@ -86,7 +85,6 @@ class Options extends \WC_REST_Data_Controller {
 					);
 				}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				return new \WP_Error( 'woocommerce_rest_cannot_view', __( 'Sorry, you cannot view these options.', 'woocommerce' ), array( 'status' => rest_authorization_required_code() ) );
 			}
 		}
@@ -110,13 +108,11 @@ class Options extends \WC_REST_Data_Controller {
 		}
 
 		// Don't allow to update options in non-production environments if the option is not whitelisted. This is to force developers to update the option permissions when adding new options.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( 'production' !== wp_get_environment_type() ) {
 			return false;
 		}
 
 		wc_deprecated_function( 'Automattic\WooCommerce\Admin\API\Options::' . ( $is_update ? 'update_options' : 'get_options' ), '6.3' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return current_user_can( 'manage_options' );
 	}
 
@@ -161,7 +157,6 @@ class Options extends \WC_REST_Data_Controller {
 	public static function get_default_option_permissions() {
 		$is_woocommerce_admin    = \Automattic\WooCommerce\Internal\Admin\Homescreen::is_admin_user();
 		$woocommerce_permissions = array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'woocommerce_setup_jetpack_opted_in',
 			'woocommerce_stripe_settings',
 			'woocommerce-ppcp-settings',
@@ -231,7 +226,6 @@ class Options extends \WC_REST_Data_Controller {
 			'woocommerce_remote_variant_assignment',
 			'woocommerce_gateway_order',
 			'woocommerce_feature_reactify-classic-payments-settings_enabled',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// WC Test helper options.
 			'wc-admin-test-helper-rest-api-filters',
 			'wc_admin_helper_feature_values',
@@ -245,7 +239,6 @@ class Options extends \WC_REST_Data_Controller {
 		return array_merge(
 			array_fill_keys( $theme_permissions, current_user_can( 'edit_theme_options' ) ),
 			array_fill_keys( $woocommerce_permissions, $is_woocommerce_admin )
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 	}
 

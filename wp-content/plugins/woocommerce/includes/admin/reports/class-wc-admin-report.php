@@ -280,7 +280,6 @@ class WC_Admin_Report {
 					}
 				} else {
 					$where_value = "{$value['operator']} '{$value['meta_value']}'";
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 
 				if ( ! empty( $where_value ) ) {
@@ -328,7 +327,6 @@ class WC_Admin_Report {
 					}
 				} else {
 					$where_value = "{$value['operator']} '{$value['value']}'";
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 
 				if ( ! empty( $where_value ) ) {

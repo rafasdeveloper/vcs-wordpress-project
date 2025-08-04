@@ -13,7 +13,6 @@ $image3 = PatternsHelper::get_image_url( $images, 2, 'assets/images/pattern-plac
 $image4 = PatternsHelper::get_image_url( $images, 3, 'assets/images/pattern-placeholders/road-sport-vintage-wheel-retro-old.jpg' );
 
 $social_title = $content['titles'][0]['default'] ?? '';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <!-- wp:group {"metadata":{"name":"Social: Follow us on social media"},"align":"full","style":{"spacing":{"padding":{"top":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","bottom":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","left":"var(--wp--style--root--padding-left, var(--wp--custom--gap--horizontal))","right":"var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal))"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","justifyContent":"center"}} -->
@@ -95,4 +94,3 @@ $social_title = $content['titles'][0]['default'] ?? '';
 	<!-- /wp:spacer -->
 </div>
 <!-- /wp:group -->
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

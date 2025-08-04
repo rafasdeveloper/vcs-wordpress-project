@@ -349,6 +349,5 @@
 			$underObservation.on( 'change', changeAgent );
 			changeAgent();
 		} );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	} );
 } )( jQuery, woocommerce_settings_params, wp );

@@ -6,7 +6,6 @@ use Automattic\WooCommerce\Blocks\AI\Connection;
 use Automattic\WooCommerce\Blocks\Images\Pexels;
 use WP_Error;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * ContentProcessor class.
  *
@@ -96,4 +95,3 @@ class ContentProcessor {
 		return add_query_arg( $query_params, $url );
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

@@ -9,7 +9,6 @@ use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
 
 $testimonials_title = $content['titles'][0]['default'] ?? '';
 $description        = $content['descriptions'][0]['default'] ?? '';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <!-- wp:group {"metadata":{"name":"Testimonials Single"},"align":"full","style":{"spacing":{"padding":{"top":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","bottom":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","left":"var(--wp--style--root--padding-left, var(--wp--custom--gap--horizontal))","right":"var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal))"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","justifyContent":"center"}} -->
@@ -24,7 +23,6 @@ $description        = $content['descriptions'][0]['default'] ?? '';
 			<!-- wp:image {"width":"164px","className":"is-style-rounded"} -->
 			<figure class="wp-block-image is-resized is-style-rounded">
 				<img src="<?php echo esc_url( PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/portrait.png' ) ); ?>" alt="<?php esc_attr_e( 'Placeholder image with the avatar of the user who is writing the testimonial.', 'woocommerce' ); ?>" style="width:164px"/>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			</figure>
 			<!-- /wp:image -->
 		</div>
@@ -53,4 +51,3 @@ $description        = $content['descriptions'][0]['default'] ?? '';
 	<!-- /wp:spacer -->
 </div>
 <!-- /wp:group -->
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

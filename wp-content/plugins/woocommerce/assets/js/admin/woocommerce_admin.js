@@ -791,5 +791,4 @@
 		wc_order_lock.init();
 	} );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 } )( jQuery, woocommerce_admin );

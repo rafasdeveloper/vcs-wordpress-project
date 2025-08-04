@@ -118,7 +118,6 @@ class Note extends \WC_Data {
 	*/
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get allowed types.
 	 *
 	 * @return array
@@ -132,7 +131,6 @@ class Note extends \WC_Data {
 			self::E_WC_ADMIN_NOTE_MARKETING,
 			self::E_WC_ADMIN_NOTE_SURVEY,
 			self::E_WC_ADMIN_NOTE_EMAIL,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		return apply_filters( 'woocommerce_note_types', $allowed_types );
@@ -392,7 +390,6 @@ class Note extends \WC_Data {
 			$this->error( 'admin_note_invalid_data', __( 'The admin note type prop cannot be empty.', 'woocommerce' ) );
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! in_array( $type, self::get_allowed_types(), true ) ) {
 			$this->error(
 				'admin_note_invalid_data',

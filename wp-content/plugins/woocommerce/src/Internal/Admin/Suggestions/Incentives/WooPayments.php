@@ -137,7 +137,6 @@ class WooPayments extends Incentive {
 			'has_orders'   => $this->has_orders(),
 			// Whether the store has at least one payment gateway enabled.
 			'has_payments' => ! empty( WC()->payment_gateways()->get_available_payment_gateways() ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'has_wcpay'    => $this->has_wcpay(),
 		);
 
@@ -339,7 +338,6 @@ class WooPayments extends Incentive {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Generate a hash from the store context data.
 	 *
 	 * @param array $context The store context data.

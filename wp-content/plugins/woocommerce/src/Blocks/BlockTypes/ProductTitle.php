@@ -54,7 +54,6 @@ class ProductTitle extends AbstractBlock {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Register script and style assets for the block type before it is registered.
 	 *
 	 * This registers the scripts; it does not enqueue them.

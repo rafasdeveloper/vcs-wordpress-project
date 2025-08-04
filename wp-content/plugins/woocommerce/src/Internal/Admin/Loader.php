@@ -5,14 +5,12 @@
 
 namespace Automattic\WooCommerce\Internal\Admin;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Admin\PageController;
 use Automattic\WooCommerce\Admin\PluginsHelper;
 use Automattic\WooCommerce\Internal\Admin\ProductReviews\Reviews;
 use Automattic\WooCommerce\Internal\Admin\ProductReviews\ReviewsCommentsOverrides;
 use Automattic\WooCommerce\Internal\Admin\Settings;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Loader Class.
@@ -124,7 +122,6 @@ class Loader {
 			return;
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$sections = self::get_embed_breadcrumbs();
 		$sections = is_array( $sections ) ? $sections : array( $sections );
 
@@ -164,7 +161,6 @@ class Loader {
 	 */
 	public static function add_admin_body_classes( $admin_body_class = '' ) {
 		if ( ! PageController::is_admin_or_embed_page() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $admin_body_class;
 		}
 
@@ -174,7 +170,6 @@ class Loader {
 			$classes[] = 'woocommerce-embed-page';
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Some routes or features like onboarding hide the wp-admin navigation and masterbar.
 		 * Setting `woocommerce_admin_is_loading` to true allows us to premeptively hide these
@@ -325,7 +320,6 @@ class Loader {
 			$settings['orderStatuses'] = self::get_order_statuses( wc_get_order_statuses() );
 			$settings['stockStatuses'] = self::get_order_statuses( wc_get_product_stock_status_options() );
 			$settings['currency']      = self::get_currency_settings();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$settings['locale']        = array(
 				'siteLocale'    => isset( $settings['siteLocale'] )
 					? $settings['siteLocale']
@@ -459,7 +453,6 @@ class Loader {
 			$formatted_statuses[ $formatted_key ] = $value;
 		}
 		return $formatted_statuses;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -472,7 +465,6 @@ class Loader {
 		$all_synced_statuses   = OrdersDataStore::get_all_statuses();
 		$unregistered_statuses = array_diff( $all_synced_statuses, array_keys( $registered_statuses ) );
 		$formatted_status_keys = self::get_order_statuses( array_fill_keys( $unregistered_statuses, '' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$formatted_statuses    = array_keys( $formatted_status_keys );
 
 		return array_combine( $formatted_statuses, $formatted_statuses );
@@ -491,7 +483,6 @@ class Loader {
 			'description' => __( 'Settings for WooCommerce admin reporting.', 'woocommerce' ),
 		);
 		return $groups;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -532,7 +523,6 @@ class Loader {
 			'type'        => 'text',
 		);
 		return $settings;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -542,7 +532,6 @@ class Loader {
 	 * @return array
 	 */
 	public static function get_custom_settings( $settings ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$wc_rest_settings_options_controller = new \WC_REST_Setting_Options_Controller();
 		$wc_admin_group_settings             = $wc_rest_settings_options_controller->get_group_settings( 'wc_admin' );
 		$settings['wcAdminSettings']         = array();
@@ -586,7 +575,6 @@ class Loader {
 				'priceFormat'       => html_entity_decode( get_woocommerce_price_format() ),
 			)
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

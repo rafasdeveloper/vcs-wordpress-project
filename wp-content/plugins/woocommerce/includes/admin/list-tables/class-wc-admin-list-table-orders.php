@@ -284,12 +284,10 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 				</thead>
 				<tbody>';
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		foreach ( $line_items as $item_id => $item ) {
 
 			$product_object = is_callable( array( $item, 'get_product' ) ) ? $item->get_product() : null;
 			$row_class      = apply_filters( 'woocommerce_admin_html_order_preview_item_class', '', $item, $order );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			$html .= '<tr class="wc-order-preview-table__item wc-order-preview-table__item--' . esc_attr( $item_id ) . ( $row_class ? ' ' . esc_attr( $row_class ) : '' ) . '">';
 
@@ -325,7 +323,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 						break;
 					case 'total':
 						$html .= wc_price( $item->get_total(), array( 'currency' => $order->get_currency() ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						break;
 					default:
 						$html .= apply_filters( 'woocommerce_admin_order_preview_line_item_column_' . sanitize_key( $column ), '', $item, $item_id, $order );
@@ -423,7 +420,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 		$shipping_address = $order->get_formatted_shipping_address();
 
 		return apply_filters(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'woocommerce_admin_order_preview_get_order_details',
 			array(
 				'data'                       => $order->get_data(),
@@ -442,7 +438,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 			),
 			$order
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -466,7 +461,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 				if ( $order ) {
 					do_action( 'woocommerce_remove_order_personal_data', $order );
 					$changed++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 		} elseif ( false !== strpos( $action, 'mark_' ) ) {
@@ -484,7 +478,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 					$order->update_status( $new_status, __( 'Order status changed by bulk edit:', 'woocommerce' ), true );
 					do_action( 'woocommerce_order_edit_status', $id, $new_status );
 					$changed++;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 		}
@@ -551,7 +544,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 	 * Render any custom filters and search inputs for the list table.
 	 */
 	protected function render_filters() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->orders_list_table->customers_filter();
 	}
 
@@ -593,7 +585,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 			// @codingStandardsIgnoreEnd
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Sorting.
 		if ( isset( $query_vars['orderby'] ) ) {
 			if ( 'order_total' === $query_vars['orderby'] ) {
@@ -618,7 +609,6 @@ class WC_Admin_List_Table_Orders extends WC_Admin_List_Table {
 
 			$query_vars['post_status'] = array_keys( $post_statuses );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $query_vars;
 	}
 

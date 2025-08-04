@@ -1,6 +1,5 @@
 <?php
 /**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  * Plugin Name: Email Editor
  * Plugin URI: https://woocommerce.com/
  * Description: An empty email-editor definition file to setup wp-env test env.
@@ -12,4 +11,3 @@
  */
 
 require_once __DIR__ . '/vendor/autoload.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

@@ -16,7 +16,6 @@ use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Cleanup_P
 use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Preprocessor;
 use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Spacing_Preprocessor;
 use MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors\Typography_Preprocessor;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class Process_Manager
@@ -45,7 +44,6 @@ class Process_Manager {
 	 * @param Spacing_Preprocessor       $spacing_preprocessor Spacing preprocessor.
 	 * @param Highlighting_Postprocessor $highlighting_postprocessor Highlighting postprocessor.
 	 * @param Variables_Postprocessor    $variables_postprocessor Variables postprocessor.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function __construct(
 		Cleanup_Preprocessor $cleanup_preprocessor,
@@ -54,14 +52,12 @@ class Process_Manager {
 		Spacing_Preprocessor $spacing_preprocessor,
 		Highlighting_Postprocessor $highlighting_postprocessor,
 		Variables_Postprocessor $variables_postprocessor
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	) {
 		$this->register_preprocessor( $cleanup_preprocessor );
 		$this->register_preprocessor( $blocks_width_preprocessor );
 		$this->register_preprocessor( $typography_preprocessor );
 		$this->register_preprocessor( $spacing_preprocessor );
 		$this->register_postprocessor( $highlighting_postprocessor );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->register_postprocessor( $variables_postprocessor );
 	}
 

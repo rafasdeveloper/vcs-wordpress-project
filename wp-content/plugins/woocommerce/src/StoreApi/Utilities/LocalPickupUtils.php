@@ -83,7 +83,6 @@ class LocalPickupUtils {
 				return $methods;
 			},
 			array()
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		// We use array_values because this will be used in JS, so we don't need the (numerical) keys.
@@ -94,5 +93,4 @@ class LocalPickupUtils {
 			)
 		);
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

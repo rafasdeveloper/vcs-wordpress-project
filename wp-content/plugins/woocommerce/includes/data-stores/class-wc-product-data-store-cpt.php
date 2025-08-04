@@ -1927,7 +1927,6 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP implements WC_Object_Da
 
 			$term_group_query = '';
 			$searchand        = '';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			foreach ( $search_terms as $search_term ) {
 				$like = '%' . $wpdb->esc_like( $search_term ) . '%';
@@ -1945,7 +1944,6 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP implements WC_Object_Da
 
 			if ( $term_group_query ) {
 				$search_queries[] = $term_group_query;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 

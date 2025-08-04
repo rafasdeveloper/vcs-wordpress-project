@@ -50,7 +50,6 @@ class WC_Helper_API {
 		if ( ! empty( $args['authenticated'] ) ) {
 			if ( ! self::_authenticate( $url, $args ) ) {
 				return new WP_Error( 'authentication', 'Authentication failed.' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 

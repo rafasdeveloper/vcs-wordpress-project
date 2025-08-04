@@ -9,7 +9,6 @@ declare( strict_types = 1 );
 namespace MailPoet\EmailEditor\Integrations\Core\Renderer\Blocks;
 
 use MailPoet\EmailEditor\Engine\Settings_Controller;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Renders a list block.

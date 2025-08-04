@@ -1179,4 +1179,3 @@ function wc_get_log_file_name( $handle ) {
 
 	return "{$file_id}-{$hash}";
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

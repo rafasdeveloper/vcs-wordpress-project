@@ -10,7 +10,6 @@ use Automattic\WooCommerce\Checkout\Helpers\ReserveStockException;
 use Automattic\WooCommerce\StoreApi\Utilities\CheckoutTrait;
 use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFieldsSchema\DocumentObject;
 use Automattic\WooCommerce\Admin\Features\Features;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Checkout class.
@@ -176,7 +175,6 @@ class Checkout extends AbstractCartRoute {
 				wc_release_stock_for_order( $this->order );
 				wc_release_coupons_for_order( $this->order );
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $this->add_response_headers( $response );
@@ -250,7 +248,6 @@ class Checkout extends AbstractCartRoute {
 			} else {
 				$additional_fields = $this->additional_fields_controller->get_fields_for_location( $context_data['location'] );
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			// These values are used to validate custom rules and generate the document object.
 			$field_values = (array) $request->get_param( $context_data['param'] ) ?? [];
@@ -258,7 +255,6 @@ class Checkout extends AbstractCartRoute {
 			foreach ( $additional_fields as $field_key => $field ) {
 				// Skip values that were not posted if the request is partial or the field is not required.
 				if ( ! isset( $field_values[ $field_key ] ) && ( $is_partial || empty( $field['required'] ) ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					continue;
 				}
 
@@ -267,7 +263,6 @@ class Checkout extends AbstractCartRoute {
 
 				if ( empty( $field_value ) ) {
 					if ( ! empty( $field['required'] ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						/* translators: %s: is the field label */
 						$error_message = sprintf( __( '%s is required', 'woocommerce' ), $field['label'] );
 						if ( 'shipping_address' === $context ) {
@@ -404,7 +399,6 @@ class Checkout extends AbstractCartRoute {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	protected function get_route_post_response( \WP_REST_Request $request ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$validation_callback = $this->validate_callback( $request );
 
 		if ( is_wp_error( $validation_callback ) ) {
@@ -426,7 +420,6 @@ class Checkout extends AbstractCartRoute {
 		 * Validate that the cart is not empty.
 		 */
 		$this->cart_controller->validate_cart_not_empty();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Validate items and fix violations before the order is processed.
@@ -438,7 +431,6 @@ class Checkout extends AbstractCartRoute {
 		 * uses the up-to-date customer address.
 		 */
 		$this->update_customer_from_request( $request );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Create (or update) Draft Order and process request data.
@@ -446,13 +438,11 @@ class Checkout extends AbstractCartRoute {
 		$this->create_or_update_draft_order( $request );
 		$this->update_order_from_request( $request );
 		$this->process_customer( $request );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Validate updated order before payment is attempted.
 		 */
 		$this->order_controller->validate_order_before_payment( $this->order );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Hold coupons for the order as soon as the draft order is created.
@@ -496,7 +486,6 @@ class Checkout extends AbstractCartRoute {
 				esc_html( $e->getCode() )
 			);
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		wc_do_deprecated_action(
 			'__experimental_woocommerce_blocks_checkout_order_processed',
@@ -518,7 +507,6 @@ class Checkout extends AbstractCartRoute {
 			'This action was deprecated in WooCommerce Blocks version 7.2.0. Please use woocommerce_store_api_checkout_order_processed instead.'
 		);
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Fires before an order is processed by the Checkout Block/Store API.
 		 *
@@ -548,7 +536,6 @@ class Checkout extends AbstractCartRoute {
 			$this->process_without_payment( $request, $payment_result );
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->prepare_item_for_response(
 			(object) [
 				'order'          => wc_get_order( $this->order ),
@@ -626,7 +613,6 @@ class Checkout extends AbstractCartRoute {
 			$this->order = $this->order_controller->create_order_from_cart();
 		} else {
 			$this->order_controller->update_order_from_cart( $this->order, true );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		wc_do_deprecated_action(
@@ -679,7 +665,6 @@ class Checkout extends AbstractCartRoute {
 
 		// Store order ID to session.
 		$this->set_draft_order_id( $this->order->get_id() );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -738,7 +723,6 @@ class Checkout extends AbstractCartRoute {
 			} else {
 				$additional_fields = $this->additional_fields_controller->get_fields_for_location( $context_data['location'] );
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			if ( 'shipping_address' === $context_data['param'] ) {
 				$field_values = (array) $request['shipping_address'] ?? ( $request['billing_address'] ?? [] );
@@ -761,7 +745,6 @@ class Checkout extends AbstractCartRoute {
 					$this->update_customer_address_field( $customer, $key, $value, $context_data['group'] );
 				}
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		/**
@@ -854,12 +837,10 @@ class Checkout extends AbstractCartRoute {
 
 			// Set the customer auth cookie.
 			wc_set_customer_auth_cookie( $customer_id );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		// Persist customer address data to account.
 		$this->order_controller->sync_customer_data_with_order( $this->order );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

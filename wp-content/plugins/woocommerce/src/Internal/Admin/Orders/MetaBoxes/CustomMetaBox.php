@@ -144,14 +144,12 @@ class CustomMetaBox {
 		$meta_key_input_id = 'metakeyselect';
 
 		$keys = $this->order_meta_keys_autofill( null, $order );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		?>
 		<p><strong><?php esc_html_e( 'Add New Custom Field:', 'woocommerce' ); ?></strong></p>
 		<table id="newmeta">
 			<thead>
 			<tr>
 				<th class="left"><label for="<?php echo esc_attr( $meta_key_input_id ); ?>"><?php esc_html_e( 'Name', 'woocommerce' ); ?></label></th>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				<th><label for="metavalue"><?php esc_html_e( 'Value', 'woocommerce' ); ?></label></th>
 			</tr>
 			</thead>
@@ -178,7 +176,6 @@ class CustomMetaBox {
 					<?php } else { ?>
 						<input type="text" id="metakeyinput" name="metakeyinput" value="" />
 					<?php } ?>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				</td>
 				<td><textarea id="metavalue" name="metavalue" rows="2" cols="25"></textarea>
 				<?php wp_nonce_field( 'add-meta', '_ajax_nonce-add-meta', false ); ?>
@@ -226,7 +223,6 @@ class CustomMetaBox {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Reimplementation of WP core's `wp_ajax_add_meta` method to support order custom meta updates with custom tables.
 	 */
 	public function add_meta_ajax() {

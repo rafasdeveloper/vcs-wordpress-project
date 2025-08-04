@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * This class is responsible checking the dependencies of the email editor.

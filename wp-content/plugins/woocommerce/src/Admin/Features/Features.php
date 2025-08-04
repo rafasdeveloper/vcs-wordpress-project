@@ -54,13 +54,11 @@ class Features {
 	 * Constructor.
 	 */
 	public function __construct() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! self::should_load_features() ) {
 			return;
 		}
 
 		$this->register_internal_class_aliases();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Load feature before WooCommerce update hooks.
 		add_action( 'init', array( __CLASS__, 'load_features' ), 4 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'maybe_load_beta_features_modal' ) );
@@ -122,13 +120,11 @@ class Features {
 		$feature_class = 'Automattic\\WooCommerce\\Admin\\Features\\' . $feature;
 
 		if ( class_exists( $feature_class ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $feature_class;
 		}
 
 		// Handle features contained in subdirectory.
 		if ( class_exists( $feature_class . '\\Init' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $feature_class . '\\Init';
 		}
 

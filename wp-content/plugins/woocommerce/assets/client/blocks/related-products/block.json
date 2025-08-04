@@ -1,13 +1,11 @@
 {
 	"name": "woocommerce/related-products",
 	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Related Products",
 	"icon": "product",
 	"description": "Display related products.",
 	"category": "woocommerce",
 	"supports": {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"align": true,
 		"reusable": false,
 		"inserter": false

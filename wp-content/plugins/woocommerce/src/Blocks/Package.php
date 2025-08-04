@@ -115,7 +115,6 @@ class Package {
 					return new Migration();
 				}
 			);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return $container;
 	}

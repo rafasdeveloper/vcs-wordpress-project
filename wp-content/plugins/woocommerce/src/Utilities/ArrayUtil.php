@@ -3,7 +3,6 @@
  * A class of utilities for dealing with arrays.
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Utilities;
 
 /**
@@ -347,5 +346,4 @@ class ArrayUtil {
 
 		return $result;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

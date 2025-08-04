@@ -46,7 +46,6 @@ class ProductSummary extends AbstractBlock {
 			'__experimentalSelector' => '.wc-block-components-product-summary',
 		);
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Overwrite parent method to prevent script registration.
@@ -175,7 +174,6 @@ class ProductSummary extends AbstractBlock {
 	 *
 	 * NOTE: If editing, keep it in sync with generateSummary function from
 	 * plugins/woocommerce-blocks/assets/js/base/components/summary/utils.ts!
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * Once HTML API allow for HTML manipulation both functions (PHP and JS)
 	 * should be updated to solution fully respecting the word count.

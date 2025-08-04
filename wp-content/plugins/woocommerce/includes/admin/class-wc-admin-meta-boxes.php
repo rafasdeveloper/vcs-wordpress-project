@@ -169,7 +169,6 @@ class WC_Admin_Meta_Boxes {
 			)
 		);
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -285,7 +284,6 @@ class WC_Admin_Meta_Boxes {
 	 */
 	public function remove_block_templates( $templates ) {
 		if ( count( $templates ) === 0 || ! wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $templates;
 		}
 

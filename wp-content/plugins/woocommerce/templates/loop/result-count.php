@@ -15,7 +15,6 @@
  * @see         https://woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
  * @version     9.4.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,7 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <p class="woocommerce-result-count" <?php echo ( empty( $orderedby ) || 1 === intval( $total ) ) ? '' : 'role="alert" aria-relevant="all" data-is-sorted-by="true"'; ?>>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	<?php
 	// phpcs:disable WordPress.Security
 	if ( 1 === intval( $total ) ) {

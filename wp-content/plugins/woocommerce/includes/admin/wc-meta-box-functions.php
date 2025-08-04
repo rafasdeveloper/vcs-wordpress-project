@@ -70,14 +70,12 @@ function woocommerce_wp_text_input( $field, ?WC_Data $data = null ) {
 
 	if ( ! empty( $field['description'] ) && false !== $field['desc_tip'] ) {
 		echo wc_help_tip( $field['description'] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	echo '<input type="' . esc_attr( $field['type'] ) . '" class="' . esc_attr( $field['class'] ) . '" style="' . esc_attr( $field['style'] ) . '" name="' . esc_attr( $field['name'] ) . '" id="' . esc_attr( $field['id'] ) . '" value="' . esc_attr( $field['value'] ) . '" placeholder="' . esc_attr( $field['placeholder'] ) . '" ' . implode( ' ', $custom_attributes ) . ' /> ';
 
 	if ( ! empty( $field['description'] ) && false === $field['desc_tip'] ) {
 		echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	echo '</p>';

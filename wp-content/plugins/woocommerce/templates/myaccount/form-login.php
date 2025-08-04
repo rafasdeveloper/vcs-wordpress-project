@@ -13,7 +13,6 @@
  * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
  * @version 9.7.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +38,6 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 				<label for="username"><?php esc_html_e( 'Username or email address', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>
 				<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" autocomplete="username" value="<?php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>" required aria-required="true" /><?php // @codingStandardsIgnoreLine ?>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			</p>
 			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 				<label for="password"><?php esc_html_e( 'Password', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>

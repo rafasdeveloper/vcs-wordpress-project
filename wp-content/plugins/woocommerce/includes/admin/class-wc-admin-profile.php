@@ -192,7 +192,6 @@ if ( ! class_exists( 'WC_Admin_Profile', false ) ) :
 									<input type="text" name="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $this->get_user_meta( $user->ID, $key ) ); ?>" class="<?php echo ( ! empty( $field['class'] ) ? esc_attr( $field['class'] ) : 'regular-text' ); ?>" />
 								<?php endif; ?>
 								<p class="description"><?php echo wp_kses_post( $field['description'] ); ?></p>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							</td>
 						</tr>
 					<?php endforeach; ?>

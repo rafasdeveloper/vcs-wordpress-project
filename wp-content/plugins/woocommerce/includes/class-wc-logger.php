@@ -318,7 +318,6 @@ class WC_Logger implements WC_Logger_Interface {
 	 * @return bool
 	 */
 	public function clear( $source = '' ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! $source ) {
 			return false;
 		}
@@ -326,7 +325,6 @@ class WC_Logger implements WC_Logger_Interface {
 		foreach ( $this->get_handlers() as $handler ) {
 			if ( is_callable( array( $handler, 'clear' ) ) ) {
 				$handler->clear( $source );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		}
 

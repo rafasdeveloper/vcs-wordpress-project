@@ -491,7 +491,6 @@ class WC_Settings_Products extends WC_Settings_Page {
 		 * Because of this, we need to recount the terms to keep them in-sync.
 		 */
 		WC()->call_function( 'wc_recount_all_terms' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$this->do_update_options_action();
 	}

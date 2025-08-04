@@ -8,7 +8,6 @@
 
 // get the rendered post HTML content.
 $template_html = apply_filters( 'mailpoet_email_editor_preview_post_template_html', get_post() );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 echo $template_html;

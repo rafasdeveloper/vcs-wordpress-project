@@ -6,7 +6,6 @@ use Automattic\WooCommerce\Blocks\AIContent\UpdatePatterns;
 use Automattic\WooCommerce\Blocks\AIContent\UpdateProducts;
 use Automattic\WooCommerce\Blocks\Images\Pexels;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * AIPatterns class.
  *
@@ -180,4 +179,3 @@ class AIPatterns {
 		return true;
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

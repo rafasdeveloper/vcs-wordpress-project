@@ -39,7 +39,6 @@ class Init extends RemoteSpecsEngine {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'load_payment_method_promotions' ) );
 		add_action( 'update_option_woocommerce_default_country', array( $this, 'delete_specs_transient' ) );
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Possibly registers the pre-install WooPayments promoted gateway.

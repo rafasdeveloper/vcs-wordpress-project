@@ -138,7 +138,6 @@ if ( ! class_exists( 'WC_Admin_Dashboard', false ) ) :
 
 			wp_enqueue_script( 'wc-status-widget', WC()->plugin_url() . '/assets/js/admin/wc-status-widget' . $suffix . '.js', array( 'jquery', 'flot' ), $version, true );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			//phpcs:ignore
 			$is_wc_admin_disabled = apply_filters( 'woocommerce_admin_disabled', false ) || ! Features::is_enabled( 'analytics' );
 

@@ -26,7 +26,6 @@ class PickupLocation extends WC_Shipping_Method {
 	 * Constructor.
 	 */
 	public function __construct() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->id                 = 'pickup_location';
 		$this->method_title       = __( 'Local pickup', 'woocommerce' );
 		$this->method_description = __( 'Allow customers to choose a local pickup location during checkout.', 'woocommerce' );
@@ -39,7 +38,6 @@ class PickupLocation extends WC_Shipping_Method {
 	public function init() {
 		$this->enabled          = $this->get_option( 'enabled' );
 		$this->title            = $this->get_option( 'title' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->tax_status       = $this->get_option( 'tax_status' );
 		$this->cost             = $this->get_option( 'cost' );
 		$this->supports         = [ 'settings', 'local-pickup' ];

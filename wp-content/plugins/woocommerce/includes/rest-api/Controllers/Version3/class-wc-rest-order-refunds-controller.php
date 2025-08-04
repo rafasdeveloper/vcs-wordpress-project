@@ -11,7 +11,6 @@
 defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Internal\RestApiParameterUtil;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * REST API Order Refunds controller class.
@@ -20,7 +19,6 @@ use Automattic\WooCommerce\Internal\RestApiParameterUtil;
  * @extends WC_REST_Order_Refunds_V2_Controller
  */
 class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controller {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Endpoint namespace.
@@ -91,7 +89,6 @@ class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controll
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the refund schema, conforming to JSON Schema.
 	 *
 	 * @return array
@@ -120,7 +117,6 @@ class WC_REST_Order_Refunds_Controller extends WC_REST_Order_Refunds_V2_Controll
 			'default'     => true,
 		);
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $schema;
 	}
 }

@@ -7,7 +7,6 @@ use WP_Error;
 
 /**
  * Pattern Images class.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  *
  * @internal
  */
@@ -96,7 +95,6 @@ class UpdateProducts {
 
 		return $this->assign_ai_generated_content_to_dummy_products( $ai_connection, $token, $products_information_list, $business_description, $images['search_term'] );
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Return all dummy products that were not modified by the store owner.
@@ -161,7 +159,6 @@ class UpdateProducts {
 		$current_product_hash     = $this->get_hash_for_product( $dummy_product );
 		$ai_modified_product_hash = $this->get_hash_for_ai_modified_product( $dummy_product );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$date_created  = $dummy_product->get_date_created();
 		$date_modified = $dummy_product->get_date_modified();
 
@@ -180,7 +177,6 @@ class UpdateProducts {
 		$dummy_product_not_modified      = abs( $timestamp_modified - $timestamp_created ) < 60;
 
 		if ( $current_product_hash === $ai_modified_product_hash || $dummy_product_not_modified || $dummy_product_recently_modified ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return true;
 		}
 
@@ -301,7 +297,6 @@ class UpdateProducts {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Upload the image for the product.
 	 *
 	 * @param int    $product_id The product ID.
@@ -477,7 +472,6 @@ class UpdateProducts {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Update the product with the new content.
 	 *
 	 * @param \WC_Product         $product The product.
@@ -513,7 +507,6 @@ class UpdateProducts {
 
 		$this->create_hash_for_ai_modified_product( $product );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $product->get_id();
 	}
 }

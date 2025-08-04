@@ -24,7 +24,6 @@ class CartCheckoutUtils {
 
 		// Check page contents for block/shortcode.
 		return is_a( $post, 'WP_Post' ) && ( wc_post_content_has_shortcode( 'woocommerce_cart' ) || self::has_block_variation( 'woocommerce/classic-shortcode', 'shortcode', 'cart', $post->post_content ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -69,13 +68,11 @@ class CartCheckoutUtils {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Check if the post content contains a block with a specific attribute value.
 	 *
 	 * @param string $block_id The block ID to check for.
 	 * @param string $attribute The attribute to check.
 	 * @param string $value The value to check for.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return boolean
 	 */
 	public static function has_block_variation( $block_id, $attribute, $value, $post_content ) {
@@ -91,7 +88,6 @@ class CartCheckoutUtils {
 					return true;
 				}
 				// Cart is default so it will be empty.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				if ( 'woocommerce/classic-shortcode' === $block_id && 'shortcode' === $attribute && 'cart' === $value && ! isset( $block['attrs']['shortcode'] ) ) {
 					return true;
 				}
@@ -108,7 +104,6 @@ class CartCheckoutUtils {
 	 */
 	public static function is_cart_block_default() {
 		if ( wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Ignore the pages and check the templates.
 			$templates_from_db = BlockTemplateUtils::get_block_templates_from_db( array( 'cart' ), 'wp_template' );
 			foreach ( $templates_from_db as $template ) {
@@ -128,7 +123,6 @@ class CartCheckoutUtils {
 	 */
 	public static function is_checkout_block_default() {
 		if ( wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Ignore the pages and check the templates.
 			$templates_from_db = BlockTemplateUtils::get_block_templates_from_db( array( 'checkout' ), 'wp_template' );
 			foreach ( $templates_from_db as $template ) {
@@ -274,7 +268,6 @@ class CartCheckoutUtils {
 		$block = str_replace( 'woocommerce/', '', $block );
 
 		if ( wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$templates_from_db = BlockTemplateUtils::get_block_templates_from_db( array( 'page-' . $block ) );
 			foreach ( $templates_from_db as $template ) {
 				if ( ! has_block( 'woocommerce/page-content-wrapper', $template->content ) ) {
@@ -336,7 +329,6 @@ class CartCheckoutUtils {
 	protected static function deep_sort_with_accents( $array ) {
 		if ( ! is_array( $array ) || empty( $array ) ) {
 			return $array;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		$array_without_accents = array_map(
@@ -350,7 +342,6 @@ class CartCheckoutUtils {
 
 		asort( $array_without_accents );
 		return array_replace( $array_without_accents, $array );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -422,5 +413,4 @@ class CartCheckoutUtils {
 			}
 		}
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -7,7 +7,6 @@
 
 declare(strict_types=1);
 use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 $header        = __( 'Our services', 'woocommerce' );
 $product_title = __( 'Create anything', 'woocommerce' );
@@ -15,7 +14,6 @@ $description   = __( 'Navigating life\'s intricate fabric, choices unfold paths 
 $image_0       = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/table-wood-house-chair-floor-window.jpg' );
 $image_1       = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/hand-light-architecture-wood-white-house.jpg' );
 $image_2       = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/Image-table-wood-chair-stool-interior-restaurant.jpg' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 ?>
 

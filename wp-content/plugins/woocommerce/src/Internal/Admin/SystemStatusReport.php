@@ -154,7 +154,6 @@ class SystemStatusReport {
 					<?php
 					if ( $all_options_expected ) {
 						echo '<mark class="yes"><span class="dashicons dashicons-yes"></mark>';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					} else {
 						echo '<mark class="error"><span class="dashicons dashicons-warning"></span> ' . esc_html__( 'Not all expected', 'woocommerce' ) . '</mark>';
 					}

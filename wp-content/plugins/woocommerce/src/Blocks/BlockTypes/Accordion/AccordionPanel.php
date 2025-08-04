@@ -5,12 +5,10 @@ namespace Automattic\WooCommerce\Blocks\BlockTypes\Accordion;
 
 use Automattic\WooCommerce\Blocks\BlockTypes\AbstractBlock;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * AccordionPanel class.
  */
 class AccordionPanel extends AbstractBlock {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -37,5 +35,4 @@ class AccordionPanel extends AbstractBlock {
 	protected function get_block_type_script( $key = null ) {
 		return null;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

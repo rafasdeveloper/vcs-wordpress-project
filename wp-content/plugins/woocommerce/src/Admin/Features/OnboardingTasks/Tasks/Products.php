@@ -12,7 +12,6 @@ use Automattic\WooCommerce\Internal\Admin\Onboarding\OnboardingProfile;
  */
 class Products extends Task {
 	const PRODUCT_COUNT_TRANSIENT_NAME = 'woocommerce_product_task_product_count_transient';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Constructor
@@ -29,7 +28,6 @@ class Products extends Task {
 		add_action( 'woocommerce_new_product', array( $this, 'delete_product_count_cache' ) );
 		add_action( 'wp_trash_post', array( $this, 'delete_product_count_cache' ) );
 		add_action( 'untrashed_post', array( $this, 'delete_product_count_cache' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'current_screen', array( $this, 'maybe_redirect_to_add_product_tasklist' ), 30, 0 );
 	}
 
@@ -84,7 +82,6 @@ class Products extends Task {
 	 * @return bool
 	 */
 	public function is_complete() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return self::has_products();
 	}
 
@@ -130,7 +127,6 @@ class Products extends Task {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Adds a return to task list notice when completing the import product task.
 	 *
 	 * @param string $hook Page hook.
@@ -183,7 +179,6 @@ class Products extends Task {
 	 */
 	public static function delete_product_count_cache() {
 		delete_transient( self::PRODUCT_COUNT_TRANSIENT_NAME );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -229,7 +224,6 @@ class Products extends Task {
 		$products_query = new \WP_Query( $args );
 
 		return $products_query->found_posts;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

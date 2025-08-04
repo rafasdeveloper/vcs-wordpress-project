@@ -14,7 +14,6 @@ use WC_Gateway_COD;
 
 /**
  * WooCommercePayments Task
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class WooCommercePayments extends Task {
 	/**
@@ -240,7 +239,6 @@ class WooCommercePayments extends Task {
 	 */
 	private static function get_gateway() {
 		$payment_gateways = WC()->payment_gateways->payment_gateways();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( isset( $payment_gateways['woocommerce_payments'] ) ) {
 			return $payment_gateways['woocommerce_payments'];
 		}
@@ -256,7 +254,6 @@ class WooCommercePayments extends Task {
 	 */
 	public static function has_other_ecommerce_gateways(): bool {
 		$gateways         = WC()->payment_gateways->get_available_payment_gateways();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$enabled_gateways = array_filter(
 			$gateways,
 			function ( $gateway ) {

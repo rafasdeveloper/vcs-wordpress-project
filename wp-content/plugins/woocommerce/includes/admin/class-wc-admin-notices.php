@@ -10,7 +10,6 @@ use Automattic\Jetpack\Constants;
 use Automattic\WooCommerce\Internal\Utilities\Users;
 use Automattic\WooCommerce\Internal\Utilities\WebhookUtil;
 use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 

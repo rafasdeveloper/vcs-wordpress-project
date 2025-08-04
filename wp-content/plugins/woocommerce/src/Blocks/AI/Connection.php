@@ -8,7 +8,6 @@ use WP_Error;
 use WpOrg\Requests\Exception;
 use WpOrg\Requests\Requests;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Class Connection
  *
@@ -165,4 +164,3 @@ class Connection {
 		return $response->token;
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

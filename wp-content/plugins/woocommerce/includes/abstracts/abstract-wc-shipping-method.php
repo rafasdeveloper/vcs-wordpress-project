@@ -302,7 +302,6 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 					'meta_data'      => array(), // Array of misc meta data to store along with this rate - key value pairs.
 					'package'        => false, // Package array this rate was generated for @since 2.6.0.
 					'price_decimals' => wc_get_price_decimals(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				)
 			),
 			$this
@@ -325,7 +324,6 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 		// Round the total cost after taxes have been calculated.
 		$total_cost = wc_format_decimal( $total_cost, $args['price_decimals'] );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Create rate object.
 		$rate = new WC_Shipping_Rate();
 		$rate->set_id( $args['id'] );

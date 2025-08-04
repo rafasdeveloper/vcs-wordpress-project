@@ -5,7 +5,6 @@
 	"keywords": [ "WooCommerce" ],
 	"description": "Display a grid of your all-time best selling products.",
 	"supports": {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"align": [ "wide", "full" ],
 		"html": false,
 		"inserter": false

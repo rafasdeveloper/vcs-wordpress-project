@@ -7,7 +7,6 @@
  * @version  2.6.0
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\EmailPreview\EmailPreview;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,7 +26,6 @@ class WC_Admin {
 		add_action( 'current_screen', array( $this, 'conditional_includes' ) );
 		add_action( 'admin_init', array( $this, 'buffer' ), 1 );
 		add_action( 'admin_init', array( $this, 'preview_emails' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'admin_init', array( $this, 'prevent_admin_access' ) );
 		add_action( 'admin_init', array( $this, 'admin_redirects' ) );
 		add_action( 'admin_footer', 'wc_print_js', 25 );
@@ -41,7 +39,6 @@ class WC_Admin {
 
 		// Add body class for Marketplace and My Subscriptions pages.
 		if ( isset( $_GET['page'] ) && 'wc-addons' === $_GET['page'] ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			add_filter( 'admin_body_class', array( 'WC_Admin_Addons', 'filter_admin_body_classes' ) );
 		}
 	}
@@ -72,7 +69,6 @@ class WC_Admin {
 		include_once __DIR__ . '/class-wc-admin-exporters.php';
 
 		// Help Tabs.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( apply_filters( 'woocommerce_enable_admin_help_tab', true ) ) {
 			include_once __DIR__ . '/class-wc-admin-help.php';
 		}
@@ -86,7 +82,6 @@ class WC_Admin {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Include admin files conditionally.
 	 */
 	public function conditional_includes() {
@@ -185,7 +180,6 @@ class WC_Admin {
 			}
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( apply_filters( 'woocommerce_prevent_admin_access', $prevent_access ) ) {
 			wp_safe_redirect( wc_get_page_permalink( 'myaccount' ) );
 			exit;
@@ -223,7 +217,6 @@ class WC_Admin {
 				wp_die( esc_html__( 'There was an error rendering an email preview.', 'woocommerce' ), 404 );
 			}
 			ob_end_clean();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			// print the preview email.
 			// phpcs:ignore WordPress.Security.EscapeOutput
@@ -234,7 +227,6 @@ class WC_Admin {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Change the admin footer text on WooCommerce admin pages.
 	 *
 	 * @since  2.3
@@ -252,7 +244,6 @@ class WC_Admin {
 		$wc_pages = array_diff( $wc_pages, array( 'profile', 'user-edit' ) );
 
 		// Check to make sure we're on a WooCommerce admin page.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( isset( $current_screen->id ) && apply_filters( 'woocommerce_display_admin_footer_text', in_array( $current_screen->id, $wc_pages, true ) ) ) {
 			// Change the footer text.
 			if ( ! get_option( 'woocommerce_admin_footer_text_rated' ) ) {

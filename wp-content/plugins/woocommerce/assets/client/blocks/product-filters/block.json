@@ -9,7 +9,6 @@
 	"keywords": [
 		"WooCommerce"
 	],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"supports": {
 		"align": true,
 		"color": {
@@ -31,7 +30,6 @@
 				"orientation": "vertical",
 				"flexWrap": "nowrap",
 				"justifyContent":"stretch"
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			},
 			"allowEditing": false
 		},
@@ -42,7 +40,6 @@
 	"textdomain": "woocommerce",
 	"usesContext": [ "postId", "query", "queryId" ],
 	"viewScript": "wc-product-filters-frontend",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"attributes": {
 		"isPreview": {
 			"type": "boolean",
@@ -54,5 +51,4 @@
 			"isPreview": true
 		}
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

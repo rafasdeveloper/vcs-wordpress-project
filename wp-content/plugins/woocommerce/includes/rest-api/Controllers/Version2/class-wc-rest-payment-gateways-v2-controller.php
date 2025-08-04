@@ -12,7 +12,6 @@ defined( 'ABSPATH' ) || exit;
 
 /**
  * Paymenga gateways controller class.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  *
  * @package WooCommerce\RestApi
  * @extends WC_REST_Controller
@@ -123,7 +122,6 @@ class WC_REST_Payment_Gateways_V2_Controller extends WC_REST_Controller {
 	public function get_items( $request ) {
 		$payment_gateways = WC()->payment_gateways->payment_gateways();
 		$response         = array();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		foreach ( $payment_gateways as $payment_gateway_id => $payment_gateway ) {
 			$payment_gateway->id = $payment_gateway_id;
 			$gateway             = $this->prepare_item_for_response( $payment_gateway, $request );
@@ -131,7 +129,6 @@ class WC_REST_Payment_Gateways_V2_Controller extends WC_REST_Controller {
 			$response[]          = $gateway;
 		}
 		return rest_ensure_response( $response );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

@@ -1,2 +1,1 @@
 <?php return array('dependencies' => array('react', 'wc-blocks-shared-context', 'wc-settings', 'wc-types', 'wp-api-fetch', 'wp-block-editor', 'wp-blocks', 'wp-components', 'wp-compose', 'wp-core-data', 'wp-data', 'wp-element', 'wp-i18n', 'wp-polyfill', 'wp-url'), 'version' => 'd6395f4995af19d24b4d');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

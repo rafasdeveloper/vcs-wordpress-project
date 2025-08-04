@@ -18,7 +18,6 @@ defined( 'ABSPATH' ) || exit;
  * @extends WC_REST_WCCOM_Site_Status_Controller
  */
 class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Controller {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Route base.
@@ -44,7 +43,6 @@ class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Contro
 				),
 			),
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -84,5 +82,4 @@ class WC_REST_WCCOM_Site_Connection_Controller extends WC_REST_WCCOM_Site_Contro
 			)
 		);
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

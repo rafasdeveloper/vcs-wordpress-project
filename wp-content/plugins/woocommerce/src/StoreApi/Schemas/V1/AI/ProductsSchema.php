@@ -48,4 +48,3 @@ class ProductsSchema extends AbstractSchema {
 		];
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

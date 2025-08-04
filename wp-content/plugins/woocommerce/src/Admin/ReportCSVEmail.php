@@ -61,7 +61,6 @@ class ReportCSVEmail extends \WC_Email {
 			'stock'      => __( 'Stock', 'woocommerce' ),
 			'taxes'      => __( 'Taxes', 'woocommerce' ),
 			'variations' => __( 'Variations', 'woocommerce' ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		// Call parent constructor.

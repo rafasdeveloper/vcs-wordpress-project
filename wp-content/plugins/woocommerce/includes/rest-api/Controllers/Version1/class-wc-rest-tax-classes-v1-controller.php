@@ -161,7 +161,6 @@ class WC_REST_Tax_Classes_V1_Controller extends WC_REST_Controller {
 		}
 
 		return rest_ensure_response( $data );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

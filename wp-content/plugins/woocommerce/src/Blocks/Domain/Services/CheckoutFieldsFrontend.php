@@ -4,7 +4,6 @@ namespace Automattic\WooCommerce\Blocks\Domain\Services;
 
 use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFieldsSchema\DocumentObject;
 use Automattic\WooCommerce\Admin\Features\Features;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_Customer;
 use WC_Order;
 
@@ -125,7 +124,6 @@ class CheckoutFieldsFrontend {
 		} else {
 			$fields = $this->checkout_fields_controller->get_fields_for_location( 'address' );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( ! $fields || ! $customer ) {
 			return;
@@ -159,7 +157,6 @@ class CheckoutFieldsFrontend {
 		} else {
 			$fields = $this->checkout_fields_controller->get_fields_for_location( 'contact' );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $fields as $key => $field ) {
 			$field_key           = CheckoutFields::get_group_key( 'other' ) . $key;
@@ -198,7 +195,6 @@ class CheckoutFieldsFrontend {
 		} else {
 			$fields = $this->checkout_fields_controller->get_fields_for_location( 'address' );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $fields as $key => $field ) {
 			$field_key                      = CheckoutFields::get_group_key( $address_type ) . $key;
@@ -344,7 +340,6 @@ class CheckoutFieldsFrontend {
 		} else {
 			$fields = $this->checkout_fields_controller->get_fields_for_location( $location );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Holds values to be persisted to the customer object.
 		$persist_fields = [];
@@ -356,7 +351,6 @@ class CheckoutFieldsFrontend {
 
 			if ( empty( $field_value ) ) {
 				if ( ! empty( $field['required'] ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$errors->add(
 						'required_field',
 						/* translators: %s: is the field label */

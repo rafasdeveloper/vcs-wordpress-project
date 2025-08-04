@@ -14,7 +14,6 @@ use Automattic\WooCommerce\Admin\API\Reports\DataStore as ReportsDataStore;
 use Automattic\WooCommerce\Admin\API\Reports\DataStoreInterface;
 use Automattic\WooCommerce\Admin\API\Reports\SqlQuery;
 use Automattic\WooCommerce\Admin\API\Reports\Cache;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 
 /**
@@ -24,7 +23,6 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 	use OrderAttributionMeta;
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Dynamically sets the date column name based on configuration
 	 *
 	 * @override ReportsDataStore::__construct()
@@ -35,7 +33,6 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Table used to get the data.
 	 *
 	 * @override ReportsDataStore::$table_name
@@ -618,7 +615,6 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 		$cache_key = 'orders-all-statuses';
 		$statuses  = Cache::get( $cache_key );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( false === $statuses ) {
 			/* phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared */
 			$table_name = self::get_db_table_name();
@@ -628,14 +624,12 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 			/* phpcs:enable */
 
 			Cache::set( $cache_key, $statuses );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $statuses;
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Initialize query objects.
 	 */
 	protected function initialize_queries() {

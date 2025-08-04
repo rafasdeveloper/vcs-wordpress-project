@@ -9,7 +9,6 @@ use WP_Block;
  * ProductTemplate class.
  */
 class ProductTemplate extends AbstractBlock {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 	/**
 	 * Block name.

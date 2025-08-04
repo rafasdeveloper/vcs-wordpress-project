@@ -90,7 +90,6 @@ class WC_Geolocation {
 			return (string) rest_is_ip_address( $value );
 		} elseif ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
 			return sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return '';
 	}

@@ -5,12 +5,10 @@ namespace Automattic\WooCommerce\Blocks\BlockTypes\Accordion;
 
 use Automattic\WooCommerce\Blocks\BlockTypes\AbstractBlock;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * AccordionItem class.
  */
 class AccordionItem extends AbstractBlock {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Block name.
 	 *
@@ -37,7 +35,6 @@ class AccordionItem extends AbstractBlock {
 		// Initialize the state of the item on the server using a closure,
 		// since we need to get derived state based on the current context.
 		wc_initial_state(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'woocommerce/accordion',
 			array(
 				'isOpen' => function () {
@@ -61,14 +58,12 @@ class AccordionItem extends AbstractBlock {
 				$p->set_attribute( 'id', $unique_id );
 				$p->set_attribute( 'aria-controls', $unique_id . '-panel' );
 				$p->set_attribute( 'data-wc-bind--aria-expanded', 'state.isOpen' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 				if ( $p->next_tag( array( 'class_name' => 'wp-block-woocommerce-accordion-panel' ) ) ) {
 					$p->set_attribute( 'id', $unique_id . '-panel' );
 					$p->set_attribute( 'aria-labelledby', $unique_id );
 					$p->set_attribute( 'role', 'region' );
 					$p->set_attribute( 'data-wc-bind--inert', '!state.isOpen' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 					// Only modify content if all directives have been set.
 					$content = $p->get_updated_html();
@@ -98,5 +93,4 @@ class AccordionItem extends AbstractBlock {
 	protected function get_block_type_script( $key = null ) {
 		return null;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -1214,7 +1214,6 @@ class WC_Countries {
 					'IE' => array(
 						'postcode' => array(
 							'required' => false,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 							'label'    => __( 'Eircode', 'woocommerce' ),
 						),
 						'state'    => array(

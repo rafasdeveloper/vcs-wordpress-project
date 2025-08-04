@@ -1,2 +1,1 @@
 <?php return array('version' => 'a87d0e143516edd95ef9');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

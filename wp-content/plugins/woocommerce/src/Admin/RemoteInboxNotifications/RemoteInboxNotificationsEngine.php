@@ -168,7 +168,6 @@ class RemoteInboxNotificationsEngine extends RemoteSpecsEngine {
 		$stored_state = get_option( self::STORED_STATE_OPTION_NAME );
 
 		if ( false === $stored_state ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$stored_state = new \stdClass();
 
 			$stored_state = StoredStateSetupForProducts::init_stored_state(
@@ -179,7 +178,6 @@ class RemoteInboxNotificationsEngine extends RemoteSpecsEngine {
 				self::STORED_STATE_OPTION_NAME,
 				$stored_state,
 				'',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				false
 			);
 		}

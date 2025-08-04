@@ -64,7 +64,6 @@ class ProductStockIndicator extends AbstractBlock {
 
 	/**
 	 * Include and render the block.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @param array    $attributes Block attributes. Default empty array.
 	 * @param string   $content    Block content. Default empty string.
@@ -72,7 +71,6 @@ class ProductStockIndicator extends AbstractBlock {
 	 * @return string Rendered block type output.
 	 */
 	protected function render( $attributes, $content, $block ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! empty( $content ) ) {
 			parent::register_block_type_assets();
 			$this->register_chunk_translations( [ $this->block_name ] );
@@ -86,21 +84,18 @@ class ProductStockIndicator extends AbstractBlock {
 		}
 
 		$availability = ProductAvailabilityUtils::get_product_availability( $product );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( empty( $availability['availability'] ) ) {
 			return '';
 		}
 
 		$total_stock        = $product->get_stock_quantity();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$classes_and_styles = StyleAttributesUtils::get_classes_and_styles_by_attributes( $attributes );
 
 		$classnames  = isset( $classes_and_styles['classes'] ) ? ' ' . $classes_and_styles['classes'] . ' ' : '';
 		$classnames .= sprintf( ' wc-block-components-product-stock-indicator--%s', $availability['class'] );
 
 		$is_backorder_notification_visible = $product->is_in_stock() && $product->backorders_require_notification();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		if ( empty( $content ) && $is_backorder_notification_visible && $total_stock > 0 ) {
 			$low_stock_text = sprintf(

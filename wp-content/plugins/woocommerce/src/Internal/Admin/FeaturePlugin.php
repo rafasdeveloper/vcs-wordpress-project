@@ -16,7 +16,6 @@ use Automattic\WooCommerce\Internal\Admin\Notes\WooCommercePayments;
 use Automattic\WooCommerce\Internal\Admin\Notes\InstallJPAndWCSPlugins;
 use Automattic\WooCommerce\Internal\Admin\Notes\SellingOnlineCourses;
 use Automattic\WooCommerce\Internal\Admin\Notes\MerchantEmailNotifications;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Notes\MagentoMigration;
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Admin\PluginsHelper;
@@ -194,7 +193,6 @@ class FeaturePlugin {
 
 		// Initialize MerchantEmailNotifications.
 		MerchantEmailNotifications::init();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

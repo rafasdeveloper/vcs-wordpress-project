@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Preprocessors;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * This class sets the width of the blocks based on the layout width or column count.

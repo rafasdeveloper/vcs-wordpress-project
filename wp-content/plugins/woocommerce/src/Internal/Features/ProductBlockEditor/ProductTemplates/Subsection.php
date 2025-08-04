@@ -26,7 +26,6 @@ class Subsection extends ProductBlock implements SubsectionInterface {
 	 * @throws \InvalidArgumentException If blockName key and value are passed into block configuration.
 	 */
 	public function __construct( array $config, BlockTemplateInterface &$root_template, ContainerInterface &$parent = null ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! empty( $config['blockName'] ) ) {
 			throw new \InvalidArgumentException( 'Unexpected key "blockName", this defaults to "woocommerce/product-subsection".' );
 		}

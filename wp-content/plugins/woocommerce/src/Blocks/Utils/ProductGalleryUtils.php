@@ -74,7 +74,6 @@ class ProductGalleryUtils {
 		}
 
 		return $product_gallery_images;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -183,6 +182,5 @@ class ProductGalleryUtils {
 		}
 
 		return wp_get_attachment_image( $placeholder_image_id, $size, false, $attributes );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

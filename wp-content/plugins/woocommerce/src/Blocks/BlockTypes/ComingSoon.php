@@ -1,7 +1,6 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * ComingSoon class.
  */
@@ -21,7 +20,6 @@ class ComingSoon extends AbstractBlock {
 			$this->register_chunk_translations( [ $this->block_name ] );
 	}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	public function initialize() {
 		parent::initialize();
 		add_filter( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ), 10, 2 );
@@ -47,7 +45,6 @@ class ComingSoon extends AbstractBlock {
 			);
 		} else if ( isset( $attributes['color'] ) ) {
 			// Deprecated: To support coming soon templates created before WooCommerce 9.8.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			wp_add_inline_style(
 				'wc-blocks-style',
 				':root{--woocommerce-coming-soon-color: ' . esc_html( $attributes['color'] ) . '}'
@@ -56,7 +53,6 @@ class ComingSoon extends AbstractBlock {
 				'woocommerce-coming-soon',
 				WC()->plugin_url() . '/assets/css/coming-soon-entire-site-deprecated' . ( is_rtl() ? '-rtl' : '' ) . '.css',
 				array(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 	}
@@ -64,7 +60,6 @@ class ComingSoon extends AbstractBlock {
 	/**
 	 * Enqueue coming soon deprecated styles in site editor to support
 	 * coming soon templates created before WooCommerce 9.8.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function enqueue_block_assets() {
 		if ( ! is_admin() ) {
@@ -78,7 +73,6 @@ class ComingSoon extends AbstractBlock {
 
 		$post_id = isset( $_REQUEST['postId'] ) ? wc_clean( wp_unslash( $_REQUEST['postId'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( $post_id !== 'woocommerce/woocommerce//coming-soon' ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return;
 		}
 
@@ -88,13 +82,11 @@ class ComingSoon extends AbstractBlock {
 			foreach ( $parsed_blocks as $block ) {
 				if ( isset( $block['blockName'] ) && 'woocommerce/coming-soon' === $block['blockName'] ) {
 					// Color attribute is deprecated in WooCommerce 9.8.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					if ( isset( $block['attrs']['color'] ) && ! empty( $block['attrs']['color'] ) ) {
 						wp_enqueue_style(
 							'woocommerce-coming-soon',
 							WC()->plugin_url() . '/assets/css/coming-soon-entire-site-deprecated' . ( is_rtl() ? '-rtl' : '' ) . '.css',
 							array(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						);
 						break;
 					}

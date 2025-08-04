@@ -90,7 +90,6 @@ class WC_REST_Product_Custom_Fields_Controller extends WC_REST_Controller {
 			$offset,
 			$limit
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $base_query has been prepared already.
 		$total_query = "SELECT COUNT(1) FROM ($base_query) AS total";

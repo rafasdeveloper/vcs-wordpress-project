@@ -9,7 +9,6 @@ declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine;
 
 use MailPoet\EmailEditor\Validator\Builder;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Class for email styles schema.

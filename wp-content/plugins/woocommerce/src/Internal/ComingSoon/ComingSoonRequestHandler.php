@@ -59,7 +59,6 @@ class ComingSoonRequestHandler {
 	public function possibly_init_block_templates() {
 		// No need to initialize block templates since we've already initialized them in the Block Bootstrap.
 		if ( wc_current_theme_is_fse_theme() || current_theme_supports( 'block-template-parts' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return;
 		}
 
@@ -85,7 +84,6 @@ class ComingSoonRequestHandler {
 		header( 'Cache-Control: max-age=60' );
 
 		$is_fse_theme         = wc_current_theme_is_fse_theme();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$is_store_coming_soon = $this->coming_soon_helper->is_store_coming_soon();
 		add_theme_support( 'block-templates' );
 

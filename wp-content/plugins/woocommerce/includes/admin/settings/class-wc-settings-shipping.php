@@ -124,7 +124,6 @@ class WC_Settings_Shipping extends WC_Settings_Page {
 					'id'            => 'woocommerce_shipping_cost_requires_address',
 					'default'       => 'no',
 					'type'          => 'checkbox',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'checkboxgroup' => 'end',
 				),
 

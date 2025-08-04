@@ -140,7 +140,6 @@ if ( ! class_exists( 'WC_Email_Failed_Order', false ) ) :
 			);
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Default content to show below main email content.
 		 *

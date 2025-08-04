@@ -4,7 +4,6 @@ namespace Automattic\WooCommerce\Internal\Admin\Orders;
 
 use Automattic\WooCommerce\Internal\DataStores\Orders\CustomOrdersTableController;
 use Automattic\WooCommerce\Internal\DataStores\Orders\OrdersTableDataStore;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\OrderUtil;
 use WC_Order;
 use WP_List_Table;
@@ -104,7 +103,6 @@ class ListTable extends WP_List_Table {
 		add_filter( 'set_screen_option_edit_' . $this->order_type . '_per_page', array( $this, 'set_items_per_page' ), 10, 3 );
 		add_filter( 'default_hidden_columns', array( $this, 'default_hidden_columns' ), 10, 2 );
 		add_action( 'admin_footer', array( $this, 'enqueue_scripts' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'woocommerce_order_list_table_restrict_manage_orders', array( $this, 'customers_filter' ) );
 
 		$this->items_per_page();
@@ -392,7 +390,6 @@ class ListTable extends WP_List_Table {
 		$this->set_date_args();
 		$this->set_customer_args();
 		$this->set_search_args();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Provides an opportunity to modify the query arguments used in the (Custom Order Table-powered) order list
@@ -420,7 +417,6 @@ class ListTable extends WP_List_Table {
 		$this->items = $orders->orders;
 
 		$max_num_pages = $orders->max_num_pages;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Check in case the user has attempted to page beyond the available range of orders.
 		if ( 0 === $max_num_pages && $this->order_query_args['page'] > 1 ) {
@@ -444,7 +440,6 @@ class ListTable extends WP_List_Table {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Updates the WC Order Query arguments as needed to support orderable columns.
 	 */
 	private function set_order_args() {
@@ -545,7 +540,6 @@ class ListTable extends WP_List_Table {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get the list of views for this table (all orders, completed orders, etc, each with a count of the number of
 	 * corresponding orders).
 	 *
@@ -623,7 +617,6 @@ class ListTable extends WP_List_Table {
 
 		$status = (array) $status;
 		$count  = array_sum( array_intersect_key( $this->status_count_cache, array_flip( $status ) ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Allows 3rd parties to modify the count of orders by status.
@@ -765,7 +758,6 @@ class ListTable extends WP_List_Table {
 
 		// XXX: [review] we may prefer to move this logic outside of the ListTable class.
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Filters whether to remove the 'Months' drop-down from the order list table.
 		 *
@@ -782,7 +774,6 @@ class ListTable extends WP_List_Table {
 		echo '<option ' . selected( $m, 0, false ) . ' value="0">' . esc_html__( 'All dates', 'woocommerce' ) . '</option>';
 
 		$order_dates = $this->get_and_maybe_update_months_filter_cache();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		foreach ( $order_dates as $date ) {
 			$month           = zeroise( $date->month, 2 );
@@ -860,7 +851,6 @@ class ListTable extends WP_List_Table {
 		update_option( $cache_option_value_name, $order_dates );
 
 		return $order_dates;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

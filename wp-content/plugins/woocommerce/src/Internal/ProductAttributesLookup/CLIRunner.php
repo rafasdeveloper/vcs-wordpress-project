@@ -6,7 +6,6 @@ use WP_CLI;
 
 /**
  * Command line tools to handle the regeneration of the product aatributes lookup table.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class CLIRunner {
 

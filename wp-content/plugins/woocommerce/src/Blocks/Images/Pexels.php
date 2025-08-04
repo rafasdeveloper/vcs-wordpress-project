@@ -6,7 +6,6 @@ use Automattic\WooCommerce\Blocks\AI\Connection;
 use Automattic\WooCommerce\Blocks\AIContent\ContentProcessor;
 use Automattic\WooCommerce\Blocks\AIContent\UpdatePatterns;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Pexels API client.
  *
@@ -250,4 +249,3 @@ class Pexels {
 		return $required_images;
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

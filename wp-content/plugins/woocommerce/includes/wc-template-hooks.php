@@ -256,7 +256,6 @@ add_action( 'woocommerce_cart_is_empty', 'wc_empty_cart_message', 10 );
  */
 add_action( 'wp_footer', 'wc_print_js', 25 );
 add_action( 'wp_footer', 'woocommerce_demo_store' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Order details.

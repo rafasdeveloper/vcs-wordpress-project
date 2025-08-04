@@ -5,7 +5,6 @@ declare( strict_types = 1);
 namespace Automattic\WooCommerce\Admin\Features\Blueprint\Exporters;
 
 use Automattic\WooCommerce\Admin\Features\Blueprint\SettingOptions;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Blueprint\Exporters\HasAlias;
 use Automattic\WooCommerce\Blueprint\Exporters\StepExporter;
 use Automattic\WooCommerce\Blueprint\Steps\SetSiteOptions;
@@ -15,7 +14,6 @@ use Automattic\WooCommerce\Blueprint\UseWPFunctions;
  * Class ExportWCSettingsProducts
  *
  * This class exports WooCommerce settings and implements the StepExporter and HasAlias interfaces.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  *
  * @package Automattic\WooCommerce\Admin\Features\Blueprint\Exporters
  */
@@ -61,7 +59,6 @@ class ExportWCSettingsSiteVisibility implements StepExporter, HasAlias {
 	 */
 	public function get_description() {
 		return __( 'It includes all settings in WooCommerce | Settings | Visibility.', 'woocommerce' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -72,5 +69,4 @@ class ExportWCSettingsSiteVisibility implements StepExporter, HasAlias {
 	public function get_step_name() {
 		return 'setSiteOptions';
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

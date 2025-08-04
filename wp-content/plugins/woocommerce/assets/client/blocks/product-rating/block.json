@@ -4,7 +4,6 @@
 	"icon": "info",
 	"title": "Product Rating",
 	"description": "Display the average rating of a product.",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"attributes": {
 		"productId": {
 			"type": "number",
@@ -42,4 +41,3 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

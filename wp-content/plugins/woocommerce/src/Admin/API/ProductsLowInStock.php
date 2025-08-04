@@ -82,7 +82,6 @@ final class ProductsLowInStock extends \WC_REST_Products_Controller {
 
 		$total_results = (int) $count_query_results[0]->total;
 		$response      = rest_ensure_response( array( 'total' => $total_results ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$response->header( 'X-WP-Total', $total_results );
 		$response->header( 'X-WP-TotalPages', 0 );
 
@@ -106,7 +105,6 @@ final class ProductsLowInStock extends \WC_REST_Products_Controller {
 		// set images and attributes.
 		$query_results['results'] = array_map(
 			function( $query_result ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$product                  = wc_get_product( $query_result );
 				$query_result->images     = $this->get_images( $product );
 				$query_result->attributes = $this->get_attributes( $product );
@@ -200,7 +198,6 @@ final class ProductsLowInStock extends \WC_REST_Products_Controller {
 		$low_stock_threshold = absint( max( get_option( 'woocommerce_notify_low_stock_amount' ), 1 ) );
 
 		$sidewide_stock_threshold_only = $this->is_using_sitewide_stock_threshold_only();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$query_string = $this->get_query( $sidewide_stock_threshold_only );
 
@@ -217,7 +214,6 @@ final class ProductsLowInStock extends \WC_REST_Products_Controller {
 		);
 
 		$total_results = $count_query_results[0]->total;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return array(
 			'results' => $query_results,
@@ -235,7 +231,6 @@ final class ProductsLowInStock extends \WC_REST_Products_Controller {
 	protected function is_using_sitewide_stock_threshold_only() {
 		global $wpdb;
 		$count = $wpdb->get_var( "select count(*) as total from {$wpdb->postmeta} where meta_key='_low_stock_amount'" );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return 0 === (int) $count;
 	}
 
@@ -343,7 +338,6 @@ final class ProductsLowInStock extends \WC_REST_Products_Controller {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Generate a query.
 	 *
 	 * @param bool $sitewide_only generates a query for sitewide low stock threshold only query.

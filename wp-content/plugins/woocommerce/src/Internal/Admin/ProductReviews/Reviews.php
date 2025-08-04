@@ -484,7 +484,6 @@ class Reviews {
 				'count'     => true,
 			)
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		/**
 		 * Provides an opportunity to alter the pending comment count used within

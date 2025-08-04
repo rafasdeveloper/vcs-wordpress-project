@@ -9,7 +9,6 @@ use Automattic\WooCommerce\Blocks\Domain\Package;
 use Automattic\WooCommerce\Blocks\Patterns\PatternRegistry;
 use Automattic\WooCommerce\Blocks\Patterns\PTKPatternsStore;
 use WP_Error;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Registers patterns under the `./patterns/` directory and from the PTK API and updates their content.
@@ -61,7 +60,6 @@ class BlockPatterns {
 	private $dictionary;
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * PTKPatternsStore instance.
 	 *
 	 * @var PTKPatternsStore $ptk_patterns_store
@@ -102,7 +100,6 @@ class BlockPatterns {
 		}
 
 		return $this->dictionary;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -118,7 +115,6 @@ class BlockPatterns {
 		$patterns = $this->get_block_patterns();
 		foreach ( $patterns as $pattern ) {
 			$this->pattern_registry->register_block_pattern( $pattern['source'], $pattern, $this->get_patterns_dictionary() );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -161,7 +157,6 @@ class BlockPatterns {
 		foreach ( $files as $file ) {
 			$data           = get_file_data( $file, $default_headers );
 			$data['source'] = $file;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$patterns[]     = $data;
 		}
 
@@ -216,7 +211,6 @@ class BlockPatterns {
 
 		$patterns = $this->ptk_patterns_store->get_patterns();
 		if ( empty( $patterns ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			// Only log once per day by using a transient.
 			$transient_key = 'wc_ptk_pattern_store_warning';
 			// By only logging when patterns are empty and no fetch is scheduled,
@@ -239,7 +233,6 @@ class BlockPatterns {
 			$pattern['content'] = $pattern['html'];
 
 			$this->pattern_registry->register_block_pattern( $pattern['ID'], $pattern, $this->get_patterns_dictionary() );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 
@@ -252,7 +245,6 @@ class BlockPatterns {
 	private function parse_categories( array $patterns ) {
 		return array_map(
 			function ( $pattern ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$pattern['categories'] = array_map(
 					function ( $category ) {
 						foreach ( self::CATEGORIES_PREFIXES as $prefix ) {

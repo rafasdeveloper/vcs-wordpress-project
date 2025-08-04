@@ -90,7 +90,6 @@ class WC_Frontend_Scripts {
 					'has_rtl' => true,
 				),
 				'woocommerce-blocktheme'  => wc_current_theme_is_fse_theme() ? array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					'src'     => self::get_asset_url( 'assets/css/woocommerce-blocktheme.css' ),
 					'deps'    => '',
 					'version' => $version,

@@ -11,7 +11,6 @@ $banner_title       = $content['titles'][0]['default'] ?? '';
 $banner_button      = $content['buttons'][0]['default'] ?? '';
 $first_description  = $content['descriptions'][0]['default'] ?? '';
 $second_description = $content['descriptions'][1]['default'] ?? '';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","bottom":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","left":"var(--wp--style--root--padding-left, var(--wp--custom--gap--horizontal))","right":"var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal))"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","justifyContent":"center"}} -->
@@ -34,7 +33,6 @@ $second_description = $content['descriptions'][1]['default'] ?? '';
 
 			<!-- wp:paragraph {"style":{"typography":{"fontSize":"24px"},"spacing":{"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}}, "textColor":"base"} -->
 			<p class="has-base-color has-text-color" style="margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;font-size:24px"><?php echo esc_html( $second_description ); ?></p>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			<!-- /wp:paragraph -->
 
 			<!-- wp:buttons {"style":{"spacing":{"blockGap":"0","margin":{"top":"20px","bottom":"0"}}}} -->
@@ -56,7 +54,6 @@ $second_description = $content['descriptions'][1]['default'] ?? '';
 			<!-- wp:image {"id":1,"sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full">
 				<img src="<?php echo esc_url( PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/music-needle-turntable-black-and-white-white-photography.jpg' ) ); ?>" alt="<?php esc_attr_e( 'Placeholder image used to represent products being showcased in a banner.', 'woocommerce' ); ?>" class="wp-image-1" />
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			</figure>
 			<!-- /wp:image -->
 		</div>

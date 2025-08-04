@@ -265,7 +265,6 @@ abstract class WC_Product_Importer implements WC_Importer_Interface {
 				$object->set_slug( '' );
 			}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$result = $object->set_props( array_diff_key( $data, array_flip( array( 'meta_data', 'raw_image_id', 'raw_gallery_image_ids', 'raw_attributes' ) ) ) );
 
 			if ( is_wp_error( $result ) ) {
@@ -816,5 +815,4 @@ abstract class WC_Product_Importer implements WC_Importer_Interface {
 		return $value;
 	}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

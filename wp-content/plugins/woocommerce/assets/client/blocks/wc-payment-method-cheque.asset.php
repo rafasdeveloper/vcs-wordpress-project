@@ -1,2 +1,1 @@
 <?php return array('dependencies' => array('react', 'wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-polyfill'), 'version' => '060cfc31831aa50abefb');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

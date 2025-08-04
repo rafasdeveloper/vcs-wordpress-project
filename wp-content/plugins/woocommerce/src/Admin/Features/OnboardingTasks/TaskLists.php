@@ -114,7 +114,6 @@ class TaskLists {
 			'Products',
 			'Appearance',
 			'WooCommercePayments',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'Payments',
 			'Tax',
 			'Shipping',
@@ -143,7 +142,6 @@ class TaskLists {
 			}
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		self::add_list(
 			array(
 				'id'                      => 'setup',

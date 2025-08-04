@@ -28,7 +28,6 @@ class WC_Admin_Addons {
 		$transient_name = 'wc_addons_featured';
 		// Important: WCCOM Extensions API v3.0 is used.
 		$url      = 'https://woocommerce.com/wp-json/wccom-extensions/3.0/featured';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$locale   = get_user_locale();
 		$featured = self::get_locale_data_from_transient( $transient_name, $locale );
 
@@ -78,7 +77,6 @@ class WC_Admin_Addons {
 			}
 
 			if ( $featured ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				self::set_locale_data_in_transient( $transient_name, $featured, $locale, DAY_IN_SECONDS );
 			}
 		}
@@ -87,7 +85,6 @@ class WC_Admin_Addons {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Check if the error is due to an SSL error
 	 *
 	 * @param string $error_message Error message.
@@ -321,7 +318,6 @@ class WC_Admin_Addons {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Make wp_safe_remote_get request to WooCommerce.com endpoint.
 	 * Optionally pass user auth token, locale or country.
 	 *
@@ -356,7 +352,6 @@ class WC_Admin_Addons {
 		}
 
 		$query_string = ! empty( $parameters ) ? '?' . http_build_query( $parameters ) : '';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return wp_safe_remote_get(
 			$url . $query_string,

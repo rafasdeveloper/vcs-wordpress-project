@@ -9,7 +9,6 @@
 
 use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 $current_theme = wp_get_theme()->get_stylesheet();
 use Automattic\WooCommerce\Blocks\Templates\ComingSoonTemplate;
 
@@ -18,7 +17,6 @@ $heading_font_family = $fonts['heading'];
 $body_font_family    = $fonts['body'];
 
 $default_image = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/music-black-and-white-white-photography-darkness-black.jpg' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 $email         = get_option( 'admin_email', 'marianne.renoir@mail.com' );
 
 ?>

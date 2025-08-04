@@ -19,7 +19,6 @@ return array(
     'Automattic\\WooCommerce\\Vendor\\' => array($baseDir . '/lib/packages'),
     'Automattic\\WooCommerce\\Blueprint\\Tests\\' => array($vendorDir . '/woocommerce/blueprint/tests'),
     'Automattic\\WooCommerce\\Blueprint\\' => array($vendorDir . '/woocommerce/blueprint/src'),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
     'Automattic\\WooCommerce\\' => array($baseDir . '/src'),
     'Automattic\\Jetpack\\Autoloader\\' => array($vendorDir . '/automattic/jetpack-autoloader/src'),
 );

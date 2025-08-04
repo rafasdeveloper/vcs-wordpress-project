@@ -5,7 +5,6 @@ namespace Automattic\WooCommerce\Blocks\AIContent;
 use Automattic\WooCommerce\Blocks\AI\Connection;
 use WP_Error;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Pattern Images class.
  *
@@ -479,5 +478,4 @@ class UpdatePatterns {
 
 		return $selected_image['width'] === $selected_image['height'] ? 'square' : ( $selected_image['width'] > $selected_image['height'] ? 'landscape' : 'portrait' );
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

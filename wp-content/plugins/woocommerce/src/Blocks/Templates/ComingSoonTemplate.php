@@ -66,7 +66,6 @@ class ComingSoonTemplate extends AbstractPageTemplate {
 		);
 
 		if ( ! wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $default_fonts;
 		}
 

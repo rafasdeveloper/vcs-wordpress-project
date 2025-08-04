@@ -13,7 +13,6 @@ use Automattic\WooCommerce\Internal\Admin\WCAdminAssets;
  */
 class Tax extends Task {
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Used to cache is_complete() method result.
 	 *
@@ -29,7 +28,6 @@ class Tax extends Task {
 	public function __construct( $task_list ) {
 		parent::__construct( $task_list );
 		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_return_notice_script' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -122,14 +120,12 @@ class Tax extends Task {
 				count( TaxDataStore::get_taxes( array() ) ) > 0 ||
 				get_option( 'woocommerce_no_sales_tax' ) !== false ||
 				$third_party_complete;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return $this->is_complete_result;
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Additional data.
 	 *
 	 * @return array

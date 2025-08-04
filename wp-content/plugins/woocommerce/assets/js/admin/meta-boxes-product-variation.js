@@ -52,7 +52,6 @@ jQuery( function ( $ ) {
 				'.wc_input_variations_price',
 				this.maybe_enable_button_to_add_price_to_variations
 			);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		},
 
 		create_variations: function ( event ) {
@@ -187,7 +186,6 @@ jQuery( function ( $ ) {
 		},
 
 		/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		 * Check if variation manage stock and show/hide elements
 		 */
 		variable_manage_stock: function () {

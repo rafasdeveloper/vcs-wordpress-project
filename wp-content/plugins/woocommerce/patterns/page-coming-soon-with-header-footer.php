@@ -21,7 +21,6 @@ $body_font_family    = $fonts['body'];
 
 <?php
 if ( wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	echo '<!-- wp:template-part {"slug":"header","tagName":"header"} /-->';
 }
 ?>
@@ -50,7 +49,6 @@ if ( wc_current_theme_is_fse_theme() ) {
 
 <?php
 if ( wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	echo '<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->';
 }
 ?>

@@ -9,7 +9,6 @@ declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine\Renderer\ContentRenderer\Postprocessors;
 
 use MailPoet\EmailEditor\Engine\Theme_Controller;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * In some case the blocks HTML contains CSS variables.

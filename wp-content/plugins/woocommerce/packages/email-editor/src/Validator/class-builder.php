@@ -17,7 +17,6 @@ use MailPoet\EmailEditor\Validator\Schema\Number_Schema;
 use MailPoet\EmailEditor\Validator\Schema\Object_Schema;
 use MailPoet\EmailEditor\Validator\Schema\One_Of_Schema;
 use MailPoet\EmailEditor\Validator\Schema\String_Schema;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Builder for creating schema objects.
@@ -65,7 +64,6 @@ class Builder {
 	 * @param Schema|null $items Schema of the items in the array.
 	 */
 	public static function array( Schema $items = null ): Array_Schema {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$array = new Array_Schema();
 		return $items ? $array->items( $items ) : $array;
 	}
@@ -76,7 +74,6 @@ class Builder {
 	 * @param array<string, Schema>|null $properties Properties of the object.
 	 */
 	public static function object( array $properties = null ): Object_Schema {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$object = new Object_Schema();
 		return null === $properties ? $object : $object->properties( $properties );
 	}

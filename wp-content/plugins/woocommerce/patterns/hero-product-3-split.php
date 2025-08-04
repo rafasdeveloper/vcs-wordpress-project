@@ -15,7 +15,6 @@ $third_title  = $content['titles'][2]['default'] ?? '';
 $first_description  = $content['descriptions'][0]['default'] ?? '';
 $second_description = $content['descriptions'][1]['default'] ?? '';
 $third_description  = $content['descriptions'][2]['default'] ?? '';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 ?>
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","bottom":"calc( 0.5 * var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal)))","left":"var(--wp--style--root--padding-left, var(--wp--custom--gap--horizontal))","right":"var(--wp--style--root--padding-right, var(--wp--custom--gap--horizontal))"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained","justifyContent":"center"}} -->
@@ -29,14 +28,12 @@ $third_description  = $content['descriptions'][2]['default'] ?? '';
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:cover {"url":"<?php echo esc_url( PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/drinkware-liquid-tableware-dishware-bottle-fluid.jpg' ) ); ?>","dimRatio":0,"minHeight":800,"minHeightUnit":"px","isDark":false,"layout":{"type":"constrained"}} -->
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			<div class="wp-block-cover is-light" style="min-height:800px">
 				<span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim"></span>
 				<img
 					class="wp-block-cover__image-background"
 					alt="<?php esc_attr_e( 'Placeholder image used to represent a product being showcased.', 'woocommerce' ); ?>"
 					src="<?php echo esc_url( PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/drinkware-liquid-tableware-dishware-bottle-fluid.jpg' ) ); ?>"
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					data-object-fit="cover" />
 				<div class="wp-block-cover__inner-container">
 					<!-- wp:paragraph {"align":"center","placeholder":" ","fontSize":"large"} -->

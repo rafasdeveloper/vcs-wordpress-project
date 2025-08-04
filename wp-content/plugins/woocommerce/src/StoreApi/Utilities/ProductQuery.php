@@ -338,7 +338,6 @@ class ProductQuery {
 		global $wpdb;
 
 		return strtotime( $wpdb->get_var( "SELECT MAX( post_modified_gmt ) FROM {$wpdb->posts} WHERE post_type IN ( 'product', 'product_variation' );" ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

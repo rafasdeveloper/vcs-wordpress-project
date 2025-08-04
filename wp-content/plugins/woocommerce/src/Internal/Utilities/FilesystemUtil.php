@@ -121,5 +121,4 @@ class FilesystemUtil {
 
 		return is_null( $initialized ) ? false : $initialized;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

@@ -7,7 +7,6 @@ use Automattic\WooCommerce\Blocks\AI\Connection;
 use Automattic\WooCommerce\Blocks\AIContent\UpdateProducts;
 use Automattic\WooCommerce\StoreApi\Routes\V1\AbstractRoute;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Products class.
  *
@@ -153,4 +152,3 @@ class Products extends AbstractRoute {
 		return rest_ensure_response( array( 'removed' => true ) );
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

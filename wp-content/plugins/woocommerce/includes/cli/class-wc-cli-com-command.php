@@ -49,7 +49,6 @@ class WC_CLI_COM_Command {
 	 */
 	public static function list_extensions( array $args, array $assoc_args ) {
 		$data = WC_Helper::get_subscriptions();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$data = array_values( $data );
 

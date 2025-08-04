@@ -14,7 +14,6 @@ use Automattic\Jetpack\Connection\Manager;
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Admin\PluginsHelper;
 use Automattic\WooCommerce\Admin\PluginsInstallLoggers\AsynPluginsInstallLogger;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WC_REST_Data_Controller;
 use WP_Error;
 use WP_REST_Request;
@@ -231,7 +230,6 @@ class OnboardingPlugins extends WC_REST_Data_Controller {
 	 *
 	 * @return array
 	 * @throws \Exception If there is an error registering the site.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 */
 	public function get_jetpack_authorization_url( WP_REST_Request $request ) {
 		$manager = new Manager( 'woocommerce' );
@@ -258,14 +256,12 @@ class OnboardingPlugins extends WC_REST_Data_Controller {
 		$color_scheme = get_user_option( 'admin_color', get_current_user_id() );
 		if ( ! $color_scheme ) {
 			$color_scheme = 'default';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return array(
 			'success'      => ! $errors->has_errors(),
 			'errors'       => $errors->get_error_messages(),
 			'color_scheme' => 'fresh' === $color_scheme ? 'default' : $color_scheme,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'url'          => add_query_arg(
 				array(
 					'from'        => $request->get_param( 'from' ),

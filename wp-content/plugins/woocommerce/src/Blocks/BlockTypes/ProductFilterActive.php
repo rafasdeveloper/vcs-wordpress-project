@@ -1,5 +1,4 @@
 <?php
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
 /**
@@ -46,7 +45,6 @@ final class ProductFilterActive extends AbstractBlock {
 		if ( empty( $active_filters ) ) {
 			$wrapper_attributes['hidden'] = true;
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return sprintf(
 			'<div %1$s>%2$s</div>',
@@ -76,7 +74,6 @@ final class ProductFilterActive extends AbstractBlock {
 	 *
 	 * @param string|null $key The key.
 	 *
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return null
 	 */
 	protected function get_block_type_script( $key = null ) {

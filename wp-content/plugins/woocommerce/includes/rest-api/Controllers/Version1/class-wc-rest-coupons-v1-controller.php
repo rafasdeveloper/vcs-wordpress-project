@@ -266,7 +266,6 @@ class WC_REST_Coupons_V1_Controller extends WC_REST_Posts_Controller {
 					case 'code' :
 						$coupon_code = wc_format_coupon_code( $value );
 						$id          = $coupon->get_id() ? $coupon->get_id() : 0;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						$id_from_code = wc_get_coupon_id_by_code( $coupon_code, $id );
 
 						if ( $id_from_code ) {

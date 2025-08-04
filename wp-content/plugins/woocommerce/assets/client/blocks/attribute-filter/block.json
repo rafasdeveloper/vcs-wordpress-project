@@ -7,7 +7,6 @@
 	"keywords": [
 		"WooCommerce"
 	],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"supports": {
 		"html": false,
 		"color": {
@@ -16,7 +15,6 @@
 		},
 		"inserter": false,
 		"lock": false
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	},
 	"attributes": {
 		"className": {
@@ -60,4 +58,3 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

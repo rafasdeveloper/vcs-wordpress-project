@@ -5,7 +5,6 @@
  * @package WooCommerce\Emails
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use Pelago\Emogrifier\CssInliner;
 use Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter;
@@ -259,12 +258,10 @@ class WC_Email extends WC_Settings_API {
 	public $email_improvements_enabled;
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Constructor.
 	 */
 	public function __construct() {
 		$this->email_improvements_enabled = FeaturesUtil::feature_is_enabled( 'email_improvements' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Find/replace.
 		$this->placeholders = array_merge(
@@ -293,7 +290,6 @@ class WC_Email extends WC_Settings_API {
 			$this->bcc = $this->get_option( 'bcc' );
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		add_action( 'phpmailer_init', array( $this, 'handle_multipart' ) );
 		add_action( 'woocommerce_update_options_email_' . $this->id, array( $this, 'process_admin_options' ) );
 	}
@@ -468,7 +464,6 @@ class WC_Email extends WC_Settings_API {
 		 * @param WC_Email    $email   WC_Email instance managing the email.
 		 */
 		return apply_filters( 'woocommerce_email_subject_' . $this->id, $this->format_string( $this->get_option_or_transient( 'subject', $this->get_default_subject() ) ), $this->object, $this );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -506,7 +501,6 @@ class WC_Email extends WC_Settings_API {
 		 */
 		$recipient  = apply_filters( 'woocommerce_email_recipient_' . $this->id, $this->recipient, $this->object, $this );
 		$recipients = array_map( 'trim', explode( ',', $recipient ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$recipients = array_filter( $recipients, 'is_email' );
 		return implode( ', ', $recipients );
 	}
@@ -518,7 +512,6 @@ class WC_Email extends WC_Settings_API {
 	 */
 	public function get_cc_recipient() {
 		$cc = $this->cc;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Filter the Cc recipient for the email.
 		 *
@@ -529,7 +522,6 @@ class WC_Email extends WC_Settings_API {
 		 */
 		$cc  = apply_filters( 'woocommerce_email_cc_recipient_' . $this->id, $cc, $this->object, $this );
 		$ccs = array_map( 'trim', explode( ',', $cc ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$ccs = array_filter( $ccs, 'is_email' );
 		$ccs = array_map( 'sanitize_email', $ccs );
 		return implode( ', ', $ccs );
@@ -542,7 +534,6 @@ class WC_Email extends WC_Settings_API {
 	 */
 	public function get_bcc_recipient() {
 		$bcc = $this->bcc;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		/**
 		 * Filter the Bcc recipient for the email.
 		 *
@@ -553,7 +544,6 @@ class WC_Email extends WC_Settings_API {
 		 */
 		$bcc  = apply_filters( 'woocommerce_email_bcc_recipient_' . $this->id, $bcc, $this->object, $this );
 		$bccs = array_map( 'trim', explode( ',', $bcc ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$bccs = array_filter( $bccs, 'is_email' );
 		$bccs = array_map( 'sanitize_email', $bccs );
 		return implode( ', ', $bccs );
@@ -622,7 +612,6 @@ class WC_Email extends WC_Settings_API {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get email content type.
 	 *
 	 * @param string $default_content_type Default wp_mail() content type.
@@ -718,7 +707,6 @@ class WC_Email extends WC_Settings_API {
 	public function get_content() {
 		$this->sending = true;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( 'plain' === $this->get_email_type() ) {
 			$email_content = wordwrap( preg_replace( $this->plain_search, $this->plain_replace, wp_strip_all_tags( $this->get_content_plain() ) ), 70 );
 		} else {
@@ -768,7 +756,6 @@ class WC_Email extends WC_Settings_API {
 					$dom_document = $css_inliner->getDomDocument();
 
 					HtmlPruner::fromDomDocument( $dom_document )->removeElementsWithDisplayNone();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					$content = CssToAttributeConverter::fromDomDocument( $dom_document )
 						->convertCssToVisualAttributes()
 						->render();
@@ -904,7 +891,6 @@ class WC_Email extends WC_Settings_API {
 		 * @param WC_Email $this   WC_Email instance.
 		 */
 		do_action( 'woocommerce_email_sent', $return, $this->id, $this );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		return $return;
 	}
@@ -1199,7 +1185,6 @@ class WC_Email extends WC_Settings_API {
 		$this->admin_actions();
 		?>
 		<h2><?php echo esc_html( $this->get_title() ); ?> <?php wc_back_link( __( 'Return to emails', 'woocommerce' ), admin_url( 'admin.php?page=wc-settings&tab=email' ) ); ?></h2>
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		<?php echo wpautop( wp_kses_post( $this->get_description() ) ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 
@@ -1404,5 +1389,4 @@ class WC_Email extends WC_Settings_API {
 
 		return $option;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

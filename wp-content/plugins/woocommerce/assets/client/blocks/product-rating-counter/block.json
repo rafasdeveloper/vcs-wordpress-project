@@ -1,7 +1,6 @@
 {
 	"name": "woocommerce/product-rating-counter",
 	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Product Rating Counter",
 	"description": "Display the review count of a product",
 	"category": "woocommerce-product-elements",
@@ -45,4 +44,3 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

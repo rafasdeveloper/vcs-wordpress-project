@@ -56,7 +56,6 @@ class ProductAverageRating extends AbstractBlock {
 
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Overwrite parent method to prevent script registration.
 	 *
 	 * It is necessary to register and enqueues assets during the render

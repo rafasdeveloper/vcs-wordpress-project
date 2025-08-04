@@ -14,7 +14,6 @@ use Automattic\WooCommerce\Internal\Admin\Notes\AddFirstProduct;
 use Automattic\WooCommerce\Internal\Admin\Notes\CustomizeStoreWithBlocks;
 use Automattic\WooCommerce\Internal\Admin\Notes\CustomizingProductCatalog;
 use Automattic\WooCommerce\Internal\Admin\Notes\EditProductsOnTheMove;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Notes\EUVATNumber;
 use Automattic\WooCommerce\Internal\Admin\Notes\FirstProduct;
 use Automattic\WooCommerce\Internal\Admin\Notes\InstallJPAndWCSPlugins;
@@ -23,7 +22,6 @@ use Automattic\WooCommerce\Internal\Admin\Notes\MagentoMigration;
 use Automattic\WooCommerce\Internal\Admin\Notes\ManageOrdersOnTheGo;
 use Automattic\WooCommerce\Internal\Admin\Notes\MarketingJetpack;
 use Automattic\WooCommerce\Internal\Admin\Notes\MerchantEmailNotifications;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use Automattic\WooCommerce\Internal\Admin\Notes\MigrateFromShopify;
 use Automattic\WooCommerce\Internal\Admin\Notes\MobileApp;
 use Automattic\WooCommerce\Internal\Admin\Notes\NewSalesRecord;
@@ -74,7 +72,6 @@ class Events {
 		CustomizeStoreWithBlocks::class,
 		CustomizingProductCatalog::class,
 		EditProductsOnTheMove::class,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		EUVATNumber::class,
 		FirstProduct::class,
 		LaunchChecklist::class,
@@ -153,7 +150,6 @@ class Events {
 			MerchantEmailNotifications::run();
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( Features::is_enabled( 'core-profiler' ) ) {
 			( new MailchimpScheduler() )->run();
 		}

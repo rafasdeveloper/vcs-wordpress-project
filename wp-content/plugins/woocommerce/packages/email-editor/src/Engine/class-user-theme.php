@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 use WP_Post;
 use WP_Theme_JSON;
@@ -17,7 +16,6 @@ use WP_Theme_JSON;
  */
 class User_Theme {
 	private const USER_THEME_POST_NAME = 'wp-global-styles-mailpoet-email';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	private const INITIAL_THEME_DATA   = array(
 		'version'                     => 3,
 		'isGlobalStylesUserThemeJSON' => true,

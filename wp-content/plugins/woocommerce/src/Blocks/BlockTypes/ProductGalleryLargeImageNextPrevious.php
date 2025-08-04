@@ -2,7 +2,6 @@
 
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * ProductGalleryLargeImage class.
  */
@@ -147,6 +146,5 @@ class ProductGalleryLargeImageNextPrevious extends AbstractBlock {
 			$button_side_class,
 			$icon_path
 		);
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 }

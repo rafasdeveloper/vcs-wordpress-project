@@ -47,7 +47,6 @@ class WC_Template_Loader {
 
 			// Loads gallery scripts on Product page for FSE themes.
 			if ( wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				self::add_support_for_product_page_gallery();
 			}
 		} else {
@@ -111,7 +110,6 @@ class WC_Template_Loader {
 	 * @return boolean
 	 */
 	private static function taxonomy_has_block_template( $taxonomy ) : bool {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( taxonomy_is_product_attribute( $taxonomy->taxonomy ) ) {
 			$template_name = 'taxonomy-product_attribute';
 		} else {
@@ -138,7 +136,6 @@ class WC_Template_Loader {
 
 		$has_template            = false;
 		$template_filename       = $template_name . '.html';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Since Gutenberg 12.1.0, the conventions for block templates directories have changed,
 		// we should check both these possible directories for backwards-compatibility.
 		$possible_templates_dirs = array( 'templates', 'block-templates' );
@@ -205,7 +202,6 @@ class WC_Template_Loader {
 				} else {
 					$default_file = '';
 				}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			}
 		} elseif (
 			( is_post_type_archive( 'product' ) || is_page( wc_get_page_id( 'shop' ) ) ) &&
@@ -539,7 +535,6 @@ class WC_Template_Loader {
 	 */
 	public static function unsupported_theme_title_filter( $title, $id ) {
 		if ( self::$theme_support || ! $id !== self::$shop_page_id ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $title;
 		}
 

@@ -46,7 +46,6 @@
 			export_meta      = $( '#woocommerce-exporter-meta:checked' ).length ? 1: 0,
 			export_types     = $( '.woocommerce-exporter-types' ).val(),
 			export_category  = $( '.woocommerce-exporter-category' ).val();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		$.ajax( {
 			type: 'POST',
@@ -62,7 +61,6 @@
 				export_category  : export_category,
 				filename         : filename,
 				security         : wc_product_export_params.export_nonce
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			},
 			dataType: 'json',
 			success: function( response ) {

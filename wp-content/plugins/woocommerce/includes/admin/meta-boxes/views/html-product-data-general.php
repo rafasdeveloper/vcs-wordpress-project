@@ -100,7 +100,6 @@ use Automattic\WooCommerce\Enums\ProductTaxStatus;
 		</div>
 	<?php endif; ?>
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	<div class="options_group show_if_downloadable hidden">
 		<div class="form-field downloadable_files">
 			<label><?php esc_html_e( 'Downloadable files', 'woocommerce' ); ?></label>

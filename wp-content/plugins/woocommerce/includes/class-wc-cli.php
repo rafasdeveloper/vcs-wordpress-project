@@ -22,7 +22,6 @@ class WC_CLI {
 	public function __construct() {
 		$this->includes();
 		$this->hooks();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -37,7 +36,6 @@ class WC_CLI {
 		require_once __DIR__ . '/cli/class-wc-cli-com-command.php';
 		require_once __DIR__ . '/cli/class-wc-cli-com-extension-command.php';
 		$this->maybe_include_blueprint_cli();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -58,7 +56,6 @@ class WC_CLI {
 		if ( FeaturesUtil::feature_is_enabled( 'blueprint' ) && class_exists( \Automattic\WooCommerce\Blueprint\Cli::class ) ) {
 			WP_CLI::add_hook( 'after_wp_load', 'Automattic\WooCommerce\Blueprint\Cli::register_commands' );
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -67,7 +64,6 @@ class WC_CLI {
 	private function maybe_include_blueprint_cli() {
 		if ( FeaturesUtil::feature_is_enabled( 'blueprint' ) ) {
 			require_once dirname( WC_PLUGIN_FILE ) . '/vendor/woocommerce/blueprint/src/Cli.php';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	}
 }

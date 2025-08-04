@@ -457,7 +457,6 @@ class WC_Checkout {
 			$this->set_data_from_cart( $order );
 
 			if ( $this->cogs_is_enabled() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$order->calculate_cogs_total_value();
 			}
 
@@ -888,7 +887,6 @@ class WC_Checkout {
 
 				if ( in_array( 'phone', $format, true ) ) {
 					$data[ $key ] = wc_sanitize_phone_number( $data[ $key ] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 					if ( $validate_fieldset && '' !== $data[ $key ] && ! WC_Validation::is_phone( $data[ $key ] ) ) {
 						/* translators: %s: phone number */
@@ -955,7 +953,6 @@ class WC_Checkout {
 			$shipping_country = isset( $data['shipping_country'] ) ? $data['shipping_country'] : WC()->customer->get_shipping_country();
 
 			if ( empty( $shipping_country ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				$errors->add( 'shipping', __( 'Please enter an address to continue.', 'woocommerce' ) );
 			} elseif ( ! in_array( $shipping_country, array_keys( WC()->countries->get_shipping_countries() ), true ) ) {
 				if ( WC()->countries->country_exists( $shipping_country ) ) {
@@ -1092,7 +1089,6 @@ class WC_Checkout {
 
 			$result = apply_filters( 'woocommerce_payment_successful_result', $result, $order_id );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			if ( ! wp_doing_ajax() ) {
 				// phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
 				wp_redirect( $result['redirect'] );
@@ -1115,7 +1111,6 @@ class WC_Checkout {
 		$order->payment_complete();
 		wc_empty_cart();
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( ! wp_doing_ajax() ) {
 			wp_safe_redirect(
 				apply_filters( 'woocommerce_checkout_no_payment_needed_redirect', $order->get_checkout_order_received_url(), $order )
@@ -1283,7 +1278,6 @@ class WC_Checkout {
 				throw new Exception( $expiry_message );
 			}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			do_action( 'woocommerce_checkout_process' );
 
 			$errors      = new WP_Error();
@@ -1291,12 +1285,10 @@ class WC_Checkout {
 
 			// Update session for customer and totals.
 			$this->update_session( $posted_data );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			// Validate posted data and cart items before proceeding.
 			$this->validate_checkout( $posted_data, $errors );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			foreach ( $errors->errors as $code => $messages ) {
 				$data = $errors->get_error_data( $code );
 				foreach ( $messages as $message ) {
@@ -1319,7 +1311,6 @@ class WC_Checkout {
 
 				do_action( 'woocommerce_checkout_order_processed', $order_id, $posted_data, $order );
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				/**
 				 * Note that woocommerce_cart_needs_payment is only used in
 				 * WC_Checkout::process_checkout() to keep backwards compatibility.
@@ -1337,7 +1328,6 @@ class WC_Checkout {
 				}
 			}
 		} catch ( Exception $e ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			wc_add_notice( $e->getMessage(), 'error' );
 		}
 		$this->send_ajax_failure_response();

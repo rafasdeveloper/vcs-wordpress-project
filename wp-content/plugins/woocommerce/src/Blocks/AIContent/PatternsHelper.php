@@ -4,7 +4,6 @@ namespace Automattic\WooCommerce\Blocks\AIContent;
 
 use WP_Error;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Patterns Helper class.
  *
@@ -148,4 +147,3 @@ class PatternsHelper {
 		return null;
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

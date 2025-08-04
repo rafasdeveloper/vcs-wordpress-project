@@ -7,7 +7,6 @@
 	"keywords": [
 		"WooCommerce"
 	],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"textdomain": "woocommerce",
 	"attributes": {
 		"contentJustification": {
@@ -27,7 +26,6 @@
 			"wide",
 			"full"
 		],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"color": {
 			"background": false,
 			"link": true
@@ -36,10 +34,8 @@
 		"typography": {
 			"fontSize": true,
 			"lineHeight": true
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	},
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

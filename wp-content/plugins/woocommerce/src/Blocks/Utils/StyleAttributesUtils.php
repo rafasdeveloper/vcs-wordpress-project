@@ -25,7 +25,6 @@ class StyleAttributesUtils {
 	 */
 	public static function get_color_value( $color_value ) {
 		if ( is_string( $color_value ) && str_contains( $color_value, 'var:preset|color|' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$color_value = str_replace( 'var:preset|color|', '', $color_value );
 			return sprintf( 'var(--wp--preset--color--%s)', $color_value );
 		}
@@ -45,7 +44,6 @@ class StyleAttributesUtils {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * If spacing value is in preset format, convert it to a CSS var. Else return same value
 	 * For example:
 	 * "var:preset|spacing|50" -> "var(--wp--preset--spacing--50)"
@@ -58,7 +56,6 @@ class StyleAttributesUtils {
 	public static function get_spacing_value( $spacing_value ) {
 		// Used following code as reference: https://github.com/WordPress/gutenberg/blob/cff6d70d6ff5a26e212958623dc3130569f95685/lib/block-supports/layout.php/#L219-L225.
 		if ( is_string( $spacing_value ) && str_contains( $spacing_value, 'var:preset|spacing|' ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$spacing_value = str_replace( 'var:preset|spacing|', '', $spacing_value );
 			return sprintf( 'var(--wp--preset--spacing--%s)', $spacing_value );
 		}
@@ -587,7 +584,6 @@ class StyleAttributesUtils {
 	}
 
 	/**
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * Get space-separated style rules from block attributes.
 	 *
 	 * @param array $attributes Block attributes.
@@ -738,7 +734,6 @@ class StyleAttributesUtils {
 			'line_height'      => self::get_line_height_class_and_style( $attributes ),
 			'margin'           => self::get_margin_class_and_style( $attributes ),
 			'padding'          => self::get_padding_class_and_style( $attributes ),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'text_align'       => self::get_text_align_class_and_style( $attributes ),
 			'text_color'       => self::get_text_color_class_and_style( $attributes ),
 			'text_decoration'  => self::get_text_decoration_class_and_style( $attributes ),

@@ -4,7 +4,6 @@
 	http://jedwatson.github.io/classnames
 */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * @license React
  * react-jsx-runtime.production.min.js
@@ -45,4 +44,3 @@
  *
  * @license MIT
  */
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

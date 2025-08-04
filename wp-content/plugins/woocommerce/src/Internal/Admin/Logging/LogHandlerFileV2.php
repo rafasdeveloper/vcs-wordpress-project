@@ -49,7 +49,6 @@ class LogHandlerFileV2 extends WC_Log_Handler {
 	 * @return bool False if value was not handled and true if value was handled.
 	 */
 	public function handle( $timestamp, $level, $message, $context ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		if ( isset( $context['source'] ) && is_string( $context['source'] ) && strlen( $context['source'] ) >= 3 ) {
 			$source = sanitize_title( trim( $context['source'] ) );
 		} else {
@@ -171,7 +170,6 @@ class LogHandlerFileV2 extends WC_Log_Handler {
 	 * @return int The number of files that were deleted.
 	 */
 	public function clear( string $source ): int {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$source = File::sanitize_source( $source );
 
 		$files = $this->file_controller->get_files(
@@ -192,7 +190,6 @@ class LogHandlerFileV2 extends WC_Log_Handler {
 		$deleted = $this->file_controller->delete_files( $file_ids );
 
 		if ( $deleted > 0 ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$this->handle(
 				time(),
 				'info',
@@ -249,7 +246,6 @@ class LogHandlerFileV2 extends WC_Log_Handler {
 		$files = array_filter(
 			$files,
 			function( $file ) use ( $timestamp ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				/**
 				 * Allows preventing an expired log file from being deleted.
 				 *

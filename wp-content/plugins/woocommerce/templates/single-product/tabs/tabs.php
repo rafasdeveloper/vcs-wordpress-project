@@ -13,7 +13,6 @@
  * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
  * @version 9.6.0
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -35,7 +34,6 @@ if ( ! empty( $product_tabs ) ) : ?>
 		<ul class="tabs wc-tabs" role="tablist">
 			<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
 				<li class="<?php echo esc_attr( $key ); ?>_tab" id="tab-title-<?php echo esc_attr( $key ); ?>">
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					<a href="#tab-<?php echo esc_attr( $key ); ?>" role="tab" aria-controls="tab-<?php echo esc_attr( $key ); ?>">
 						<?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?>
 					</a>

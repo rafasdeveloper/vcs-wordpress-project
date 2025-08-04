@@ -8,7 +8,6 @@
 		"WooCommerce"
 	],
 	"supports": {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		"html": false,
 		"multiple": false,
 		"inserter": false,
@@ -32,4 +31,3 @@
 	"apiVersion": 3,
 	"$schema": "https://schemas.wp.org/trunk/block.json"
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

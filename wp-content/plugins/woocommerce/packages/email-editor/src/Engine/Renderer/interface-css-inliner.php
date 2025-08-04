@@ -6,7 +6,6 @@
  */
 
 namespace MailPoet\EmailEditor\Engine\Renderer;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 interface Css_Inliner {
 	/**

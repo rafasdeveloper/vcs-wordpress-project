@@ -1,2 +1,1 @@
 <?php return array('dependencies' => array('wc-customer-effort-score', 'wc-navigation'), 'version' => 'aee1eed61c36fa9829fb');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

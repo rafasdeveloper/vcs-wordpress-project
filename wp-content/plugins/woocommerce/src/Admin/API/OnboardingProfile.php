@@ -434,7 +434,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 	public static function get_profile_properties() {
 		$properties = array(
 			'completed'                     => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not the profile was completed.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -442,7 +441,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'skipped'                       => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not the profile was skipped.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -450,7 +448,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'industry'                      => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'array',
 				'description'       => __( 'Industry.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -558,7 +555,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'business_extensions'           => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'array',
 				'description'       => __( 'Extra business extensions to install.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -592,7 +588,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'is_agree_marketing'            => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not this store agreed to receiving marketing contents from WooCommerce.com.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -600,7 +595,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'store_email'                   => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'string',
 				'description'       => __( 'Store email address.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -609,7 +603,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'validate_callback' => array( __CLASS__, 'rest_validate_marketing_email' ),
 			),
 			'is_store_country_set'          => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not this store country is set via onboarding profiler.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -617,7 +610,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'validate_callback' => 'rest_validate_request_arg',
 			),
 			'is_plugins_page_skipped'       => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'              => 'boolean',
 				'description'       => __( 'Whether or not plugins step in core profiler was skipped.', 'woocommerce' ),
 				'context'           => array( 'view' ),
@@ -635,7 +627,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				),
 			),
 			'business_choice'               => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'        => 'string',
 				'description' => __( 'Business choice.', 'woocommerce' ),
 				'context'     => array( 'view' ),
@@ -643,7 +634,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'nullable'    => true,
 			),
 			'selling_online_answer'         => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'        => 'string',
 				'description' => __( 'Selling online answer.', 'woocommerce' ),
 				'context'     => array( 'view' ),
@@ -651,7 +641,6 @@ class OnboardingProfile extends \WC_REST_Data_Controller {
 				'nullable'    => true,
 			),
 			'selling_platforms'             => array(
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'type'        => array( 'array', 'null' ),
 				'description' => __( 'Selling platforms.', 'woocommerce' ),
 				'context'     => array( 'view' ),

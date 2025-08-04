@@ -3,7 +3,6 @@
 	"apiVersion": 3,
 	"name": "woocommerce/accordion-header",
 	"version": "0.1.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"title": "Accordion Header",
 	"category": "woocommerce",
 	"keywords": [ "WooCommerce" ],

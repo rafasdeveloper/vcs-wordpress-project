@@ -9,7 +9,6 @@
  */
 
 use Automattic\Jetpack\Constants;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -317,7 +316,6 @@ class WC_Shipping {
 		if ( ! $this->is_package_shippable( $package ) ) {
 			return $package;
 		}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 		// Check if we need to recalculate shipping for this package.
 		$package_to_hash = $package;
@@ -336,7 +334,6 @@ class WC_Shipping {
 
 		if ( ! is_array( $stored_rates ) || $package_hash !== $stored_rates['package_hash'] || 'yes' === get_option( 'woocommerce_shipping_debug_mode', 'no' ) ) {
 			foreach ( $this->load_shipping_methods( $package ) as $shipping_method ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				if ( ! $shipping_method->supports( 'shipping-zones' ) || $shipping_method->get_instance_id() ) {
 					/**
 					 * Fires before getting shipping rates for a package.
@@ -361,12 +358,10 @@ class WC_Shipping {
 				}
 			}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			/**
 			 * Filter the calculated shipping rates.
 			 *
 			 * @see https://gist.github.com/woogists/271654709e1d27648546e83253c1a813 for cache invalidation methods.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			 * @param array $package['rates'] Package rates.
 			 * @param array $package Package of cart items.
 			 */

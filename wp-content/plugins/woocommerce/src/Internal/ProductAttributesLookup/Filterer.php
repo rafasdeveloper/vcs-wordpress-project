@@ -60,7 +60,6 @@ class Filterer {
 		global $wpdb;
 
 		if ( ! $wp_query->is_main_query() || ! $this->filtering_via_lookup_table_is_active() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return $args;
 		}
 
@@ -128,7 +127,6 @@ class Filterer {
 				WHERE is_variation_attribute=1
 				{$in_stock_clause}
 				AND term_id in {$term_ids_to_filter_by_list}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			)";
 		}
 
@@ -280,7 +278,6 @@ class Filterer {
 							WHERE is_variation_attribute=1
 							{$in_stock_clause}
 							AND term_id in {$term_ids_list}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						) temp )";
 				}
 			} else {

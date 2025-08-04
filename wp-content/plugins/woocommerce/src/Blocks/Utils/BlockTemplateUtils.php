@@ -505,7 +505,6 @@ class BlockTemplateUtils {
 		if ( 'wp_template_part' === $template_type && ( wc_current_theme_is_fse_theme() || current_theme_supports( 'block-template-parts' ) ) ) {
 			return true;
 		} elseif ( 'wp_template' === $template_type && wc_current_theme_is_fse_theme() ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return true;
 		}
 		return false;
@@ -693,7 +692,6 @@ class BlockTemplateUtils {
 
 		if ( false === $use_blockified_templates ) {
 			return wc_current_theme_is_fse_theme();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return wc_string_to_bool( $use_blockified_templates );
@@ -724,7 +722,6 @@ class BlockTemplateUtils {
 
 				if ( self::has_block_including_patterns( $block_names, $pattern_blocks ) ) {
 					return true;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 		}

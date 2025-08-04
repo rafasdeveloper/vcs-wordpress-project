@@ -7,7 +7,6 @@ namespace Automattic\WooCommerce\Admin\API\AI;
 use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
 use WP_Error;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Middleware class.
  *
@@ -50,4 +49,3 @@ class Middleware {
 		return true;
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

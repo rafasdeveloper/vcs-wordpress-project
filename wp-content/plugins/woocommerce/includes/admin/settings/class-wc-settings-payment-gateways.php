@@ -1,5 +1,4 @@
 <?php // @codingStandardsIgnoreLine.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * WooCommerce Checkout Settings
  *
@@ -9,7 +8,6 @@
 use Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks\WooCommercePayments;
 use Automattic\WooCommerce\Admin\Features\PaymentGatewaySuggestions\Init;
 use Automattic\WooCommerce\Admin\PluginsHelper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +20,6 @@ if ( class_exists( 'WC_Settings_Payment_Gateways', false ) ) {
  */
 class WC_Settings_Payment_Gateways extends WC_Settings_Page {
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * Constructor.
 	 */
@@ -32,7 +29,6 @@ class WC_Settings_Payment_Gateways extends WC_Settings_Page {
 
 		add_action( 'woocommerce_admin_field_payment_gateways_banner', array( $this, 'payment_gateways_banner' ) );
 		add_action( 'woocommerce_admin_field_payment_gateways', array( $this, 'payment_gateways_setting' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		parent::__construct();
 	}
 
@@ -102,7 +98,6 @@ class WC_Settings_Payment_Gateways extends WC_Settings_Page {
 					break;
 				}
 			}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		parent::output();
@@ -112,7 +107,6 @@ class WC_Settings_Payment_Gateways extends WC_Settings_Page {
 	/**
 	 * Run the 'admin_options' method on a given gateway.
 	 * This method exists to easy unit testing.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 *
 	 * @param object $gateway The gateway object to run the method on.
 	 */
@@ -316,7 +310,6 @@ class WC_Settings_Payment_Gateways extends WC_Settings_Page {
 			</td>
 		</tr>
 		<?php
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**
@@ -325,7 +318,6 @@ class WC_Settings_Payment_Gateways extends WC_Settings_Page {
 	public function save() {
 		global $current_section;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$wc_payment_gateways = WC_Payment_Gateways::instance();
 
 		$this->save_settings_for_current_section();
@@ -340,14 +332,12 @@ class WC_Settings_Payment_Gateways extends WC_Settings_Page {
 				if ( in_array( $current_section, array( $gateway->id, sanitize_title( get_class( $gateway ) ) ), true ) ) {
 					do_action( 'woocommerce_update_options_payment_gateways_' . $gateway->id );
 					$wc_payment_gateways->init();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				}
 			}
 
 			$this->do_update_options_action();
 		}
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
 
 return new WC_Settings_Payment_Gateways();

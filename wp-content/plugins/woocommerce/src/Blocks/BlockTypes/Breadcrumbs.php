@@ -6,7 +6,6 @@ use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 
 /**
  * CatalogSorting class.
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
  */
 class Breadcrumbs extends AbstractBlock {
 
@@ -45,7 +44,6 @@ class Breadcrumbs extends AbstractBlock {
 					'style' => $classes_and_styles['styles'],
 				)
 			),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			$breadcrumb
 		);
 	}
@@ -58,5 +56,4 @@ class Breadcrumbs extends AbstractBlock {
 	protected function get_block_type_script( $key = null ) {
 		return null;
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

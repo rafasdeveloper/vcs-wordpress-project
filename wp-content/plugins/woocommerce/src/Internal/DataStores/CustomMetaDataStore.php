@@ -105,7 +105,6 @@ abstract class CustomMetaDataStore {
 		$db_info = $this->get_db_info();
 
 		$object_id  = $object->get_id();
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$meta_key   = wp_unslash( wp_slash( $meta->key ) );
 		$meta_value = maybe_serialize( is_string( $meta->value ) ? wp_unslash( wp_slash( $meta->value ) ) : $meta->value );
 
@@ -135,7 +134,6 @@ abstract class CustomMetaDataStore {
 		global $wpdb;
 
 		if ( ! isset( $meta->id ) || empty( $meta->key ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return false;
 		}
 
@@ -207,7 +205,6 @@ abstract class CustomMetaDataStore {
 	public function get_metadata_by_key( &$object, string $meta_key ) {
 		global $wpdb;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$db_info = $this->get_db_info();
 
 		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared

@@ -9,7 +9,6 @@ declare(strict_types = 1);
 namespace MailPoet\EmailEditor\Engine\Templates;
 
 use MailPoet\EmailEditor\Validator\Builder;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_Block_Template;
 
 /**
@@ -22,7 +21,6 @@ class Templates {
 	 * @var string $plugin_slug
 	 */
 	private string $template_prefix = 'mailpoet';
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	/**
 	 * The post type.
 	 *
@@ -60,7 +58,6 @@ class Templates {
 		$this->post_types = $post_types;
 		add_filter( 'theme_templates', array( $this, 'add_theme_templates' ), 10, 4 ); // Workaround needed when saving post – template association.
 		add_filter( 'mailpoet_email_editor_register_templates', array( $this, 'register_templates' ) );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$this->templates_registry->initialize();
 		$this->register_post_types_to_api();
 	}
@@ -166,7 +163,6 @@ class Templates {
 				continue;
 			}
 			$templates[ $block_template->slug ] = $block_template;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 		return $templates;
 	}

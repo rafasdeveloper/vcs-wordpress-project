@@ -6,7 +6,6 @@
  */
 declare(strict_types=1);
 use Automattic\WooCommerce\Blocks\AIContent\PatternsHelper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 $header  = __( 'Create anything', 'woocommerce' );
 $content = __( 'Navigating life\'s intricate fabric, choices unfold paths to the extraordinary, demanding creativity, curiosity, and courage for a truly fulfilling journey.', 'woocommerce' );
@@ -16,7 +15,6 @@ $image_0 = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-pla
 $image_1 = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/white-vase-decoration-pattern-ceramic-lamp.jpg' );
 $image_2 = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/plant-white-leaf-flower-vase-green.jpg' );
 $image_3 = PatternsHelper::get_image_url( $images, 0, 'assets/images/pattern-placeholders/tree-branch-plant-wood-leaf-flower.jpg' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 ?>
 

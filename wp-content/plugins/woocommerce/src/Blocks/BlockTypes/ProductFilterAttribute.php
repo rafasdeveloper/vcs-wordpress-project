@@ -6,7 +6,6 @@ namespace Automattic\WooCommerce\Blocks\BlockTypes;
 use Automattic\WooCommerce\Blocks\QueryFilters;
 use Automattic\WooCommerce\Blocks\Package;
 use Automattic\WooCommerce\Blocks\BlockTypes\ProductCollection\Utils as ProductCollectionUtils;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * Product Filter: Attribute Block.
@@ -124,7 +123,6 @@ final class ProductFilterAttribute extends AbstractBlock {
 			}
 			$terms           = explode( ',', $params[ "filter_{$product_attribute}" ] );
 			$attribute_label = wc_attribute_label( "pa_{$product_attribute}" );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			// Get attribute term by slug.
 			foreach ( $terms as $term ) {
@@ -137,7 +135,6 @@ final class ProductFilterAttribute extends AbstractBlock {
 						'slug'      => $product_attribute,
 						'queryType' => 'or',
 					),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				);
 			}
 		}
@@ -186,7 +183,6 @@ final class ProductFilterAttribute extends AbstractBlock {
 			);
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$filter_param_key = 'filter_' . str_replace( 'pa_', '', $product_attribute->slug );
 		$filter_params    = $block->context['filterParams'] ?? array();
 		$selected_terms   = array();
@@ -209,7 +205,6 @@ final class ProductFilterAttribute extends AbstractBlock {
 						'selected'  => in_array( $term['slug'], $selected_terms, true ),
 						'type'      => 'attribute',
 						'data'      => $term,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					);
 				},
 				$attribute_terms
@@ -239,7 +234,6 @@ final class ProductFilterAttribute extends AbstractBlock {
 
 		if ( empty( $filter_context ) ) {
 			$wrapper_attributes['hidden'] = true;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 
 		return sprintf(
@@ -265,7 +259,6 @@ final class ProductFilterAttribute extends AbstractBlock {
 	 */
 	private function get_attribute_counts( $block, $slug, $query_type ) {
 		$filters    = Package::container()->get( QueryFilters::class );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$query_vars = ProductCollectionUtils::get_query_vars( $block, 1 );
 
 		if ( 'and' !== strtolower( $query_type ) ) {
@@ -285,14 +278,12 @@ final class ProductFilterAttribute extends AbstractBlock {
 		}
 
 		$counts           = $filters->get_attribute_counts( $query_vars, $slug );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$attribute_counts = array();
 
 		foreach ( $counts as $key => $value ) {
 			$attribute_counts[] = array(
 				'term'  => $key,
 				'count' => $value,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			);
 		}
 
@@ -429,7 +420,6 @@ final class ProductFilterAttribute extends AbstractBlock {
 	 *
 	 * @param string|null $key The key.
 	 *
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	 * @return null
 	 */
 	protected function get_block_type_script( $key = null ) {

@@ -1,7 +1,6 @@
 {
 	"name": "woocommerce/single-product",
 	"version": "1.0.0",
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"icon": "info",
 	"title": "Single Product",
 	"description": "Display a single product.",
@@ -14,7 +13,6 @@
 			"wide",
 			"full"
 		]
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	},
 	"attributes": {
 		"isPreview": {
@@ -28,7 +26,6 @@
 	"example": {
 		"attributes": {
   			"isPreview": true
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		}
 	},
 	"usesContext": [ "postId", "postType", "queryId" ],

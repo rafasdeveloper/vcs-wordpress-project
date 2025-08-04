@@ -178,7 +178,6 @@ abstract class Incentive {
 			'timestamp' => $timestamp ?? time(),
 		);
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return $this->save_all_dismissed_incentives( $all_dismissed_incentives );
 	}
 
@@ -245,7 +244,6 @@ abstract class Incentive {
 		);
 
 		return array_column( $dismissals, 'context' );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	}
 
 	/**

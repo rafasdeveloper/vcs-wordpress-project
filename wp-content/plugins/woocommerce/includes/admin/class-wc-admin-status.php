@@ -33,7 +33,6 @@ class WC_Admin_Status {
 	 * Handles output of report.
 	 */
 	public static function status_report() {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		include_once __DIR__ . '/views/html-admin-page-status-report.php';
 	}
 

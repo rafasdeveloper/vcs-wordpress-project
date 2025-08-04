@@ -6,7 +6,6 @@ use Automattic\Jetpack\Config;
 use Automattic\Jetpack\Connection\Manager;
 use Automattic\Jetpack\Connection\Utils;
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 /**
  * Class Configuration
  *
@@ -118,4 +117,3 @@ class Configuration {
 		}
 	}
 }
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

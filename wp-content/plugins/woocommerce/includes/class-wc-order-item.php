@@ -101,7 +101,6 @@ class WC_Order_Item extends WC_Data implements ArrayAccess {
 			$this->set_object_read( true );
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$type             = 'line_item' === $this->get_type() ? 'product' : $this->get_type();
 		$this->data_store = WC_Data_Store::load( 'order-item-' . $type );
 		if ( $this->get_id() > 0 ) {
@@ -547,5 +546,4 @@ class WC_Order_Item extends WC_Data implements ArrayAccess {
 			$this->set_prop( 'cogs_value', $value );
 		}
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

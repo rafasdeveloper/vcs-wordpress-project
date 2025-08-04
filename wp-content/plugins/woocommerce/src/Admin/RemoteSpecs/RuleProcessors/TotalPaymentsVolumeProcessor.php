@@ -3,7 +3,6 @@
  * Rule processor that passes when a store's payments volume exceeds a provided amount.
  */
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 namespace Automattic\WooCommerce\Admin\RemoteSpecs\RuleProcessors;
 
 defined( 'ABSPATH' ) || exit;
@@ -69,7 +68,6 @@ class TotalPaymentsVolumeProcessor implements RuleProcessorInterface {
 		}
 
 		if ( ! isset( $rule->value ) || ! is_numeric( $rule->value ) ) {
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			return false;
 		}
 
@@ -77,7 +75,6 @@ class TotalPaymentsVolumeProcessor implements RuleProcessorInterface {
 			return false;
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		return true;
 	}
 

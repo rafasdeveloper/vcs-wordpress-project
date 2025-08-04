@@ -15,7 +15,6 @@ use Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\Registe
 use Automattic\WooCommerce\Internal\DataStores\Orders\DataSynchronizer as Order_DataSynchronizer;
 use Automattic\WooCommerce\Utilities\{ LoggingUtil, OrderUtil, PluginUtil };
 use Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 /**
  * System status controller class.
@@ -218,7 +217,6 @@ class WC_REST_System_Status_V2_Controller extends WC_REST_Controller {
 							'context'     => array( 'view' ),
 							'readonly'    => true,
 						),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 						'php_version'               => array(
 							'description' => __( 'PHP version.', 'woocommerce' ),
 							'type'        => 'string',
@@ -664,7 +662,6 @@ class WC_REST_System_Status_V2_Controller extends WC_REST_Controller {
 							'context'     => array( 'view' ),
 							'readonly'    => true,
 						),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 					),
 				),
 				'security'           => array(
@@ -976,7 +973,6 @@ class WC_REST_System_Status_V2_Controller extends WC_REST_Controller {
 			$get_response_successful = ! is_wp_error( $get_response_code ) && $get_response_code >= 200 && $get_response_code < 300;
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		$database_version = wc_get_server_database_version();
 		$log_directory    = LoggingUtil::get_log_directory( false );
 
@@ -996,7 +992,6 @@ class WC_REST_System_Status_V2_Controller extends WC_REST_Controller {
 			'language'                  => get_locale(),
 			'external_object_cache'     => wp_using_ext_object_cache(),
 			'server_info'               => isset( $_SERVER['SERVER_SOFTWARE'] ) ? wc_clean( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '',
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			'php_version'               => phpversion(),
 			'php_post_max_size'         => wc_let_to_num( ini_get( 'post_max_size' ) ),
 			'php_max_execution_time'    => (int) ini_get( 'max_execution_time' ),
@@ -1381,7 +1376,6 @@ class WC_REST_System_Status_V2_Controller extends WC_REST_Controller {
 				'author_url'              => esc_url_raw( $active_theme->{'Author URI'} ),
 				'is_child_theme'          => is_child_theme(),
 				'is_block_theme'          => wc_current_theme_is_fse_theme(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 				'has_woocommerce_support' => current_theme_supports( 'woocommerce' ),
 				'has_woocommerce_file'    => ( file_exists( get_stylesheet_directory() . '/woocommerce.php' ) || file_exists( get_template_directory() . '/woocommerce.php' ) ),
 				'has_outdated_templates'  => $outdated_templates,
@@ -1432,7 +1426,6 @@ class WC_REST_System_Status_V2_Controller extends WC_REST_Controller {
 			$product_visibility_terms[ $term->slug ] = strtolower( $term->name );
 		}
 
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		// Return array of useful settings for debugging.
 		return array(
 			'api_enabled'                    => 'yes' === get_option( 'woocommerce_api_enabled' ),
@@ -1458,7 +1451,6 @@ class WC_REST_System_Status_V2_Controller extends WC_REST_Controller {
 			'order_datastore'                => WC_Data_Store::load( 'order' )->get_current_class_name(),
 			'HPOS_enabled'                   => OrderUtil::custom_orders_table_usage_is_enabled(),
 			'HPOS_sync_enabled'              => wc_get_container()->get( Order_DataSynchronizer::class )->data_sync_is_enabled(),
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 	}
 

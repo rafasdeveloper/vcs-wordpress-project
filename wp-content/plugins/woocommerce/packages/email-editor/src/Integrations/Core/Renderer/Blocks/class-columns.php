@@ -10,7 +10,6 @@ namespace MailPoet\EmailEditor\Integrations\Core\Renderer\Blocks;
 
 use MailPoet\EmailEditor\Engine\Settings_Controller;
 use MailPoet\EmailEditor\Integrations\Utils\Dom_Document_Helper;
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 use WP_Style_Engine;
 
 /**

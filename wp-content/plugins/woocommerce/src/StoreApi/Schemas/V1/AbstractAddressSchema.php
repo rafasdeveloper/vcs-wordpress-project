@@ -234,7 +234,6 @@ abstract class AbstractAddressSchema extends AbstractSchema {
 
 		if ( ! empty( $address['phone'] ) ) {
 			$address['phone'] = wc_sanitize_phone_number( $address['phone'] );
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 
 			if ( ! \WC_Validation::is_phone( $address['phone'] ) ) {
 				$errors->add(
@@ -296,7 +295,6 @@ abstract class AbstractAddressSchema extends AbstractSchema {
 				'type'        => 'string',
 				'context'     => [ 'view', 'edit' ],
 				'required'    => $this->additional_fields_controller->is_conditional_field( $field ) ? false : $field['required'],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			];
 
 			if ( 'select' === $field['type'] ) {

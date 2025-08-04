@@ -13,7 +13,6 @@
 	"ancestor": [
 		"woocommerce/product-filters"
 	],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"supports": {
 		"interactivity": true,
 		"color": {
@@ -63,7 +62,6 @@
 		"query",
 		"filterParams"
 	],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"attributes": {
 		"attributeId": {
 			"type": "number",
@@ -103,5 +101,4 @@
 			"isPreview": true
 		}
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }

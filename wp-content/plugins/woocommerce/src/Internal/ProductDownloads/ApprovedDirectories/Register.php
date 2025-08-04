@@ -392,7 +392,6 @@ class Register {
 				( $page - 1 ) * $per_page,
 				$per_page
 			)
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 		);
 
 		$total_rows = (int) $wpdb->get_var( "SELECT COUNT( * ) FROM {$table} {$where_sql}" );

@@ -13,13 +13,11 @@
 	"ancestor": [
 		"woocommerce/product-filter-active"
 	],
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 	"supports": {
 		"layout": {
 			"allowSwitching": false,
 			"allowInheriting": false,
 			"allowJustification": false,
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 			"allowVerticalAlignment": false,
 			"default": {
 				"type": "flex"
@@ -51,5 +49,4 @@
 			"type": "string"
 		}
 	}
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
 }
