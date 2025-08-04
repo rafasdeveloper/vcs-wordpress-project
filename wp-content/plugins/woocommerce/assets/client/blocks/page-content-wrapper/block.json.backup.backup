@@ -1,0 +1,39 @@
+{
+	"name": "woocommerce/page-content-wrapper",
+<<<<<<< HEAD
+	"title": "WooCommerce Page",
+	"description": "Displays WooCommerce page content.",
+	"category": "woocommerce",
+	"keywords": [ "WooCommerce" ],
+=======
+	"version": "1.0.0",
+	"title": "WooCommerce Page",
+	"description": "Displays WooCommerce page content.",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
+	"textdomain": "woocommerce",
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"inserter": false
+	},
+	"attributes": {
+		"page": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"providesContext": {
+		"postId": "postId",
+		"postType": "postType"
+	},
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json"
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

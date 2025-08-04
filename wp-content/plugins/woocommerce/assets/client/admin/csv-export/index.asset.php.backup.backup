@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+<?php return array('dependencies' => array(), 'version' => '566af0e2bd0969360ba3');
+=======
+<?php return array('dependencies' => array(), 'version' => 'f884e772de8de6343f08');
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

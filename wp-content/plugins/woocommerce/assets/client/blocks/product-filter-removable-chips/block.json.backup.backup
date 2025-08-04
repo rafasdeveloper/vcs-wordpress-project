@@ -1,0 +1,90 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"name": "woocommerce/product-filter-removable-chips",
+<<<<<<< HEAD
+	"title": "Chips",
+	"description": "Display removable active filters as chips.",
+	"category": "woocommerce",
+	"keywords": [ "WooCommerce" ],
+	"textdomain": "woocommerce",
+	"apiVersion": 3,
+	"ancestor": [ "woocommerce/product-filter-active" ],
+=======
+	"version": "1.0.0",
+	"title": "Chips",
+	"description": "Display removable active filters as chips.",
+	"category": "woocommerce",
+	"keywords": [
+		"WooCommerce"
+	],
+	"textdomain": "woocommerce",
+	"apiVersion": 3,
+	"ancestor": [
+		"woocommerce/product-filter-active"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
+	"supports": {
+		"layout": {
+			"allowSwitching": false,
+			"allowInheriting": false,
+<<<<<<< HEAD
+=======
+			"allowJustification": false,
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
+			"allowVerticalAlignment": false,
+			"default": {
+				"type": "flex"
+			}
+		},
+		"interactivity": true
+	},
+<<<<<<< HEAD
+	"usesContext": [ "queryId", "filterData" ],
+	"attributes": {
+		"chipText": {
+			"type": "string"
+		},
+		"customChipText": {
+			"type": "string"
+		},
+		"chipBackground": {
+			"type": "string"
+		},
+		"customChipBackground": {
+			"type": "string"
+		},
+		"chipBorder": {
+			"type": "string"
+		},
+		"customChipBorder": {
+			"type": "string"
+		}
+	},
+	"style": "file:../woocommerce/product-filter-removable-chips-style.css"
+=======
+	"usesContext": [
+		"queryId",
+		"filterData"
+	],
+	"attributes": {
+		"chipText":{
+			"type": "string"
+		},
+		"customChipText":{
+			"type": "string"
+		},
+		"chipBackground":{
+			"type": "string"
+		},
+		"customChipBackground":{
+			"type": "string"
+		},
+		"chipBorder":{
+			"type": "string"
+		},
+		"customChipBorder":{
+			"type": "string"
+		}
+	}
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
+}

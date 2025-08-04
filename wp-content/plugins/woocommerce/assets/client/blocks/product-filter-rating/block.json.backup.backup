@@ -1,0 +1,52 @@
+{
+	"name": "woocommerce/product-filter-rating",
+<<<<<<< HEAD
+	"title": "Rating",
+=======
+	"version": "1.0.0",
+	"title": "Rating (Experimental)",
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
+	"description": "Enable customers to filter the product collection by rating.",
+	"category": "woocommerce",
+	"keywords": [],
+	"supports": {
+		"interactivity": true,
+		"color": {
+			"background": false,
+			"text": true
+		}
+	},
+<<<<<<< HEAD
+	"ancestor": [ "woocommerce/product-filters" ],
+	"usesContext": [ "query", "filterParams" ],
+=======
+	"ancestor": [
+		"woocommerce/product-filters"
+	],
+	"usesContext": [
+		"query",
+		"filterParams"
+	],
+>>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
+	"attributes": {
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"showCounts": {
+			"type": "boolean",
+			"default": false
+		},
+		"minRating": {
+			"type": "string",
+			"default": "0"
+		},
+		"isPreview": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "woocommerce",
+	"apiVersion": 3,
+	"$schema": "https://schemas.wp.org/trunk/block.json"
+}
