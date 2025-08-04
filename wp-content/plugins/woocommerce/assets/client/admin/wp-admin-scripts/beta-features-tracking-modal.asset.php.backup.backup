@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-<?php return array('dependencies' => array('react', 'wc-explat', 'wc-store-data', 'wc-tracks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-i18n'), 'version' => '109e127882e673d26932');
-=======
-<?php return array('dependencies' => array('react', 'wc-explat', 'wc-store-data', 'wc-tracks', 'wp-components', 'wp-compose', 'wp-data', 'wp-element', 'wp-i18n'), 'version' => '695a20892943cf8e6b58');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)

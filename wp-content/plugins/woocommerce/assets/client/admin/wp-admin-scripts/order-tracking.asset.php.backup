@@ -1,2 +1,0 @@
-<?php return array('dependencies' => array('wc-customer-effort-score'), 'version' => 'ff78a37c095df94767ef');
->>>>>>> b1eea7a (Merged existing code from https://dev-vices.rafaeldeveloper.co)
