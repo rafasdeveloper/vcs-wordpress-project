@@ -80,6 +80,19 @@ class VCS_Payment_API {
     }
     
     private function load_dependencies() {
+        // Load Composer autoloader for PayPal SDK
+        $autoloader_path = VCS_PAYMENT_API_PLUGIN_DIR . 'vendor/autoload.php';
+        if (file_exists($autoloader_path)) {
+            require_once $autoloader_path;
+        } else {
+            // Log warning if autoloader is not found
+            add_action('admin_notices', function() {
+                echo '<div class="notice notice-warning"><p>' . 
+                     __('VCS Payment API: PayPal SDK dependencies not found. Please run "composer install" in the plugin directory.', 'vcs-payment-api') . 
+                     '</p></div>';
+            });
+        }
+        
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-logger.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-payment-api-controller.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-paypal-handler.php';

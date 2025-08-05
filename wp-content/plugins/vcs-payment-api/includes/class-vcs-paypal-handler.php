@@ -194,24 +194,37 @@ class VCS_PayPal_Handler {
         }
 
         try {
-            // Check if PayPal SDK classes are available
-            if (!class_exists('PayPalCheckoutSdk\Core\PayPalHttpClient')) {
-                VCS_Logger::log('PayPal SDK not found. Please run "composer install" in the plugin directory.', 'error');
+            // Check if the new PayPal SDK is available
+            if (!class_exists('PaypalServerSdkClientBuilder')) {
+                VCS_Logger::log('PayPal Server SDK not available. Please install the SDK using composer.', 'error');
                 return;
             }
 
-            // Create environment
-            $environment = $this->is_sandbox 
-                ? new SandboxEnvironment($this->client_id, $this->client_secret)
-                : new ProductionEnvironment($this->client_id, $this->client_secret);
+            VCS_Logger::log('Initializing PayPal client with Server SDK...');
 
-            // Create client
-            $this->paypal_client = new PayPalHttpClient($environment);
-            
-            VCS_Logger::log('PayPal client initialized successfully.');
-            
+            // Use the new PayPal Server SDK
+            $client = PaypalServerSdkClientBuilder::init()
+                ->clientCredentialsAuthCredentials(
+                    ClientCredentialsAuthCredentialsBuilder::init(
+                        $this->client_id,
+                        $this->client_secret
+                    )
+                )
+                ->environment($this->is_sandbox ? Environment::SANDBOX : Environment::PRODUCTION)
+                ->loggingConfiguration(
+                    LoggingConfigurationBuilder::init()
+                        ->level(LogLevel::INFO)
+                        ->requestConfiguration(RequestLoggingConfigurationBuilder::init()->body(true))
+                        ->responseConfiguration(ResponseLoggingConfigurationBuilder::init()->headers(true))
+                )
+                ->build();
+
+            $this->paypal_client = $client;
+            VCS_Logger::log('PayPal client initialized successfully with Server SDK.');
+
         } catch (Exception $e) {
             VCS_Logger::log('Error initializing PayPal client: ' . $e->getMessage(), 'error');
+            $this->paypal_client = null;
         }
     }
     
@@ -224,16 +237,15 @@ class VCS_PayPal_Handler {
         }
 
         try {
-            $request = new OrdersCreateRequest();
-            $request->prefer('return=representation');
-            
             // Build order data
             $order_data = $this->build_order_data($params);
+            
+            VCS_Logger::log('Creating PayPal order. Data: ' . json_encode($order_data));
+            
+            // Create order using PayPal Server SDK
+            $request = new OrdersCreateRequest();
             $request->body = $order_data;
             
-            VCS_Logger::log('Creating PayPal order with data: ' . json_encode($order_data));
-            
-            // Execute request
             $response = $this->paypal_client->execute($request);
             
             VCS_Logger::log('PayPal order created successfully. Order ID: ' . $response->result->id);
@@ -265,12 +277,11 @@ class VCS_PayPal_Handler {
         }
 
         try {
-            $request = new OrdersCaptureRequest($params['order_id']);
-            $request->prefer('return=representation');
-            
             VCS_Logger::log('Capturing PayPal order: ' . $params['order_id']);
             
-            // Execute request
+            // Create capture request using PayPal Server SDK
+            $request = new OrdersCaptureRequest($params['order_id']);
+            
             $response = $this->paypal_client->execute($request);
             
             VCS_Logger::log('PayPal order captured successfully. Order ID: ' . $response->result->id);
@@ -288,7 +299,7 @@ class VCS_PayPal_Handler {
             throw new Exception('Failed to capture PayPal order: ' . $e->getMessage());
         }
     }
-    
+
     /**
      * Build order data for PayPal API
      */
@@ -348,28 +359,28 @@ class VCS_PayPal_Handler {
     }
     
     /**
-     * Get client ID for admin display
+     * Get PayPal client ID
      */
     public function get_client_id() {
-        return $this->client_id ?: __('Not configured', 'vcs-payment-api');
+        return $this->client_id;
     }
     
     /**
-     * Get client secret for admin display
+     * Get PayPal client secret
      */
     public function get_client_secret() {
-        return $this->client_secret ?: __('Not configured', 'vcs-payment-api');
+        return $this->client_secret;
     }
     
     /**
-     * Get merchant ID for admin display
+     * Get PayPal merchant ID
      */
     public function get_merchant_id() {
-        return $this->merchant_id ?: __('Not configured', 'vcs-payment-api');
+        return $this->merchant_id;
     }
     
     /**
-     * Check if sandbox mode is enabled
+     * Check if PayPal is in sandbox mode
      */
     public function is_sandbox_mode() {
         return $this->is_sandbox;

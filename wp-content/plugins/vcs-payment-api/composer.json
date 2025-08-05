@@ -1,19 +1,21 @@
 {
-    "name": "vcs/payment-api",
+    "name": "vcs/vcs-payment-api",
     "description": "VCS Payment API Plugin for WordPress",
     "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
     "require": {
         "php": ">=7.4",
-        "paypal/paypal-server-sdk": "^0.5.0"
+        "paypal/paypal-server-sdk": "^1.1.0"
     },
     "autoload": {
         "psr-4": {
-            "VCS\\PaymentAPI\\": "src/"
+            "VCS\\PaymentAPI\\": "includes/"
         }
     },
-    "scripts": {
-        "post-install-cmd": [
-            "@php -r \"if (!file_exists('vendor/autoload.php')) { echo 'Please run composer install to install dependencies.'; exit(1); }\""
-        ]
-    }
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
