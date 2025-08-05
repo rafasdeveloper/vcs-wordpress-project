@@ -24,34 +24,33 @@ class VCS_PayPal_Handler {
      * Initialize PayPal settings
      */
     private function init_settings() {
-        // Get PayPal settings from WooCommerce PayPal Payments plugin
-        $paypal_settings = get_option('woocommerce_ppcp-gateway_settings', array());
-        
+        // The PayPal plugin uses a dedicated settings object, let's try to get settings from both possible option names.
+        $gateway_settings = get_option('woocommerce_ppcp-gateway_settings', array());
+        $general_settings = get_option('woocommerce-ppcp-settings', array());
+
+        // Merge settings, with general settings taking precedence for credentials if they exist.
+        $paypal_settings = array_merge($gateway_settings, $general_settings);
+
         // Log settings for debugging
-        VCS_Logger::log('Loaded PayPal settings: ' . print_r($paypal_settings, true));
-        
+        VCS_Logger::log('Loaded PayPal gateway settings: ' . print_r($gateway_settings, true));
+        VCS_Logger::log('Loaded PayPal general settings: ' . print_r($general_settings, true));
+        VCS_Logger::log('Merged PayPal settings: ' . print_r($paypal_settings, true));
+
         $this->is_sandbox = isset($paypal_settings['sandbox']) && $paypal_settings['sandbox'] === 'yes';
-        
+
         if ($this->is_sandbox) {
-            $this->client_id = isset($paypal_settings['sandbox_client_id']) ? $paypal_settings['sandbox_client_id'] : '';
-            $this->client_secret = isset($paypal_settings['sandbox_client_secret']) ? $paypal_settings['sandbox_client_secret'] : '';
+            $this->client_id = $paypal_settings['sandbox_client_id'] ?? '';
+            $this->client_secret = $paypal_settings['sandbox_client_secret'] ?? '';
             $this->api_base_url = 'https://api-m.sandbox.paypal.com';
         } else {
-            $this->client_id = isset($paypal_settings['client_id']) ? $paypal_settings['client_id'] : '';
-            $this->client_secret = isset($paypal_settings['client_secret']) ? $paypal_settings['client_secret'] : '';
+            // Live credentials can be stored under different keys.
+            $this->client_id = $paypal_settings['client_id'] ?? $paypal_settings['client_id_production'] ?? '';
+            $this->client_secret = $paypal_settings['client_secret'] ?? $paypal_settings['client_secret_production'] ?? '';
             $this->api_base_url = 'https://api-m.paypal.com';
-        }
-        
-        // If the generic client_id is not set in live mode, check for production specific key
-        if (!$this->is_sandbox && empty($this->client_id) && isset($paypal_settings['client_id_production'])) {
-            $this->client_id = $paypal_settings['client_id_production'];
-        }
-
-        if (!$this->is_sandbox && empty($this->client_secret) && isset($paypal_settings['client_secret_production'])) {
-            $this->client_secret = $paypal_settings['client_secret_production'];
         }
 
         // Log credentials for debugging
+        VCS_Logger::log('Sandbox mode: ' . ($this->is_sandbox ? 'Yes' : 'No'));
         VCS_Logger::log('Using PayPal Client ID: ' . $this->client_id);
     }
     
