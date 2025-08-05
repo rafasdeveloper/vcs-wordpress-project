@@ -27,13 +27,17 @@ class VCS_PayPal_Handler {
         // Get PayPal settings from WooCommerce PayPal Payments plugin
         $paypal_settings = get_option('woocommerce_ppcp-gateway_settings', array());
         
-        $this->client_id = isset($paypal_settings['client_id']) ? $paypal_settings['client_id'] : '';
-        $this->client_secret = isset($paypal_settings['client_secret']) ? $paypal_settings['client_secret'] : '';
-        $this->is_sandbox = isset($paypal_settings['sandbox_mode']) ? $paypal_settings['sandbox_mode'] === 'yes' : true;
+        $this->is_sandbox = isset($paypal_settings['sandbox']) && $paypal_settings['sandbox'] === 'yes';
         
-        $this->api_base_url = $this->is_sandbox 
-            ? 'https://api-m.sandbox.paypal.com' 
-            : 'https://api-m.paypal.com';
+        if ($this->is_sandbox) {
+            $this->client_id = isset($paypal_settings['sandbox_client_id']) ? $paypal_settings['sandbox_client_id'] : '';
+            $this->client_secret = isset($paypal_settings['sandbox_client_secret']) ? $paypal_settings['sandbox_client_secret'] : '';
+            $this->api_base_url = 'https://api-m.sandbox.paypal.com';
+        } else {
+            $this->client_id = isset($paypal_settings['client_id']) ? $paypal_settings['client_id'] : '';
+            $this->client_secret = isset($paypal_settings['client_secret']) ? $paypal_settings['client_secret'] : '';
+            $this->api_base_url = 'https://api-m.paypal.com';
+        }
     }
     
     /**
