@@ -14,11 +14,13 @@ if (file_exists(VCS_PAYMENT_API_PLUGIN_DIR . 'vendor/autoload.php')) {
     require_once VCS_PAYMENT_API_PLUGIN_DIR . 'vendor/autoload.php';
 }
 
-use PayPalCheckoutSdk\Core\PayPalHttpClient;
-use PayPalCheckoutSdk\Core\SandboxEnvironment;
-use PayPalCheckoutSdk\Core\ProductionEnvironment;
-use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
-use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use PaypalServerSdkLib\PaypalServerSdkClientBuilder;
+use PaypalServerSdkLib\ClientCredentialsAuthCredentialsBuilder;
+use PaypalServerSdkLib\Environment;
+use PaypalServerSdkLib\LoggingConfigurationBuilder;
+use PaypalServerSdkLib\RequestLoggingConfigurationBuilder;
+use PaypalServerSdkLib\ResponseLoggingConfigurationBuilder;
+use PaypalServerSdkLib\LogLevel;
 
 class VCS_PayPal_Handler {
     
