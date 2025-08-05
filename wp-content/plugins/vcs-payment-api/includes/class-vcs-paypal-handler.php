@@ -42,6 +42,15 @@ class VCS_PayPal_Handler {
             $this->api_base_url = 'https://api-m.paypal.com';
         }
         
+        // If the generic client_id is not set in live mode, check for production specific key
+        if (!$this->is_sandbox && empty($this->client_id) && isset($paypal_settings['client_id_production'])) {
+            $this->client_id = $paypal_settings['client_id_production'];
+        }
+
+        if (!$this->is_sandbox && empty($this->client_secret) && isset($paypal_settings['client_secret_production'])) {
+            $this->client_secret = $paypal_settings['client_secret_production'];
+        }
+
         // Log credentials for debugging
         VCS_Logger::log('Using PayPal Client ID: ' . $this->client_id);
     }
