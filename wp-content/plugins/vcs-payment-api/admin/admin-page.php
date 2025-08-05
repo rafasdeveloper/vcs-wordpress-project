@@ -32,12 +32,27 @@ if (!defined('ABSPATH')) {
             <div class="vcs-payment-config">
                 <p><?php _e('Current PayPal configuration from WooCommerce PayPal Payments plugin:', 'vcs-payment-api'); ?></p>
                 
+                <form method="post" action="">
+                    <input type="hidden" name="vcs_action" value="refresh_paypal_settings">
+                    <?php submit_button(__('Refresh PayPal Settings', 'vcs-payment-api'), 'secondary', 'refresh_paypal_settings', false); ?>
+                </form>
+                
+                <?php
+                // Handle refresh action
+                if (isset($_POST['vcs_action']) && $_POST['vcs_action'] === 'refresh_paypal_settings') {
+                    // Clear any cached settings by creating a new instance
+                    $paypal_handler = new VCS_PayPal_Handler();
+                    echo '<div class="updated"><p>' . __('PayPal settings refreshed. Check the logs below for details.', 'vcs-payment-api') . '</p></div>';
+                }
+                
+                $paypal_handler = new VCS_PayPal_Handler();
+                ?>
+                
                 <table class="form-table">
                     <tr>
                         <th scope="row"><?php _e('Environment', 'vcs-payment-api'); ?></th>
                         <td>
                             <?php
-                            $paypal_handler = new VCS_PayPal_Handler();
                             $is_sandbox = $paypal_handler->is_sandbox_mode();
                             echo '<span class="environment-badge ' . ($is_sandbox ? 'sandbox' : 'production') . '">';
                             echo $is_sandbox ? __('Sandbox', 'vcs-payment-api') : __('Production', 'vcs-payment-api');
@@ -93,6 +108,34 @@ if (!defined('ABSPATH')) {
                         </td>
                     </tr>
                 </table>
+                
+                <!-- Debug Information -->
+                <details style="margin-top: 20px;">
+                    <summary><?php _e('Debug Information', 'vcs-payment-api'); ?></summary>
+                    <div style="background: #f9f9f9; padding: 15px; margin-top: 10px; border: 1px solid #ddd;">
+                        <h4><?php _e('Plugin Status:', 'vcs-payment-api'); ?></h4>
+                        <ul>
+                            <li><strong><?php _e('WooCommerce Active:', 'vcs-payment-api'); ?></strong> <?php echo class_exists('WooCommerce') ? __('Yes', 'vcs-payment-api') : __('No', 'vcs-payment-api'); ?></li>
+                            <li><strong><?php _e('PayPal Payments Plugin Active:', 'vcs-payment-api'); ?></strong> <?php echo function_exists('woocommerce_paypal_payments') ? __('Yes', 'vcs-payment-api') : __('No', 'vcs-payment-api'); ?></li>
+                            <li><strong><?php _e('PayPal Plugin Initialized:', 'vcs-payment-api'); ?></strong> <?php echo did_action('woocommerce_paypal_payments_init') ? __('Yes', 'vcs-payment-api') : __('No', 'vcs-payment-api'); ?></li>
+                        </ul>
+                        
+                        <h4><?php _e('WooCommerce Options:', 'vcs-payment-api'); ?></h4>
+                        <?php
+                        $paypal_settings = get_option('woocommerce_ppcp-gateway_settings', array());
+                        if (!empty($paypal_settings)) {
+                            echo '<p><strong>' . __('PayPal Gateway Settings Keys:', 'vcs-payment-api') . '</strong></p>';
+                            echo '<ul>';
+                            foreach (array_keys($paypal_settings) as $key) {
+                                echo '<li>' . esc_html($key) . '</li>';
+                            }
+                            echo '</ul>';
+                        } else {
+                            echo '<p>' . __('No PayPal gateway settings found in WooCommerce options.', 'vcs-payment-api') . '</p>';
+                        }
+                        ?>
+                    </div>
+                </details>
             </div>
         </div>
         

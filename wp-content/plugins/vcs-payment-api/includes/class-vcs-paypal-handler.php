@@ -41,31 +41,76 @@ class VCS_PayPal_Handler {
             return;
         }
 
+        // Check if the plugin is fully loaded
+        if (!did_action('woocommerce_paypal_payments_init')) {
+            VCS_Logger::log('WooCommerce PayPal Payments plugin not fully initialized yet.', 'warning');
+            // Try to initialize it
+            do_action('woocommerce_paypal_payments_init');
+        }
+
         try {
             // Get the PayPal plugin's dependency injection container.
             $paypal_container = woocommerce_paypal_payments();
+            VCS_Logger::log('PayPal container retrieved successfully.');
             
-            // Get the settings object from the container.
-            $settings = $paypal_container->get('settings');
+            // Get the settings object from the container using the correct service name.
+            $settings = $paypal_container->get('wcgateway.settings');
 
             if (!$settings) {
                 VCS_Logger::log('Could not retrieve settings from PayPal plugin container.', 'error');
+                $this->init_settings_fallback();
                 return;
             }
 
             VCS_Logger::log('Successfully loaded settings from PayPal plugin container.');
 
-            $this->is_sandbox = $settings->get('sandbox') === 'yes';
-            $this->client_id = $settings->get('client_id');
-            $this->client_secret = $settings->get('client_secret');
+            // Use the correct setting keys based on WooCommerce PayPal Payments plugin
+            $this->is_sandbox = $settings->has('sandbox_on') && $settings->get('sandbox_on');
+            $this->client_id = $settings->has('client_id') ? $settings->get('client_id') : '';
+            $this->client_secret = $settings->has('client_secret') ? $settings->get('client_secret') : '';
 
-            // Log credentials for debugging
-            VCS_Logger::log('Sandbox mode: ' . ($this->is_sandbox ? 'Yes' : 'No'));
-            VCS_Logger::log('Using PayPal Client ID: ' . $this->client_id);
+            // Log detailed debugging information
+            VCS_Logger::log('Settings debugging:');
+            VCS_Logger::log('- sandbox_on exists: ' . ($settings->has('sandbox_on') ? 'Yes' : 'No'));
+            VCS_Logger::log('- sandbox_on value: ' . ($settings->has('sandbox_on') ? $settings->get('sandbox_on') : 'N/A'));
+            VCS_Logger::log('- client_id exists: ' . ($settings->has('client_id') ? 'Yes' : 'No'));
+            VCS_Logger::log('- client_secret exists: ' . ($settings->has('client_secret') ? 'Yes' : 'No'));
+            VCS_Logger::log('- Final sandbox mode: ' . ($this->is_sandbox ? 'Yes' : 'No'));
+            VCS_Logger::log('- Final client ID: ' . ($this->client_id ? 'Set' : 'Not set'));
+            VCS_Logger::log('- Final client secret: ' . ($this->client_secret ? 'Set' : 'Not set'));
             
         } catch (Exception $e) {
             VCS_Logger::log('Error initializing PayPal settings: ' . $e->getMessage(), 'error');
+            VCS_Logger::log('Exception trace: ' . $e->getTraceAsString(), 'error');
+            $this->init_settings_fallback();
         }
+    }
+    
+    /**
+     * Fallback method to get PayPal settings directly from WooCommerce options
+     */
+    private function init_settings_fallback() {
+        VCS_Logger::log('Using fallback method to get PayPal settings from WooCommerce options.');
+        
+        // Get PayPal gateway settings from WooCommerce using the correct gateway ID
+        $paypal_gateway_settings = get_option('woocommerce_ppcp-gateway_settings', array());
+        
+        if (empty($paypal_gateway_settings)) {
+            VCS_Logger::log('No PayPal gateway settings found in WooCommerce options.', 'error');
+            return;
+        }
+        
+        VCS_Logger::log('PayPal gateway settings found: ' . json_encode(array_keys($paypal_gateway_settings)));
+        
+        // Extract settings
+        $this->is_sandbox = isset($paypal_gateway_settings['sandbox_on']) && $paypal_gateway_settings['sandbox_on'];
+        $this->client_id = isset($paypal_gateway_settings['client_id']) ? $paypal_gateway_settings['client_id'] : '';
+        $this->client_secret = isset($paypal_gateway_settings['client_secret']) ? $paypal_gateway_settings['client_secret'] : '';
+        
+        VCS_Logger::log('Fallback settings loaded:');
+        VCS_Logger::log('- Sandbox mode: ' . ($this->is_sandbox ? 'Yes' : 'No'));
+        VCS_Logger::log('- Client ID: ' . ($this->client_id ? 'Set' : 'Not set'));
+        VCS_Logger::log('- Client Secret: ' . ($this->client_secret ? 'Set' : 'Not set'));
     }
     
     /**
