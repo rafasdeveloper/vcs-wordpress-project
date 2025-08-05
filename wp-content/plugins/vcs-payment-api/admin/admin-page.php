@@ -53,16 +53,16 @@ if (!defined('ABSPATH')) {
                     </div>
                 </div>
                 
-                <!-- PayPal Payment -->
+                <!-- PayPal Create Order -->
                 <div class="endpoint-doc">
-                    <h4>POST /payments/paypal</h4>
-                    <p><?php _e('Process PayPal payment', 'vcs-payment-api'); ?></p>
+                    <h4>POST /payments/paypal/order/create</h4>
+                    <p><?php _e('Create PayPal order', 'vcs-payment-api'); ?></p>
                     <div class="endpoint-example">
                         <strong><?php _e('Request Body:', 'vcs-payment-api'); ?></strong>
                         <pre><code>{
+    "intent": "CAPTURE",
     "amount": 99.99,
     "currency": "USD",
-    "order_id": "order-123",
     "description": "Payment for services",
     "return_url": "https://example.com/success",
     "cancel_url": "https://example.com/cancel"
@@ -70,76 +70,16 @@ if (!defined('ABSPATH')) {
                     </div>
                 </div>
                 
-                <!-- PayPal Credit Card -->
+                <!-- PayPal Capture Order -->
                 <div class="endpoint-doc">
-                    <h4>POST /payments/paypal/credit-card</h4>
-                    <p><?php _e('Process PayPal credit card payment', 'vcs-payment-api'); ?></p>
+                    <h4>POST /payments/paypal/order/capture</h4>
+                    <p><?php _e('Capture PayPal order', 'vcs-payment-api'); ?></p>
                     <div class="endpoint-example">
                         <strong><?php _e('Request Body:', 'vcs-payment-api'); ?></strong>
                         <pre><code>{
-    "amount": 99.99,
-    "currency": "USD",
-    "card_number": "4111111111111111",
-    "expiry_month": 12,
-    "expiry_year": 2025,
-    "cvv": "123",
-    "order_id": "order-123",
-    "description": "Credit card payment"
+    "order_id": "PAYPAL_ORDER_ID_HERE"
 }</code></pre>
                     </div>
-                </div>
-                
-                <!-- BTCPay Payment -->
-                <div class="endpoint-doc">
-                    <h4>POST /payments/btcpay</h4>
-                    <p><?php _e('Process BTCPay cryptocurrency payment', 'vcs-payment-api'); ?></p>
-                    <div class="endpoint-example">
-                        <strong><?php _e('Request Body:', 'vcs-payment-api'); ?></strong>
-                        <pre><code>{
-    "amount": 0.001,
-    "currency": "BTC",
-    "order_id": "order-123",
-    "description": "Bitcoin payment",
-    "notification_url": "https://example.com/webhook"
-}</code></pre>
-                    </div>
-                </div>
-                
-                <!-- WooPayments -->
-                <div class="endpoint-doc">
-                    <h4>POST /payments/woopayments</h4>
-                    <p><?php _e('Process WooPayments (Stripe) payment', 'vcs-payment-api'); ?></p>
-                    <div class="endpoint-example">
-                        <strong><?php _e('Request Body:', 'vcs-payment-api'); ?></strong>
-                        <pre><code>{
-    "amount": 99.99,
-    "currency": "usd",
-    "payment_method_id": "pm_1234567890",
-    "order_id": "order-123",
-    "description": "Stripe payment",
-    "customer_id": "cus_1234567890"
-}</code></pre>
-                    </div>
-                </div>
-                
-                <!-- Payment Status -->
-                <div class="endpoint-doc">
-                    <h4>GET /payments/status/{order_id}</h4>
-                    <p><?php _e('Get payment status for an order', 'vcs-payment-api'); ?></p>
-                    <div class="endpoint-example">
-                        <strong><?php _e('Example:', 'vcs-payment-api'); ?></strong>
-                        <code>GET <?php echo esc_url(rest_url('vcs-payment-api/v1/payments/status/123')); ?></code>
-                    </div>
-                </div>
-                
-                <!-- Webhooks -->
-                <div class="endpoint-doc">
-                    <h4>Webhook Endpoints</h4>
-                    <p><?php _e('Webhook URLs for payment notifications:', 'vcs-payment-api'); ?></p>
-                    <ul>
-                        <li><strong>PayPal:</strong> <code><?php echo esc_url(rest_url('vcs-payment-api/v1/payments/webhook/paypal')); ?></code></li>
-                        <li><strong>BTCPay:</strong> <code><?php echo esc_url(rest_url('vcs-payment-api/v1/payments/webhook/btcpay')); ?></code></li>
-                    </ul>
                 </div>
             </div>
         </div>

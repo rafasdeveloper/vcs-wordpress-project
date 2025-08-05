@@ -22,15 +22,12 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
     protected $rest_base = 'payments';
 
     private $paypal_handler;
-    private $btcpay_handler;
-    private $woopayments_handler;
-    private $validator;
     
     /**
      * Constructor
      */
     public function __construct() {
-        // Handlers are lazy-loaded on demand.
+        // PayPal handler is lazy-loaded on demand.
     }
     
     /**
@@ -51,147 +48,33 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
             )
         );
         
-        // PayPal payment endpoint
+        // PayPal create order endpoint
         register_rest_route(
             $this->namespace,
-            '/' . $this->rest_base . '/paypal',
+            '/' . $this->rest_base . '/paypal/order/create',
             array(
                 array(
                     'methods'             => WP_REST_Server::CREATABLE,
-                    'callback'            => array($this, 'process_paypal_payment'),
+                    'callback'            => array($this, 'create_paypal_order'),
                     'permission_callback' => array($this, 'post_permission_check'),
-                    'args'                => $this->get_paypal_args(),
+                    'args'                => $this->get_create_order_args(),
                 ),
             )
         );
         
-        // PayPal credit card payment endpoint
+        // PayPal capture order endpoint
         register_rest_route(
             $this->namespace,
-            '/' . $this->rest_base . '/paypal/credit-card',
+            '/' . $this->rest_base . '/paypal/order/capture',
             array(
                 array(
                     'methods'             => WP_REST_Server::CREATABLE,
-                    'callback'            => array($this, 'process_paypal_credit_card'),
+                    'callback'            => array($this, 'capture_paypal_order'),
                     'permission_callback' => array($this, 'post_permission_check'),
-                    'args'                => $this->get_paypal_credit_card_args(),
+                    'args'                => $this->get_capture_order_args(),
                 ),
             )
         );
-        
-        // BTCPay payment endpoint
-        register_rest_route(
-            $this->namespace,
-            '/' . $this->rest_base . '/btcpay',
-            array(
-                array(
-                    'methods'             => WP_REST_Server::CREATABLE,
-                    'callback'            => array($this, 'process_btcpay_payment'),
-                    'permission_callback' => array($this, 'post_permission_check'),
-                    'args'                => $this->get_btcpay_args(),
-                ),
-            )
-        );
-        
-        // WooPayments endpoint
-        register_rest_route(
-            $this->namespace,
-            '/' . $this->rest_base . '/woopayments',
-            array(
-                array(
-                    'methods'             => WP_REST_Server::CREATABLE,
-                    'callback'            => array($this, 'process_woopayments'),
-                    'permission_callback' => array($this, 'post_permission_check'),
-                    'args'                => $this->get_woopayments_args(),
-                ),
-            )
-        );
-        
-        // Payment status endpoint
-        register_rest_route(
-            $this->namespace,
-            '/' . $this->rest_base . '/status/(?P<order_id>[a-zA-Z0-9-]+)',
-            array(
-                array(
-                    'methods'             => WP_REST_Server::READABLE,
-                    'callback'            => array($this, 'get_payment_status'),
-                    'permission_callback' => array($this, 'get_permission_check'),
-                    'args'                => array(
-                        'order_id' => array(
-                            'required' => true,
-                            'type'     => 'string',
-                            'sanitize_callback' => 'sanitize_text_field',
-                        ),
-                    ),
-                ),
-            )
-        );
-        
-        // Webhook endpoints
-        register_rest_route(
-            $this->namespace,
-            '/' . $this->rest_base . '/webhook/paypal',
-            array(
-                array(
-                    'methods'             => WP_REST_Server::CREATABLE,
-                    'callback'            => array($this, 'handle_paypal_webhook'),
-                    'permission_callback' => '__return_true',
-                    'args'                => array(),
-                ),
-            )
-        );
-        
-        register_rest_route(
-            $this->namespace,
-            '/' . $this->rest_base . '/webhook/btcpay',
-            array(
-                array(
-                    'methods'             => WP_REST_Server::CREATABLE,
-                    'callback'            => array($this, 'handle_btcpay_webhook'),
-                    'permission_callback' => '__return_true',
-                    'args'                => array(),
-                ),
-            )
-        );
-    }
-    
-    private function get_validator() {
-        if (null === $this->validator) {
-            $this->validator = new VCS_Payment_Validator();
-        }
-        return $this->validator;
-    }
-
-    /**
-     * Get available payment methods
-     */
-    public function get_payment_methods($request) {
-        $methods = array(
-            'paypal' => array(
-                'name' => 'PayPal',
-                'description' => 'Pay with PayPal account or credit card',
-                'endpoints' => array(
-                    'payment' => '/vcs-payment-api/v1/payments/paypal',
-                    'credit_card' => '/vcs-payment-api/v1/payments/paypal/credit-card',
-                ),
-            ),
-            'btcpay' => array(
-                'name' => 'BTCPay',
-                'description' => 'Pay with Bitcoin and other cryptocurrencies',
-                'endpoints' => array(
-                    'payment' => '/vcs-payment-api/v1/payments/btcpay',
-                ),
-            ),
-            'woopayments' => array(
-                'name' => 'WooPayments',
-                'description' => 'Pay with WooPayments (Stripe)',
-                'endpoints' => array(
-                    'payment' => '/vcs-payment-api/v1/payments/woopayments',
-                ),
-            ),
-        );
-        
-        return new WP_REST_Response($methods, 200);
     }
     
     private function get_paypal_handler() {
@@ -201,163 +84,63 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
         return $this->paypal_handler;
     }
 
-    private function get_btcpay_handler() {
-        if (null === $this->btcpay_handler) {
-            $this->btcpay_handler = new VCS_BTCPay_Handler();
-        }
-        return $this->btcpay_handler;
-    }
-
-    private function get_woopayments_handler() {
-        if (null === $this->woopayments_handler) {
-            $this->woopayments_handler = new VCS_WooPayments_Handler();
-        }
-        return $this->woopayments_handler;
-    }
-
     /**
-     * Process PayPal payment
+     * Get available payment methods
      */
-    public function process_paypal_payment($request) {
-        try {
-            $params = $request->get_params();
-            
-            // Validate request
-            $validation = $this->get_validator()->validate_paypal_payment($params);
-            if (!$validation['valid']) {
-                return new WP_Error('validation_error', $validation['message'], array('status' => 400));
-            }
-            
-            // Process payment
-            $result = $this->get_paypal_handler()->process_payment($params);
-            
-            return new WP_REST_Response($result, 200);
-            
-        } catch (Exception $e) {
-            return new WP_Error('payment_error', $e->getMessage(), array('status' => 500));
-        }
-    }
-    
-    /**
-     * Process PayPal credit card payment
-     */
-    public function process_paypal_credit_card($request) {
-        try {
-            $params = $request->get_params();
-            
-            // Validate request
-            $validation = $this->get_validator()->validate_paypal_credit_card($params);
-            if (!$validation['valid']) {
-                return new WP_Error('validation_error', $validation['message'], array('status' => 400));
-            }
-            
-            // Process payment
-            $result = $this->get_paypal_handler()->process_credit_card_payment($params);
-            
-            return new WP_REST_Response($result, 200);
-            
-        } catch (Exception $e) {
-            return new WP_Error('payment_error', $e->getMessage(), array('status' => 500));
-        }
-    }
-    
-    /**
-     * Process BTCPay payment
-     */
-    public function process_btcpay_payment($request) {
-        try {
-            $params = $request->get_params();
-            
-            // Validate request
-            $validation = $this->get_validator()->validate_btcpay_payment($params);
-            if (!$validation['valid']) {
-                return new WP_Error('validation_error', $validation['message'], array('status' => 400));
-            }
-            
-            // Process payment
-            $result = $this->get_btcpay_handler()->process_payment($params);
-            
-            return new WP_REST_Response($result, 200);
-            
-        } catch (Exception $e) {
-            return new WP_Error('payment_error', $e->getMessage(), array('status' => 500));
-        }
-    }
-    
-    /**
-     * Process WooPayments
-     */
-    public function process_woopayments($request) {
-        try {
-            $params = $request->get_params();
-            
-            // Validate request
-            $validation = $this->get_validator()->validate_woopayments($params);
-            if (!$validation['valid']) {
-                return new WP_Error('validation_error', $validation['message'], array('status' => 400));
-            }
-            
-            // Process payment
-            $result = $this->get_woopayments_handler()->process_payment($params);
-            
-            return new WP_REST_Response($result, 200);
-            
-        } catch (Exception $e) {
-            return new WP_Error('payment_error', $e->getMessage(), array('status' => 500));
-        }
-    }
-    
-    /**
-     * Get payment status
-     */
-    public function get_payment_status($request) {
-        $order_id = $request->get_param('order_id');
+    public function get_payment_methods($request) {
+        $methods = array(
+            'paypal' => array(
+                'name' => 'PayPal',
+                'description' => 'Pay with PayPal account',
+                'endpoints' => array(
+                    'create_order' => '/vcs-payment-api/v1/payments/paypal/order/create',
+                    'capture_order' => '/vcs-payment-api/v1/payments/paypal/order/capture',
+                ),
+            ),
+            'credit_card' => array(
+                'name' => 'Credit Card',
+                'description' => 'Pay with credit card powered by PayPal',
+                'endpoints' => array(
+                    'create_order' => '/vcs-payment-api/v1/payments/paypal/order/create',
+                    'capture_order' => '/vcs-payment-api/v1/payments/paypal/order/capture',
+                ),
+            ),
+        );
         
+        return new WP_REST_Response($methods, 200);
+    }
+    
+    /**
+     * Create PayPal order
+     */
+    public function create_paypal_order($request) {
         try {
-            $order = wc_get_order($order_id);
+            $params = $request->get_params();
             
-            if (!$order) {
-                return new WP_Error('order_not_found', 'Order not found', array('status' => 404));
-            }
+            // Create order using PayPal SDK
+            $result = $this->get_paypal_handler()->create_order($params);
             
-            $status = array(
-                'order_id' => $order_id,
-                'status' => $order->get_status(),
-                'payment_method' => $order->get_payment_method(),
-                'total' => $order->get_total(),
-                'currency' => $order->get_currency(),
-                'created_at' => $order->get_date_created()->format('c'),
-                'updated_at' => $order->get_date_modified()->format('c'),
-            );
-            
-            return new WP_REST_Response($status, 200);
+            return new WP_REST_Response($result, 200);
             
         } catch (Exception $e) {
-            return new WP_Error('status_error', $e->getMessage(), array('status' => 500));
+            return new WP_Error('payment_error', $e->getMessage(), array('status' => 500));
         }
     }
     
     /**
-     * Handle PayPal webhook
+     * Capture PayPal order
      */
-    public function handle_paypal_webhook($request) {
+    public function capture_paypal_order($request) {
         try {
-            $result = $this->get_paypal_handler()->handle_webhook($request);
+            $params = $request->get_params();
+            
+            // Capture order using PayPal SDK
+            $result = $this->get_paypal_handler()->capture_order($params);
+            
             return new WP_REST_Response($result, 200);
+            
         } catch (Exception $e) {
-            return new WP_Error('webhook_error', $e->getMessage(), array('status' => 500));
-        }
-    }
-    
-    /**
-     * Handle BTCPay webhook
-     */
-    public function handle_btcpay_webhook($request) {
-        try {
-            $result = $this->get_btcpay_handler()->handle_webhook($request);
-            return new WP_REST_Response($result, 200);
-        } catch (Exception $e) {
-            return new WP_Error('webhook_error', $e->getMessage(), array('status' => 500));
+            return new WP_Error('payment_error', $e->getMessage(), array('status' => 500));
         }
     }
     
@@ -376,10 +159,16 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
     }
     
     /**
-     * Get PayPal payment arguments
+     * Get create order arguments
      */
-    private function get_paypal_args() {
+    private function get_create_order_args() {
         return array(
+            'intent' => array(
+                'required' => false,
+                'type' => 'string',
+                'enum' => array('CAPTURE', 'AUTHORIZE'),
+                'default' => 'CAPTURE',
+            ),
             'amount' => array(
                 'required' => true,
                 'type' => 'number',
@@ -389,99 +178,17 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
                 'required' => true,
                 'type' => 'string',
                 'enum' => array('USD', 'EUR', 'GBP', 'CAD', 'AUD'),
-            ),
-            'order_id' => array(
-                'required' => false,
-                'type' => 'string',
             ),
             'description' => array(
                 'required' => false,
                 'type' => 'string',
             ),
             'return_url' => array(
-                'required' => true,
+                'required' => false,
                 'type' => 'string',
                 'format' => 'uri',
             ),
             'cancel_url' => array(
-                'required' => true,
-                'type' => 'string',
-                'format' => 'uri',
-            ),
-        );
-    }
-    
-    /**
-     * Get PayPal credit card arguments
-     */
-    private function get_paypal_credit_card_args() {
-        return array(
-            'amount' => array(
-                'required' => true,
-                'type' => 'number',
-                'minimum' => 0.01,
-            ),
-            'currency' => array(
-                'required' => true,
-                'type' => 'string',
-                'enum' => array('USD', 'EUR', 'GBP', 'CAD', 'AUD'),
-            ),
-            'card_number' => array(
-                'required' => true,
-                'type' => 'string',
-                'pattern' => '^[0-9]{13,19}$',
-            ),
-            'expiry_month' => array(
-                'required' => true,
-                'type' => 'integer',
-                'minimum' => 1,
-                'maximum' => 12,
-            ),
-            'expiry_year' => array(
-                'required' => true,
-                'type' => 'integer',
-                'minimum' => date('Y'),
-            ),
-            'cvv' => array(
-                'required' => true,
-                'type' => 'string',
-                'pattern' => '^[0-9]{3,4}$',
-            ),
-            'order_id' => array(
-                'required' => false,
-                'type' => 'string',
-            ),
-            'description' => array(
-                'required' => false,
-                'type' => 'string',
-            ),
-        );
-    }
-    
-    /**
-     * Get BTCPay arguments
-     */
-    private function get_btcpay_args() {
-        return array(
-            'amount' => array(
-                'required' => true,
-                'type' => 'number',
-                'minimum' => 0.000001,
-            ),
-            'currency' => array(
-                'required' => true,
-                'type' => 'string',
-                'enum' => array('BTC', 'LTC', 'ETH', 'BCH'),
-            ),
-            'order_id' => array(
-                'required' => false,
-                'type' => 'string',
-            ),
-            'description' => array(
-                'required' => false,
-                'type' => 'string',
-            ),
-            'notification_url' => array(
                 'required' => false,
                 'type' => 'string',
                 'format' => 'uri',
@@ -490,34 +197,12 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
     }
     
     /**
-     * Get WooPayments arguments
+     * Get capture order arguments
      */
-    private function get_woopayments_args() {
+    private function get_capture_order_args() {
         return array(
-            'amount' => array(
-                'required' => true,
-                'type' => 'number',
-                'minimum' => 0.01,
-            ),
-            'currency' => array(
-                'required' => true,
-                'type' => 'string',
-                'enum' => array('usd', 'eur', 'gbp', 'cad', 'aud'),
-            ),
-            'payment_method_id' => array(
-                'required' => true,
-                'type' => 'string',
-            ),
             'order_id' => array(
-                'required' => false,
-                'type' => 'string',
-            ),
-            'description' => array(
-                'required' => false,
-                'type' => 'string',
-            ),
-            'customer_id' => array(
-                'required' => false,
+                'required' => true,
                 'type' => 'string',
             ),
         );

@@ -83,9 +83,6 @@ class VCS_Payment_API {
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-logger.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-payment-api-controller.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-paypal-handler.php';
-        require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-btcpay-handler.php';
-        require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-woopayments-handler.php';
-        require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-payment-validator.php';
     }
     
     public function init_hooks() {
