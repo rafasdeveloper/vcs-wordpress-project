@@ -75,6 +75,20 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
                 ),
             )
         );
+        
+        // PayPal client ID endpoint
+        register_rest_route(
+            $this->namespace,
+            '/' . $this->rest_base . '/paypal/client-id',
+            array(
+                array(
+                    'methods'             => WP_REST_Server::READABLE,
+                    'callback'            => array($this, 'get_paypal_client_id'),
+                    'permission_callback' => array($this, 'get_permission_check'),
+                    'args'                => array(),
+                ),
+            )
+        );
     }
     
     private function get_paypal_handler() {
@@ -141,6 +155,35 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
             
         } catch (Exception $e) {
             return new WP_Error('payment_error', $e->getMessage(), array('status' => 500));
+        }
+    }
+    
+    /**
+     * Get PayPal client ID
+     */
+    public function get_paypal_client_id($request) {
+        try {
+            $paypal_handler = $this->get_paypal_handler();
+            
+            if (!$paypal_handler->is_configured()) {
+                return new WP_Error(
+                    'paypal_not_configured',
+                    'PayPal is not properly configured',
+                    array('status' => 400)
+                );
+            }
+            
+            $response_data = array(
+                'client_id' => $paypal_handler->get_client_id(),
+                'environment' => $paypal_handler->is_sandbox_mode() ? 'sandbox' : 'production',
+                'merchant_id' => $paypal_handler->get_merchant_id(),
+                'configured' => true,
+            );
+            
+            return new WP_REST_Response($response_data, 200);
+            
+        } catch (Exception $e) {
+            return new WP_Error('paypal_error', $e->getMessage(), array('status' => 500));
         }
     }
     

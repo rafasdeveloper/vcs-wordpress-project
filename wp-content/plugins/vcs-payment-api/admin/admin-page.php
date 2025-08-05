@@ -240,11 +240,29 @@ if (!defined('ABSPATH')) {
     "intent": "CAPTURE",
     "amount": 99.99,
     "currency": "USD",
-    "description": "Payment for services",
-    "return_url": "https://example.com/success",
-    "cancel_url": "https://example.com/cancel"
+    "description": "Payment for services"
 }</code></pre>
                     </div>
+                </div>
+                
+                <!-- PayPal Client ID -->
+                <div class="endpoint-doc">
+                    <h4>GET /payments/paypal/client-id</h4>
+                    <p><?php _e('Get PayPal client ID and environment information for frontend integration', 'vcs-payment-api'); ?></p>
+                    <div class="endpoint-example">
+                        <strong><?php _e('Example:', 'vcs-payment-api'); ?></strong>
+                        <code>GET <?php echo esc_url(rest_url('vcs-payment-api/v1/payments/paypal/client-id')); ?></code>
+                    </div>
+                    <div class="endpoint-example">
+                        <strong><?php _e('Response:', 'vcs-payment-api'); ?></strong>
+                        <pre><code>{
+    "client_id": "YOUR_PAYPAL_CLIENT_ID",
+    "environment": "sandbox",
+    "merchant_id": "YOUR_MERCHANT_ID",
+    "configured": true
+}</code></pre>
+                    </div>
+                    <p><em><?php _e('This endpoint is useful for React/frontend applications that need to initialize PayPal SDK with the correct client ID and environment.', 'vcs-payment-api'); ?></em></p>
                 </div>
                 
                 <!-- PayPal Capture Order -->
