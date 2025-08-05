@@ -54,9 +54,9 @@ class VCS_PayPal_Handler {
             $attempt++;
             VCS_Logger::log("Attempt $attempt of $max_attempts to access PayPal plugin...");
             
-            // Check if the PayPal plugin function exists
-            if (!function_exists('woocommerce_paypal_payments')) {
-                VCS_Logger::log("Attempt $attempt: WooCommerce PayPal Payments plugin function not found.", 'error');
+            // Check if the PPCP class exists
+            if (!class_exists('\WooCommerce\PayPalCommerce\PPCP')) {
+                VCS_Logger::log("Attempt $attempt: PPCP class not found.", 'error');
                 
                 if ($attempt < $max_attempts) {
                     VCS_Logger::log("Waiting 1 second before retry...");
@@ -67,7 +67,7 @@ class VCS_PayPal_Handler {
                 // Check if the plugin file exists
                 $plugin_file = WP_PLUGIN_DIR . '/woocommerce-paypal-payments/woocommerce-paypal-payments.php';
                 if (file_exists($plugin_file)) {
-                    VCS_Logger::log('PayPal plugin file exists but function not available. Plugin may not be properly loaded.');
+                    VCS_Logger::log('PayPal plugin file exists but PPCP class not available. Plugin may not be properly loaded.');
                 } else {
                     VCS_Logger::log('PayPal plugin file not found at: ' . $plugin_file);
                 }
@@ -79,7 +79,7 @@ class VCS_PayPal_Handler {
                 return;
             }
             
-            VCS_Logger::log("Attempt $attempt: PayPal plugin function found.");
+            VCS_Logger::log("Attempt $attempt: PPCP class found.");
 
             // Check if the plugin is fully loaded
             if (!did_action('woocommerce_paypal_payments_init')) {
@@ -95,9 +95,9 @@ class VCS_PayPal_Handler {
             }
 
             try {
-                // Get the PayPal plugin's dependency injection container.
-                $paypal_container = woocommerce_paypal_payments();
-                VCS_Logger::log("Attempt $attempt: PayPal container retrieved successfully.");
+                // Get the PayPal plugin's dependency injection container using PPCP class
+                $paypal_container = \WooCommerce\PayPalCommerce\PPCP::container();
+                VCS_Logger::log("Attempt $attempt: PayPal container retrieved successfully using PPCP::container().");
                 
                 // Get the general settings object from the container using the correct service name.
                 $general_settings = $paypal_container->get('settings.data.general');

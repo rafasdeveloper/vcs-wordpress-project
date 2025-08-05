@@ -33,11 +33,40 @@ try {
     echo '<p><strong>Error:</strong> ' . esc_html($e->getMessage()) . '</p>';
 }
 
-// Test direct WooCommerce options
-echo '<h2>Direct WooCommerce Options Test:</h2>';
-$paypal_settings = get_option('woocommerce_ppcp-gateway_settings', array());
-echo '<p><strong>PayPal Gateway Settings:</strong></p>';
-echo '<pre>' . esc_html(print_r($paypal_settings, true)) . '</pre>';
+// Test direct access to PayPal container
+echo '<h2>Direct PayPal Container Test:</h2>';
+if (class_exists('\WooCommerce\PayPalCommerce\PPCP')) {
+    try {
+        $paypal_container = \WooCommerce\PayPalCommerce\PPCP::container();
+        echo '<p style="color: green;">✓ PayPal container retrieved successfully</p>';
+        
+        $general_settings = $paypal_container->get('settings.data.general');
+        if ($general_settings) {
+            echo '<p style="color: green;">✓ General settings retrieved successfully</p>';
+            
+            // Use reflection to access data
+            $reflection = new ReflectionClass($general_settings);
+            $data_property = $reflection->getProperty('data');
+            $data_property->setAccessible(true);
+            $data = $data_property->getValue($general_settings);
+            
+            echo '<h3>Direct Data Access:</h3>';
+            echo '<ul>';
+            echo '<li><strong>Environment:</strong> ' . (isset($data['sandbox_merchant']) && $data['sandbox_merchant'] ? 'Sandbox' : 'Production') . '</li>';
+            echo '<li><strong>Client ID:</strong> ' . (isset($data['client_id']) ? $data['client_id'] : 'Not set') . '</li>';
+            echo '<li><strong>Client Secret:</strong> ' . (isset($data['client_secret']) ? 'Set' : 'Not set') . '</li>';
+            echo '<li><strong>Merchant ID:</strong> ' . (isset($data['merchant_id']) ? $data['merchant_id'] : 'Not set') . '</li>';
+            echo '<li><strong>Merchant Connected:</strong> ' . ($general_settings->is_merchant_connected() ? 'Yes' : 'No') . '</li>';
+            echo '</ul>';
+        } else {
+            echo '<p style="color: red;">✗ Could not retrieve general settings</p>';
+        }
+    } catch (Exception $e) {
+        echo '<p style="color: red;">✗ Error: ' . esc_html($e->getMessage()) . '</p>';
+    }
+} else {
+    echo '<p style="color: red;">✗ PPCP class not available</p>';
+}
 
 // Test if WooCommerce PayPal Payments plugin is active
 echo '<h2>Plugin Status:</h2>';

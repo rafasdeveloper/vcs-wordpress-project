@@ -65,57 +65,39 @@ if (!$paypal_found) {
 }
 
 echo '<h2>5. Function Availability</h2>';
-if (function_exists('woocommerce_paypal_payments')) {
-    echo '<p style="color: green;">✓ woocommerce_paypal_payments() function is available</p>';
+if (class_exists('\WooCommerce\PayPalCommerce\PPCP')) {
+    echo '<p style="color: green;">✓ PPCP class is available</p>';
     
     try {
-        $container = woocommerce_paypal_payments();
+        $paypal_container = \WooCommerce\PayPalCommerce\PPCP::container();
         echo '<p style="color: green;">✓ PayPal container retrieved successfully</p>';
         
-        // Try to get general settings
-        if ($container->has('settings.data.general')) {
-            echo '<p style="color: green;">✓ settings.data.general service is available</p>';
+        // Test getting general settings
+        $general_settings = $paypal_container->get('settings.data.general');
+        if ($general_settings) {
+            echo '<p style="color: green;">✓ General settings service available</p>';
             
-            $general_settings = $container->get('settings.data.general');
-            if ($general_settings) {
-                echo '<p style="color: green;">✓ General settings object retrieved successfully</p>';
-                
-                // Try reflection
-                try {
-                    $reflection = new ReflectionClass($general_settings);
-                    $data_property = $reflection->getProperty('data');
-                    $data_property->setAccessible(true);
-                    $data = $data_property->getValue($general_settings);
-                    
-                    echo '<p style="color: green;">✓ Reflection access to data property successful</p>';
-                    echo '<p><strong>Data keys available:</strong> ' . implode(', ', array_keys($data)) . '</p>';
-                    
-                } catch (Exception $e) {
-                    echo '<p style="color: red;">✗ Reflection failed: ' . esc_html($e->getMessage()) . '</p>';
-                }
-            } else {
-                echo '<p style="color: red;">✗ Could not retrieve general settings object</p>';
-            }
-        } else {
-            echo '<p style="color: red;">✗ settings.data.general service is NOT available</p>';
+            // Test reflection access
+            $reflection = new ReflectionClass($general_settings);
+            $data_property = $reflection->getProperty('data');
+            $data_property->setAccessible(true);
+            $data = $data_property->getValue($general_settings);
             
-            // List available services
-            echo '<p><strong>Available services:</strong></p>';
+            echo '<p style="color: green;">✓ Reflection access to data property successful</p>';
+            echo '<p><strong>Available data keys:</strong></p>';
             echo '<ul>';
-            if ($container->has('wcgateway.settings')) {
-                echo '<li>wcgateway.settings</li>';
-            }
-            if ($container->has('settings.data.general')) {
-                echo '<li>settings.data.general</li>';
+            foreach (array_keys($data) as $key) {
+                echo '<li>' . esc_html($key) . '</li>';
             }
             echo '</ul>';
+        } else {
+            echo '<p style="color: red;">✗ General settings service not available</p>';
         }
-        
     } catch (Exception $e) {
         echo '<p style="color: red;">✗ Error accessing PayPal container: ' . esc_html($e->getMessage()) . '</p>';
     }
 } else {
-    echo '<p style="color: red;">✗ woocommerce_paypal_payments() function is NOT available</p>';
+    echo '<p style="color: red;">✗ PPCP class is NOT available</p>';
 }
 
 echo '<h2>6. Plugin Loading Order</h2>';
