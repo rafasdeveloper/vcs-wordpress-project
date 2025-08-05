@@ -160,16 +160,22 @@ if (!defined('ABSPATH')) {
                                 $general_settings = $paypal_container->get('settings.data.general');
                                 
                                 if ($general_settings) {
-                                    $merchant_data = $general_settings->get_merchant_data();
-                                    echo '<p><strong>' . __('Merchant Data from General Settings:', 'vcs-payment-api') . '</strong></p>';
+                                    // Use reflection to access the protected data property
+                                    $reflection = new ReflectionClass($general_settings);
+                                    $data_property = $reflection->getProperty('data');
+                                    $data_property->setAccessible(true);
+                                    $data = $data_property->getValue($general_settings);
+                                    
+                                    echo '<p><strong>' . __('General Settings Data (using reflection):', 'vcs-payment-api') . '</strong></p>';
                                     echo '<ul>';
-                                    echo '<li><strong>is_sandbox:</strong> ' . ($merchant_data->is_sandbox ? 'Yes' : 'No') . '</li>';
-                                    echo '<li><strong>client_id:</strong> ' . ($merchant_data->client_id ? 'Set' : 'Not set') . '</li>';
-                                    echo '<li><strong>client_secret:</strong> ' . ($merchant_data->client_secret ? 'Set' : 'Not set') . '</li>';
-                                    echo '<li><strong>merchant_id:</strong> ' . ($merchant_data->merchant_id ? 'Set' : 'Not set') . '</li>';
-                                    echo '<li><strong>merchant_email:</strong> ' . ($merchant_data->merchant_email ? 'Set' : 'Not set') . '</li>';
-                                    echo '<li><strong>merchant_country:</strong> ' . ($merchant_data->merchant_country ? 'Set' : 'Not set') . '</li>';
-                                    echo '<li><strong>seller_type:</strong> ' . esc_html($merchant_data->seller_type) . '</li>';
+                                    echo '<li><strong>sandbox_merchant:</strong> ' . (isset($data['sandbox_merchant']) && $data['sandbox_merchant'] ? 'Yes' : 'No') . '</li>';
+                                    echo '<li><strong>client_id:</strong> ' . (isset($data['client_id']) && $data['client_id'] ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>client_secret:</strong> ' . (isset($data['client_secret']) && $data['client_secret'] ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>merchant_id:</strong> ' . (isset($data['merchant_id']) && $data['merchant_id'] ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>merchant_email:</strong> ' . (isset($data['merchant_email']) && $data['merchant_email'] ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>merchant_country:</strong> ' . (isset($data['merchant_country']) && $data['merchant_country'] ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>seller_type:</strong> ' . esc_html($data['seller_type'] ?? 'unknown') . '</li>';
+                                    echo '<li><strong>merchant_connected:</strong> ' . ($general_settings->is_merchant_connected() ? 'Yes' : 'No') . '</li>';
                                     echo '</ul>';
                                 } else {
                                     echo '<p>' . __('Could not retrieve general settings from PayPal plugin.', 'vcs-payment-api') . '</p>';

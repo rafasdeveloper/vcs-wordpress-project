@@ -65,24 +65,25 @@ class VCS_PayPal_Handler {
 
             VCS_Logger::log('Successfully loaded general settings from PayPal plugin container.');
 
-            // Get merchant data using the get_merchant_data() method
-            $merchant_data = $general_settings->get_merchant_data();
-            
-            // Extract settings from merchant data
-            $this->is_sandbox = $merchant_data->is_sandbox;
-            $this->client_id = $merchant_data->client_id;
-            $this->client_secret = $merchant_data->client_secret;
-            $this->merchant_id = $merchant_data->merchant_id;
+            // Use reflection to access the protected data property
+            $reflection = new ReflectionClass($general_settings);
+            $data_property = $reflection->getProperty('data');
+            $data_property->setAccessible(true);
+            $data = $data_property->getValue($general_settings);
+
+            // Extract settings from the data array
+            $this->is_sandbox = isset($data['sandbox_merchant']) && $data['sandbox_merchant'];
+            $this->client_id = isset($data['client_id']) ? $data['client_id'] : '';
+            $this->client_secret = isset($data['client_secret']) ? $data['client_secret'] : '';
+            $this->merchant_id = isset($data['merchant_id']) ? $data['merchant_id'] : '';
 
             // Log detailed debugging information
-            VCS_Logger::log('Merchant data debugging:');
-            VCS_Logger::log('- is_sandbox: ' . ($merchant_data->is_sandbox ? 'Yes' : 'No'));
-            VCS_Logger::log('- client_id: ' . ($merchant_data->client_id ? 'Set' : 'Not set'));
-            VCS_Logger::log('- client_secret: ' . ($merchant_data->client_secret ? 'Set' : 'Not set'));
-            VCS_Logger::log('- merchant_id: ' . ($merchant_data->merchant_id ? 'Set' : 'Not set'));
-            VCS_Logger::log('- merchant_email: ' . ($merchant_data->merchant_email ? 'Set' : 'Not set'));
-            VCS_Logger::log('- merchant_country: ' . ($merchant_data->merchant_country ? 'Set' : 'Not set'));
-            VCS_Logger::log('- seller_type: ' . $merchant_data->seller_type);
+            VCS_Logger::log('General settings debugging (using reflection):');
+            VCS_Logger::log('- sandbox_merchant: ' . ($this->is_sandbox ? 'Yes' : 'No'));
+            VCS_Logger::log('- client_id: ' . ($this->client_id ? 'Set' : 'Not set'));
+            VCS_Logger::log('- client_secret: ' . ($this->client_secret ? 'Set' : 'Not set'));
+            VCS_Logger::log('- merchant_id: ' . ($this->merchant_id ? 'Set' : 'Not set'));
+            VCS_Logger::log('- merchant_connected: ' . ($general_settings->is_merchant_connected() ? 'Yes' : 'No'));
             
         } catch (Exception $e) {
             VCS_Logger::log('Error initializing PayPal settings: ' . $e->getMessage(), 'error');
