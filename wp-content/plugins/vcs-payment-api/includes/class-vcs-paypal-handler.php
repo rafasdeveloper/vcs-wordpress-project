@@ -24,30 +24,32 @@ class VCS_PayPal_Handler {
      * Initialize PayPal settings
      */
     private function init_settings() {
-        // The PayPal plugin uses a dedicated settings object, let's try to get settings from both possible option names.
-        $gateway_settings = get_option('woocommerce_ppcp-gateway_settings', array());
-        $general_settings = get_option('woocommerce-ppcp-settings', array());
-
-        // Merge settings, with general settings taking precedence for credentials if they exist.
-        $paypal_settings = array_merge($gateway_settings, $general_settings);
-
-        // Log settings for debugging
-        VCS_Logger::log('Loaded PayPal gateway settings: ' . print_r($gateway_settings, true));
-        VCS_Logger::log('Loaded PayPal general settings: ' . print_r($general_settings, true));
-        VCS_Logger::log('Merged PayPal settings: ' . print_r($paypal_settings, true));
-
-        $this->is_sandbox = isset($paypal_settings['sandbox']) && $paypal_settings['sandbox'] === 'yes';
-
-        if ($this->is_sandbox) {
-            $this->client_id = $paypal_settings['sandbox_client_id'] ?? '';
-            $this->client_secret = $paypal_settings['sandbox_client_secret'] ?? '';
-            $this->api_base_url = 'https://api-m.sandbox.paypal.com';
-        } else {
-            // Live credentials can be stored under different keys.
-            $this->client_id = $paypal_settings['client_id'] ?? $paypal_settings['client_id_production'] ?? '';
-            $this->client_secret = $paypal_settings['client_secret'] ?? $paypal_settings['client_secret_production'] ?? '';
-            $this->api_base_url = 'https://api-m.paypal.com';
+        if (!function_exists('woocommerce_paypal_payments')) {
+            VCS_Logger::log('WooCommerce PayPal Payments plugin not active.', 'error');
+            return;
         }
+
+        // Get the PayPal plugin's dependency injection container.
+        $paypal_container = woocommerce_paypal_payments();
+        
+        // Get the settings object from the container.
+        $settings = $paypal_container->get('settings');
+
+        if (!$settings) {
+            VCS_Logger::log('Could not retrieve settings from PayPal plugin container.', 'error');
+            return;
+        }
+
+        VCS_Logger::log('Successfully loaded settings from PayPal plugin container.');
+
+        $this->is_sandbox = $settings->get('sandbox') === 'yes';
+
+        $this->client_id = $settings->get('client_id');
+        $this->client_secret = $settings->get('client_secret');
+
+        $this->api_base_url = $this->is_sandbox
+            ? 'https://api-m.sandbox.paypal.com'
+            : 'https://api-m.paypal.com';
 
         // Log credentials for debugging
         VCS_Logger::log('Sandbox mode: ' . ($this->is_sandbox ? 'Yes' : 'No'));
