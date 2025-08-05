@@ -20,22 +20,17 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      * Route base
      */
     protected $rest_base = 'payments';
+
+    private $paypal_handler;
+    private $btcpay_handler;
+    private $woopayments_handler;
+    private $validator;
     
     /**
      * Constructor
      */
     public function __construct() {
-        $this->init_handlers();
-    }
-    
-    /**
-     * Initialize payment handlers
-     */
-    private function init_handlers() {
-        $this->paypal_handler = new VCS_PayPal_Handler();
-        $this->btcpay_handler = new VCS_BTCPay_Handler();
-        $this->woopayments_handler = new VCS_WooPayments_Handler();
-        $this->validator = new VCS_Payment_Validator();
+        // Handlers are lazy-loaded on demand.
     }
     
     /**
@@ -160,6 +155,13 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
         );
     }
     
+    private function get_validator() {
+        if (null === $this->validator) {
+            $this->validator = new VCS_Payment_Validator();
+        }
+        return $this->validator;
+    }
+
     /**
      * Get available payment methods
      */
@@ -192,6 +194,27 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
         return new WP_REST_Response($methods, 200);
     }
     
+    private function get_paypal_handler() {
+        if (null === $this->paypal_handler) {
+            $this->paypal_handler = new VCS_PayPal_Handler();
+        }
+        return $this->paypal_handler;
+    }
+
+    private function get_btcpay_handler() {
+        if (null === $this->btcpay_handler) {
+            $this->btcpay_handler = new VCS_BTCPay_Handler();
+        }
+        return $this->btcpay_handler;
+    }
+
+    private function get_woopayments_handler() {
+        if (null === $this->woopayments_handler) {
+            $this->woopayments_handler = new VCS_WooPayments_Handler();
+        }
+        return $this->woopayments_handler;
+    }
+
     /**
      * Process PayPal payment
      */
@@ -200,13 +223,13 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
             $params = $request->get_params();
             
             // Validate request
-            $validation = $this->validator->validate_paypal_payment($params);
+            $validation = $this->get_validator()->validate_paypal_payment($params);
             if (!$validation['valid']) {
                 return new WP_Error('validation_error', $validation['message'], array('status' => 400));
             }
             
             // Process payment
-            $result = $this->paypal_handler->process_payment($params);
+            $result = $this->get_paypal_handler()->process_payment($params);
             
             return new WP_REST_Response($result, 200);
             
@@ -223,13 +246,13 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
             $params = $request->get_params();
             
             // Validate request
-            $validation = $this->validator->validate_paypal_credit_card($params);
+            $validation = $this->get_validator()->validate_paypal_credit_card($params);
             if (!$validation['valid']) {
                 return new WP_Error('validation_error', $validation['message'], array('status' => 400));
             }
             
             // Process payment
-            $result = $this->paypal_handler->process_credit_card_payment($params);
+            $result = $this->get_paypal_handler()->process_credit_card_payment($params);
             
             return new WP_REST_Response($result, 200);
             
@@ -246,13 +269,13 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
             $params = $request->get_params();
             
             // Validate request
-            $validation = $this->validator->validate_btcpay_payment($params);
+            $validation = $this->get_validator()->validate_btcpay_payment($params);
             if (!$validation['valid']) {
                 return new WP_Error('validation_error', $validation['message'], array('status' => 400));
             }
             
             // Process payment
-            $result = $this->btcpay_handler->process_payment($params);
+            $result = $this->get_btcpay_handler()->process_payment($params);
             
             return new WP_REST_Response($result, 200);
             
@@ -269,13 +292,13 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
             $params = $request->get_params();
             
             // Validate request
-            $validation = $this->validator->validate_woopayments($params);
+            $validation = $this->get_validator()->validate_woopayments($params);
             if (!$validation['valid']) {
                 return new WP_Error('validation_error', $validation['message'], array('status' => 400));
             }
             
             // Process payment
-            $result = $this->woopayments_handler->process_payment($params);
+            $result = $this->get_woopayments_handler()->process_payment($params);
             
             return new WP_REST_Response($result, 200);
             
@@ -319,7 +342,7 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      */
     public function handle_paypal_webhook($request) {
         try {
-            $result = $this->paypal_handler->handle_webhook($request);
+            $result = $this->get_paypal_handler()->handle_webhook($request);
             return new WP_REST_Response($result, 200);
         } catch (Exception $e) {
             return new WP_Error('webhook_error', $e->getMessage(), array('status' => 500));
@@ -331,7 +354,7 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      */
     public function handle_btcpay_webhook($request) {
         try {
-            $result = $this->btcpay_handler->handle_webhook($request);
+            $result = $this->get_btcpay_handler()->handle_webhook($request);
             return new WP_REST_Response($result, 200);
         } catch (Exception $e) {
             return new WP_Error('webhook_error', $e->getMessage(), array('status' => 500));
