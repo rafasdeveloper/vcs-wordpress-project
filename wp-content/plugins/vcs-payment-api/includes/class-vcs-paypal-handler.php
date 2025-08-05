@@ -230,4 +230,25 @@ class VCS_PayPal_Handler {
     public function is_configured() {
         return !empty($this->client_id) && !empty($this->client_secret) && $this->paypal_client !== null;
     }
+    
+    /**
+     * Get client ID for admin display
+     */
+    public function get_client_id() {
+        return $this->client_id ?: __('Not configured', 'vcs-payment-api');
+    }
+    
+    /**
+     * Get client secret for admin display
+     */
+    public function get_client_secret() {
+        return $this->client_secret ?: __('Not configured', 'vcs-payment-api');
+    }
+    
+    /**
+     * Check if sandbox mode is enabled
+     */
+    public function is_sandbox_mode() {
+        return $this->is_sandbox;
+    }
 }

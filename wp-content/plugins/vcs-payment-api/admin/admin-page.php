@@ -25,6 +25,77 @@ if (!defined('ABSPATH')) {
             </form>
         </div>
         
+        <!-- PayPal Configuration Tab -->
+        <div class="vcs-payment-api-section">
+            <h2><?php _e('PayPal Configuration', 'vcs-payment-api'); ?></h2>
+            
+            <div class="vcs-payment-config">
+                <p><?php _e('Current PayPal configuration from WooCommerce PayPal Payments plugin:', 'vcs-payment-api'); ?></p>
+                
+                <table class="form-table">
+                    <tr>
+                        <th scope="row"><?php _e('Environment', 'vcs-payment-api'); ?></th>
+                        <td>
+                            <?php
+                            $paypal_handler = new VCS_PayPal_Handler();
+                            $is_sandbox = $paypal_handler->is_sandbox_mode();
+                            echo '<span class="environment-badge ' . ($is_sandbox ? 'sandbox' : 'production') . '">';
+                            echo $is_sandbox ? __('Sandbox', 'vcs-payment-api') : __('Production', 'vcs-payment-api');
+                            echo '</span>';
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php _e('Client ID', 'vcs-payment-api'); ?></th>
+                        <td>
+                            <div class="password-field-container">
+                                <input type="password" 
+                                       id="paypal-client-id" 
+                                       class="regular-text password-field" 
+                                       value="<?php echo esc_attr($paypal_handler->get_client_id()); ?>" 
+                                       readonly />
+                                <button type="button" 
+                                        class="button toggle-password" 
+                                        data-target="paypal-client-id">
+                                    <span class="dashicons dashicons-visibility"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php _e('Client Secret', 'vcs-payment-api'); ?></th>
+                        <td>
+                            <div class="password-field-container">
+                                <input type="password" 
+                                       id="paypal-client-secret" 
+                                       class="regular-text password-field" 
+                                       value="<?php echo esc_attr($paypal_handler->get_client_secret()); ?>" 
+                                       readonly />
+                                <button type="button" 
+                                        class="button toggle-password" 
+                                        data-target="paypal-client-secret">
+                                    <span class="dashicons dashicons-visibility"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php _e('Status', 'vcs-payment-api'); ?></th>
+                        <td>
+                            <?php
+                            if ($paypal_handler->is_configured()) {
+                                echo '<span class="status-badge configured">' . __('Configured', 'vcs-payment-api') . '</span>';
+                            } else {
+                                echo '<span class="status-badge not-configured">' . __('Not Configured', 'vcs-payment-api') . '</span>';
+                                echo '<p class="description">' . __('Please configure PayPal in WooCommerce > Settings > Payments > PayPal', 'vcs-payment-api') . '</p>';
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
         <!-- API Documentation Tab -->
         <div class="vcs-payment-api-section">
             <h2><?php _e('API Documentation', 'vcs-payment-api'); ?></h2>
@@ -235,6 +306,82 @@ if (!defined('ABSPATH')) {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+
+/* PayPal Configuration Styles */
+.password-field-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+}
+
+.password-field {
+    padding-right: 40px !important;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+}
+
+.toggle-password:hover {
+    color: #0073aa;
+}
+
+.toggle-password .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.environment-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.environment-badge.sandbox {
+    background-color: #ffd700;
+    color: #333;
+}
+
+.environment-badge.production {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-badge.configured {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-badge.not-configured {
+    background-color: #dc3545;
+    color: white;
+}
+
+.vcs-payment-config .form-table th {
+    width: 150px;
+}
 </style>
 
 <script>
@@ -258,4 +405,27 @@ function testPaymentMethods() {
         resultsDiv.innerHTML = '<strong>Error:</strong><br><pre>' + error.message + '</pre>';
     });
 }
+
+// Toggle password visibility
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector('.dashicons');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('dashicons-visibility');
+                icon.classList.add('dashicons-hidden');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('dashicons-hidden');
+                icon.classList.add('dashicons-visibility');
+            }
+        });
+    });
+});
 </script> 
