@@ -27,6 +27,9 @@ class VCS_PayPal_Handler {
         // Get PayPal settings from WooCommerce PayPal Payments plugin
         $paypal_settings = get_option('woocommerce_ppcp-gateway_settings', array());
         
+        // Log settings for debugging
+        VCS_Logger::log('Loaded PayPal settings: ' . print_r($paypal_settings, true));
+        
         $this->is_sandbox = isset($paypal_settings['sandbox']) && $paypal_settings['sandbox'] === 'yes';
         
         if ($this->is_sandbox) {
@@ -38,6 +41,9 @@ class VCS_PayPal_Handler {
             $this->client_secret = isset($paypal_settings['client_secret']) ? $paypal_settings['client_secret'] : '';
             $this->api_base_url = 'https://api-m.paypal.com';
         }
+        
+        // Log credentials for debugging
+        VCS_Logger::log('Using PayPal Client ID: ' . $this->client_id);
     }
     
     /**
@@ -238,6 +244,9 @@ class VCS_PayPal_Handler {
      * Get PayPal access token
      */
     private function get_access_token() {
+        // Log the credentials being used
+        VCS_Logger::log('Getting PayPal access token with Client ID: ' . $this->client_id);
+        
         $response = wp_remote_post($this->api_base_url . '/v1/oauth2/token', array(
             'headers' => array(
                 'Authorization' => 'Basic ' . base64_encode($this->client_id . ':' . $this->client_secret),
@@ -248,13 +257,17 @@ class VCS_PayPal_Handler {
         ));
         
         if (is_wp_error($response)) {
+            VCS_Logger::log('WP Error when getting access token: ' . $response->get_error_message(), 'error');
             throw new Exception('Failed to get PayPal access token: ' . $response->get_error_message());
         }
         
         $body = wp_remote_retrieve_body($response);
         $data = json_decode($body, true);
         
+        VCS_Logger::log('PayPal get_access_token response: ' . print_r($data, true));
+        
         if (wp_remote_retrieve_response_code($response) !== 200) {
+            VCS_Logger::log('PayPal authentication failed: ' . (isset($data['error_description']) ? $data['error_description'] : 'Unknown error'), 'error');
             throw new Exception('PayPal authentication error: ' . (isset($data['error_description']) ? $data['error_description'] : 'Unknown error'));
         }
         

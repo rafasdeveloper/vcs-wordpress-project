@@ -162,20 +162,29 @@ if (!defined('ABSPATH')) {
             <h2><?php _e('API Logs', 'vcs-payment-api'); ?></h2>
             
             <div class="vcs-payment-api-logs">
-                <p><?php _e('Recent API requests and responses:', 'vcs-payment-api'); ?></p>
+                <form method="post" action="">
+                    <input type="hidden" name="vcs_action" value="clear_logs">
+                    <?php submit_button(__('Clear Logs', 'vcs-payment-api'), 'delete', 'clear_logs_button', false); ?>
+                </form>
+                
                 <div id="api-logs" class="api-logs">
                     <?php
-                    $logs = get_option('vcs_payment_api_logs', array());
+                    if (isset($_POST['vcs_action']) && $_POST['vcs_action'] === 'clear_logs') {
+                        VCS_Logger::clear_logs();
+                        echo '<div class="updated"><p>' . __('Logs cleared.', 'vcs-payment-api') . '</p></div>';
+                    }
+                    
+                    $logs = array_reverse(VCS_Logger::get_logs());
+                    
                     if (!empty($logs)) {
                         echo '<table class="wp-list-table widefat fixed striped">';
-                        echo '<thead><tr><th>Date</th><th>Endpoint</th><th>Status</th><th>Response Time</th></tr></thead>';
+                        echo '<thead><tr><th style="width: 150px;">Date</th><th style="width: 80px;">Level</th><th>Message</th></tr></thead>';
                         echo '<tbody>';
-                        foreach (array_slice($logs, -10) as $log) {
+                        foreach ($logs as $log) {
                             echo '<tr>';
-                            echo '<td>' . esc_html($log['date']) . '</td>';
-                            echo '<td>' . esc_html($log['endpoint']) . '</td>';
-                            echo '<td>' . esc_html($log['status']) . '</td>';
-                            echo '<td>' . esc_html($log['response_time']) . 'ms</td>';
+                            echo '<td>' . esc_html(date('Y-m-d H:i:s', $log['timestamp'])) . '</td>';
+                            echo '<td><span class="log-level log-level-' . esc_attr($log['level']) . '">' . esc_html($log['level']) . '</span></td>';
+                            echo '<td><pre>' . esc_html($log['message']) . '</pre></td>';
                             echo '</tr>';
                         }
                         echo '</tbody></table>';
@@ -258,6 +267,33 @@ if (!defined('ABSPATH')) {
 
 .api-logs th {
     font-weight: bold;
+}
+
+.log-level {
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.log-level-info {
+    background: #0073aa;
+}
+
+.log-level-debug {
+    background: #777;
+}
+
+.log-level-error {
+    background: #d63638;
+}
+
+.api-logs pre {
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 </style>
 
