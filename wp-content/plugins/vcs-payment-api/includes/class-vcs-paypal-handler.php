@@ -37,58 +37,121 @@ class VCS_PayPal_Handler {
      * Initialize PayPal settings
      */
     private function init_settings() {
-        if (!function_exists('woocommerce_paypal_payments')) {
-            VCS_Logger::log('WooCommerce PayPal Payments plugin not active.', 'error');
+        VCS_Logger::log('Starting PayPal settings initialization...');
+        
+        // Check if WooCommerce is active
+        if (!class_exists('WooCommerce')) {
+            VCS_Logger::log('WooCommerce is not active.', 'error');
             return;
         }
-
-        // Check if the plugin is fully loaded
-        if (!did_action('woocommerce_paypal_payments_init')) {
-            VCS_Logger::log('WooCommerce PayPal Payments plugin not fully initialized yet.', 'warning');
-            // Try to initialize it
-            do_action('woocommerce_paypal_payments_init');
-        }
-
-        try {
-            // Get the PayPal plugin's dependency injection container.
-            $paypal_container = woocommerce_paypal_payments();
-            VCS_Logger::log('PayPal container retrieved successfully.');
+        VCS_Logger::log('WooCommerce is active.');
+        
+        // Try multiple times to get the PayPal plugin (in case of loading order issues)
+        $max_attempts = 3;
+        $attempt = 0;
+        
+        while ($attempt < $max_attempts) {
+            $attempt++;
+            VCS_Logger::log("Attempt $attempt of $max_attempts to access PayPal plugin...");
             
-            // Get the general settings object from the container using the correct service name.
-            $general_settings = $paypal_container->get('settings.data.general');
-
-            if (!$general_settings) {
-                VCS_Logger::log('Could not retrieve general settings from PayPal plugin container.', 'error');
-                $this->init_settings_fallback();
+            // Check if the PayPal plugin function exists
+            if (!function_exists('woocommerce_paypal_payments')) {
+                VCS_Logger::log("Attempt $attempt: WooCommerce PayPal Payments plugin function not found.", 'error');
+                
+                if ($attempt < $max_attempts) {
+                    VCS_Logger::log("Waiting 1 second before retry...");
+                    sleep(1);
+                    continue;
+                }
+                
+                // Check if the plugin file exists
+                $plugin_file = WP_PLUGIN_DIR . '/woocommerce-paypal-payments/woocommerce-paypal-payments.php';
+                if (file_exists($plugin_file)) {
+                    VCS_Logger::log('PayPal plugin file exists but function not available. Plugin may not be properly loaded.');
+                } else {
+                    VCS_Logger::log('PayPal plugin file not found at: ' . $plugin_file);
+                }
+                
+                // Check active plugins
+                $active_plugins = get_option('active_plugins', array());
+                VCS_Logger::log('Active plugins: ' . json_encode($active_plugins));
+                
                 return;
             }
-
-            VCS_Logger::log('Successfully loaded general settings from PayPal plugin container.');
-
-            // Use reflection to access the protected data property
-            $reflection = new ReflectionClass($general_settings);
-            $data_property = $reflection->getProperty('data');
-            $data_property->setAccessible(true);
-            $data = $data_property->getValue($general_settings);
-
-            // Extract settings from the data array
-            $this->is_sandbox = isset($data['sandbox_merchant']) && $data['sandbox_merchant'];
-            $this->client_id = isset($data['client_id']) ? $data['client_id'] : '';
-            $this->client_secret = isset($data['client_secret']) ? $data['client_secret'] : '';
-            $this->merchant_id = isset($data['merchant_id']) ? $data['merchant_id'] : '';
-
-            // Log detailed debugging information
-            VCS_Logger::log('General settings debugging (using reflection):');
-            VCS_Logger::log('- sandbox_merchant: ' . ($this->is_sandbox ? 'Yes' : 'No'));
-            VCS_Logger::log('- client_id: ' . ($this->client_id ? 'Set' : 'Not set'));
-            VCS_Logger::log('- client_secret: ' . ($this->client_secret ? 'Set' : 'Not set'));
-            VCS_Logger::log('- merchant_id: ' . ($this->merchant_id ? 'Set' : 'Not set'));
-            VCS_Logger::log('- merchant_connected: ' . ($general_settings->is_merchant_connected() ? 'Yes' : 'No'));
             
-        } catch (Exception $e) {
-            VCS_Logger::log('Error initializing PayPal settings: ' . $e->getMessage(), 'error');
-            VCS_Logger::log('Exception trace: ' . $e->getTraceAsString(), 'error');
-            $this->init_settings_fallback();
+            VCS_Logger::log("Attempt $attempt: PayPal plugin function found.");
+
+            // Check if the plugin is fully loaded
+            if (!did_action('woocommerce_paypal_payments_init')) {
+                VCS_Logger::log("Attempt $attempt: WooCommerce PayPal Payments plugin not fully initialized yet.", 'warning');
+                // Try to initialize it
+                do_action('woocommerce_paypal_payments_init');
+                
+                if ($attempt < $max_attempts) {
+                    VCS_Logger::log("Waiting 1 second before retry...");
+                    sleep(1);
+                    continue;
+                }
+            }
+
+            try {
+                // Get the PayPal plugin's dependency injection container.
+                $paypal_container = woocommerce_paypal_payments();
+                VCS_Logger::log("Attempt $attempt: PayPal container retrieved successfully.");
+                
+                // Get the general settings object from the container using the correct service name.
+                $general_settings = $paypal_container->get('settings.data.general');
+
+                if (!$general_settings) {
+                    VCS_Logger::log("Attempt $attempt: Could not retrieve general settings from PayPal plugin container.", 'error');
+                    
+                    if ($attempt < $max_attempts) {
+                        VCS_Logger::log("Waiting 1 second before retry...");
+                        sleep(1);
+                        continue;
+                    }
+                    
+                    $this->init_settings_fallback();
+                    return;
+                }
+
+                VCS_Logger::log("Attempt $attempt: Successfully loaded general settings from PayPal plugin container.");
+
+                // Use reflection to access the protected data property
+                $reflection = new ReflectionClass($general_settings);
+                $data_property = $reflection->getProperty('data');
+                $data_property->setAccessible(true);
+                $data = $data_property->getValue($general_settings);
+
+                // Extract settings from the data array
+                $this->is_sandbox = isset($data['sandbox_merchant']) && $data['sandbox_merchant'];
+                $this->client_id = isset($data['client_id']) ? $data['client_id'] : '';
+                $this->client_secret = isset($data['client_secret']) ? $data['client_secret'] : '';
+                $this->merchant_id = isset($data['merchant_id']) ? $data['merchant_id'] : '';
+
+                // Log detailed debugging information
+                VCS_Logger::log("Attempt $attempt: General settings debugging (using reflection):");
+                VCS_Logger::log('- sandbox_merchant: ' . ($this->is_sandbox ? 'Yes' : 'No'));
+                VCS_Logger::log('- client_id: ' . ($this->client_id ? 'Set' : 'Not set'));
+                VCS_Logger::log('- client_secret: ' . ($this->client_secret ? 'Set' : 'Not set'));
+                VCS_Logger::log('- merchant_id: ' . ($this->merchant_id ? 'Set' : 'Not set'));
+                VCS_Logger::log('- merchant_connected: ' . ($general_settings->is_merchant_connected() ? 'Yes' : 'No'));
+                
+                // Success! Break out of the retry loop
+                break;
+                
+            } catch (Exception $e) {
+                VCS_Logger::log("Attempt $attempt: Error initializing PayPal settings: " . $e->getMessage(), 'error');
+                
+                if ($attempt < $max_attempts) {
+                    VCS_Logger::log("Waiting 1 second before retry...");
+                    sleep(1);
+                    continue;
+                }
+                
+                VCS_Logger::log('Exception trace: ' . $e->getTraceAsString(), 'error');
+                $this->init_settings_fallback();
+            }
         }
     }
     
