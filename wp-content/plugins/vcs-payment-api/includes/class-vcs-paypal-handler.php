@@ -24,6 +24,7 @@ class VCS_PayPal_Handler {
     
     private $client_id;
     private $client_secret;
+    private $merchant_id;
     private $is_sandbox;
     private $paypal_client;
     
@@ -53,31 +54,35 @@ class VCS_PayPal_Handler {
             $paypal_container = woocommerce_paypal_payments();
             VCS_Logger::log('PayPal container retrieved successfully.');
             
-            // Get the settings object from the container using the correct service name.
-            $settings = $paypal_container->get('wcgateway.settings');
+            // Get the general settings object from the container using the correct service name.
+            $general_settings = $paypal_container->get('settings.data.general');
 
-            if (!$settings) {
-                VCS_Logger::log('Could not retrieve settings from PayPal plugin container.', 'error');
+            if (!$general_settings) {
+                VCS_Logger::log('Could not retrieve general settings from PayPal plugin container.', 'error');
                 $this->init_settings_fallback();
                 return;
             }
 
-            VCS_Logger::log('Successfully loaded settings from PayPal plugin container.');
+            VCS_Logger::log('Successfully loaded general settings from PayPal plugin container.');
 
-            // Use the correct setting keys based on WooCommerce PayPal Payments plugin
-            $this->is_sandbox = $settings->has('sandbox_on') && $settings->get('sandbox_on');
-            $this->client_id = $settings->has('client_id') ? $settings->get('client_id') : '';
-            $this->client_secret = $settings->has('client_secret') ? $settings->get('client_secret') : '';
+            // Get merchant data using the get_merchant_data() method
+            $merchant_data = $general_settings->get_merchant_data();
+            
+            // Extract settings from merchant data
+            $this->is_sandbox = $merchant_data->is_sandbox;
+            $this->client_id = $merchant_data->client_id;
+            $this->client_secret = $merchant_data->client_secret;
+            $this->merchant_id = $merchant_data->merchant_id;
 
             // Log detailed debugging information
-            VCS_Logger::log('Settings debugging:');
-            VCS_Logger::log('- sandbox_on exists: ' . ($settings->has('sandbox_on') ? 'Yes' : 'No'));
-            VCS_Logger::log('- sandbox_on value: ' . ($settings->has('sandbox_on') ? $settings->get('sandbox_on') : 'N/A'));
-            VCS_Logger::log('- client_id exists: ' . ($settings->has('client_id') ? 'Yes' : 'No'));
-            VCS_Logger::log('- client_secret exists: ' . ($settings->has('client_secret') ? 'Yes' : 'No'));
-            VCS_Logger::log('- Final sandbox mode: ' . ($this->is_sandbox ? 'Yes' : 'No'));
-            VCS_Logger::log('- Final client ID: ' . ($this->client_id ? 'Set' : 'Not set'));
-            VCS_Logger::log('- Final client secret: ' . ($this->client_secret ? 'Set' : 'Not set'));
+            VCS_Logger::log('Merchant data debugging:');
+            VCS_Logger::log('- is_sandbox: ' . ($merchant_data->is_sandbox ? 'Yes' : 'No'));
+            VCS_Logger::log('- client_id: ' . ($merchant_data->client_id ? 'Set' : 'Not set'));
+            VCS_Logger::log('- client_secret: ' . ($merchant_data->client_secret ? 'Set' : 'Not set'));
+            VCS_Logger::log('- merchant_id: ' . ($merchant_data->merchant_id ? 'Set' : 'Not set'));
+            VCS_Logger::log('- merchant_email: ' . ($merchant_data->merchant_email ? 'Set' : 'Not set'));
+            VCS_Logger::log('- merchant_country: ' . ($merchant_data->merchant_country ? 'Set' : 'Not set'));
+            VCS_Logger::log('- seller_type: ' . $merchant_data->seller_type);
             
         } catch (Exception $e) {
             VCS_Logger::log('Error initializing PayPal settings: ' . $e->getMessage(), 'error');
@@ -106,11 +111,13 @@ class VCS_PayPal_Handler {
         $this->is_sandbox = isset($paypal_gateway_settings['sandbox_on']) && $paypal_gateway_settings['sandbox_on'];
         $this->client_id = isset($paypal_gateway_settings['client_id']) ? $paypal_gateway_settings['client_id'] : '';
         $this->client_secret = isset($paypal_gateway_settings['client_secret']) ? $paypal_gateway_settings['client_secret'] : '';
+        $this->merchant_id = isset($paypal_gateway_settings['merchant_id']) ? $paypal_gateway_settings['merchant_id'] : '';
         
         VCS_Logger::log('Fallback settings loaded:');
         VCS_Logger::log('- Sandbox mode: ' . ($this->is_sandbox ? 'Yes' : 'No'));
         VCS_Logger::log('- Client ID: ' . ($this->client_id ? 'Set' : 'Not set'));
         VCS_Logger::log('- Client Secret: ' . ($this->client_secret ? 'Set' : 'Not set'));
+        VCS_Logger::log('- Merchant ID: ' . ($this->merchant_id ? 'Set' : 'Not set'));
     }
     
     /**
@@ -273,7 +280,7 @@ class VCS_PayPal_Handler {
      * Check if PayPal is properly configured
      */
     public function is_configured() {
-        return !empty($this->client_id) && !empty($this->client_secret) && $this->paypal_client !== null;
+        return !empty($this->client_id) && !empty($this->client_secret) && !empty($this->merchant_id) && $this->paypal_client !== null;
     }
     
     /**
@@ -288,6 +295,13 @@ class VCS_PayPal_Handler {
      */
     public function get_client_secret() {
         return $this->client_secret ?: __('Not configured', 'vcs-payment-api');
+    }
+    
+    /**
+     * Get merchant ID for admin display
+     */
+    public function get_merchant_id() {
+        return $this->merchant_id ?: __('Not configured', 'vcs-payment-api');
     }
     
     /**

@@ -25,6 +25,7 @@ try {
     echo '<li><strong>Environment:</strong> ' . ($paypal_handler->is_sandbox_mode() ? 'Sandbox' : 'Production') . '</li>';
     echo '<li><strong>Client ID:</strong> ' . ($paypal_handler->get_client_id()) . '</li>';
     echo '<li><strong>Client Secret:</strong> ' . ($paypal_handler->get_client_secret()) . '</li>';
+    echo '<li><strong>Merchant ID:</strong> ' . ($paypal_handler->get_merchant_id()) . '</li>';
     echo '<li><strong>Is Configured:</strong> ' . ($paypal_handler->is_configured() ? 'Yes' : 'No') . '</li>';
     echo '</ul>';
     

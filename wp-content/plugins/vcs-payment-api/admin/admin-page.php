@@ -95,6 +95,23 @@ if (!defined('ABSPATH')) {
                         </td>
                     </tr>
                     <tr>
+                        <th scope="row"><?php _e('Merchant ID', 'vcs-payment-api'); ?></th>
+                        <td>
+                            <div class="password-field-container">
+                                <input type="password" 
+                                       id="paypal-merchant-id" 
+                                       class="regular-text password-field" 
+                                       value="<?php echo esc_attr($paypal_handler->get_merchant_id()); ?>" 
+                                       readonly />
+                                <button type="button" 
+                                        class="button toggle-password" 
+                                        data-target="paypal-merchant-id">
+                                    <span class="dashicons dashicons-visibility"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row"><?php _e('Status', 'vcs-payment-api'); ?></th>
                         <td>
                             <?php
@@ -132,6 +149,36 @@ if (!defined('ABSPATH')) {
                             echo '</ul>';
                         } else {
                             echo '<p>' . __('No PayPal gateway settings found in WooCommerce options.', 'vcs-payment-api') . '</p>';
+                        }
+                        ?>
+                        
+                        <h4><?php _e('General Settings Data:', 'vcs-payment-api'); ?></h4>
+                        <?php
+                        if (function_exists('woocommerce_paypal_payments')) {
+                            try {
+                                $paypal_container = woocommerce_paypal_payments();
+                                $general_settings = $paypal_container->get('settings.data.general');
+                                
+                                if ($general_settings) {
+                                    $merchant_data = $general_settings->get_merchant_data();
+                                    echo '<p><strong>' . __('Merchant Data from General Settings:', 'vcs-payment-api') . '</strong></p>';
+                                    echo '<ul>';
+                                    echo '<li><strong>is_sandbox:</strong> ' . ($merchant_data->is_sandbox ? 'Yes' : 'No') . '</li>';
+                                    echo '<li><strong>client_id:</strong> ' . ($merchant_data->client_id ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>client_secret:</strong> ' . ($merchant_data->client_secret ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>merchant_id:</strong> ' . ($merchant_data->merchant_id ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>merchant_email:</strong> ' . ($merchant_data->merchant_email ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>merchant_country:</strong> ' . ($merchant_data->merchant_country ? 'Set' : 'Not set') . '</li>';
+                                    echo '<li><strong>seller_type:</strong> ' . esc_html($merchant_data->seller_type) . '</li>';
+                                    echo '</ul>';
+                                } else {
+                                    echo '<p>' . __('Could not retrieve general settings from PayPal plugin.', 'vcs-payment-api') . '</p>';
+                                }
+                            } catch (Exception $e) {
+                                echo '<p>' . __('Error accessing general settings: ' . esc_html($e->getMessage()), 'vcs-payment-api') . '</p>';
+                            }
+                        } else {
+                            echo '<p>' . __('PayPal plugin not available.', 'vcs-payment-api') . '</p>';
                         }
                         ?>
                     </div>
