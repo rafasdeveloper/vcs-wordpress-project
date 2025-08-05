@@ -166,8 +166,8 @@ function vcs_payment_api_init() {
     return VCS_Payment_API::get_instance();
 }
 
-// Start the plugin
-add_action('plugins_loaded', 'vcs_payment_api_init');
+// Start the plugin after WooCommerce is loaded
+add_action('woocommerce_loaded', 'vcs_payment_api_init');
 
 // Activation hook
 register_activation_hook(__FILE__, 'vcs_payment_api_activate');
