@@ -265,7 +265,7 @@ class VCS_PayPal_Handler {
             $orders_controller = $this->paypal_client->getOrdersController();
             
             // Create the order
-            $response = $orders_controller->ordersCreate($order_request);
+            $response = $orders_controller->createOrder($order_request);
             
             VCS_Logger::log('PayPal order created successfully. Order ID: ' . $response->getResult()->getId());
             
