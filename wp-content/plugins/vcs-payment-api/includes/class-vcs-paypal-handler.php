@@ -306,9 +306,14 @@ class VCS_PayPal_Handler {
             
             // Get the orders controller from the client
             $orders_controller = $this->paypal_client->getOrdersController();
+
+            $order_request = [
+                'id' => $params['order_id'],
+                'prefer' => 'return=minimal'
+            ];
             
             // Capture the order using PayPal Server SDK
-            $response = $orders_controller->ordersCapture($params['order_id']);
+            $response = $orders_controller->captureOrder($order_request);
             
             VCS_Logger::log('PayPal order captured successfully. Order ID: ' . $response->getResult()->getId());
             
