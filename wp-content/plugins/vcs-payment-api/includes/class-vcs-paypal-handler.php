@@ -254,7 +254,10 @@ class VCS_PayPal_Handler {
             }
 
             // Build order request using PayPal Server SDK models
-            $order_request = $this->build_order_request($params);
+            $order_request = [
+                'body' => $this->build_order_request($params),
+                'prefer' => 'return=minimal'
+            ];
             
             VCS_Logger::log('Creating PayPal order.');
             
