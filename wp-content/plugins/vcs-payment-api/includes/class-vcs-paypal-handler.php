@@ -225,7 +225,7 @@ class VCS_PayPal_Handler {
                     LoggingConfigurationBuilder::init()
                         ->level(LogLevel::INFO)
                         ->requestConfiguration(RequestLoggingConfigurationBuilder::init()->body(true))
-                        ->responseConfiguration(ResponseLoggingConfigurationBuilder::init()->headers(true))
+                        ->responseConfiguration(ResponseLoggingConfigurationBuilder::init()->headers(false))
                 )
                 ->build();
 
