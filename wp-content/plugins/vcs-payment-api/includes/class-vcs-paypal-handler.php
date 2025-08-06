@@ -197,7 +197,7 @@ class VCS_PayPal_Handler {
 
         try {
             // Check if the new PayPal SDK is available
-            if (!class_exists('PaypalServerSdkClientBuilder')) {
+            if (!class_exists('PaypalServerSdkLib\\PaypalServerSdkClientBuilder')) {
                 VCS_Logger::log('PayPal Server SDK not available. Please install the SDK using composer.', 'error');
                 return;
             }
