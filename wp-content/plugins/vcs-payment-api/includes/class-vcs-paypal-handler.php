@@ -223,7 +223,7 @@ class VCS_PayPal_Handler {
                 ->environment($this->is_sandbox ? Environment::SANDBOX : Environment::PRODUCTION)
                 ->loggingConfiguration(
                     LoggingConfigurationBuilder::init()
-                        ->level(LogLevel::NOTICE)
+                        ->level(LogLevel::ERROR)
                         ->requestConfiguration(RequestLoggingConfigurationBuilder::init()->body(true))
                         ->responseConfiguration(ResponseLoggingConfigurationBuilder::init()->headers(true))
                 )
