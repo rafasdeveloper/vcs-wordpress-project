@@ -15,12 +15,12 @@ if (file_exists(VCS_PAYMENT_API_PLUGIN_DIR . 'vendor/autoload.php')) {
 }
 
 use PaypalServerSdkLib\PaypalServerSdkClientBuilder;
-use PaypalServerSdkLib\ClientCredentialsAuthCredentialsBuilder;
+use PaypalServerSdkLib\Authentication\ClientCredentialsAuthCredentialsBuilder;
 use PaypalServerSdkLib\Environment;
-use PaypalServerSdkLib\LoggingConfigurationBuilder;
-use PaypalServerSdkLib\RequestLoggingConfigurationBuilder;
-use PaypalServerSdkLib\ResponseLoggingConfigurationBuilder;
-use PaypalServerSdkLib\LogLevel;
+use PaypalServerSdkLib\Logging\LoggingConfigurationBuilder;
+use PaypalServerSdkLib\Logging\RequestLoggingConfigurationBuilder;
+use PaypalServerSdkLib\Logging\ResponseLoggingConfigurationBuilder;
+use Psr\Log\LogLevel;
 
 class VCS_PayPal_Handler {
     
