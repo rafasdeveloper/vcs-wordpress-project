@@ -24,6 +24,9 @@ use PaypalServerSdkLib\Controllers\OrdersController;
 use PaypalServerSdkLib\Models\Builders\OrderRequestBuilder;
 use PaypalServerSdkLib\Models\Builders\PurchaseUnitRequestBuilder;
 use PaypalServerSdkLib\Models\Builders\AmountWithBreakdownBuilder;
+use PaypalServerSdkLib\Models\OrderRequest;
+use PaypalServerSdkLib\Models\PurchaseUnitRequest;
+use PaypalServerSdkLib\Models\AmountWithBreakdown;
 use PaypalServerSdkLib\Models\CheckoutPaymentIntent;
 use Psr\Log\LogLevel;
 
@@ -339,10 +342,10 @@ class VCS_PayPal_Handler {
         $currency = strtoupper($params['currency']);
         
         // Create AmountWithBreakdown object
-        $amount_with_breakdown = AmountWithBreakdownBuilder::init($currency, $amount)->build();
+        $amount_with_breakdown = AmountWithBreakdownBuilder::init($currency, $amount);
         
         // Create PurchaseUnitRequest object
-        $purchase_unit = PurchaseUnitRequestBuilder::init($amount_with_breakdown)->build();
+        $purchase_unit = PurchaseUnitRequestBuilder::init($amount_with_breakdown);
         
         if (isset($params['description'])) {
             $purchase_unit->description($params['description']);
