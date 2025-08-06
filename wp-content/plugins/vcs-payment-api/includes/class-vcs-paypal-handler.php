@@ -21,9 +21,9 @@ use PaypalServerSdkLib\Logging\LoggingConfigurationBuilder;
 use PaypalServerSdkLib\Logging\RequestLoggingConfigurationBuilder;
 use PaypalServerSdkLib\Logging\ResponseLoggingConfigurationBuilder;
 use PaypalServerSdkLib\Controllers\OrdersController;
-use PaypalServerSdkLib\Models\OrderRequest;
-use PaypalServerSdkLib\Models\PurchaseUnitRequest;
-use PaypalServerSdkLib\Models\AmountWithBreakdown;
+use PaypalServerSdkLib\Models\Builders\OrderRequestBuilder;
+use PaypalServerSdkLib\Models\Builders\PurchaseUnitRequestBuilder;
+use PaypalServerSdkLib\Models\Builders\AmountWithBreakdownBuilder;
 use PaypalServerSdkLib\Models\CheckoutPaymentIntent;
 use Psr\Log\LogLevel;
 
@@ -339,28 +339,27 @@ class VCS_PayPal_Handler {
         $currency = strtoupper($params['currency']);
         
         // Create AmountWithBreakdown object
-        $amount_with_breakdown = new AmountWithBreakdown();
-        $amount_with_breakdown->setCurrencyCode($currency);
-        $amount_with_breakdown->setValue($amount);
+        $amount_with_breakdown = new AmountWithBreakdownBuilder($currency, $amount);
         
         // Create PurchaseUnitRequest object
-        $purchase_unit = new PurchaseUnitRequest();
-        $purchase_unit->setAmount($amount_with_breakdown);
+        $purchase_unit = new PurchaseUnitRequestBuilder($amount_with_breakdown);
         
         if (isset($params['description'])) {
-            $purchase_unit->setDescription($params['description']);
+            $purchase_unit->description($params['description']);
         }
         
         if (isset($params['custom_id'])) {
-            $purchase_unit->setCustomId($params['custom_id']);
+            $purchase_unit->customId($params['custom_id']);
         }
         
         // Create OrderRequest object
-        $order_request = new OrderRequest();
-        $order_request->setIntent(CheckoutPaymentIntent::CAPTURE);
-        $order_request->setPurchaseUnits([$purchase_unit]);
+        $order_request = new OrderRequestBuilder(
+            CheckoutPaymentIntent::CAPTURE,
+            [$purchase_unit]
+        );
+        $request = $order_request->build();
         
-        return $order_request;
+        return $request;
     }
     
     /**
