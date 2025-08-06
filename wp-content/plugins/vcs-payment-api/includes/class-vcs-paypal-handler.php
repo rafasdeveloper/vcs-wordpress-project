@@ -348,11 +348,11 @@ class VCS_PayPal_Handler {
         $purchase_unit = PurchaseUnitRequestBuilder::init($amount_with_breakdown)->build();
         
         if (isset($params['description'])) {
-            $purchase_unit->description($params['description']);
+            $purchase_unit->setDescription($params['description']);
         }
         
         if (isset($params['custom_id'])) {
-            $purchase_unit->customId($params['custom_id']);
+            $purchase_unit->setCustomId($params['custom_id']);
         }
         
         // Create OrderRequest object
