@@ -20,6 +20,12 @@ use PaypalServerSdkLib\Environment;
 use PaypalServerSdkLib\Logging\LoggingConfigurationBuilder;
 use PaypalServerSdkLib\Logging\RequestLoggingConfigurationBuilder;
 use PaypalServerSdkLib\Logging\ResponseLoggingConfigurationBuilder;
+use PaypalServerSdkLib\Controllers\OrdersController;
+use PaypalServerSdkLib\Models\OrderRequest;
+use PaypalServerSdkLib\Models\PurchaseUnitRequest;
+use PaypalServerSdkLib\Models\AmountWithBreakdown;
+use PaypalServerSdkLib\Models\Money;
+use PaypalServerSdkLib\Models\CheckoutPaymentIntent;
 use Psr\Log\LogLevel;
 
 class VCS_PayPal_Handler {
@@ -239,25 +245,31 @@ class VCS_PayPal_Handler {
         }
 
         try {
-            // Build order data
-            $order_data = $this->build_order_data($params);
+            // Check if PayPal SDK classes are available
+            if (!class_exists('PaypalServerSdkLib\Controllers\OrdersController')) {
+                VCS_Logger::log('PayPal Server SDK classes not found. Please check if PayPal SDK is properly installed.', 'error');
+                throw new Exception('PayPal SDK classes not available. Please run "composer install" in the plugin directory.');
+            }
+
+            // Build order request using PayPal Server SDK models
+            $order_request = $this->build_order_request($params);
             
-            VCS_Logger::log('Creating PayPal order. Data: ' . json_encode($order_data));
+            VCS_Logger::log('Creating PayPal order.');
             
-            // Create order using PayPal Server SDK
-            $request = new OrdersCreateRequest();
-            $request->body = $order_data;
+            // Get the orders controller from the client
+            $orders_controller = $this->paypal_client->getOrdersController();
             
-            $response = $this->paypal_client->execute($request);
+            // Create the order
+            $response = $orders_controller->ordersCreate($order_request);
             
-            VCS_Logger::log('PayPal order created successfully. Order ID: ' . $response->result->id);
+            VCS_Logger::log('PayPal order created successfully. Order ID: ' . $response->getResult()->getId());
             
             return array(
                 'success' => true,
-                'order_id' => $response->result->id,
-                'status' => $response->result->status,
-                'links' => $response->result->links,
-                'order_data' => $response->result
+                'order_id' => $response->getResult()->getId(),
+                'status' => $response->getResult()->getStatus(),
+                'links' => $response->getResult()->getLinks(),
+                'order_data' => $response->getResult()
             );
             
         } catch (Exception $e) {
@@ -279,21 +291,38 @@ class VCS_PayPal_Handler {
         }
 
         try {
+            // Check if PayPal SDK classes are available
+            if (!class_exists('PaypalServerSdkLib\Controllers\OrdersController')) {
+                VCS_Logger::log('PayPal Server SDK classes not found. Please check if PayPal SDK is properly installed.', 'error');
+                throw new Exception('PayPal SDK classes not available. Please run "composer install" in the plugin directory.');
+            }
+
             VCS_Logger::log('Capturing PayPal order: ' . $params['order_id']);
             
-            // Create capture request using PayPal Server SDK
-            $request = new OrdersCaptureRequest($params['order_id']);
+            // Get the orders controller from the client
+            $orders_controller = $this->paypal_client->getOrdersController();
             
-            $response = $this->paypal_client->execute($request);
+            // Capture the order using PayPal Server SDK
+            $response = $orders_controller->ordersCapture($params['order_id']);
             
-            VCS_Logger::log('PayPal order captured successfully. Order ID: ' . $response->result->id);
+            VCS_Logger::log('PayPal order captured successfully. Order ID: ' . $response->getResult()->getId());
+            
+            // Extract capture ID from the response
+            $capture_id = '';
+            if ($response->getResult()->getPurchaseUnits() && 
+                count($response->getResult()->getPurchaseUnits()) > 0 &&
+                $response->getResult()->getPurchaseUnits()[0]->getPayments() &&
+                $response->getResult()->getPurchaseUnits()[0]->getPayments()->getCaptures() &&
+                count($response->getResult()->getPurchaseUnits()[0]->getPayments()->getCaptures()) > 0) {
+                $capture_id = $response->getResult()->getPurchaseUnits()[0]->getPayments()->getCaptures()[0]->getId();
+            }
             
             return array(
                 'success' => true,
-                'order_id' => $response->result->id,
-                'status' => $response->result->status,
-                'capture_id' => $response->result->purchase_units[0]->payments->captures[0]->id ?? '',
-                'order_data' => $response->result
+                'order_id' => $response->getResult()->getId(),
+                'status' => $response->getResult()->getStatus(),
+                'capture_id' => $capture_id,
+                'order_data' => $response->getResult()
             );
             
         } catch (Exception $e) {
@@ -303,28 +332,41 @@ class VCS_PayPal_Handler {
     }
 
     /**
-     * Build order data for PayPal API
+     * Build order request for PayPal Server SDK
      */
-    private function build_order_data($params) {
+    private function build_order_request($params) {
         $intent = isset($params['intent']) ? $params['intent'] : 'CAPTURE';
         $amount = number_format($params['amount'], 2, '.', '');
         $currency = strtoupper($params['currency']);
         
-        $order_data = array(
-            'intent' => $intent,
-            'purchase_units' => array(
-                array(
-                    'amount' => array(
-                        'currency_code' => $currency,
-                        'value' => $amount
-                    ),
-                    'description' => $params['description'],
-                    'custom_id' => $params['custom_id']
-                )
-            )
-        );
+        // Create Money object for the amount
+        $money = new Money();
+        $money->setCurrencyCode($currency);
+        $money->setValue($amount);
         
-        return $order_data;
+        // Create AmountWithBreakdown object
+        $amount_with_breakdown = new AmountWithBreakdown();
+        $amount_with_breakdown->setCurrencyCode($currency);
+        $amount_with_breakdown->setValue($amount);
+        
+        // Create PurchaseUnitRequest object
+        $purchase_unit = new PurchaseUnitRequest();
+        $purchase_unit->setAmount($amount_with_breakdown);
+        
+        if (isset($params['description'])) {
+            $purchase_unit->setDescription($params['description']);
+        }
+        
+        if (isset($params['custom_id'])) {
+            $purchase_unit->setCustomId($params['custom_id']);
+        }
+        
+        // Create OrderRequest object
+        $order_request = new OrderRequest();
+        $order_request->setIntent(CheckoutPaymentIntent::CAPTURE);
+        $order_request->setPurchaseUnits([$purchase_unit]);
+        
+        return $order_request;
     }
     
     /**
