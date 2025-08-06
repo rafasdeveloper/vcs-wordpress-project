@@ -317,31 +317,12 @@ class VCS_PayPal_Handler {
                     'amount' => array(
                         'currency_code' => $currency,
                         'value' => $amount
-                    )
+                    ),
+                    'description' => $params['description'],
+                    'custom_id' => $params['custom_id']
                 )
             )
         );
-        
-        // Add description if provided
-        if (!empty($params['description'])) {
-            $order_data['purchase_units'][0]['description'] = $params['description'];
-        }
-        
-        // Add application context if URLs are provided
-        if (!empty($params['return_url']) || !empty($params['cancel_url'])) {
-            $order_data['application_context'] = array();
-            
-            if (!empty($params['return_url'])) {
-                $order_data['application_context']['return_url'] = $params['return_url'];
-            }
-            
-            if (!empty($params['cancel_url'])) {
-                $order_data['application_context']['cancel_url'] = $params['cancel_url'];
-            }
-            
-            $order_data['application_context']['brand_name'] = get_bloginfo('name');
-            $order_data['application_context']['shipping_preference'] = 'NO_SHIPPING';
-        }
         
         return $order_data;
     }
