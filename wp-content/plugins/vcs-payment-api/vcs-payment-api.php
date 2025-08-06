@@ -77,6 +77,9 @@ class VCS_Payment_API {
         
         // Add settings
         add_action('admin_init', array($this, 'init_settings'));
+        
+        // Initialize CORS handler
+        new VCS_CORS_Handler();
     }
     
     private function load_dependencies() {
@@ -96,6 +99,7 @@ class VCS_Payment_API {
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-logger.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-payment-api-controller.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-paypal-handler.php';
+        require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-cors-handler.php';
     }
     
     public function init_hooks() {
