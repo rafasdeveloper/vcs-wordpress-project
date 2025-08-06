@@ -221,12 +221,12 @@ class VCS_PayPal_Handler {
                     )
                 )
                 ->environment($this->is_sandbox ? Environment::SANDBOX : Environment::PRODUCTION)
-                ->loggingConfiguration(
-                    LoggingConfigurationBuilder::init()
-                        ->level(LogLevel::ERROR)
-                        ->requestConfiguration(RequestLoggingConfigurationBuilder::init()->body(true))
-                        ->responseConfiguration(ResponseLoggingConfigurationBuilder::init()->headers(true))
-                )
+                //->loggingConfiguration(
+                //    LoggingConfigurationBuilder::init()
+                //        ->level(LogLevel::ERROR)
+                //        ->requestConfiguration(RequestLoggingConfigurationBuilder::init()->body(true))
+                //        ->responseConfiguration(ResponseLoggingConfigurationBuilder::init()->headers(true))
+                //)
                 ->build();
 
             $this->paypal_client = $client;
