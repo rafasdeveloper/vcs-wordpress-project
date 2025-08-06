@@ -339,10 +339,10 @@ class VCS_PayPal_Handler {
         $currency = strtoupper($params['currency']);
         
         // Create AmountWithBreakdown object
-        $amount_with_breakdown = new AmountWithBreakdownBuilder($currency, $amount);
+        $amount_with_breakdown = AmountWithBreakdownBuilder::init($currency, $amount)->build();
         
         // Create PurchaseUnitRequest object
-        $purchase_unit = new PurchaseUnitRequestBuilder($amount_with_breakdown);
+        $purchase_unit = PurchaseUnitRequestBuilder::init($amount_with_breakdown)->build();
         
         if (isset($params['description'])) {
             $purchase_unit->description($params['description']);
@@ -353,13 +353,12 @@ class VCS_PayPal_Handler {
         }
         
         // Create OrderRequest object
-        $order_request = new OrderRequestBuilder(
+        $order_request = OrderRequestBuilder::init(
             CheckoutPaymentIntent::CAPTURE,
             [$purchase_unit]
         );
-        $request = $order_request->build();
         
-        return $request;
+        return $order_request->build();
     }
     
     /**
