@@ -24,7 +24,6 @@ use PaypalServerSdkLib\Controllers\OrdersController;
 use PaypalServerSdkLib\Models\OrderRequest;
 use PaypalServerSdkLib\Models\PurchaseUnitRequest;
 use PaypalServerSdkLib\Models\AmountWithBreakdown;
-use PaypalServerSdkLib\Models\Money;
 use PaypalServerSdkLib\Models\CheckoutPaymentIntent;
 use Psr\Log\LogLevel;
 
@@ -338,11 +337,6 @@ class VCS_PayPal_Handler {
         $intent = isset($params['intent']) ? $params['intent'] : 'CAPTURE';
         $amount = number_format($params['amount'], 2, '.', '');
         $currency = strtoupper($params['currency']);
-        
-        // Create Money object for the amount
-        $money = new Money();
-        $money->setCurrencyCode($currency);
-        $money->setValue($amount);
         
         // Create AmountWithBreakdown object
         $amount_with_breakdown = new AmountWithBreakdown();
