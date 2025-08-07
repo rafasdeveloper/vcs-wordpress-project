@@ -3,7 +3,7 @@
  * Plugin Name: VCS Payment API
  * Plugin URI: https://github.com/your-username/vcs-payment-api
  * Description: Exposes REST APIs for WooCommerce payment methods including PayPal, BTCPay, and WooPayments
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: VCS Team
  * Author URI: https://your-website.com
  * Text Domain: vcs-payment-api
@@ -12,7 +12,7 @@
  * Tested up to: 6.4
  * Requires PHP: 7.4
  * WC requires at least: 5.0
- * WC tested up to: 8.0
+ * WC tested up to: 10.0
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -22,8 +22,15 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Declare HPOS compatibility
+add_action('before_woocommerce_init', function() {
+    if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_orders_table', __FILE__, true);
+    }
+});
+
 // Define plugin constants
-define('VCS_PAYMENT_API_VERSION', '1.0.0');
+define('VCS_PAYMENT_API_VERSION', '1.0.1');
 define('VCS_PAYMENT_API_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('VCS_PAYMENT_API_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('VCS_PAYMENT_API_PLUGIN_BASENAME', plugin_basename(__FILE__));
