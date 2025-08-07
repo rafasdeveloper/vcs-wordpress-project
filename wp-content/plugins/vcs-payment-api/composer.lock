@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9257eb33aa0904476c15af4c359ae9c5",
+    "content-hash": "992f3d370bbe73fa4b13e1d9efb7a60d",
     "packages": [
         {
             "name": "apimatic/core",
@@ -224,33 +224,34 @@
         },
         {
             "name": "paypal/paypal-server-sdk",
-            "version": "0.5.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paypal/PayPal-PHP-Server-SDK.git",
-                "reference": "97229fd17c5900c9e8e9716788cc877e392ef2a1"
+                "reference": "3964c1732b1815fa8cf8aee37069ccc4e95d9572"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paypal/PayPal-PHP-Server-SDK/zipball/97229fd17c5900c9e8e9716788cc877e392ef2a1",
-                "reference": "97229fd17c5900c9e8e9716788cc877e392ef2a1",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-Server-SDK/zipball/3964c1732b1815fa8cf8aee37069ccc4e95d9572",
+                "reference": "3964c1732b1815fa8cf8aee37069ccc4e95d9572",
                 "shasum": ""
             },
             "require": {
-                "apimatic/core": "~0.3.11",
+                "apimatic/core": "~0.3.13",
                 "apimatic/core-interfaces": "~0.1.5",
-                "apimatic/unirest-php": "^4.0.0",
+                "apimatic/unirest-php": "^4.0.6",
+                "ext-curl": "*",
                 "ext-json": "*",
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "phan/phan": "5.4.2",
+                "phan/phan": "5.4.5",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "PaypalServerSDKLib\\": "src/"
+                    "PaypalServerSdkLib\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -261,9 +262,9 @@
             "homepage": "https://github.com/paypal/PayPal-PHP-Server-SDK",
             "support": {
                 "issues": "https://github.com/paypal/PayPal-PHP-Server-SDK/issues",
-                "source": "https://github.com/paypal/PayPal-PHP-Server-SDK/tree/0.5.2"
+                "source": "https://github.com/paypal/PayPal-PHP-Server-SDK/tree/1.1.0"
             },
-            "time": "2024-10-01T14:47:18+00:00"
+            "time": "2025-05-27T17:46:31+00:00"
         },
         {
             "name": "php-jsonpointer/php-jsonpointer",
@@ -376,7 +377,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.4"
