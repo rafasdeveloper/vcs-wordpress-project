@@ -127,8 +127,8 @@ class VCS_Payment_API {
     public function add_admin_menu() {
         add_submenu_page(
             'woocommerce',
-            __('VCS Payment API', 'vcs-payment-api'),
-            __('VCS Payment API', 'vcs-payment-api'),
+            __('Payment Bridge', 'vcs-payment-api'),
+            __('Payment Bridge', 'vcs-payment-api'),
             'manage_woocommerce',
             'vcs-payment-api',
             array($this, 'admin_page')
