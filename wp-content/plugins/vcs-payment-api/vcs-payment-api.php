@@ -3,7 +3,7 @@
  * Plugin Name: VCS Payment API
  * Plugin URI: https://github.com/your-username/vcs-payment-api
  * Description: Exposes REST APIs for WooCommerce payment methods including PayPal, BTCPay, and WooPayments
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: VCS Team
  * Author URI: https://your-website.com
  * Text Domain: vcs-payment-api
@@ -30,7 +30,7 @@ add_action('before_woocommerce_init', function() {
 });
 
 // Define plugin constants
-define('VCS_PAYMENT_API_VERSION', '1.1.0');
+define('VCS_PAYMENT_API_VERSION', '1.1.1');
 define('VCS_PAYMENT_API_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('VCS_PAYMENT_API_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('VCS_PAYMENT_API_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -84,6 +84,9 @@ class VCS_Payment_API {
         
         // Add settings
         add_action('admin_init', array($this, 'init_settings'));
+        
+        // Add admin notices
+        add_action('admin_notices', array($this, 'admin_notices'));
         
         // Initialize CORS handler
         new VCS_CORS_Handler();
@@ -140,7 +143,7 @@ class VCS_Payment_API {
     }
     
     public function init_settings() {
-        register_setting('vcs_payment_api_options', 'vcs_payment_api_settings');
+        register_setting('vcs_payment_api_options', 'vcs_payment_api_settings', array($this, 'sanitize_settings'));
         
         add_settings_section(
             'vcs_payment_api_general',
@@ -226,6 +229,36 @@ class VCS_Payment_API {
         
         if (!$is_available) {
             echo '<p class="description">' . __('This payment method is not available. Please check the configuration.', 'vcs-payment-api') . '</p>';
+        }
+    }
+    
+    public function sanitize_settings($input) {
+        $sanitized = array();
+        
+        // Handle regular checkboxes
+        $sanitized['enabled'] = isset($input['enabled']) ? 1 : 0;
+        $sanitized['debug'] = isset($input['debug']) ? 1 : 0;
+        
+        // Handle payment method checkboxes
+        $sanitized['paypal_enabled'] = isset($input['paypal_enabled']) ? 1 : 0;
+        $sanitized['credit_card_enabled'] = isset($input['credit_card_enabled']) ? 1 : 0;
+        
+        // Set a flag to show success message
+        set_transient('vcs_payment_api_settings_updated', true, 30);
+        
+        return $sanitized;
+    }
+    
+    public function admin_notices() {
+        // Only show on our admin page
+        if (!isset($_GET['page']) || $_GET['page'] !== 'vcs-payment-api') {
+            return;
+        }
+        
+        // Show success message if settings were updated
+        if (get_transient('vcs_payment_api_settings_updated')) {
+            delete_transient('vcs_payment_api_settings_updated');
+            echo '<div class="notice notice-success is-dismissible"><p>' . __('Payment Bridge settings updated successfully!', 'vcs-payment-api') . '</p></div>';
         }
     }
     

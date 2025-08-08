@@ -16,6 +16,10 @@ if (!defined('ABSPATH')) {
         <div class="vcs-payment-api-section">
             <h2><?php _e('API Settings', 'vcs-payment-api'); ?></h2>
             
+            <div class="notice notice-info">
+                <p><strong><?php _e('Payment Method Settings:', 'vcs-payment-api'); ?></strong> <?php _e('Use the checkboxes below to enable or disable specific payment methods. Changes will be saved when you click "Save Changes".', 'vcs-payment-api'); ?></p>
+            </div>
+            
             <form method="post" action="options.php">
                 <?php
                 settings_fields('vcs_payment_api_options');
@@ -266,6 +270,24 @@ if (!defined('ABSPATH')) {
                         <?php _e('Test GET /payments/methods', 'vcs-payment-api'); ?>
                     </button>
                     <div id="payment-methods-test-results" class="test-results" style="margin-top: 10px;"></div>
+                    
+                    <h4><?php _e('Current Settings Debug', 'vcs-payment-api'); ?></h4>
+                    <details>
+                        <summary><?php _e('Show current payment method settings', 'vcs-payment-api'); ?></summary>
+                        <div style="background: #f9f9f9; padding: 15px; margin-top: 10px; border: 1px solid #ddd;">
+                            <?php
+                            $current_settings = get_option('vcs_payment_api_settings', array());
+                            echo '<p><strong>Raw Settings:</strong></p>';
+                            echo '<pre>' . print_r($current_settings, true) . '</pre>';
+                            
+                            echo '<p><strong>Payment Method Status:</strong></p>';
+                            echo '<ul>';
+                            echo '<li>PayPal Enabled: ' . (VCS_Payment_API::is_payment_method_enabled('paypal') ? 'Yes' : 'No') . '</li>';
+                            echo '<li>Credit Card Enabled: ' . (VCS_Payment_API::is_payment_method_enabled('credit_card') ? 'Yes' : 'No') . '</li>';
+                            echo '</ul>';
+                            ?>
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>
