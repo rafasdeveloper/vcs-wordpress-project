@@ -3,7 +3,7 @@
  * Plugin Name: VCS Payment API
  * Plugin URI: https://github.com/your-username/vcs-payment-api
  * Description: Exposes REST APIs for WooCommerce payment methods including PayPal, BTCPay, and WooPayments
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: VCS Team
  * Author URI: https://your-website.com
  * Text Domain: vcs-payment-api
@@ -30,7 +30,7 @@ add_action('before_woocommerce_init', function() {
 });
 
 // Define plugin constants
-define('VCS_PAYMENT_API_VERSION', '1.0.1');
+define('VCS_PAYMENT_API_VERSION', '1.1.0');
 define('VCS_PAYMENT_API_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('VCS_PAYMENT_API_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('VCS_PAYMENT_API_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -166,6 +166,32 @@ class VCS_Payment_API {
             'vcs_payment_api_general',
             array('field' => 'debug')
         );
+        
+        // Payment Methods Section
+        add_settings_section(
+            'vcs_payment_api_methods',
+            __('Payment Methods', 'vcs-payment-api'),
+            array($this, 'payment_methods_section_callback'),
+            'vcs_payment_api_options'
+        );
+        
+        add_settings_field(
+            'vcs_payment_api_paypal_enabled',
+            __('PayPal', 'vcs-payment-api'),
+            array($this, 'payment_method_callback'),
+            'vcs_payment_api_options',
+            'vcs_payment_api_methods',
+            array('field' => 'paypal_enabled', 'method' => 'paypal')
+        );
+        
+        add_settings_field(
+            'vcs_payment_api_credit_card_enabled',
+            __('Credit Card (via PayPal)', 'vcs-payment-api'),
+            array($this, 'payment_method_callback'),
+            'vcs_payment_api_options',
+            'vcs_payment_api_methods',
+            array('field' => 'credit_card_enabled', 'method' => 'credit_card')
+        );
     }
     
     public function settings_section_callback() {
@@ -179,6 +205,45 @@ class VCS_Payment_API {
         
         echo '<input type="checkbox" id="vcs_payment_api_' . $field . '" name="vcs_payment_api_settings[' . $field . ']" value="1" ' . checked(1, $value, false) . '/>';
         echo '<label for="vcs_payment_api_' . $field . '">' . __('Enable', 'vcs-payment-api') . '</label>';
+    }
+    
+    public function payment_methods_section_callback() {
+        echo '<p>' . __('Enable or disable specific payment methods for the API.', 'vcs-payment-api') . '</p>';
+    }
+    
+    public function payment_method_callback($args) {
+        $options = get_option('vcs_payment_api_settings', array());
+        $field = $args['field'];
+        $method = $args['method'];
+        $value = isset($options[$field]) ? $options[$field] : true; // Default to enabled
+        
+        // Check if the payment method is available
+        $is_available = $this->is_payment_method_available($method);
+        $disabled = !$is_available ? 'disabled' : '';
+        
+        echo '<input type="checkbox" id="vcs_payment_api_' . $field . '" name="vcs_payment_api_settings[' . $field . ']" value="1" ' . checked(1, $value, false) . ' ' . $disabled . '/>';
+        echo '<label for="vcs_payment_api_' . $field . '">' . __('Enable', 'vcs-payment-api') . '</label>';
+        
+        if (!$is_available) {
+            echo '<p class="description">' . __('This payment method is not available. Please check the configuration.', 'vcs-payment-api') . '</p>';
+        }
+    }
+    
+    private function is_payment_method_available($method) {
+        switch ($method) {
+            case 'paypal':
+                return class_exists('\WooCommerce\PayPalCommerce\PPCP');
+            case 'credit_card':
+                return class_exists('\WooCommerce\PayPalCommerce\PPCP');
+            default:
+                return false;
+        }
+    }
+    
+    public static function is_payment_method_enabled($method) {
+        $options = get_option('vcs_payment_api_settings', array());
+        $field = $method . '_enabled';
+        return isset($options[$field]) ? $options[$field] : true; // Default to enabled
     }
 }
 
@@ -196,7 +261,9 @@ function vcs_payment_api_activate() {
     // Create necessary database tables or options
     add_option('vcs_payment_api_settings', array(
         'enabled' => true,
-        'debug' => false
+        'debug' => false,
+        'paypal_enabled' => true,
+        'credit_card_enabled' => true
     ));
     
     // Flush rewrite rules

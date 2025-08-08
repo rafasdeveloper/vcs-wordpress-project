@@ -202,6 +202,74 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
         
+        <!-- Payment Methods Management Tab -->
+        <div class="vcs-payment-api-section">
+            <h2><?php _e('Payment Methods Management', 'vcs-payment-api'); ?></h2>
+            
+            <div class="vcs-payment-methods">
+                <p><?php _e('Enable or disable specific payment methods for the API. Disabled methods will not be available through the API endpoints.', 'vcs-payment-api'); ?></p>
+                
+                <?php
+                $payment_methods = array(
+                    'paypal' => array(
+                        'name' => __('PayPal', 'vcs-payment-api'),
+                        'description' => __('Pay with PayPal account', 'vcs-payment-api'),
+                        'status' => VCS_Payment_API::is_payment_method_enabled('paypal') ? 'enabled' : 'disabled',
+                        'available' => class_exists('\WooCommerce\PayPalCommerce\PPCP')
+                    ),
+                    'credit_card' => array(
+                        'name' => __('Credit Card (via PayPal)', 'vcs-payment-api'),
+                        'description' => __('Pay with credit card powered by PayPal', 'vcs-payment-api'),
+                        'status' => VCS_Payment_API::is_payment_method_enabled('credit_card') ? 'enabled' : 'disabled',
+                        'available' => class_exists('\WooCommerce\PayPalCommerce\PPCP')
+                    )
+                );
+                ?>
+                
+                <table class="wp-list-table widefat fixed striped">
+                    <thead>
+                        <tr>
+                            <th><?php _e('Payment Method', 'vcs-payment-api'); ?></th>
+                            <th><?php _e('Description', 'vcs-payment-api'); ?></th>
+                            <th><?php _e('Status', 'vcs-payment-api'); ?></th>
+                            <th><?php _e('Availability', 'vcs-payment-api'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($payment_methods as $method_key => $method_data): ?>
+                        <tr>
+                            <td><strong><?php echo esc_html($method_data['name']); ?></strong></td>
+                            <td><?php echo esc_html($method_data['description']); ?></td>
+                            <td>
+                                <span class="status-badge <?php echo $method_data['status']; ?>">
+                                    <?php echo $method_data['status'] === 'enabled' ? __('Enabled', 'vcs-payment-api') : __('Disabled', 'vcs-payment-api'); ?>
+                                </span>
+                            </td>
+                            <td>
+                                <?php if ($method_data['available']): ?>
+                                    <span class="status-badge available"><?php _e('Available', 'vcs-payment-api'); ?></span>
+                                <?php else: ?>
+                                    <span class="status-badge unavailable"><?php _e('Not Available', 'vcs-payment-api'); ?></span>
+                                    <p class="description"><?php _e('Required plugin not installed or configured', 'vcs-payment-api'); ?></p>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                
+                <div style="margin-top: 20px;">
+                    <p><strong><?php _e('Note:', 'vcs-payment-api'); ?></strong> <?php _e('To change payment method settings, go to the API Settings section above and use the checkboxes to enable/disable payment methods.', 'vcs-payment-api'); ?></p>
+                    
+                    <h4><?php _e('Test Payment Methods API', 'vcs-payment-api'); ?></h4>
+                    <button type="button" class="button button-secondary" onclick="testPaymentMethodsFromAdmin()">
+                        <?php _e('Test GET /payments/methods', 'vcs-payment-api'); ?>
+                    </button>
+                    <div id="payment-methods-test-results" class="test-results" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+        
         <!-- API Documentation Tab -->
         <div class="vcs-payment-api-section">
             <h2><?php _e('API Documentation', 'vcs-payment-api'); ?></h2>
@@ -503,6 +571,26 @@ if (!defined('ABSPATH')) {
     color: white;
 }
 
+.status-badge.enabled {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-badge.disabled {
+    background-color: #6c757d;
+    color: white;
+}
+
+.status-badge.available {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.status-badge.unavailable {
+    background-color: #ffc107;
+    color: #212529;
+}
+
 .vcs-payment-config .form-table th {
     width: 150px;
 }
@@ -524,6 +612,42 @@ function testPaymentMethods() {
     .then(response => response.json())
     .then(data => {
         resultsDiv.innerHTML = '<strong>Success!</strong><br><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+    })
+    .catch(error => {
+        resultsDiv.innerHTML = '<strong>Error:</strong><br><pre>' + error.message + '</pre>';
+    });
+}
+
+function testPaymentMethodsFromAdmin() {
+    const resultsDiv = document.getElementById('payment-methods-test-results');
+    resultsDiv.style.display = 'block';
+    resultsDiv.innerHTML = 'Testing...';
+    
+    fetch('<?php echo esc_url(rest_url('vcs-payment-api/v1/payments/methods')); ?>', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-WP-Nonce': '<?php echo wp_create_nonce('wp_rest'); ?>'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        let html = '<strong>Success!</strong><br><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        
+        // Add analysis of enabled/disabled methods
+        if (data && typeof data === 'object') {
+            const enabledMethods = Object.keys(data);
+            html += '<br><strong>Currently Enabled Methods:</strong><br>';
+            if (enabledMethods.length > 0) {
+                enabledMethods.forEach(method => {
+                    html += '- ' + method + '<br>';
+                });
+            } else {
+                html += '<em>No payment methods are currently enabled.</em><br>';
+            }
+        }
+        
+        resultsDiv.innerHTML = html;
     })
     .catch(error => {
         resultsDiv.innerHTML = '<strong>Error:</strong><br><pre>' + error.message + '</pre>';

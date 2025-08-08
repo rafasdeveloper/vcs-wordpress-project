@@ -102,7 +102,7 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      * Get available payment methods
      */
     public function get_payment_methods($request) {
-        $methods = array(
+        $all_methods = array(
             'paypal' => array(
                 'name' => 'PayPal',
                 'description' => 'Pay with PayPal account',
@@ -121,6 +121,14 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
             ),
         );
         
+        // Filter methods based on admin settings
+        $methods = array();
+        foreach ($all_methods as $method_key => $method_data) {
+            if (VCS_Payment_API::is_payment_method_enabled($method_key)) {
+                $methods[$method_key] = $method_data;
+            }
+        }
+        
         return new WP_REST_Response($methods, 200);
     }
     
@@ -129,6 +137,11 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      */
     public function create_paypal_order($request) {
         try {
+            // Check if PayPal is enabled
+            if (!VCS_Payment_API::is_payment_method_enabled('paypal')) {
+                return new WP_Error('payment_method_disabled', 'PayPal payment method is disabled.', array('status' => 403));
+            }
+            
             $params = $request->get_params();
             
             // Create order using PayPal SDK
@@ -146,6 +159,11 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      */
     public function capture_paypal_order($request) {
         try {
+            // Check if PayPal is enabled
+            if (!VCS_Payment_API::is_payment_method_enabled('paypal')) {
+                return new WP_Error('payment_method_disabled', 'PayPal payment method is disabled.', array('status' => 403));
+            }
+            
             $params = $request->get_params();
             
             // Capture order using PayPal SDK
@@ -163,6 +181,11 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      */
     public function get_paypal_client_id($request) {
         try {
+            // Check if PayPal is enabled
+            if (!VCS_Payment_API::is_payment_method_enabled('paypal')) {
+                return new WP_Error('payment_method_disabled', 'PayPal payment method is disabled.', array('status' => 403));
+            }
+            
             $paypal_handler = $this->get_paypal_handler();
             
             if (!$paypal_handler->is_configured()) {
