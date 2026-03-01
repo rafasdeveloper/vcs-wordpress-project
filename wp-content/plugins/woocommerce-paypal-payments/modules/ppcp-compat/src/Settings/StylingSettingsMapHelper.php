@@ -10,7 +10,7 @@ namespace WooCommerce\PayPalCommerce\Compat\Settings;
 
 use RuntimeException;
 use WooCommerce\PayPalCommerce\Applepay\ApplePayGateway;
-use WooCommerce\PayPalCommerce\Button\Helper\ContextTrait;
+use WooCommerce\PayPalCommerce\Button\Helper\Context;
 use WooCommerce\PayPalCommerce\Googlepay\GooglePayGateway;
 use WooCommerce\PayPalCommerce\Settings\Data\AbstractDataModel;
 use WooCommerce\PayPalCommerce\Settings\Data\PaymentSettings;
@@ -23,7 +23,14 @@ use WooCommerce\PayPalCommerce\Settings\DTO\LocationStylingDTO;
  */
 class StylingSettingsMapHelper
 {
-    use ContextTrait;
+    /**
+     * @var callable $context
+     */
+    protected $context_provider;
+    public function __construct(callable $context_provider)
+    {
+        $this->context_provider = $context_provider;
+    }
     protected const BUTTON_NAMES = array(GooglePayGateway::ID, ApplePayGateway::ID);
     /**
      * Maps old setting keys to new setting style names.
@@ -187,7 +194,7 @@ class StylingSettingsMapHelper
         }
         $disabled_funding = array();
         $locations_to_context_map = $this->current_context_to_new_button_location_map();
-        $current_context = $locations_to_context_map[$this->context()] ?? '';
+        $current_context = $locations_to_context_map[($this->context_provider)()] ?? '';
         assert($payment_settings instanceof PaymentSettings);
         foreach ($styling_models as $model) {
             if ($model->location === $current_context) {
@@ -211,7 +218,7 @@ class StylingSettingsMapHelper
             return null;
         }
         $locations_to_context_map = $this->current_context_to_new_button_location_map();
-        $current_context = $locations_to_context_map[$this->context()] ?? '';
+        $current_context = $locations_to_context_map[($this->context_provider)()] ?? '';
         foreach ($styling_models as $model) {
             if ($model->enabled && $model->location === $current_context) {
                 if (in_array('pay-later', $model->methods, \true) && $payment_settings->get_paylater_enabled()) {
@@ -235,7 +242,7 @@ class StylingSettingsMapHelper
             throw new RuntimeException('Wrong button name is provided.');
         }
         $locations_to_context_map = $this->current_context_to_new_button_location_map();
-        $current_context = $locations_to_context_map[$this->context()] ?? '';
+        $current_context = $locations_to_context_map[($this->context_provider)()] ?? '';
         foreach ($styling_models as $model) {
             if ($model->enabled && $model->location === $current_context) {
                 if (in_array($button_name, $model->methods, \true) && $this->is_gateway_enabled($button_name)) {
@@ -243,25 +250,27 @@ class StylingSettingsMapHelper
                 }
             }
         }
-        if ($current_context === 'classic_checkout') {
+        /**
+         * Filters the available payment gateways to remove the specified gateway (e.g., Google Pay or Apple Pay)
+         * when the button is disabled for the current location (e.g., classic checkout) in the styling settings.
+         * This is necessary because WooCommerce automatically includes the gateway when it is enabled,
+         * even if the button is hidden via settings.
+         */
+        add_filter(
+            'woocommerce_available_payment_gateways',
             /**
-             * Outputs an inline CSS style that hides the Google Pay gateway (on Classic Checkout)
-             * In case if the button is disabled from the styling settings but the gateway itself is enabled.
+             * Param types removed to avoid third-party issues.
              *
-             * @return void
+             * @psalm-suppress MissingClosureParamType
              */
-            add_action('woocommerce_paypal_payments_checkout_button_render', static function (): void {
-                ?>
-					<style data-hide-gateway='<?php 
-                echo esc_attr(GooglePayGateway::ID);
-                ?>'>
-						.wc_payment_method.payment_method_ppcp-googlepay {
-							display: none;
-						}
-					</style>
-					<?php 
-            });
-        }
+            static function ($methods) use ($button_name, $current_context): array {
+                if ($current_context !== 'classic_checkout') {
+                    return $methods;
+                }
+                unset($methods[$button_name]);
+                return $methods;
+            }
+        );
         return 0;
     }
     /**

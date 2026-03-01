@@ -13,6 +13,7 @@ use WooCommerce\PayPalCommerce\Vendor\Psr\Log\LoggerInterface;
 use WooCommerce\PayPalCommerce\ApiClient\Authentication\SdkClientToken;
 use WooCommerce\PayPalCommerce\ApiClient\Exception\PayPalApiException;
 use WooCommerce\PayPalCommerce\ApiClient\Exception\RuntimeException;
+use WooCommerce\PayPalCommerce\Assets\AssetGetter;
 use WooCommerce\PayPalCommerce\Vendor\Inpsyde\Modularity\Module\ExecutableModule;
 use WooCommerce\PayPalCommerce\Vendor\Inpsyde\Modularity\Module\ExtendingModule;
 use WooCommerce\PayPalCommerce\Vendor\Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
@@ -43,23 +44,15 @@ class AxoBlockModule implements ServiceModule, ExtendingModule, ExecutableModule
      */
     public function run(ContainerInterface $c): bool
     {
+        if (!$c->has('axo.eligible') || !$c->get('axo.eligible')) {
+            return \true;
+        }
         if (!class_exists('Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType') || !function_exists('woocommerce_store_api_register_payment_requirements')) {
             add_action('admin_notices', function () {
                 printf('<div class="notice notice-error"><p>%1$s</p></div>', wp_kses_post(__('Fastlane checkout block initialization failed, possibly old WooCommerce version or disabled WooCommerce Blocks plugin.', 'woocommerce-paypal-payments')));
             });
         }
         add_action('wp_loaded', function () use ($c) {
-            add_filter('woocommerce_paypal_payments_localized_script_data', function (array $localized_script_data) use ($c) {
-                if (!$c->has('axo.available') || !$c->get('axo.available')) {
-                    return $localized_script_data;
-                }
-                $module = $this;
-                $api = $c->get('api.sdk-client-token');
-                assert($api instanceof SdkClientToken);
-                $logger = $c->get('woocommerce.logger.woocommerce');
-                assert($logger instanceof LoggerInterface);
-                return $module->add_sdk_client_token_to_script_data($api, $logger, $localized_script_data);
-            });
             /**
              * Param types removed to avoid third-party issues.
              *
@@ -86,37 +79,16 @@ class AxoBlockModule implements ServiceModule, ExtendingModule, ExecutableModule
             if (!has_block('woocommerce/checkout') && !has_block('woocommerce/cart')) {
                 return;
             }
-            $module_url = $c->get('axoblock.url');
+            $asset_getter = $c->get('axoblock.asset_getter');
+            assert($asset_getter instanceof AssetGetter);
             $asset_version = $c->get('ppcp.asset-version');
-            wp_register_style('wc-ppcp-axo-block', untrailingslashit($module_url) . '/assets/css/gateway.css', array(), $asset_version);
+            wp_register_style('wc-ppcp-axo-block', $asset_getter->get_asset_url('gateway.css'), array(), $asset_version);
             wp_enqueue_style('wc-ppcp-axo-block');
         });
         add_action('wp_enqueue_scripts', function () use ($c) {
             $this->enqueue_paypal_insights_script($c);
         });
         return \true;
-    }
-    /**
-     * Adds id token to localized script data.
-     *
-     * @param SdkClientToken  $api User id token api.
-     * @param LoggerInterface $logger The logger.
-     * @param array           $localized_script_data The localized script data.
-     * @return array
-     */
-    private function add_sdk_client_token_to_script_data(SdkClientToken $api, LoggerInterface $logger, array $localized_script_data): array
-    {
-        try {
-            $sdk_client_token = $api->sdk_client_token();
-            $localized_script_data['axo'] = array('sdk_client_token' => $sdk_client_token);
-        } catch (RuntimeException $exception) {
-            $error = $exception->getMessage();
-            if (is_a($exception, PayPalApiException::class)) {
-                $error = $exception->get_details($error);
-            }
-            $logger->error($error);
-        }
-        return $localized_script_data;
     }
     /**
      * Enqueues PayPal Insights analytics script for the Checkout block.
@@ -133,9 +105,10 @@ class AxoBlockModule implements ServiceModule, ExtendingModule, ExecutableModule
         if (!$dcc_configuration->use_fastlane()) {
             return;
         }
-        $module_url = $c->get('axoblock.url');
+        $asset_getter = $c->get('axoblock.asset_getter');
+        assert($asset_getter instanceof AssetGetter);
         $asset_version = $c->get('ppcp.asset-version');
-        wp_register_script('wc-ppcp-paypal-insights', untrailingslashit($module_url) . '/assets/js/PayPalInsightsLoader.js', array('wp-plugins', 'wp-data', 'wp-element', 'wc-blocks-registry'), $asset_version, \true);
+        wp_register_script('wc-ppcp-paypal-insights', $asset_getter->get_asset_url('PayPalInsightsLoader.js'), array('wp-plugins', 'wp-data', 'wp-element', 'wc-blocks-registry'), $asset_version, \true);
         wp_localize_script('wc-ppcp-paypal-insights', 'ppcpPayPalInsightsData', array('isAxoEnabled' => \true));
         wp_enqueue_script('wc-ppcp-paypal-insights');
     }

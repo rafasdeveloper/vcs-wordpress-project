@@ -39,7 +39,9 @@ use DomainException;
  */
 class AxoGateway extends WC_Payment_Gateway
 {
-    use OrderMetaTrait, GatewaySettingsRendererTrait, ProcessPaymentTrait;
+    use OrderMetaTrait;
+    use GatewaySettingsRendererTrait;
+    use ProcessPaymentTrait;
     const ID = 'ppcp-axo-gateway';
     /**
      * The Settings Renderer.
@@ -59,12 +61,6 @@ class AxoGateway extends WC_Payment_Gateway
      * @var CardPaymentsConfiguration
      */
     protected CardPaymentsConfiguration $dcc_configuration;
-    /**
-     * The WcGateway module URL.
-     *
-     * @var string
-     */
-    protected $wcgateway_module_url;
     /**
      * The processor for orders.
      *
@@ -132,12 +128,9 @@ class AxoGateway extends WC_Payment_Gateway
      */
     protected $settings_model;
     /**
-     * AXOGateway constructor.
-     *
      * @param SettingsRenderer          $settings_renderer           The settings renderer.
      * @param ContainerInterface        $ppcp_settings               The settings.
      * @param CardPaymentsConfiguration $dcc_configuration           The DCC Gateway configuration.
-     * @param string                    $wcgateway_module_url        The WcGateway module URL.
      * @param SessionHandler            $session_handler             The Session Handler.
      * @param OrderProcessor            $order_processor             The Order processor.
      * @param array                     $card_icons                  The card icons.
@@ -150,13 +143,12 @@ class AxoGateway extends WC_Payment_Gateway
      * @param ExperienceContextBuilder  $experience_context_builder  The experience context builder.
      * @param SettingsModel             $settings_model              The settings model.
      */
-    public function __construct(SettingsRenderer $settings_renderer, ContainerInterface $ppcp_settings, CardPaymentsConfiguration $dcc_configuration, string $wcgateway_module_url, SessionHandler $session_handler, OrderProcessor $order_processor, array $card_icons, OrderEndpoint $order_endpoint, PurchaseUnitFactory $purchase_unit_factory, ShippingPreferenceFactory $shipping_preference_factory, TransactionUrlProvider $transaction_url_provider, Environment $environment, LoggerInterface $logger, ExperienceContextBuilder $experience_context_builder, SettingsModel $settings_model)
+    public function __construct(SettingsRenderer $settings_renderer, ContainerInterface $ppcp_settings, CardPaymentsConfiguration $dcc_configuration, SessionHandler $session_handler, OrderProcessor $order_processor, array $card_icons, OrderEndpoint $order_endpoint, PurchaseUnitFactory $purchase_unit_factory, ShippingPreferenceFactory $shipping_preference_factory, TransactionUrlProvider $transaction_url_provider, Environment $environment, LoggerInterface $logger, ExperienceContextBuilder $experience_context_builder, SettingsModel $settings_model)
     {
         $this->id = self::ID;
         $this->settings_renderer = $settings_renderer;
         $this->ppcp_settings = $ppcp_settings;
         $this->dcc_configuration = $dcc_configuration;
-        $this->wcgateway_module_url = $wcgateway_module_url;
         $this->session_handler = $session_handler;
         $this->order_processor = $order_processor;
         $this->card_icons = $card_icons;
@@ -168,8 +160,9 @@ class AxoGateway extends WC_Payment_Gateway
             $is_axo_enabled = $this->dcc_configuration->use_fastlane();
             $this->update_option('enabled', $is_axo_enabled ? 'yes' : 'no');
         }
+        $description = $this->get_option('description', __('Enter your email address above to continue.', 'woocommerce-paypal-payments'));
         $this->title = apply_filters('woocommerce_paypal_payments_axo_gateway_title', $this->dcc_configuration->gateway_title($this->get_option('title', $this->method_title)), $this);
-        $this->description = apply_filters('woocommerce_paypal_payments_axo_gateway_description', __('Enter your email address above to continue.', 'woocommerce-paypal-payments'), $this);
+        $this->description = apply_filters('woocommerce_paypal_payments_axo_gateway_description', $description, $this);
         $this->init_form_fields();
         $this->init_settings();
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));

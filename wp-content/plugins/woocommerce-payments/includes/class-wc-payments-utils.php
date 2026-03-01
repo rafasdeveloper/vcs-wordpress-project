@@ -1035,6 +1035,8 @@ class WC_Payments_Utils {
 	/**
 	 * Helper function to check whether to show default new onboarding flow or as an exception disable it (if specific constant is set) .
 	 *
+	 * @deprecated 9.8.0 There is no longer an optional "new" onboarding flow, so this method is no longer needed.
+	 *
 	 * @return boolean
 	 */
 	public static function should_use_new_onboarding_flow(): bool {
@@ -1232,6 +1234,8 @@ class WC_Payments_Utils {
 				return __( 'Subscription canceled', 'woocommerce-payments' );
 			case 'unrecognized':
 				return __( 'Unrecognized', 'woocommerce-payments' );
+			case 'noncompliant':
+				return __( 'Non-compliant', 'woocommerce-payments' );
 			default:
 			case 'general':
 				return __( 'General', 'woocommerce-payments' );
@@ -1289,8 +1293,6 @@ class WC_Payments_Utils {
 	 * Determine if the current page is a cart block.
 	 *
 	 * @return bool True if the current page is a cart block, false otherwise.
-	 *
-	 * @psalm-suppress UndefinedFunction
 	 */
 	public static function is_cart_block(): bool {
 		return has_block( 'woocommerce/cart' );
@@ -1449,5 +1451,24 @@ class WC_Payments_Utils {
 			Country_Code::SPAIN,
 			Country_Code::SWEDEN,
 		];
+	}
+
+	/**
+	 * Log directly to WC logger, bypassing WCPay's logging settings.
+	 *
+	 * Use for critical errors that should always be captured, or errors that can occur
+	 * before WCPay settings are initialized (e.g., onboarding errors).
+	 *
+	 * @param string $message Log message.
+	 * @param string $level   Log level: 'emergency', 'alert', 'critical', 'error', 'warning', 'notice', 'info', 'debug'.
+	 */
+	public static function log_to_wc( string $message, string $level = 'error' ): void {
+		if ( function_exists( 'wc_get_logger' ) ) {
+			$valid_levels = [ 'emergency', 'alert', 'critical', 'error', 'warning', 'notice', 'info', 'debug' ];
+			$level        = in_array( $level, $valid_levels, true ) ? $level : 'error';
+
+			$logger = wc_get_logger();
+			$logger->$level( $message, [ 'source' => 'woopayments' ] );
+		}
 	}
 }

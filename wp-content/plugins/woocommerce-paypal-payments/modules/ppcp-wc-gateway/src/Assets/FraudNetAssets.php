@@ -8,7 +8,8 @@
 declare (strict_types=1);
 namespace WooCommerce\PayPalCommerce\WcGateway\Assets;
 
-use WooCommerce\PayPalCommerce\Button\Helper\ContextTrait;
+use WooCommerce\PayPalCommerce\Assets\AssetGetter;
+use WooCommerce\PayPalCommerce\Button\Helper\Context;
 use WooCommerce\PayPalCommerce\WcGateway\Helper\Environment;
 use WooCommerce\PayPalCommerce\Session\SessionHandler;
 use WooCommerce\PayPalCommerce\WcGateway\Exception\NotFoundException;
@@ -22,13 +23,7 @@ use WooCommerce\PayPalCommerce\WcGateway\Settings\Settings;
  */
 class FraudNetAssets
 {
-    use ContextTrait;
-    /**
-     * The URL of this module.
-     *
-     * @var string
-     */
-    protected $module_url;
+    private AssetGetter $asset_getter;
     /**
      * The assets version.
      *
@@ -77,10 +72,9 @@ class FraudNetAssets
      * @var bool
      */
     protected $is_fraudnet_enabled;
+    protected Context $context;
     /**
-     * Assets constructor.
-     *
-     * @param string            $module_url The url of this module.
+     * @param AssetGetter       $asset_getter
      * @param string            $version The assets version.
      * @param FraudNet          $fraud_net The FraudNet entity.
      * @param Environment       $environment The environment.
@@ -89,9 +83,9 @@ class FraudNetAssets
      * @param SessionHandler    $session_handler The session handler.
      * @param bool              $is_fraudnet_enabled true if FraudNet support is enabled in settings, otherwise false.
      */
-    public function __construct(string $module_url, string $version, FraudNet $fraud_net, Environment $environment, Settings $settings, GatewayRepository $gateway_repository, SessionHandler $session_handler, bool $is_fraudnet_enabled)
+    public function __construct(AssetGetter $asset_getter, string $version, FraudNet $fraud_net, Environment $environment, Settings $settings, GatewayRepository $gateway_repository, SessionHandler $session_handler, bool $is_fraudnet_enabled, Context $context)
     {
-        $this->module_url = $module_url;
+        $this->asset_getter = $asset_getter;
         $this->version = $version;
         $this->fraud_net = $fraud_net;
         $this->environment = $environment;
@@ -99,6 +93,7 @@ class FraudNetAssets
         $this->gateway_repository = $gateway_repository;
         $this->session_handler = $session_handler;
         $this->is_fraudnet_enabled = $is_fraudnet_enabled;
+        $this->context = $context;
     }
     /**
      * Registers FraudNet assets.
@@ -107,7 +102,7 @@ class FraudNetAssets
     {
         add_action('wp_enqueue_scripts', function () {
             if ($this->should_load_fraudnet_script()) {
-                wp_enqueue_script('ppcp-fraudnet', trailingslashit($this->module_url) . 'assets/js/fraudnet.js', array(), $this->version, \true);
+                wp_enqueue_script('ppcp-fraudnet', $this->asset_getter->get_asset_url('fraudnet.js'), array(), $this->version, \true);
                 wp_localize_script('ppcp-fraudnet', 'FraudNetConfig', array('f' => $this->fraud_net->session_id(), 's' => $this->fraud_net->source_website_id(), 'sandbox' => $this->environment->current_environment_is(Environment::SANDBOX)));
             }
         });
@@ -124,7 +119,7 @@ class FraudNetAssets
         }
         $is_pui_gateway_enabled = in_array(PayUponInvoiceGateway::ID, $this->enabled_ppcp_gateways(), \true);
         $is_only_standard_gateway_enabled = $this->enabled_ppcp_gateways() === array(PayPalGateway::ID);
-        if ($this->context() !== 'checkout' || $is_only_standard_gateway_enabled) {
+        if ($this->context->context() !== 'checkout' || $is_only_standard_gateway_enabled) {
             return $this->is_fraudnet_enabled && $this->are_buttons_enabled_for_context();
         }
         return $is_pui_gateway_enabled ? \true : $this->is_fraudnet_enabled;
@@ -144,13 +139,13 @@ class FraudNetAssets
         } catch (NotFoundException $exception) {
             return \false;
         }
-        if ($this->context() === 'pay-now') {
+        if ($this->context->context() === 'pay-now') {
             return \true;
         }
-        if ($this->context() === 'product') {
+        if ($this->context->context() === 'product') {
             return in_array('product', $button_locations, \true) || in_array('mini-cart', $button_locations, \true);
         }
-        return in_array($this->context(), $button_locations, \true);
+        return in_array($this->context->context(), $button_locations, \true);
     }
     /**
      * Returns IDs of the currently enabled PPCP gateways.

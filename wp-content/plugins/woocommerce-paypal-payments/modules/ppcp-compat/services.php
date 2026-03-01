@@ -8,6 +8,8 @@
 declare (strict_types=1);
 namespace WooCommerce\PayPalCommerce\Compat;
 
+use WooCommerce\PayPalCommerce\Assets\AssetGetter;
+use WooCommerce\PayPalCommerce\Assets\AssetGetterFactory;
 use WooCommerce\PayPalCommerce\Compat\Assets\CompatAssets;
 use WooCommerce\PayPalCommerce\Compat\Settings\GeneralSettingsMapHelper;
 use WooCommerce\PayPalCommerce\Compat\Settings\PaymentMethodSettingsMapHelper;
@@ -68,16 +70,13 @@ return array(
     'compat.wc_bookings.is_supported_plugin_version_active' => function (): bool {
         return class_exists('WC_Bookings');
     },
-    'compat.module.url' => static function (ContainerInterface $container): string {
-        /**
-         * The path cannot be false.
-         *
-         * @psalm-suppress PossiblyFalseArgument
-         */
-        return plugins_url('/modules/ppcp-compat/', dirname(realpath(__FILE__), 3) . '/woocommerce-paypal-payments.php');
+    'compat.asset_getter' => static function (ContainerInterface $container): AssetGetter {
+        $factory = $container->get('assets.asset_getter_factory');
+        assert($factory instanceof AssetGetterFactory);
+        return $factory->for_module('ppcp-compat');
     },
     'compat.assets' => function (ContainerInterface $container): CompatAssets {
-        return new CompatAssets($container->get('compat.module.url'), $container->get('ppcp.asset-version'), $container->get('compat.gzd.is_supported_plugin_version_active'), $container->get('compat.wc_shipment_tracking.is_supported_plugin_version_active'), $container->get('compat.wc_shipping_tax.is_supported_plugin_version_active'), $container->get('api.bearer'));
+        return new CompatAssets($container->get('compat.asset_getter'), $container->get('ppcp.asset-version'), $container->get('compat.gzd.is_supported_plugin_version_active'), $container->get('compat.wc_shipment_tracking.is_supported_plugin_version_active'), $container->get('compat.wc_shipping_tax.is_supported_plugin_version_active'), $container->get('api.bearer'));
     },
     /**
      * Configuration for the new/old settings map.
@@ -130,8 +129,12 @@ return array(
     'compat.settings.settings_map_helper' => static function (ContainerInterface $container): SettingsMapHelper {
         return new SettingsMapHelper($container->get('compat.setting.new-to-old-map'), $container->get('compat.settings.styling_map_helper'), $container->get('compat.settings.settings_tab_map_helper'), $container->get('compat.settings.subscription_map_helper'), $container->get('compat.settings.general_map_helper'), $container->get('compat.settings.payment_methods_map_helper'), $container->get('wcgateway.settings.admin-settings-enabled'));
     },
-    'compat.settings.styling_map_helper' => static function (): StylingSettingsMapHelper {
-        return new StylingSettingsMapHelper();
+    'compat.settings.styling_map_helper' => static function (ContainerInterface $container): StylingSettingsMapHelper {
+        $context_provider = static function () use ($container): string {
+            $context = $container->get('button.helper.context');
+            return $context->context();
+        };
+        return new StylingSettingsMapHelper($context_provider);
     },
     'compat.settings.settings_tab_map_helper' => static function (): SettingsTabMapHelper {
         return new SettingsTabMapHelper();

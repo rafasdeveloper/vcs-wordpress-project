@@ -24,6 +24,9 @@ use PaypalServerSdkLib\Controllers\OrdersController;
 use PaypalServerSdkLib\Models\Builders\OrderRequestBuilder;
 use PaypalServerSdkLib\Models\Builders\PurchaseUnitRequestBuilder;
 use PaypalServerSdkLib\Models\Builders\AmountWithBreakdownBuilder;
+use PaypalServerSdkLib\Models\Builders\AddressBuilder;
+use PaypalServerSdkLib\Models\Builders\ShippingDetailsBuilder;
+use PaypalServerSdkLib\Models\Builders\PayerBuilder;
 use PaypalServerSdkLib\Models\OrderRequest;
 use PaypalServerSdkLib\Models\PurchaseUnitRequest;
 use PaypalServerSdkLib\Models\AmountWithBreakdown;
@@ -364,12 +367,53 @@ class VCS_PayPal_Handler {
         }
         
         // Create OrderRequest object
-        $order_request = OrderRequestBuilder::init(
+        $order_request_builder = OrderRequestBuilder::init(
             CheckoutPaymentIntent::CAPTURE,
             [$purchase_unit]
         );
         
-        return $order_request->build();
+        // Handle addresses if provided
+        if (isset($params['addresses']) && is_array($params['addresses'])) {
+            $addresses = $params['addresses'];
+            
+            // Build Payer details
+            if (isset($addresses['payer']['address'])) {
+                $payer_address_data = $addresses['payer']['address'];
+                $payer_address = AddressBuilder::init($payer_address_data['country_code'] ?? 'GB');
+                
+                if (!empty($payer_address_data['address_line_1'])) $payer_address->addressLine1($payer_address_data['address_line_1']);
+                if (!empty($payer_address_data['address_line_2'])) $payer_address->addressLine2($payer_address_data['address_line_2']);
+                if (!empty($payer_address_data['admin_area_2'])) $payer_address->adminArea2($payer_address_data['admin_area_2']);
+                if (!empty($payer_address_data['admin_area_1'])) $payer_address->adminArea1($payer_address_data['admin_area_1']);
+                if (!empty($payer_address_data['postal_code'])) $payer_address->postalCode($payer_address_data['postal_code']);
+                
+                $payer = PayerBuilder::init()
+                    ->address($payer_address->build())
+                    ->build();
+                
+                $order_request_builder->payer($payer);
+            }
+            
+            // Build Shipping details on PurchaseUnit
+            if (isset($addresses['shipping']['address'])) {
+                $shipping_address_data = $addresses['shipping']['address'];
+                $shipping_address = AddressBuilder::init($shipping_address_data['country_code'] ?? 'GB');
+                
+                if (!empty($shipping_address_data['address_line_1'])) $shipping_address->addressLine1($shipping_address_data['address_line_1']);
+                if (!empty($shipping_address_data['address_line_2'])) $shipping_address->addressLine2($shipping_address_data['address_line_2']);
+                if (!empty($shipping_address_data['admin_area_2'])) $shipping_address->adminArea2($shipping_address_data['admin_area_2']);
+                if (!empty($shipping_address_data['admin_area_1'])) $shipping_address->adminArea1($shipping_address_data['admin_area_1']);
+                if (!empty($shipping_address_data['postal_code'])) $shipping_address->postalCode($shipping_address_data['postal_code']);
+                
+                $shipping_details = ShippingDetailsBuilder::init()
+                    ->address($shipping_address->build())
+                    ->build();
+                
+                $purchase_unit->setShipping($shipping_details);
+            }
+        }
+        
+        return $order_request_builder->build();
     }
     
     /**

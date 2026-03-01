@@ -109,6 +109,7 @@ class VCS_Payment_API {
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-logger.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-payment-api-controller.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-paypal-handler.php';
+        require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-revolut-handler.php';
         require_once VCS_PAYMENT_API_PLUGIN_DIR . 'includes/class-vcs-cors-handler.php';
     }
     
@@ -195,6 +196,65 @@ class VCS_Payment_API {
             'vcs_payment_api_methods',
             array('field' => 'credit_card_enabled', 'method' => 'credit_card')
         );
+
+        add_settings_field(
+            'vcs_payment_api_revolut_enabled',
+            __('Revolut Pay', 'vcs-payment-api'),
+            array($this, 'payment_method_callback'),
+            'vcs_payment_api_options',
+            'vcs_payment_api_methods',
+            array('field' => 'revolut_enabled', 'method' => 'revolut')
+        );
+
+        add_settings_field(
+            'vcs_payment_api_revolut_card_enabled',
+            __('Credit Card (via Revolut)', 'vcs-payment-api'),
+            array($this, 'payment_method_callback'),
+            'vcs_payment_api_options',
+            'vcs_payment_api_methods',
+            array('field' => 'revolut_card_enabled', 'method' => 'revolut_card')
+        );
+
+        // Revolut Settings Section
+        add_settings_section(
+            'vcs_payment_api_revolut_settings',
+            __('Revolut Settings', 'vcs-payment-api'),
+            array($this, 'revolut_settings_section_callback'),
+            'vcs_payment_api_options'
+        );
+
+        add_settings_field(
+            'vcs_payment_api_revolut_api_key',
+            __('Revolut API Key (Secret)', 'vcs-payment-api'),
+            array($this, 'text_field_callback'),
+            'vcs_payment_api_options',
+            'vcs_payment_api_revolut_settings',
+            array('field' => 'revolut_api_key', 'type' => 'password')
+        );
+
+        add_settings_field(
+            'vcs_payment_api_revolut_public_key',
+            __('Revolut Public Key', 'vcs-payment-api'),
+            array($this, 'text_field_callback'),
+            'vcs_payment_api_options',
+            'vcs_payment_api_revolut_settings',
+            array('field' => 'revolut_public_key')
+        );
+
+        add_settings_field(
+            'vcs_payment_api_revolut_mode',
+            __('Revolut Mode', 'vcs-payment-api'),
+            array($this, 'select_field_callback'),
+            'vcs_payment_api_options',
+            'vcs_payment_api_revolut_settings',
+            array(
+                'field' => 'revolut_mode',
+                'options' => array(
+                    'sandbox' => 'Sandbox',
+                    'production' => 'Production'
+                )
+            )
+        );
     }
     
     public function settings_section_callback() {
@@ -212,6 +272,32 @@ class VCS_Payment_API {
     
     public function payment_methods_section_callback() {
         echo '<p>' . __('Enable or disable specific payment methods for the API.', 'vcs-payment-api') . '</p>';
+    }
+
+    public function revolut_settings_section_callback() {
+        echo '<p>' . __('Configure Revolut API credentials.', 'vcs-payment-api') . '</p>';
+    }
+
+    public function text_field_callback($args) {
+        $options = get_option('vcs_payment_api_settings', array());
+        $field = $args['field'];
+        $value = isset($options[$field]) ? $options[$field] : '';
+        $type = isset($args['type']) ? $args['type'] : 'text';
+        
+        echo '<input type="' . $type . '" id="vcs_payment_api_' . $field . '" name="vcs_payment_api_settings[' . $field . ']" value="' . esc_attr($value) . '" class="regular-text" />';
+    }
+
+    public function select_field_callback($args) {
+        $options = get_option('vcs_payment_api_settings', array());
+        $field = $args['field'];
+        $value = isset($options[$field]) ? $options[$field] : '';
+        $choices = $args['options'];
+        
+        echo '<select id="vcs_payment_api_' . $field . '" name="vcs_payment_api_settings[' . $field . ']">';
+        foreach ($choices as $key => $label) {
+            echo '<option value="' . esc_attr($key) . '" ' . selected($key, $value, false) . '>' . esc_html($label) . '</option>';
+        }
+        echo '</select>';
     }
     
     public function payment_method_callback($args) {
@@ -242,6 +328,13 @@ class VCS_Payment_API {
         // Handle payment method checkboxes
         $sanitized['paypal_enabled'] = isset($input['paypal_enabled']) ? 1 : 0;
         $sanitized['credit_card_enabled'] = isset($input['credit_card_enabled']) ? 1 : 0;
+        $sanitized['revolut_enabled'] = isset($input['revolut_enabled']) ? 1 : 0;
+        $sanitized['revolut_card_enabled'] = isset($input['revolut_card_enabled']) ? 1 : 0;
+
+        // Handle Revolut settings
+        $sanitized['revolut_api_key'] = isset($input['revolut_api_key']) ? sanitize_text_field($input['revolut_api_key']) : '';
+        $sanitized['revolut_public_key'] = isset($input['revolut_public_key']) ? sanitize_text_field($input['revolut_public_key']) : '';
+        $sanitized['revolut_mode'] = isset($input['revolut_mode']) ? sanitize_text_field($input['revolut_mode']) : 'sandbox';
         
         // Set a flag to show success message
         set_transient('vcs_payment_api_settings_updated', true, 30);
@@ -268,6 +361,9 @@ class VCS_Payment_API {
                 return class_exists('\WooCommerce\PayPalCommerce\PPCP');
             case 'credit_card':
                 return class_exists('\WooCommerce\PayPalCommerce\PPCP');
+            case 'revolut':
+            case 'revolut_card':
+                return true; // Always available if configured, we'll check config in the handler
             default:
                 return false;
         }
@@ -296,7 +392,10 @@ function vcs_payment_api_activate() {
         'enabled' => true,
         'debug' => false,
         'paypal_enabled' => true,
-        'credit_card_enabled' => true
+        'credit_card_enabled' => true,
+        'revolut_enabled' => false,
+        'revolut_card_enabled' => false,
+        'revolut_mode' => 'sandbox'
     ));
     
     // Flush rewrite rules

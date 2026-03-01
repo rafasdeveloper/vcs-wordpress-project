@@ -10,6 +10,7 @@ namespace WooCommerce\PayPalCommerce\Blocks;
 
 use Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType;
 use WC_AJAX;
+use WooCommerce\PayPalCommerce\Assets\AssetGetter;
 use WooCommerce\PayPalCommerce\Blocks\Endpoint\UpdateShippingEndpoint;
 use WooCommerce\PayPalCommerce\Button\Assets\SmartButtonInterface;
 use WooCommerce\PayPalCommerce\Session\Cancellation\CancelController;
@@ -24,12 +25,7 @@ use WooCommerce\PayPalCommerce\WcSubscriptions\Helper\SubscriptionHelper;
  */
 class PayPalPaymentMethod extends AbstractPaymentMethodType
 {
-    /**
-     * The URL of this module.
-     *
-     * @var string
-     */
-    private $module_url;
+    private AssetGetter $asset_getter;
     /**
      * The assets version.
      *
@@ -115,9 +111,7 @@ class PayPalPaymentMethod extends AbstractPaymentMethodType
      */
     private $all_funding_sources;
     /**
-     * Assets constructor.
-     *
-     * @param string                        $module_url The url of this module.
+     * @param AssetGetter                   $asset_getter
      * @param string                        $version    The assets version.
      * @param SmartButtonInterface|callable $smart_button The smart button script loading handler.
      * @param Settings                      $plugin_settings The settings.
@@ -133,10 +127,10 @@ class PayPalPaymentMethod extends AbstractPaymentMethodType
      * @param string                        $place_order_button_description The text for additional "Place order" description.
      * @param array                         $all_funding_sources All existing funding sources for PayPal buttons.
      */
-    public function __construct(string $module_url, string $version, $smart_button, Settings $plugin_settings, SettingsStatus $settings_status, PayPalGateway $gateway, bool $final_review_enabled, CancelView $cancellation_view, SessionHandler $session_handler, SubscriptionHelper $subscription_helper, bool $add_place_order_method, bool $use_place_order, string $place_order_button_text, string $place_order_button_description, array $all_funding_sources)
+    public function __construct(AssetGetter $asset_getter, string $version, $smart_button, Settings $plugin_settings, SettingsStatus $settings_status, PayPalGateway $gateway, bool $final_review_enabled, CancelView $cancellation_view, SessionHandler $session_handler, SubscriptionHelper $subscription_helper, bool $add_place_order_method, bool $use_place_order, string $place_order_button_text, string $place_order_button_description, array $all_funding_sources)
     {
         $this->name = PayPalGateway::ID;
-        $this->module_url = $module_url;
+        $this->asset_getter = $asset_getter;
         $this->version = $version;
         $this->smart_button = $smart_button;
         $this->plugin_settings = $plugin_settings;
@@ -173,7 +167,7 @@ class PayPalPaymentMethod extends AbstractPaymentMethodType
      */
     public function get_payment_method_script_handles()
     {
-        wp_register_script('ppcp-checkout-block', trailingslashit($this->module_url) . 'assets/js/checkout-block.js', array(), $this->version, \true);
+        wp_register_script('ppcp-checkout-block', $this->asset_getter->get_asset_url('checkout-block.js'), array(), $this->version, \true);
         return array('ppcp-checkout-block');
     }
     /**
@@ -198,7 +192,7 @@ class PayPalPaymentMethod extends AbstractPaymentMethodType
         $smart_buttons_enabled = !$this->use_place_order && $this->settings_status->is_smart_button_enabled_for_location($script_data['context'] ?? 'block-checkout');
         $place_order_enabled = ($this->use_place_order || $this->add_place_order_method) && !$this->subscription_helper->cart_contains_subscription();
         $cart = WC()->cart;
-        return array('id' => $this->gateway->id, 'title' => $this->gateway->title, 'icon' => array(array('id' => 'paypal', 'alt' => 'PayPal', 'src' => $this->gateway->icon)), 'description' => $this->gateway->description, 'smartButtonsEnabled' => $smart_buttons_enabled, 'placeOrderEnabled' => $place_order_enabled, 'fundingSource' => $this->session_handler->funding_source(), 'finalReviewEnabled' => $this->final_review_enabled, 'placeOrderButtonText' => $this->place_order_button_text, 'placeOrderButtonDescription' => $this->place_order_button_description, 'enabledFundingSources' => $funding_sources, 'ajax' => array('update_shipping' => array('endpoint' => WC_AJAX::get_endpoint(UpdateShippingEndpoint::ENDPOINT), 'nonce' => wp_create_nonce(UpdateShippingEndpoint::nonce()))), 'scriptData' => $script_data, 'needShipping' => $cart && $cart->needs_shipping());
+        return array('id' => $this->gateway->id, 'title' => $this->gateway->title, 'icon' => array(array('id' => 'paypal', 'alt' => 'PayPal', 'src' => $this->gateway->icon)), 'description' => $this->gateway->get_description(), 'smartButtonsEnabled' => $smart_buttons_enabled, 'placeOrderEnabled' => $place_order_enabled, 'fundingSource' => $this->session_handler->funding_source(), 'finalReviewEnabled' => $this->final_review_enabled, 'placeOrderButtonText' => $this->place_order_button_text, 'placeOrderButtonDescription' => $this->place_order_button_description, 'enabledFundingSources' => $funding_sources, 'ajax' => array('update_shipping' => array('endpoint' => WC_AJAX::get_endpoint(UpdateShippingEndpoint::ENDPOINT), 'nonce' => wp_create_nonce(UpdateShippingEndpoint::nonce()))), 'scriptData' => $script_data, 'needShipping' => $cart && $cart->needs_shipping());
     }
     /**
      * Checks if it is the block editing mode.
