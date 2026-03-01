@@ -1,0 +1,212 @@
+2025-08-08T06:46:35+00:00 DEBUG #7070 - [New Request] GET /wp-admin/admin.php
+2025-08-08T06:46:35+00:00 DEBUG #7070 - GET https://api.woocommerce.com/integrations/ppc/v1/customer/partners/K8SKZ36LQBWXJ/merchant-integrations/
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:46:35+00:00 WARNING #7070 - [Error] Not Found CONTEXT: {"args":{"method":"GET","headers":{"Authorization":"Bearer token","Content-Type":"application/json"}},"response":{"headers":{},"body":"{"statusCode":404,"error":"Not Found","message":"Not Found"}","response":{"code":404,"message":"Not Found"},"cookies":[],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-08-08T06:46:36+00:00 DEBUG #4635 - [New Request] GET /wp-json/wc/v3/wc_paypal/webhooks
+2025-08-08T06:46:36+00:00 DEBUG #4635 - GET https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:46:36+00:00 DEBUG #4764 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:46:36+00:00 INFO #4764 - Generating onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:37+00:00 DEBUG #4764 - POST https://api.woocommerce.com/integrations/ppcsandbox/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiJlOThkMDE4MmRmOTFlNzgzZTk3NjlhZDc0MGJiN2I0OSJ9","return_url_description":"Return to your shop.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: b143038989dec
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-08-08T06:46:39+00:00 DEBUG #5633 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:46:39+00:00 DEBUG #5633 - Loaded onboarding URL from cache: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:39+00:00 INFO #5633 - Using cached onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:39+00:00 DEBUG #5143 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:46:39+00:00 DEBUG #5143 - Loaded onboarding URL from cache: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:39+00:00 INFO #5143 - Using cached onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:43+00:00 DEBUG #2612 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:46:43+00:00 DEBUG #2612 - Loaded onboarding URL from cache: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:43+00:00 INFO #2612 - Using cached onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:43+00:00 DEBUG #8643 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:46:43+00:00 DEBUG #8643 - Loaded onboarding URL from cache: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:46:43+00:00 INFO #8643 - Using cached onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:47:28+00:00 DEBUG #6454 - [New Request] POST /wp-json/wc/v3/wc_paypal/authenticate/oauth
+2025-08-08T06:47:28+00:00 INFO #6454 - Storing one-time OAuth credentials... CONTEXT: {"shared_id":"BAA_wVMMaejHdGdCqJL_03yHTepAx1vwzQbT_msL3qV3-ZbwYBN0N2LGr7CBDF1JSHJlM_sZEuerzcsDp8","auth_code":"C21AAL9LwOlkh87H1k_qXLpFS0kC2DUcs5_ulf4DO31grfmApPifzJ1JB448r6i4-V-Cr9HQne2kXf31K1bKM-R9yYd3mykZA","use_sandbox":true}
+2025-08-08T06:47:54+00:00 DEBUG #1468 - [New Request] GET /wp-admin/admin.php
+2025-08-08T06:47:54+00:00 DEBUG #1468 - Validating onboarding ppcpToken: ey...I0OSJ9
+2025-08-08T06:47:54+00:00 INFO #1468 - Validated onboarding ppcpToken: ey...I0OSJ9
+2025-08-08T06:47:54+00:00 INFO #1468 - Extracting connection data from request...
+2025-08-08T06:47:54+00:00 INFO #1468 - Found OAuth merchant data in request CONTEXT: {"merchant_id":"FYMSWWENCVX3C","merchant_email":"vicesuk-merchant@booug.com","seller_type":"business"}
+2025-08-08T06:47:54+00:00 INFO #1468 - Attempting OAuth login to PayPal... CONTEXT: {"sandbox":true,"shared_id":"BAA_wVMMaejHdGdCqJL_03yHTepAx1vwzQbT_msL3qV3-ZbwYBN0N2LGr7CBDF1JSHJlM_sZEuerzcsDp8"}
+2025-08-08T06:47:54+00:00 DEBUG #9949 - [New Request] GET /wp-admin/admin.php
+2025-08-08T06:47:54+00:00 INFO #9949 - Token is currently being processed, waiting and retrying CONTEXT: {"token":"ey...I0OSJ9"}
+2025-08-08T06:47:54+00:00 DEBUG #1468 - POST https://api-m.sandbox.paypal.com/v1/oauth2/token/
+Response Debug ID: f9663634231d4
+Response: Array
+(
+    [code] => 200
+    [message] => OK
+)
+
+2025-08-08T06:47:55+00:00 DEBUG #1468 - GET https://api-m.sandbox.paypal.com/v1/customer/partners/MPMFHQTVMBZ6G/merchant-integrations/credentials/
+Response Debug ID: f41234990a0d5
+Response: Array
+(
+    [code] => 200
+    [message] => OK
+)
+
+2025-08-08T06:47:55+00:00 INFO #1468 - Updating connection details CONTEXT: {"is_sandbox":true,"client_id":"BAA_wVMMaejHdGdCqJL_03yHTepAx1vwzQbT_msL3qV3-ZbwYBN0N2LGr7CBDF1JSHJlM_sZEuerzcsDp8","client_secret":"ECHfaju5C3P5AlU3r2OI2leXKyI5SEhww7y6kHo_wU3W3iBtFE98Prk4VwYzRP8FjEoxIxVJD3DJR4QB","merchant_id":"FYMSWWENCVX3C","merchant_email":"vicesuk-merchant@booug.com","merchant_country":"","seller_type":"business"}
+2025-08-08T06:47:55+00:00 INFO #1468 - Merchant successfully connected to PayPal
+2025-08-08T06:47:55+00:00 INFO #1468 - Calling internal REST endpoint [https://vicesuk-wp.rafaeldeveloper.co/wp-json/wc/v3/wc_paypal/common/seller-account]
+2025-08-08T06:48:00+00:00 DEBUG #1468 - Finished internal REST call [https://vicesuk-wp.rafaeldeveloper.co/wp-json/wc/v3/wc_paypal/common/seller-account]
+2025-08-08T06:48:00+00:00 ERROR #1468 - Internal REST error CONTEXT: {"response":{"errors":{"http_request_failed":["cURL error 28: Connection timed out after 5002 milliseconds"]},"error_data":[]}}
+2025-08-08T06:48:00+00:00 WARNING #1468 - Failed to enrich merchant details: Internal REST error CONTEXT: {"reason":"Internal REST error","details":null}
+2025-08-08T06:48:00+00:00 INFO #1468 - Flushing API caches...
+2025-08-08T06:48:00+00:00 INFO #1468 - Merchant connected, complete onboarding and set defaults.
+2025-08-08T06:48:00+00:00 DEBUG #1468 - GET https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:48:00+00:00 ERROR #1468 - Failed to delete webhooks: [Error] Not Found
+2025-08-08T06:48:00+00:00 INFO #1468 - Webhooks deleted.
+2025-08-08T06:48:00+00:00 DEBUG #1468 - POST https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Request Body: {"url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-json\/paypal\/v1\/incoming","event_types":[{"name":"CHECKOUT.ORDER.APPROVED"},{"name":"CHECKOUT.ORDER.COMPLETED"},{"name":"CHECKOUT.PAYMENT-APPROVAL.REVERSED"},{"name":"PAYMENT.CAPTURE.REFUNDED"},{"name":"PAYMENT.AUTHORIZATION.VOIDED"},{"name":"PAYMENT.CAPTURE.REVERSED"},{"name":"PAYMENT.ORDER.CANCELLED"},{"name":"PAYMENT.CAPTURE.DENIED"},{"name":"PAYMENT.CAPTURE.COMPLETED"},{"name":"VAULT.PAYMENT-TOKEN.CREATED"},{"name":"VAULT.PAYMENT-TOKEN.DELETED"},{"name":"PAYMENT.CAPTURE.PENDING"},{"name":"PAYMENT.SALE.COMPLETED"},{"name":"PAYMENT.SALE.REFUNDED"},{"name":"BILLING.SUBSCRIPTION.CANCELLED"},{"name":"BILLING.PLAN.PRICING-CHANGE.ACTIVATED"},{"name":"CATALOG.PRODUCT.UPDATED"},{"name":"BILLING.PLAN.UPDATED"}]}
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:48:00+00:00 ERROR #1468 - Failed to subscribe webhooks: [Error] Not Found
+2025-08-08T06:52:41+00:00 DEBUG #2067 - [New Request] GET /wp-admin/admin.php
+2025-08-08T06:52:41+00:00 DEBUG #2067 - GET https://api.woocommerce.com/integrations/ppc/v1/customer/partners/K8SKZ36LQBWXJ/merchant-integrations/
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:52:41+00:00 WARNING #2067 - [Error] Not Found CONTEXT: {"args":{"method":"GET","headers":{"Authorization":"Bearer token","Content-Type":"application/json"}},"response":{"headers":{},"body":"{"statusCode":404,"error":"Not Found","message":"Not Found"}","response":{"code":404,"message":"Not Found"},"cookies":[],"filename":null,"http_response":{"data":null,"headers":null,"status":null}}}
+2025-08-08T06:52:42+00:00 DEBUG #5542 - [New Request] GET /wp-json/wc/v3/wc_paypal/webhooks
+2025-08-08T06:52:42+00:00 DEBUG #5542 - GET https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:52:43+00:00 DEBUG #2289 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:52:43+00:00 INFO #2289 - Generating onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:52:43+00:00 DEBUG #1192 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:52:43+00:00 INFO #1192 - Generating onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:52:45+00:00 DEBUG #8510 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:52:45+00:00 INFO #8510 - Generating onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:52:45+00:00 DEBUG #5505 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:52:45+00:00 INFO #5505 - Generating onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:52:45+00:00 DEBUG #8510 - POST https://api.woocommerce.com/integrations/ppcsandbox/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiIwMjdmZTc5NzFiNjkyNGMwMThjODc5ZGU2ZjRhNDM1MiJ9","return_url_description":"Return to your shop.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: 67ac15d21f239
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-08-08T06:52:45+00:00 DEBUG #5505 - POST https://api.woocommerce.com/integrations/ppcsandbox/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiJkYWMxOGM4MmM5NzFlYTJlYjNmYjdlOWI3OTE5Y2Y2NiJ9","return_url_description":"Return to your shop.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Response Debug ID: e60b69f1abc61
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-08-08T06:53:13+00:00 DEBUG #2289 - POST https://api.woocommerce.com/integrations/ppcsandbox/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiJmYmYzY2IwZjEyZWFkMTBkZWU1ZThiZGY1NGUxZTdlNCJ9","return_url_description":"Return to your shop.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Request failed. WP error message: cURL error 28: Operation timed out after 30002 milliseconds with 0 bytes received
+2025-08-08T06:53:13+00:00 WARNING #2289 - Could not create referral. CONTEXT: {"args":{"method":"POST","headers":{"Authorization":"Bearer token","Content-Type":"application/json","Prefer":"return=representation"},"body":"{"partner_config_override":{"return_url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiJmYmYzY2IwZjEyZWFkMTBkZWU1ZThiZGY1NGUxZTdlNCJ9","return_url_description":"Return to your shop.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}"},"response":{"errors":{"http_request_failed":["cURL error 28: Operation timed out after 30002 milliseconds with 0 bytes received"]},"error_data":[]}}
+2025-08-08T06:53:13+00:00 WARNING #2289 - Could not generate an onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:53:13+00:00 DEBUG #1192 - POST https://api.woocommerce.com/integrations/ppcsandbox/v2/customer/partner-referrals
+Request Body: {"partner_config_override":{"return_url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiJhOTE5MjFmNDhlOTQ4YTIzODczYjBjODRlOTc4ODc5MCJ9","return_url_description":"Return to your shop.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}
+Request failed. WP error message: cURL error 28: Operation timed out after 30002 milliseconds with 0 bytes received
+2025-08-08T06:53:13+00:00 WARNING #1192 - Could not create referral. CONTEXT: {"args":{"method":"POST","headers":{"Authorization":"Bearer token","Content-Type":"application/json","Prefer":"return=representation"},"body":"{"partner_config_override":{"return_url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-admin\/admin.php?page=wc-settings&tab=checkout&section=ppcp-gateway&ppcpToken=eyJrIjoic2FuZGJveC1hZHZhbmNlZF92YXVsdGluZy1leHByZXNzX2NoZWNrb3V0LSIsInUiOjEsImgiOiJhOTE5MjFmNDhlOTQ4YTIzODczYjBjODRlOTc4ODc5MCJ9","return_url_description":"Return to your shop.","show_add_credit_card":false},"products":["PPCP","ADVANCED_VAULTING"],"capabilities":["PAYPAL_WALLET_VAULTING_ADVANCED"],"legal_consents":[{"type":"SHARE_DATA_CONSENT","granted":true}],"operations":[{"operation":"API_INTEGRATION","api_integration_preference":{"rest_api_integration":{"integration_method":"PAYPAL","integration_type":"FIRST_PARTY","first_party_details":{"features":["PAYMENT","REFUND","ADVANCED_TRANSACTIONS_SEARCH","TRACKING_SHIPMENT_READWRITE","BILLING_AGREEMENT"],"seller_nonce":"a1233wtergfsdt4365tzrshgfbaewa36AGa1233wtergfsdt4365tzrshgfbaewa36AG"}}}}]}"},"response":{"errors":{"http_request_failed":["cURL error 28: Operation timed out after 30002 milliseconds with 0 bytes received"]},"error_data":[]}}
+2025-08-08T06:53:13+00:00 WARNING #1192 - Could not generate an onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:53:16+00:00 DEBUG #3124 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:53:16+00:00 DEBUG #3124 - Loaded onboarding URL from cache: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:53:16+00:00 INFO #3124 - Using cached onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:53:22+00:00 DEBUG #1635 - [New Request] POST /wp-json/wc/v3/wc_paypal/login_link
+2025-08-08T06:53:22+00:00 DEBUG #1635 - Loaded onboarding URL from cache: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:53:22+00:00 INFO #1635 - Using cached onboarding URL for: sandbox-advanced_vaulting-express_checkout-
+2025-08-08T06:53:23+00:00 DEBUG #8191 - [New Request] POST /wp-json/wc/v3/wc_paypal/authenticate/direct
+2025-08-08T06:53:23+00:00 INFO #8191 - Attempting manual connection to PayPal... CONTEXT: {"sandbox":true,"client_id":"AcUUrSX2523T8tcTSXdBaPz0IRfCDWARplo4oTGVByJc_dqnr5Yy7poXECObulRiJC8I_uHMB0E04YCa"}
+2025-08-08T06:53:23+00:00 DEBUG #8191 - POST https://api-m.sandbox.paypal.com/v1/oauth2/token?grant_type=client_credentials
+Response Debug ID: f1492428754d8
+Response: Array
+(
+    [code] => 200
+    [message] => OK
+)
+
+2025-08-08T06:53:24+00:00 DEBUG #8191 - POST https://api-m.sandbox.paypal.com/v2/checkout/orders
+Request Body: {"intent":"CAPTURE","purchase_units":[{"amount":{"currency_code":"USD","value":1}}]}
+Response Debug ID: f1492428f64c0
+Response: Array
+(
+    [code] => 201
+    [message] => Created
+)
+
+2025-08-08T06:53:24+00:00 DEBUG #8191 -  https://api-m.sandbox.paypal.com/v2/checkout/orders/85G96130JV366530E
+Response Debug ID: f988506d885c8
+Response: Array
+(
+    [code] => 200
+    [message] => OK
+)
+
+2025-08-08T06:53:24+00:00 INFO #8191 - Updating connection details CONTEXT: {"is_sandbox":true,"client_id":"AcUUrSX2523T8tcTSXdBaPz0IRfCDWARplo4oTGVByJc_dqnr5Yy7poXECObulRiJC8I_uHMB0E04YCa","client_secret":"EG8jw8C5TOG_zj0T4xwUsuAj-EDRF5DeIGJXQw5lPdgpWmqgf8_508xCscLPJpFYYqecEAhRVSoo78s0","merchant_id":"FYMSWWENCVX3C","merchant_email":"vicesuk-merchant@booug.com","merchant_country":"","seller_type":"business"}
+2025-08-08T06:53:24+00:00 INFO #8191 - Merchant successfully connected to PayPal
+2025-08-08T06:53:24+00:00 INFO #8191 - Calling internal REST endpoint [https://vicesuk-wp.rafaeldeveloper.co/wp-json/wc/v3/wc_paypal/common/seller-account]
+2025-08-08T06:53:29+00:00 DEBUG #8191 - Finished internal REST call [https://vicesuk-wp.rafaeldeveloper.co/wp-json/wc/v3/wc_paypal/common/seller-account]
+2025-08-08T06:53:29+00:00 ERROR #8191 - Internal REST error CONTEXT: {"response":{"errors":{"http_request_failed":["cURL error 28: Connection timed out after 5002 milliseconds"]},"error_data":[]}}
+2025-08-08T06:53:29+00:00 WARNING #8191 - Failed to enrich merchant details: Internal REST error CONTEXT: {"reason":"Internal REST error","details":null}
+2025-08-08T06:53:29+00:00 INFO #8191 - Flushing API caches...
+2025-08-08T06:53:29+00:00 INFO #8191 - Merchant connected, complete onboarding and set defaults.
+2025-08-08T06:53:29+00:00 DEBUG #8191 - GET https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:53:29+00:00 ERROR #8191 - Failed to delete webhooks: [Error] Not Found
+2025-08-08T06:53:29+00:00 INFO #8191 - Webhooks deleted.
+2025-08-08T06:53:29+00:00 DEBUG #8191 - POST https://api.woocommerce.com/integrations/ppc/v1/notifications/webhooks
+Request Body: {"url":"https:\/\/vicesuk-wp.rafaeldeveloper.co\/wp-json\/paypal\/v1\/incoming","event_types":[{"name":"CHECKOUT.ORDER.APPROVED"},{"name":"CHECKOUT.ORDER.COMPLETED"},{"name":"CHECKOUT.PAYMENT-APPROVAL.REVERSED"},{"name":"PAYMENT.CAPTURE.REFUNDED"},{"name":"PAYMENT.AUTHORIZATION.VOIDED"},{"name":"PAYMENT.CAPTURE.REVERSED"},{"name":"PAYMENT.ORDER.CANCELLED"},{"name":"PAYMENT.CAPTURE.DENIED"},{"name":"PAYMENT.CAPTURE.COMPLETED"},{"name":"VAULT.PAYMENT-TOKEN.CREATED"},{"name":"VAULT.PAYMENT-TOKEN.DELETED"},{"name":"PAYMENT.CAPTURE.PENDING"},{"name":"PAYMENT.SALE.COMPLETED"},{"name":"PAYMENT.SALE.REFUNDED"},{"name":"BILLING.SUBSCRIPTION.CANCELLED"},{"name":"BILLING.PLAN.PRICING-CHANGE.ACTIVATED"},{"name":"CATALOG.PRODUCT.UPDATED"},{"name":"BILLING.PLAN.UPDATED"}]}
+Response: Array
+(
+    [code] => 404
+    [message] => Not Found
+)
+
+Response Body: {"statusCode":404,"error":"Not Found","message":"Not Found"}
+2025-08-08T06:53:29+00:00 ERROR #8191 - Failed to subscribe webhooks: [Error] Not Found
