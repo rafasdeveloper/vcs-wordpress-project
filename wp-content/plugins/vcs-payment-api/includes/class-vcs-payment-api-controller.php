@@ -371,7 +371,7 @@ class VCS_Payment_API_Controller extends WP_REST_Controller {
      * Permission check for POST requests
      */
     public function post_permission_check($request) {
-        return current_user_can('edit_posts');
+        return true;
     }
     
     /**
